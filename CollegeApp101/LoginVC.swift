@@ -65,7 +65,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
         btn2.setTitle("Register", forState: .Normal)
         btn2.setTitleColor(MaterialColor.black, forState: .Normal)
         btn2.setTitleColor(MaterialColor.black, forState: .Highlighted)
-        btn2.backgroundColor = MaterialColor.green.lighten2
+        btn2.backgroundColor = MaterialColor.white
         
         view.layout(btn2).width(100).height(40).bottom(200).right(60)
         
