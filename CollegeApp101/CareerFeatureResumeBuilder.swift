@@ -35,8 +35,9 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     private func prepareMainButtons(){
         
         let button: FlatButton = FlatButton()
-        button.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
+        button.frame = CGRect(x: 50, y: 50, width: 200, height: 50)
         button.setTitleColor(MaterialColor.white, forState: .Normal)
+        button.titleLabel?.font = UIFont(name: "Scope One", size: 10)
         button.setTitle("Add Card", forState: .Normal)
         button.backgroundColor = MaterialColor.amber.base
         button.addTarget(self, action: #selector(handleAddResumeCard), forControlEvents: .TouchUpInside)
@@ -46,7 +47,6 @@ public class CareerFeatureResumeBuilder: CareerFeature{
 
     
     internal func handleAddResumeCard(){
-        
         addResumeCard(50, size: 50, vc: self.scrollView)
         
     }
