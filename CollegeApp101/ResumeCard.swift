@@ -12,9 +12,9 @@ import Material
 
 class ResumeCard: CardView{
     
-    var view: MySwipeVC = MySwipeVC()
+    var view: CareerFeatureResumeBuilder = CareerFeatureResumeBuilder()
 
-    internal init(vc: MySwipeVC, x: Int, y: Int, width: Int, height: Int){
+    internal init(vc: CareerFeatureResumeBuilder, x: Int, y: Int, width: Int, height: Int){
         super.init(frame: CGRect(x: x, y: y, width: width, height: height))
         self.view = vc
     }
@@ -26,7 +26,10 @@ class ResumeCard: CardView{
     
     private func addCard(){
         
-        
+        let card: HubCard = HubCard(vc: self,type: "Reminder",x: 20, y: y, width: Int(Constants.ScreenWidth-40),height: size)
+        hubCards.append(card)
+        vc.addSubview(card)
+
         
     }
     
