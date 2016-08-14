@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C11989491D602AE80027F24E /* ResumeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11989481D602AE80027F24E /* ResumeCard.swift */; };
+		C119894B1D602C040027F24E /* CareerFeatureResumeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */; };
 		C153C9A71D5A815600C9E393 /* CoachingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C153C9A61D5A815600C9E393 /* CoachingFeature.swift */; };
 		C1A0EDCA1D5BC26E0046B9AF /* CoachingPreviewGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD40601D5A99CD0013FAEF /* CoachingPreviewGeneral.swift */; };
 		C1A0EDCC1D5BF6760046B9AF /* CoachingPreviewWriting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A0EDCB1D5BF6760046B9AF /* CoachingPreviewWriting.swift */; };
@@ -60,6 +62,8 @@
 		764B2CB3283CA46A78EEBDDD /* Pods-CollegeApp101Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegeApp101Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegeApp101Tests/Pods-CollegeApp101Tests.release.xcconfig"; sourceTree = "<group>"; };
 		87272FED3538CEDA6F8D0037 /* Pods-CollegeApp101.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegeApp101.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegeApp101/Pods-CollegeApp101.release.xcconfig"; sourceTree = "<group>"; };
 		8A1D89CA35369577A037C746 /* Pods-CollegeApp101UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegeApp101UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegeApp101UITests/Pods-CollegeApp101UITests.release.xcconfig"; sourceTree = "<group>"; };
+		C11989481D602AE80027F24E /* ResumeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResumeCard.swift; sourceTree = "<group>"; };
+		C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareerFeatureResumeBuilder.swift; sourceTree = "<group>"; };
 		C153C9A61D5A815600C9E393 /* CoachingFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingFeature.swift; sourceTree = "<group>"; };
 		C1A0EDCB1D5BF6760046B9AF /* CoachingPreviewWriting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingPreviewWriting.swift; sourceTree = "<group>"; };
 		C1A0EDCD1D5C35180046B9AF /* CoachingPreviewEvaluation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingPreviewEvaluation.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 				C153C9A61D5A815600C9E393 /* CoachingFeature.swift */,
 				E9C27C281D4C0ADE00160A05 /* MySwipeVC.swift */,
 				E9DF9FEA1D4E7FE4007A5697 /* HubCard.swift */,
+				C11989481D602AE80027F24E /* ResumeCard.swift */,
+				C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */,
 				E9C27C261D4C0AD800160A05 /* EZSwipeController.swift */,
 				E936DC311D601DCE00D6878C /* Lora-Bold.ttf */,
 				E936DC331D601E3F00D6878C /* ScopeOne-Regular.ttf */,
@@ -470,11 +476,13 @@
 				C153C9A71D5A815600C9E393 /* CoachingFeature.swift in Sources */,
 				C1A0EDD61D5C35EF0046B9AF /* CoachingPreviewSenior.swift in Sources */,
 				C1A0EDCC1D5BF6760046B9AF /* CoachingPreviewWriting.swift in Sources */,
+				C11989491D602AE80027F24E /* ResumeCard.swift in Sources */,
 				E9C27C271D4C0AD800160A05 /* EZSwipeController.swift in Sources */,
 				E9C27C291D4C0ADE00160A05 /* MySwipeVC.swift in Sources */,
 				C1E574FA1D55A43200EF106C /* LoginVC.swift in Sources */,
 				C1AF116A1D5EAA3E009D718D /* PlannerItem.swift in Sources */,
 				C1E574F61D55A42200EF106C /* RegisterVC.swift in Sources */,
+				C119894B1D602C040027F24E /* CareerFeatureResumeBuilder.swift in Sources */,
 				E9598A061D4C0667004D8842 /* ViewController.swift in Sources */,
 				E9598A041D4C0667004D8842 /* AppDelegate.swift in Sources */,
 				E99B43231D56777100433708 /* MenuVC.swift in Sources */,
