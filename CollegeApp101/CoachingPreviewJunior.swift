@@ -43,7 +43,7 @@ class CoachingPreviewJunior : UIViewController {
     
     
     internal func setupView(){
-        y = -height
+        y = -height + MySwipeVC.Constants.navBarHeightWithStatusBar
         view.frame = CGRect(x: x, y: y, width: width, height: height)
         view.backgroundColor = MaterialColor.blue.lighten2
         
@@ -77,7 +77,7 @@ class CoachingPreviewJunior : UIViewController {
         UIView.animateWithDuration(dur, animations: {
             let vcY = self.height
             vc.view.frame = CGRect(x: 0.0, y: vcY, width: vc.view.frame.width, height: vc.view.frame.height)
-            self.view.frame = CGRect(x: 0.0, y: 0.0, width: vc.view.frame.width, height: vc.view.frame.height)
+            self.view.frame = CGRect(x: 0.0, y: MySwipeVC.Constants.navBarHeightWithStatusBar, width: vc.view.frame.width, height: vc.view.frame.height)
         })
     }
     
@@ -85,7 +85,7 @@ class CoachingPreviewJunior : UIViewController {
         UIView.animateWithDuration(dur, animations: {
             //let vcY : CGFloat = 0.0
             vc.view.frame = CGRect(x: 0.0, y: 0.0, width: vc.view.frame.width, height: vc.view.frame.height)
-            self.view.frame = CGRect(x: 0.0, y: -self.height, width: vc.view.frame.width, height: vc.view.frame.height)
+            self.view.frame = CGRect(x: 0.0, y: -self.height + MySwipeVC.Constants.navBarHeightWithStatusBar, width: vc.view.frame.width, height: vc.view.frame.height)
         })
     }
     
