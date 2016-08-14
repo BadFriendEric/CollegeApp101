@@ -48,12 +48,12 @@ public class CareerFeatureResumeBuilder: CareerFeature{
 
     
     internal func handleAddResumeCard(){
-        addResumeCard(50, size: 50, vc: self.scrollView)
+        addResumeCard(50, size: 200, vc: self.scrollView)
         
     }
     
     internal func addResumeCard(y: Int, size: Int, vc: UIScrollView){
-        let card: ResumeCard = ResumeCard(vc: self, x: 100, y: 100, width: 100, height: 100)
+        let card: ResumeCard = ResumeCard(vc: self, x: 0 + 15, y: 140, width: width - 30, height: 100)
         resumeCards.append(card)
         vc.addSubview(card)
         
