@@ -112,7 +112,7 @@ class MySwipeVC: EZSwipeController {
     
     }
     private func prepareView(){
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = MaterialColor.grey.lighten2
         
         
     }
