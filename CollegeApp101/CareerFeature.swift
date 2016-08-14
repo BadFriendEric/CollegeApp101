@@ -273,12 +273,12 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     public func disableFeatures(){
         
         
-        var a: CGFloat = 1.0
+        //var a: CGFloat = 1.0
         let newHeight = self.height_init
         UIView.animateWithDuration(0.4, animations: {
-            a = 0.0
+            //a = 0.0
             for f in self.features {
-                f.alpha = a
+                f.alpha = 0
             }
             
             //self.exitButton.alpha = 0
@@ -292,13 +292,15 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         }, completion: { finished in
             for f in self.features {
                 f.removeFromSuperview()
+                
             }
+            self.scrollView.removeFromSuperview()
             //self.exitButton.removeFromSuperview()
-            self.removeTitlePane()
+            //self.removeTitlePane()
             
 
         })
-        self.scrollView.removeFromSuperview()
+        
         
         
     }
