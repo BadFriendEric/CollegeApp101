@@ -76,7 +76,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
         
         var imageView : UIImageView
         imageView  = UIImageView(frame:CGRectMake(80, 30, 160, 160));
-        imageView.image = UIImage(named:"CA101logoPNG")
+        imageView.image = UIImage(named:"LoginIcon")
         self.view.addSubview(imageView)
 
     }
