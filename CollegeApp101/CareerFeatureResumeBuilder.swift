@@ -13,7 +13,8 @@ import UIKit
 public class CareerFeatureResumeBuilder: CareerFeature{
     
     var resumeCards: [ResumeCard] = []
-
+    
+    
     
     public override init() {
         super.init()
@@ -35,6 +36,8 @@ public class CareerFeatureResumeBuilder: CareerFeature{
         
         let button: FlatButton = FlatButton()
         button.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
+        button.setTitleColor(MaterialColor.white, forState: .Normal)
+        button.setTitle("Add Card", forState: .Normal)
         button.backgroundColor = MaterialColor.amber.base
         button.addTarget(self, action: #selector(handleAddResumeCard), forControlEvents: .TouchUpInside)
         features.append(button)
@@ -44,7 +47,7 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     
     internal func handleAddResumeCard(){
         
-        
+        addResumeCard(50, size: 50, vc: self.scrollView)
         
     }
     
