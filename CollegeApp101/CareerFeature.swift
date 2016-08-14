@@ -266,6 +266,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
                 f.alpha = a
             }
             }, completion: { finished in
+                self.addTitlePane()
         })
     }
     
@@ -294,6 +295,8 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
             }
             //self.exitButton.removeFromSuperview()
             self.titlePane.removeFromSuperview()
+            self.scrollView.removeFromSuperview()
+
         })
         
         
