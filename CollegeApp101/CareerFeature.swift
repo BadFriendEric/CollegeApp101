@@ -294,10 +294,11 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
                 f.removeFromSuperview()
             }
             //self.exitButton.removeFromSuperview()
-            self.titlePane.removeFromSuperview()
-            self.scrollView.removeFromSuperview()
+            self.removeTitlePane()
+            
 
         })
+        self.scrollView.removeFromSuperview()
         
         
     }
