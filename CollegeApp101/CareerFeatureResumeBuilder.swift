@@ -29,6 +29,7 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     public override func setFrame(x: Int, y: Int, width: Int, height: Int) {
         super.setFrame(x, y: y, width: width, height: height)
         setFeatureTitle("Resume Builder", x: width/2 - 80)
+        refreshScrollView(1000) //use when pushing stuff off the screen
         prepareMainButtons()
     }
     
