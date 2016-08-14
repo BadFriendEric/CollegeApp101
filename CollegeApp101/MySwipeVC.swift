@@ -69,8 +69,8 @@ class MySwipeVC: EZSwipeController {
     var coachingPreviewJunior : CoachingPreviewJunior! = CoachingPreviewJunior()
     var coachingPreviewSenior : CoachingPreviewSenior! = CoachingPreviewSenior()
 
-    var navBarHighlightColor = Constants.Color5
-    
+    var navBarHighlightColor = MaterialColor.black
+    var navColor = MaterialColor.white
     
     
     ///Navigation Bar Variables///
@@ -144,11 +144,11 @@ class MySwipeVC: EZSwipeController {
     private func prepareNavigationBar(){
         navigationController?.navigationBar.statusBarStyle = .Default
         
-        statusBar.backgroundColor = MaterialColor.grey.base
+        statusBar.backgroundColor = navColor
         
         navBar.contentInset.left = 15
         navBar.contentInset.right = 10
-        navBar.backgroundColor = MaterialColor.grey.base
+        navBar.backgroundColor = navColor
         navBar.setItems([navItem], animated: false)
         navItem.leftControls = [menuButton]
         navItem.rightControls = [helpButton]
@@ -215,6 +215,14 @@ class MySwipeVC: EZSwipeController {
         coachingPreviewJunior.superview = coachingVC
         coachingPreviewSenior.superview  = coachingVC
         
+        let freshmanColor = MaterialColor.green.lighten2
+        let sophomoreColor = MaterialColor.orange.lighten2
+        let juniorColor = MaterialColor.blue.lighten2
+        let seniorColor = MaterialColor.red.lighten2
+        let writingColor = MaterialColor.cyan.lighten2
+        let generalColor = MaterialColor.purple.lighten2
+        let evaluationColor = MaterialColor.lightGreen.lighten2
+        
         let h = height - 70
         
         let writing: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70, width: coachingVC.view.frame.width/2, height: h/3))
@@ -223,17 +231,17 @@ class MySwipeVC: EZSwipeController {
         writing.cornerRadius = 0
         writing.titleLabel?.font = RobotoFont.mediumWithSize(24)
         //writing.backgroundColor = MaterialColor.red.lighten1
-        writing.backgroundColor = MaterialColor.lightBlue.lighten2
-        writing.addTarget(self, action: #selector(handleCoachingWritingButton), forControlEvents: .TouchUpInside)
+        writing.backgroundColor = writingColor
+        writing.addTarget(self, action: #selector(handleCoachingWritingButton), forControlEvents: .TouchDown)
         coachingVC.view.addSubview(writing)
         
         let general: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70 + h/3, width: coachingVC.view.frame.width/2, height: h/3))
         general.setTitleColor(MaterialColor.white, forState: .Normal)
         general.setTitle("General", forState: .Normal)
-        general.backgroundColor = MaterialColor.purple.lighten2
+        general.backgroundColor = generalColor
         general.cornerRadius = 0
         general.titleLabel?.font = RobotoFont.mediumWithSize(24)
-        general.addTarget(self, action: #selector(handleCoachingGeneralButton), forControlEvents: .TouchUpInside)
+        general.addTarget(self, action: #selector(handleCoachingGeneralButton), forControlEvents: .TouchDown)
         coachingVC.view.addSubview(general)
         
         let evaluation: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70 + 2*(h/3), width: coachingVC.view.frame.width/2, height: h/3))
@@ -241,8 +249,8 @@ class MySwipeVC: EZSwipeController {
         evaluation.setTitle("Evaluation", forState: .Normal)
         evaluation.cornerRadius = 0
         evaluation.titleLabel?.font = RobotoFont.mediumWithSize(24)
-        evaluation.backgroundColor = MaterialColor.lightGreen.lighten2
-        evaluation.addTarget(self, action: #selector(handleCoachingEvaluationButton), forControlEvents: .TouchUpInside)
+        evaluation.backgroundColor = evaluationColor
+        evaluation.addTarget(self, action: #selector(handleCoachingEvaluationButton), forControlEvents: .TouchDown)
         coachingVC.view.addSubview(evaluation)
         
         let freshman: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70, width: coachingVC.view.frame.width/2, height: h/4))
@@ -251,8 +259,8 @@ class MySwipeVC: EZSwipeController {
         freshman.titleLabel?.font = RobotoFont.mediumWithSize(24)
         freshman.cornerRadius = 0
         //freshman.backgroundColor = MaterialColor.purple.lighten2
-        freshman.backgroundColor = MaterialColor.green.lighten2
-        freshman.addTarget(self, action: #selector(handleCoachingFreshmanButton), forControlEvents: .TouchUpInside)
+        freshman.backgroundColor = freshmanColor
+        freshman.addTarget(self, action: #selector(handleCoachingFreshmanButton), forControlEvents: .TouchDown)
         coachingVC.view.addSubview(freshman)
         
         let sophomore: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + (h/4), width: coachingVC.view.frame.width/2, height: h/4))
@@ -261,8 +269,8 @@ class MySwipeVC: EZSwipeController {
         sophomore.titleLabel?.font = RobotoFont.mediumWithSize(24)
         sophomore.cornerRadius = 0
         //sophomore.backgroundColor = MaterialColor.teal.lighten2
-        sophomore.backgroundColor = MaterialColor.orange.lighten2
-        sophomore.addTarget(self, action: #selector(handleCoachingSophomoreButton), forControlEvents: .TouchUpInside)
+        sophomore.backgroundColor = sophomoreColor
+        sophomore.addTarget(self, action: #selector(handleCoachingSophomoreButton), forControlEvents: .TouchDown)
         coachingVC.view.addSubview(sophomore)
 
         let junior: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + 2*(h/4), width: coachingVC.view.frame.width/2, height: h/4))
@@ -271,8 +279,8 @@ class MySwipeVC: EZSwipeController {
         junior.cornerRadius = 0
         junior.titleLabel?.font = RobotoFont.mediumWithSize(24)
         //junior.backgroundColor = MaterialColor.pink.lighten2
-        junior.backgroundColor = MaterialColor.blue.lighten2
-        junior.addTarget(self, action: #selector(handleCoachingJuniorButton), forControlEvents: .TouchUpInside)
+        junior.backgroundColor = juniorColor
+        junior.addTarget(self, action: #selector(handleCoachingJuniorButton), forControlEvents: .TouchDown)
         coachingVC.view.addSubview(junior)
 
         let senior: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + 3*(h/4), width: coachingVC.view.frame.width/2, height: h/4))
@@ -281,8 +289,8 @@ class MySwipeVC: EZSwipeController {
         senior.cornerRadius = 0
         senior.titleLabel?.font = RobotoFont.mediumWithSize(24)
         //senior.backgroundColor = MaterialColor.cyan.lighten2
-        senior.backgroundColor = MaterialColor.red.lighten2
-        senior.addTarget(self, action: #selector(handleCoachingSeniorButton), forControlEvents: .TouchUpInside)
+        senior.backgroundColor = seniorColor
+        senior.addTarget(self, action: #selector(handleCoachingSeniorButton), forControlEvents: .TouchDown)
         coachingVC.view.addSubview(senior)
 
         
