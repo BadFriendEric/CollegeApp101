@@ -24,7 +24,11 @@ class ResumeCard: CardView{
     }
 
     
-    
+    private func addCard(){
+        
+        
+        
+    }
     
     
 }

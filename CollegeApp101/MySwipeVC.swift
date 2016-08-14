@@ -65,6 +65,7 @@ class MySwipeVC: EZSwipeController {
     var coachingFeatures: [CoachingPreviewGeneral]! = [CoachingPreviewGeneral]()
     var menu: MenuVC! = MenuVC()
     var hubCards: [HubCard] = []
+    var resumeCards: [ResumeCard] = []
     var coachingPreviewGeneral : CoachingPreviewGeneral! = CoachingPreviewGeneral()
     var coachingPreviewWriting : CoachingPreviewWriting! = CoachingPreviewWriting()
     var coachingPreviewEvaluation : CoachingPreviewEvaluation! = CoachingPreviewEvaluation()
@@ -181,7 +182,7 @@ class MySwipeVC: EZSwipeController {
     internal func prepareCareerView(){
         careerFeatureView.frame = CGRect(x: 0, y: navBar.height+20, width: navBar.width, height: hubVC.view.frame.height-navBar.height-20)
         let cf1: CareerFeature = CareerFeaturePlanner()
-        let cf2: CareerFeature = CareerFeature()
+        let cf2: CareerFeature = CareerFeatureResumeBuilder()
         let cf3: CareerFeature = CareerFeature()
         //let cf4: CareerFeature = CareerFeature()
         careerFeatures.append(cf1)
@@ -200,7 +201,6 @@ class MySwipeVC: EZSwipeController {
                         height: Int(careerFeatureView.frame.height)/numFeatures+1)
             careerFeatureView.addSubview(cf.view)
         }
-        cf2.setFeatureTitle("Resume Builder")
         cf3.setFeatureTitle("Volunteer Match")
         cf1.setColor(MaterialColor.blue.lighten1)
         cf2.setColor(MaterialColor.lightGreen.lighten1)
@@ -499,6 +499,14 @@ class MySwipeVC: EZSwipeController {
         card.removeFromSuperview()
         hubCards.removeAtIndex(hubCards.indexOf(card)!)
         refreshHubCards()
+    }
+    
+    internal func addResumeCard(y: Int, size: Int, vc: UIScrollView){
+        let card: ResumeCard = ResumeCard(vc: self, x: 100, y: 100, width: 100, height: 100)
+        resumeCards.append(card)
+        vc.addSubview(card)
+        
+        
     }
     
     /////////////////////////////////////////////////
