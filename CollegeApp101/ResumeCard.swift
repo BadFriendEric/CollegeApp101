@@ -23,15 +23,6 @@ class ResumeCard: CardView{
         fatalError("init(coder:) has not been implemented")
     }
 
-    
-    private func addCard(){
         
-        let card: HubCard = HubCard(vc: self,type: "Reminder",x: 20, y: y, width: Int(Constants.ScreenWidth-40),height: size)
-        hubCards.append(card)
-        vc.addSubview(card)
-
-        
-    }
-    
     
 }
