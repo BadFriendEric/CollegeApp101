@@ -139,15 +139,6 @@ public class CareerFeaturePlanner : CareerFeature, MaterialSwitchDelegate {
     public override func getFeatures() -> [UIView] {
         return features
     }
-    public override func enableFeatures(){
-        super.enableFeatures()
-        addTitlePane()
-    }
-    
-    public override func disableFeatures() {
-        super.disableFeatures()
-        scrollView.removeFromSuperview()
-    }
     
     
     public func updatePlanner(){
