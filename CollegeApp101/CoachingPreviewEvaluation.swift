@@ -58,7 +58,7 @@ class CoachingPreviewEvaluation : UIViewController {
     }
     
     internal func prepareButton(){
-        test = FlatButton(frame: CGRect(x: (width-150)/2, y: height-100, width: 150, height: 60))
+        test = FlatButton(frame: CGRect(x: (width-150)/2, y: height-170, width: 150, height: 60))
         test.setTitle("Continue", forState: .Normal)
         test.setTitleColor(MaterialColor.white, forState: .Normal)
         test.backgroundColor = MaterialColor.red.base

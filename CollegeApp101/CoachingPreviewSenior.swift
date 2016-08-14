@@ -59,7 +59,7 @@ class CoachingPreviewSenior : UIViewController {
     }
     
     internal func prepareButton(){
-        test = FlatButton(frame: CGRect(x: (width-150)/2, y: height-100, width: 150, height: 60))
+        test = FlatButton(frame: CGRect(x: (width-150)/2, y: height-170, width: 150, height: 60))
         test.setTitle("Continue", forState: .Normal)
         test.setTitleColor(MaterialColor.white, forState: .Normal)
         test.backgroundColor = MaterialColor.red.base
@@ -75,7 +75,7 @@ class CoachingPreviewSenior : UIViewController {
     
     internal func pushDownVC(vc : UIViewController, dur : NSTimeInterval){
         UIView.animateWithDuration(dur, animations: {
-            let vcY = self.height
+            let vcY = self.height - MySwipeVC.Constants.navBarHeightWithStatusBar
             vc.view.frame = CGRect(x: 0.0, y: vcY, width: vc.view.frame.width, height: vc.view.frame.height)
             self.view.frame = CGRect(x: 0.0, y: MySwipeVC.Constants.navBarHeightWithStatusBar, width: vc.view.frame.width, height: vc.view.frame.height)
         })

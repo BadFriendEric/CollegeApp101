@@ -126,7 +126,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         featureLabel = UILabel(frame: CGRect(x: title_x, y: title_y_init, width: width, height: 40))
         featureLabel.text = name
         featureLabel.numberOfLines = 1
-        featureLabel.font = RobotoFont.lightWithSize(24)
+        featureLabel.font = UIFont(name: "Scope One", size: 24)
         featureLabel.adjustsFontSizeToFitWidth = true
         featureLabel.lineBreakMode = .ByWordWrapping
         featureLabel.textColor = MaterialColor.white
@@ -139,7 +139,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         featureLabel = UILabel(frame: CGRect(x: title_x, y: title_y_init, width: width, height: 40))
         featureLabel.text = name
         featureLabel.numberOfLines = 1
-        featureLabel.font = RobotoFont.lightWithSize(24)
+        featureLabel.font = UIFont(name: "Scope One", size: 24)
         featureLabel.adjustsFontSizeToFitWidth = true
         featureLabel.lineBreakMode = .ByWordWrapping
         featureLabel.textColor = MaterialColor.white
