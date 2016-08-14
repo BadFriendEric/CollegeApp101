@@ -517,14 +517,23 @@ class MySwipeVC: EZSwipeController {
 
 extension MySwipeVC: EZSwipeControllerDataSource {
     func viewControllerData() -> [UIViewController] {
+        
+        let coachingColor = MaterialColor.white.CGColor
+        let careerColor = MaterialColor.white.CGColor
+        let hubColor = MaterialColor.purple.lighten3.CGColor
+
+        
         let coachingVC = UIViewController()
-        coachingVC.view.layer.addSublayer(getGradient1())
+        coachingVC.view.layer.backgroundColor = coachingColor
+        //coachingVC.view.layer.addSublayer(getGradient1())
         
         let hubVC = UIViewController()
-        hubVC.view.layer.addSublayer(getGradient2())
+        hubVC.view.layer.backgroundColor = hubColor
+        //hubVC.view.layer.addSublayer(getGradient2())
         
         let careerVC = UIViewController()
-        careerVC.view.layer.addSublayer(getGradient3())
+        careerVC.view.layer.backgroundColor = careerColor
+        //careerVC.view.layer.addSublayer(getGradient3())
         
         
         self.hubVC = hubVC
