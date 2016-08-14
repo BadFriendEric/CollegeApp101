@@ -21,6 +21,8 @@
 		C1E574F81D55A42900EF106C /* RegisterAccTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E574F71D55A42900EF106C /* RegisterAccTypeVC.swift */; };
 		C1E574FA1D55A43200EF106C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E574F91D55A43200EF106C /* LoginVC.swift */; };
 		E3BF6A32D92BE795A289CA1A /* Pods_CollegeApp101.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4D6B6CCF50807496D72317 /* Pods_CollegeApp101.framework */; };
+		E936DC321D601DCF00D6878C /* Lora-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E936DC311D601DCE00D6878C /* Lora-Bold.ttf */; };
+		E936DC341D601E3F00D6878C /* ScopeOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E936DC331D601E3F00D6878C /* ScopeOne-Regular.ttf */; };
 		E9598A041D4C0667004D8842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9598A031D4C0667004D8842 /* AppDelegate.swift */; };
 		E9598A061D4C0667004D8842 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9598A051D4C0667004D8842 /* ViewController.swift */; };
 		E9598A091D4C0667004D8842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9598A071D4C0667004D8842 /* Main.storyboard */; };
@@ -71,6 +73,8 @@
 		C1E574F71D55A42900EF106C /* RegisterAccTypeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterAccTypeVC.swift; sourceTree = "<group>"; };
 		C1E574F91D55A43200EF106C /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DE4D6B6CCF50807496D72317 /* Pods_CollegeApp101.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollegeApp101.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E936DC311D601DCE00D6878C /* Lora-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lora-Bold.ttf"; sourceTree = "<group>"; };
+		E936DC331D601E3F00D6878C /* ScopeOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScopeOne-Regular.ttf"; sourceTree = "<group>"; };
 		E9598A001D4C0667004D8842 /* CollegeApp101.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeApp101.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9598A031D4C0667004D8842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9598A051D4C0667004D8842 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 				E9C27C281D4C0ADE00160A05 /* MySwipeVC.swift */,
 				E9DF9FEA1D4E7FE4007A5697 /* HubCard.swift */,
 				E9C27C261D4C0AD800160A05 /* EZSwipeController.swift */,
+				E936DC311D601DCE00D6878C /* Lora-Bold.ttf */,
+				E936DC331D601E3F00D6878C /* ScopeOne-Regular.ttf */,
 				E9D6AAE81D57276400356027 /* Images.xcassets */,
 				E9598A0A1D4C0667004D8842 /* Assets.xcassets */,
 				E9598A0C1D4C0667004D8842 /* LaunchScreen.storyboard */,
@@ -304,6 +310,8 @@
 				E9598A0E1D4C0667004D8842 /* LaunchScreen.storyboard in Resources */,
 				E9D6AAE91D57276400356027 /* Images.xcassets in Resources */,
 				E9598A0B1D4C0667004D8842 /* Assets.xcassets in Resources */,
+				E936DC341D601E3F00D6878C /* ScopeOne-Regular.ttf in Resources */,
+				E936DC321D601DCF00D6878C /* Lora-Bold.ttf in Resources */,
 				E9598A091D4C0667004D8842 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
