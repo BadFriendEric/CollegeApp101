@@ -46,6 +46,8 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     
     var myVC : MySwipeVC! = nil
     
+    var scrollView : UIScrollView = UIScrollView()
+    
     public init() {
         super.init(nibName: nil, bundle: nil)
         setupView()
@@ -71,6 +73,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         self.y_init = y
         self.width_init = width
         self.height_init = height
+        self.scrollView.frame = CGRect(x: x, y: title_y_init, width: width, height: height-title_y_init)
         self.view.backgroundColor = featureColor
         //prepareExitButton()
         prepareTitleLine()
@@ -84,6 +87,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         self.featureLabel.frame = CGRect(x: title_x, y: title_y, width: self.width, height: 40)
         self.titleLine.frame = CGRect(x: title_line_width_from_edge,y: title_y + 40,width: width - 2*title_line_width_from_edge,height: 1)
         self.titlePane.frame = CGRect(x: 0, y: 0, width: width, height: Int(titleLine.frame.maxY))
+        self.scrollView.frame = CGRect(x: CGFloat(x), y: CGFloat(title_y), width: CGFloat(width), height: CGFloat(height-title_y))
     }
     
     
@@ -152,7 +156,11 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         titleLine.alpha = 0
         self.view.addSubview(titleLine)
     }
-    
+    public func refreshScrollView(height: Int){
+        UIView.animateWithDuration(0.3, animations: {
+            self.scrollView.contentSize.height = CGFloat(height)
+        })
+    }
 
 //    public func prepareExitButton(){
 //        exitButton = IconButton(frame: CGRect(x: width-45, y: 0, width: 50, height: 35))
@@ -188,7 +196,6 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         prepareFeatures()
         expanded = true
         self.view.removeFromSuperview()
-        
         superView.addSubview(self.view)
         let newHeight = Int(superView.frame.height)
         UIView.animateWithDuration(0.5, animations: {
@@ -249,8 +256,9 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     
     public func enableFeatures(){
         for f in features {
-            view.addSubview(f)
+            scrollView.addSubview(f)
         }
+        view.addSubview(scrollView)
         var a: CGFloat = 0.0
         UIView.animateWithDuration(0.7, animations: {
             a = 1.0

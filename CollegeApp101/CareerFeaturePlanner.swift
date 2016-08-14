@@ -21,7 +21,6 @@ public class CareerFeaturePlanner : CareerFeature, MaterialSwitchDelegate {
     
     var sortType : PlannerSortType = .DateCreatedNewest
     
-    var plannerScrollView : UIScrollView! = UIScrollView()
     
     let noteSwitch : MaterialSwitch! = MaterialSwitch(state: .On, style: .LightContent, size: .Default)
     let reminderSwitch : MaterialSwitch! = MaterialSwitch(state: .On, style: .LightContent, size: .Default)
@@ -47,7 +46,6 @@ public class CareerFeaturePlanner : CareerFeature, MaterialSwitchDelegate {
     
     public override func setFrame(x: Int, y: Int, width: Int, height: Int) {
         super.setFrame(x, y: y, width: width, height: height)
-        plannerScrollView.frame = CGRect(x: x, y: title_y_init, width: width, height: height-title_y_init)
         setFeatureTitle("Planner", x: width/2 - 40)
         prepareMainButtons()
         prepareMainLabels()
@@ -55,11 +53,7 @@ public class CareerFeaturePlanner : CareerFeature, MaterialSwitchDelegate {
         prepareFeatures()
         refreshScrollView(height+400)
     }
-    private func refreshScrollView(height: Int){
-        UIView.animateWithDuration(0.3, animations: {
-            self.plannerScrollView.contentSize.height = CGFloat(height)
-        })
-    }
+    
     private func prepareMainButtons(){
         let w: CGFloat = 50
         let imgNote: UIImage? = MaterialIcon.cm.pen
@@ -140,34 +134,19 @@ public class CareerFeaturePlanner : CareerFeature, MaterialSwitchDelegate {
     
     public override func updateFrame(){
         super.updateFrame()
-        plannerScrollView.frame = CGRect(x: CGFloat(x), y: CGFloat(title_y), width: CGFloat(width), height: CGFloat(height-title_y))
     }
     
     public override func getFeatures() -> [UIView] {
         return features
     }
     public override func enableFeatures(){
-        
-        for f in features {
-            plannerScrollView.addSubview(f)
-        }
-        view.addSubview(plannerScrollView)
-        var a: CGFloat = 0.0
-        UIView.animateWithDuration(0.7, animations: {
-            a = 1.0
-            for f in self.features {
-                f.alpha = a
-            }
-            }, completion: { finished in
-                
-        })
-        
+        super.enableFeatures()
         addTitlePane()
     }
     
     public override func disableFeatures() {
         super.disableFeatures()
-        plannerScrollView.removeFromSuperview()
+        scrollView.removeFromSuperview()
     }
     
     
@@ -197,7 +176,7 @@ public class CareerFeaturePlanner : CareerFeature, MaterialSwitchDelegate {
         
         for i in 0..<items.count {
             items[i].removeFromSuperview()
-            plannerScrollView.addSubview(items[i])
+            scrollView.addSubview(items[i])
         }
         
         
