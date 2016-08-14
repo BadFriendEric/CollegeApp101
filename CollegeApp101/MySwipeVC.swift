@@ -34,6 +34,10 @@ class MySwipeVC: EZSwipeController {
         internal static var navBarHeight : CGFloat {
             return 50
         }
+        internal static var navBarHeightWithStatusBar : CGFloat {
+            return 70
+        }
+
     }
     override func setupView() {
         datasource = self
