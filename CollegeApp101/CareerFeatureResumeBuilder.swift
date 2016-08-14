@@ -12,9 +12,6 @@ import UIKit
 
 public class CareerFeatureResumeBuilder: CareerFeature{
     
-    var plannerScrollView : UIScrollView! = UIScrollView()
-
-    
     public override init() {
         super.init()
     }
@@ -27,16 +24,29 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     
     public override func setFrame(x: Int, y: Int, width: Int, height: Int) {
         super.setFrame(x, y: y, width: width, height: height)
-        plannerScrollView.frame = CGRect(x: x, y: title_y_init, width: width, height: height-title_y_init)
         setFeatureTitle("Resume Builder", x: width/2 - 40)
         prepareMainButtons()
     }
     
     private func prepareMainButtons(){
         
-        
+        let button: FlatButton = FlatButton()
+        button.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
+        button.backgroundColor = MaterialColor.amber.base
+        button.addTarget(self, action: #selector(handleAddResumeCard), forControlEvents: .TouchUpInside)
+        features.append(button)
         
     }
 
+    
+    internal func handleAddResumeCard(){
+        
+        
+        
+    }
+    
+    public override func getFeatures() -> [UIView] {
+        return features
+    }
     
 }
