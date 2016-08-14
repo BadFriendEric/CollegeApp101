@@ -65,7 +65,6 @@ class MySwipeVC: EZSwipeController {
     var coachingFeatures: [CoachingPreviewGeneral]! = [CoachingPreviewGeneral]()
     var menu: MenuVC! = MenuVC()
     var hubCards: [HubCard] = []
-    var resumeCards: [ResumeCard] = []
     var coachingPreviewGeneral : CoachingPreviewGeneral! = CoachingPreviewGeneral()
     var coachingPreviewWriting : CoachingPreviewWriting! = CoachingPreviewWriting()
     var coachingPreviewEvaluation : CoachingPreviewEvaluation! = CoachingPreviewEvaluation()
@@ -501,13 +500,7 @@ class MySwipeVC: EZSwipeController {
         refreshHubCards()
     }
     
-    internal func addResumeCard(y: Int, size: Int, vc: UIScrollView){
-        let card: ResumeCard = ResumeCard(vc: self, x: 100, y: 100, width: 100, height: 100)
-        resumeCards.append(card)
-        vc.addSubview(card)
-        
-        
-    }
+
     
     /////////////////////////////////////////////////
     //--------------Coaching Methods---------------//

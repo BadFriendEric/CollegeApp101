@@ -12,6 +12,9 @@ import UIKit
 
 public class CareerFeatureResumeBuilder: CareerFeature{
     
+    var resumeCards: [ResumeCard] = []
+
+    
     public override init() {
         super.init()
     }
@@ -41,6 +44,14 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     
     internal func handleAddResumeCard(){
         
+        
+        
+    }
+    
+    internal func addResumeCard(y: Int, size: Int, vc: UIScrollView){
+        let card: ResumeCard = ResumeCard(vc: self, x: 100, y: 100, width: 100, height: 100)
+        resumeCards.append(card)
+        vc.addSubview(card)
         
         
     }
