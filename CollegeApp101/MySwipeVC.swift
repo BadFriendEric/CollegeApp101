@@ -485,9 +485,9 @@ class MySwipeVC: EZSwipeController {
     }
     
     
-    /////////////////////////////////////////////////
+    ////////////////////////////////////////////////
     //--------------The Hub Methods---------------//
-    /////////////////////////////////////////////////
+    ////////////////////////////////////////////////
     
     internal func addCard(y: Int, size: Int, vc: UIScrollView){
         let card: HubCard = HubCard(vc: self,type: "Reminder",x: 20, y: y, width: Int(Constants.ScreenWidth-40),height: size)
@@ -512,6 +512,10 @@ class MySwipeVC: EZSwipeController {
     
     
     
+    ///////////////////////////////////////////////
+    //--------------Career Methods---------------//
+    ///////////////////////////////////////////////
+
     
 }
 

@@ -12,11 +12,17 @@ import UIKit
 
 public class CareerFeatureResumeBuilder: CareerFeature{
     
+    var initView: CareerFeatureResumeBuilder = CareerFeatureResumeBuilder()
     var resumeCards: [ResumeCard] = []
     private var resumeCardSpacing = 25
     private var resumeCardBottom = 50
-    
-    
+    let iconSize = 50
+    var words: String = "Input resume item 2"
+    //var entryCard: ResumeCard = ResumeCard(vc: initView, x: 25, y: 45, width: width-50, height: 100, text: words)
+    //basically rn im trying to make the words change to wahtever the user inputs when u make the new card but to do that 
+    //im trying to create an entryCard variable that ill be able to pull the entryCard.text from.. i hope that works.
+
+
     public override init() {
         super.init()
     }
@@ -32,12 +38,13 @@ public class CareerFeatureResumeBuilder: CareerFeature{
         setFeatureTitle("Resume Builder", x: width/2 - 80)
         refreshScrollView(1000) //use when pushing stuff off the screen
         prepareMainButtons()
+        prepareEntryCard(self.scrollView)
     }
     
     private func prepareMainButtons(){
         
         let button: FlatButton = FlatButton()
-        button.frame = CGRect(x: width/2 + 20, y: 50, width: 75, height: 25)
+        button.frame = CGRect(x: width/2 + width/4 - 25, y: height - 50, width: 75, height: 25)
         button.setTitleColor(MaterialColor.white, forState: .Normal)
         button.titleLabel?.font = UIFont(name: "Scope One", size: 10)
         button.setTitle("Add Card", forState: .Normal)
@@ -47,10 +54,16 @@ public class CareerFeatureResumeBuilder: CareerFeature{
         
     }
 
+    private func prepareEntryCard(vc: UIScrollView){
+        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 45, width: width-50, height: 100, text: words)
+        entryCard = card
+        vc.addSubview(card)
+    
+    }
     
     internal func handleAddResumeCard(){
         let size = 110
-
+        
         addResumeCard(50, vc: self.scrollView)
         resumeCardBottom += size+resumeCardSpacing
 
@@ -60,7 +73,8 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     }
     
     internal func addResumeCard(y: Int, vc: UIScrollView){
-        let card: ResumeCard = ResumeCard(vc: self, x: 0 + 15, y: 140 + 100*(resumeCards.count), width: width - 30, height: 100)
+        words = entryCard.text
+        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 150 + 105*(resumeCards.count), width: width - 50, height: 100, text: words)
         resumeCards.append(card)
         vc.addSubview(card)
         
@@ -92,5 +106,15 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     public override func getFeatures() -> [UIView] {
         return features
     }
+    
+    internal func deleteResumeCard(card: ResumeCard){
+        /* 
+        card.removeFromSuperview()
+        resumeCards.removeAtIndex(resumeCards.indexOf(card)!)
+        refreshResumeCards()
+         */
+    }
+
+
     
 }
