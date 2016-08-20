@@ -16,6 +16,11 @@ class LoginVC: UIViewController, TextFieldDelegate {
     private var resetUser: IconButton!
     private var resetPass: IconButton!
     
+    private var imageSize: CGFloat = 200
+    
+    let width = EZSwipeController.Constants.ScreenWidth
+    let height = EZSwipeController.Constants.ScreenHeight
+
     private var username: String!
     
     private var password: String!
@@ -32,7 +37,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
     
 
 
-
+    
     
     /// Programmatic update for the textField as it rotates.
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
@@ -56,7 +61,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
         btn.setTitleColor(MaterialColor.black, forState: .Highlighted)
         btn.backgroundColor = MaterialColor.white
         
-        view.layout(btn).width(80).height(40).bottom(200).right(180)
+        view.layout(btn).width(80).height(40).top(345).centerHorizontally(-70)
         
         
         //REGISTER BUTTON
@@ -67,16 +72,17 @@ class LoginVC: UIViewController, TextFieldDelegate {
         btn2.setTitleColor(MaterialColor.black, forState: .Highlighted)
         btn2.backgroundColor = MaterialColor.white
         
-        view.layout(btn2).width(100).height(40).bottom(200).right(60)
+        view.layout(btn2).width(100).height(40).top(345).centerHorizontally(70)
         
         
     }
     
     private func prepareLogo(){
-        
         var imageView : UIImageView
-        imageView  = UIImageView(frame:CGRectMake(80, 30, 160, 160));
+        imageView = UIImageView(frame:CGRectMake(width/2 - imageSize/2, 30, imageSize, imageSize))
+        imageView.contentMode = .ScaleAspectFit
         imageView.image = UIImage(named:"LoginIcon")
+        
         self.view.addSubview(imageView)
 
     }
@@ -127,7 +133,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
     
     /// Prepares the email TextField.
     private func prepareEmailField() {
-        emailField = ErrorTextField(frame: CGRectMake(40, 120, view.bounds.width - 80, 32))
+        emailField = ErrorTextField(frame: CGRectMake(40, 120, width - 80, 32))
         emailField.placeholder = "Email"
         emailField.detail = "Error, incorrect Email"
         emailField.enableClearIconButton = true
@@ -138,7 +144,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
         emailField.dividerColor = MaterialColor.black
         
         //view.addSubview(emailField)
-        view.layout(emailField).top(200).horizontally(left: 40, right: 40)
+        view.layout(emailField).top(240).horizontally(left: 40, right: 40)
     }
     
     /// Prepares the password TextField.
@@ -157,7 +163,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
         
         // Size the TextField to the maximum width, less 40 pixels on either side
         // with a top margin of 200 pixels.
-        view.layout(passwordField).top(250).horizontally(left: 40, right: 40)
+        view.layout(passwordField).top(290).horizontally(left: 40, right: 40)
     }
     
     private func getGradient1() -> CAGradientLayer{
@@ -170,11 +176,15 @@ class LoginVC: UIViewController, TextFieldDelegate {
         return gradientLayer
     }
     
-    /// Executed when the 'return' key is pressed when using the emailField.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        (textField as? ErrorTextField)?.revealError = true
+        textField.resignFirstResponder()
         return true
     }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         return true

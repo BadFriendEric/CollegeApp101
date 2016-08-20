@@ -20,6 +20,9 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
     
     private var password: String!
     
+    let width = EZSwipeController.Constants.ScreenWidth
+    let height = EZSwipeController.Constants.ScreenHeight
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareView()
@@ -39,7 +42,6 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
         view.layer.addSublayer(getGradient1())
     }
     
-    /// Prepares the resign responder button.
     private func prepareContinueButton() {
         //Continue BUTTON
         let btn2: RaisedButton = RaisedButton()
@@ -68,7 +70,7 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
         studentBtn.setTitleColor(MaterialColor.black, forState: .Highlighted)
         studentBtn.backgroundColor = MaterialColor.blue.lighten4
         
-        view.layout(studentBtn).bottom(360).horizontally(left: 20, right: 20).height(100)
+        view.layout(studentBtn).centerHorizontally().centerVertically(-120).width(width-80).height(80)
     }
     
     internal func handleStudentButton(){
@@ -89,7 +91,7 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
         coachBtn.setTitleColor(MaterialColor.black, forState: .Highlighted)
         coachBtn.backgroundColor = MaterialColor.blue.lighten4
         
-        view.layout(coachBtn).bottom(240).horizontally(left: 20, right: 20).height(100)
+        view.layout(coachBtn).centerHorizontally().centerVertically().width(width-80).height(80)
     }
     
     internal func handleCoachButton(){
@@ -109,7 +111,7 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
         parentBtn.setTitleColor(MaterialColor.black, forState: .Highlighted)
         parentBtn.backgroundColor = MaterialColor.blue.lighten4
         
-        view.layout(parentBtn).bottom(120).horizontally(left: 20, right: 20).height(100)
+        view.layout(parentBtn).centerHorizontally().centerVertically(120).width(width-80).height(80)
     }
     
     internal func handleParentButton(){
