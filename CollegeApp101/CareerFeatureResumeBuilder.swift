@@ -12,15 +12,14 @@ import UIKit
 
 public class CareerFeatureResumeBuilder: CareerFeature{
     
-    var initView: CareerFeatureResumeBuilder = CareerFeatureResumeBuilder()
+    //var initView: CareerFeatureResumeBuilder = CareerFeatureResumeBuilder()
     var resumeCards: [ResumeCard] = []
     private var resumeCardSpacing = 25
     private var resumeCardBottom = 50
     let iconSize = 50
     var words: String = "Input resume item 2"
     //var entryCard: ResumeCard = ResumeCard(vc: initView, x: 25, y: 45, width: width-50, height: 100, text: words)
-    //basically rn im trying to make the words change to wahtever the user inputs when u make the new card but to do that 
-    //im trying to create an entryCard variable that ill be able to pull the entryCard.text from.. i hope that works.
+    
 
 
     public override init() {
@@ -33,7 +32,7 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     }
 
     
-    public override func setFrame(x: Int, y: Int, width: Int, height: Int) {
+    public override func setFrame(x: Int, y: Int, width: Int, height: Int) {  //open Resume Builder
         super.setFrame(x, y: y, width: width, height: height)
         setFeatureTitle("Resume Builder", x: width/2 - 80)
         refreshScrollView(1000) //use when pushing stuff off the screen
@@ -56,7 +55,7 @@ public class CareerFeatureResumeBuilder: CareerFeature{
 
     private func prepareEntryCard(vc: UIScrollView){
         let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 45, width: width-50, height: 100, text: words)
-        entryCard = card
+        //entryCard = card
         vc.addSubview(card)
     
     }
@@ -73,7 +72,7 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     }
     
     internal func addResumeCard(y: Int, vc: UIScrollView){
-        words = entryCard.text
+        //words = entryCard.text
         let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 150 + 105*(resumeCards.count), width: width - 50, height: 100, text: words)
         resumeCards.append(card)
         vc.addSubview(card)
