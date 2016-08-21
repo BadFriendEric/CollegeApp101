@@ -231,7 +231,6 @@ public class CoachingFeature : UIViewController {
         
     }
     
-    
 
     
     override public func viewDidLoad() {

@@ -12,16 +12,17 @@ import UIKit
 
 public class CareerFeatureResumeBuilder: CareerFeature{
     
-    //var initView: CareerFeatureResumeBuilder = CareerFeatureResumeBuilder()
     var resumeCards: [ResumeCard] = []
     private var resumeCardSpacing = 25
     private var resumeCardBottom = 50
     let iconSize = 50
     var words: String = "Input resume item 2"
-    //var entryCard: ResumeCard = ResumeCard(vc: initView, x: 25, y: 45, width: width-50, height: 100, text: words)
+    let textBox: UITextField = UITextField()
+    var textBoxSize = 50
     
-
-
+    
+    
+    
     public override init() {
         super.init()
     }
@@ -35,10 +36,12 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     public override func setFrame(x: Int, y: Int, width: Int, height: Int) {  //open Resume Builder
         super.setFrame(x, y: y, width: width, height: height)
         setFeatureTitle("Resume Builder", x: width/2 - 80)
-        refreshScrollView(1000) //use when pushing stuff off the screen
         prepareMainButtons()
-        prepareEntryCard(self.scrollView)
+        prepareTextField()
+        refreshScrollView(1000) //use when pushing stuff off the screen
     }
+    
+  
     
     private func prepareMainButtons(){
         
@@ -53,17 +56,21 @@ public class CareerFeatureResumeBuilder: CareerFeature{
         
     }
 
-    private func prepareEntryCard(vc: UIScrollView){
-        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 45, width: width-50, height: 100, text: words)
-        //entryCard = card
-        vc.addSubview(card)
-    
+    private func prepareTextField(){
+        textBox.frame = CGRect(x: 20, y: 40, width: width - 40, height: 80)
+        textBox.backgroundColor = MaterialColor.white
+        textBox.font = RobotoFont.medium
+        
+        textBox.placeholder = "Keep your accomplishments here for when you apply for college"
+        features.append(textBox)
+        
     }
     
     internal func handleAddResumeCard(){
         let size = 110
+        words = textBox.text!
         
-        addResumeCard(50, vc: self.scrollView)
+        addResumeCard(50, vc: self.scrollView, text: words)
         resumeCardBottom += size+resumeCardSpacing
 
         if(resumeCardBottom > Int(self.view.frame.height)){
@@ -71,9 +78,8 @@ public class CareerFeatureResumeBuilder: CareerFeature{
         }
     }
     
-    internal func addResumeCard(y: Int, vc: UIScrollView){
-        //words = entryCard.text
-        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 150 + 105*(resumeCards.count), width: width - 50, height: 100, text: words)
+    internal func addResumeCard(y: Int, vc: UIScrollView, text: String){
+        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 180 + 105*(resumeCards.count), width: width - 50, height: 100, text: text)
         resumeCards.append(card)
         vc.addSubview(card)
         
@@ -113,6 +119,42 @@ public class CareerFeatureResumeBuilder: CareerFeature{
         refreshResumeCards()
          */
     }
+    
+    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        textBox.resignFirstResponder()
+    }
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textBox.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+    }
+    
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        (textField as? ErrorTextField)?.revealError = false
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        (textField as? ErrorTextField)?.revealError = false
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        (textField as? ErrorTextField)?.revealError = false
+        return true
+    }
+
 
 
     

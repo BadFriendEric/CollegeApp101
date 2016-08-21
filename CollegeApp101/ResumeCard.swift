@@ -49,6 +49,7 @@ class ResumeCard: CardView{
     }
 
     
+    
     internal func setTrashButton(){
         trash = IconButton(frame: CGRect(x: Int(self.frame.width)-45, y: Int(self.frame.height - 10), width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)-35))
         trash.pulseColor = MaterialColor.red.base
@@ -101,10 +102,11 @@ class ResumeCard: CardView{
     internal func setTextBox(text: String){
         let box = UITextField(frame: CGRect(x: iconSize + 20, y: 0, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)-35))
         box.placeholder = text
-        box.backgroundColor = MaterialColor.grey.lighten3
+        //box.backgroundColor = MaterialColor.grey.lighten3
         box.font = RobotoFont.thinWithSize(18)
         box.adjustsFontSizeToFitWidth = true
         mysubviews.append(box)
+        
         
         
     }
@@ -117,6 +119,38 @@ class ResumeCard: CardView{
         mysubviews.append(iconView)
         
     }
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+    }
+    
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        (textField as? ErrorTextField)?.revealError = false
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        (textField as? ErrorTextField)?.revealError = false
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        (textField as? ErrorTextField)?.revealError = false
+        return true
+    }
+
 
     
         
