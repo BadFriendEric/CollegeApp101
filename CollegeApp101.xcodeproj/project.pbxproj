@@ -177,15 +177,15 @@
 				C1E574F91D55A43200EF106C /* LoginVC.swift */,
 				C1E574F71D55A42900EF106C /* RegisterAccTypeVC.swift */,
 				C1E574F51D55A42200EF106C /* RegisterVC.swift */,
-				C1AF116B1D5EAACB009D718D /* CareerFeaturePlanner.swift */,
 				C1AF11691D5EAA3E009D718D /* PlannerItem.swift */,
 				E99B43221D56777100433708 /* MenuVC.swift */,
 				E9B8FE411D55594A00C4DEB5 /* CareerFeature.swift */,
+				C1AF116B1D5EAACB009D718D /* CareerFeaturePlanner.swift */,
+				C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */,
 				C153C9A61D5A815600C9E393 /* CoachingFeature.swift */,
 				E9C27C281D4C0ADE00160A05 /* MySwipeVC.swift */,
 				E9DF9FEA1D4E7FE4007A5697 /* HubCard.swift */,
 				C11989481D602AE80027F24E /* ResumeCard.swift */,
-				C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */,
 				E9C27C261D4C0AD800160A05 /* EZSwipeController.swift */,
 				E936DC311D601DCE00D6878C /* Lora-Bold.ttf */,
 				E936DC331D601E3F00D6878C /* ScopeOne-Regular.ttf */,
@@ -285,7 +285,7 @@
 				TargetAttributes = {
 					E95989FF1D4C0667004D8842 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 9H295K4Z78;
+						DevelopmentTeam = D3L53JM2C6;
 					};
 					E9598A131D4C0667004D8842 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -646,7 +646,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CollegeApp101/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CollegeApp101;
+				PRODUCT_BUNDLE_IDENTIFIER = CollegeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -661,7 +661,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CollegeApp101/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CollegeApp101;
+				PRODUCT_BUNDLE_IDENTIFIER = CollegeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

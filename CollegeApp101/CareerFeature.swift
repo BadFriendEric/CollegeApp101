@@ -18,7 +18,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     
     var features: [UIView]! = [UIView]()
     
-    var featureColor: UIColor! = MaterialColor.amber.base
+    var featureColor: UIColor! = MaterialColor.clear
     
     var exitButton: IconButton! = IconButton()
     var exitImage: UIImage! = MaterialIcon.close
@@ -78,11 +78,12 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         self.y_init = y
         self.width_init = width
         self.height_init = height
-        self.scrollView.frame = CGRect(x: x, y: title_y_init, width: width, height: height-title_y_init)
+        
         self.view.backgroundColor = featureColor
         //prepareExitButton()
         prepareTitleLine()
         prepareTitlePane()
+        self.scrollView.frame = CGRect(x: x, y: Int(titleLine.frame.maxY), width: width, height: height-Int(titleLine.frame.maxY))
         self.features = getFeatures()
         prepareFeatures()
     }
@@ -92,7 +93,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         self.featureLabel.frame = CGRect(x: title_x, y: title_y, width: self.width, height: 40)
         self.titleLine.frame = CGRect(x: title_line_width_from_edge,y: title_y + 40,width: width - 2*title_line_width_from_edge,height: 1)
         self.titlePane.frame = CGRect(x: 0, y: 0, width: width, height: Int(titleLine.frame.maxY))
-        self.scrollView.frame = CGRect(x: CGFloat(x), y: CGFloat(title_y), width: CGFloat(width), height: CGFloat(height-title_y))
+        self.scrollView.frame = CGRect(x: CGFloat(x), y: CGFloat(titleLine.frame.maxY), width: CGFloat(width), height: CGFloat(height)-titleLine.frame.maxY)
     }
     
     
@@ -108,7 +109,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     }
     public func prepareTitlePane(){
         titlePane.frame = CGRect(x: 0, y: 0, width: width, height: Int(titleLine.frame.maxY))
-        titlePane.backgroundColor = featureColor
+        //titlePane.backgroundColor = featureColor
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTitleTap))
         tap.delegate = self
@@ -120,7 +121,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         titlePane.addSubview(featureLabel)
         titleLine.removeFromSuperview()
         titlePane.addSubview(titleLine)
-        titlePane.backgroundColor = UIColor.clearColor()
+        //titlePane.backgroundColor = featureColor
         view.addSubview(titlePane)
     }
     public func removeTitlePane(){
@@ -165,6 +166,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         UIView.animateWithDuration(0.3, animations: {
             self.scrollView.contentSize.height = CGFloat(height)
         })
+        scrollView.clipsToBounds = true
     }
 
 //    public func prepareExitButton(){
@@ -214,7 +216,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         UIView.animateWithDuration(0.5, animations: {
             self.y = 0
             self.height = newHeight
-
+            //self.titlePane.backgroundColor = self.featureColor.colorWithAlphaComponent(0.9)
             self.view.backgroundColor = self.featureColor.colorWithAlphaComponent(0.65)
             self.title_y = 5
             self.titleLine.alpha = 1.0
@@ -287,7 +289,6 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     
     public func disableFeatures(){
         
-        
         //var a: CGFloat = 1.0
         let newHeight = self.height_init
         UIView.animateWithDuration(0.4, animations: {
@@ -300,6 +301,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
             self.y = self.y_init
             self.height = newHeight
             self.title_y = self.title_y_init
+            //self.titlePane.backgroundColor = self.featureColor
             self.view.backgroundColor = self.featureColor
             self.updateFrame()
             self.blurEffectView.frame = self.view.frame
