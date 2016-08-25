@@ -61,7 +61,7 @@ class CoachingPreviewGeneral : UIViewController {
         
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         pullUpVC(superview, dur: 0.4)
     }
     

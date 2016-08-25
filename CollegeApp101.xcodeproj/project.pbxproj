@@ -285,7 +285,7 @@
 				TargetAttributes = {
 					E95989FF1D4C0667004D8842 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = D3L53JM2C6;
+						DevelopmentTeam = 9H295K4Z78;
 					};
 					E9598A131D4C0667004D8842 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -646,7 +646,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CollegeApp101/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.collegeapp101.CollegeApp101;
+				PRODUCT_BUNDLE_IDENTIFIER = CollegeApp101;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -661,7 +661,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CollegeApp101/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.collegeapp101.CollegeApp101;
+				PRODUCT_BUNDLE_IDENTIFIER = CollegeApp101;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

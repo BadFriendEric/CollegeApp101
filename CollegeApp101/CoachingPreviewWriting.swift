@@ -45,7 +45,7 @@ class CoachingPreviewWriting : UIViewController {
     internal func setupView(){
         y = -height + MySwipeVC.Constants.navBarHeightWithStatusBar
         view.frame = CGRect(x: x, y: y, width: width, height: height)
-        view.backgroundColor = MaterialColor.lightBlue.lighten2  //changed
+        view.backgroundColor = MaterialColor.cyan.lighten2  //changed
         
         prepareButton()
         reloadView()
@@ -69,7 +69,7 @@ class CoachingPreviewWriting : UIViewController {
     }
     
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         pullUpVC(superview, dur: 0.4)
     }
     
