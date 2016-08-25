@@ -10,16 +10,18 @@ import Foundation
 import Material
 import UIKit
 
-public class CareerFeatureResumeBuilder: CareerFeature{
+public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     
     var resumeCards: [ResumeCard] = []
     private var resumeCardSpacing = 25
     private var resumeCardBottom = 50
     let iconSize = 50
     var words: String = "Input resume item 2"
-    let textBox: UITextField = UITextField()
+    let placeHolder = "Keep your accomplishments here for when you apply for college"
+    let textBox: UITextView = UITextView()
     var textBoxSize = 50
-    
+    var placeholderLabel : UILabel!
+
     
     
     
@@ -36,7 +38,11 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     public override func setFrame(x: Int, y: Int, width: Int, height: Int) {  //open Resume Builder
         super.setFrame(x, y: y, width: width, height: height)
         setFeatureTitle("Resume Builder", x: width/2 - 80)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        tap.delegate = self
+        scrollView.addGestureRecognizer(tap)
         prepareMainButtons()
+        prepareLabel()
         prepareTextField()
         refreshScrollView(1000) //use when pushing stuff off the screen
     }
@@ -46,7 +52,7 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     private func prepareMainButtons(){
         
         let button: FlatButton = FlatButton()
-        button.frame = CGRect(x: width/2 + width/4 - 25, y: height - 50, width: 75, height: 25)
+        button.frame = CGRect(x: width/2 + width/4 - 25, y: height - 60, width: 75, height: 25)
         button.setTitleColor(MaterialColor.white, forState: .Normal)
         button.titleLabel?.font = UIFont(name: "Scope One", size: 10)
         button.setTitle("Add Card", forState: .Normal)
@@ -57,13 +63,26 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     }
 
     private func prepareTextField(){
-        textBox.frame = CGRect(x: 20, y: 40, width: width - 40, height: 80)
+        textBox.frame = CGRect(x: 20, y: 50, width: width - 40, height: 80)
         textBox.backgroundColor = MaterialColor.white
-        textBox.font = RobotoFont.medium
-        
-        textBox.placeholder = "Keep your accomplishments here for when you apply for college"
+        textBox.font = RobotoFont.lightWithSize(16)
+        textBox.textColor = MaterialColor.grey.lighten2
+        textBox.text! = ""
+        textBox.layer.cornerRadius = 10
         features.append(textBox)
         
+    }
+    
+    private func prepareLabel(){
+        placeholderLabel = UILabel()
+        placeholderLabel.textColor = MaterialColor.grey.lighten2
+        placeholderLabel.font = RobotoFont.lightWithSize(16)
+        placeholderLabel.text = placeHolder
+        placeholderLabel.sizeToFit()
+        textBox.addSubview(placeholderLabel)
+        placeholderLabel.frame = CGRect(x: 20, y: 50, width: width - 40, height: 80)
+        placeholderLabel.hidden = !textBox.text.isEmpty
+
     }
     
     internal func handleAddResumeCard(){
@@ -79,7 +98,7 @@ public class CareerFeatureResumeBuilder: CareerFeature{
     }
     
     internal func addResumeCard(y: Int, vc: UIScrollView, text: String){
-        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 180 + 105*(resumeCards.count), width: width - 50, height: 100, text: text)
+        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 180 + 110*(resumeCards.count), width: width - 50, height: 100, text: text)
         resumeCards.append(card)
         vc.addSubview(card)
         
@@ -120,42 +139,60 @@ public class CareerFeatureResumeBuilder: CareerFeature{
          */
     }
     
+
+    func textViewDidChange(textView: UITextView) {
+        placeholderLabel.hidden = !textView.text.isEmpty
+    }
+    
+    func backgroundTapped(){
+        textBox.resignFirstResponder()
+    }
+
+}
+
+
+
+
+    /*
     override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         textBox.resignFirstResponder()
     }
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textViewShouldReturn(textView: UITextView) -> Bool {
         textBox.resignFirstResponder()
         return true
     }
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        textBox.text = ""
         return true
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textViewDidBeginEditing(textView: UITextView) {
+        textBox.text = ""
     }
     
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        if( textBox.text == ""){
+            textBox.text = "Keep your accomplishments here for when you apply for college"
+        }
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textViewDidEndEditing(textField: UITextField) {
         (textField as? ErrorTextField)?.revealError = false
     }
     
-    func textFieldShouldClear(textField: UITextField) -> Bool {
+    func textViewShouldClear(textField: UITextField) -> Bool {
         (textField as? ErrorTextField)?.revealError = false
         return true
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textView(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         (textField as? ErrorTextField)?.revealError = false
         return true
     }
 
 
-
-    
-}
+ */
