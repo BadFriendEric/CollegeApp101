@@ -461,6 +461,7 @@ class MySwipeVC: EZSwipeController {
     @objc private func handleCoachingSeniorButton(){
         view.addSubview(coachingPreviewSenior.view)  //Change to freshman
         refreshNavBar()
+        
         coachingPreviewSenior.pushDownVC(coachingVC, dur: 0.5)  //evaluation
     }
 
