@@ -75,12 +75,13 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     
     private func prepareLabel(){
         placeholderLabel = UILabel()
+        placeholderLabel.frame = CGRect(x: 0, y: 0, width: width - 40, height: 40)
+        //placeholderLabel.backgroundColor = MaterialColor.blue.base
         placeholderLabel.textColor = MaterialColor.grey.lighten2
         placeholderLabel.font = RobotoFont.lightWithSize(16)
+        placeholderLabel.adjustsFontSizeToFitWidth = true
         placeholderLabel.text = placeHolder
-        placeholderLabel.sizeToFit()
         textBox.addSubview(placeholderLabel)
-        placeholderLabel.frame = CGRect(x: 20, y: 50, width: width - 40, height: 80)
         placeholderLabel.hidden = !textBox.text.isEmpty
 
     }
@@ -139,10 +140,6 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
          */
     }
     
-
-    func textViewDidChange(textView: UITextView) {
-        placeholderLabel.hidden = !textView.text.isEmpty
-    }
     
     func backgroundTapped(){
         textBox.resignFirstResponder()

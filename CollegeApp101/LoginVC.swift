@@ -16,7 +16,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
     private var resetUser: IconButton!
     private var resetPass: IconButton!
     
-    private var imageSize: CGFloat = 200
+    private var imageSize: CGFloat = 300
     
     let width = EZSwipeController.Constants.ScreenWidth
     let height = EZSwipeController.Constants.ScreenHeight
@@ -79,9 +79,9 @@ class LoginVC: UIViewController, TextFieldDelegate {
     
     private func prepareLogo(){
         var imageView : UIImageView
-        imageView = UIImageView(frame:CGRectMake(width/2 - imageSize/2, 30, imageSize, imageSize))
+        imageView = UIImageView(frame:CGRectMake(width/2 - imageSize/2, 10, imageSize, imageSize))
         imageView.contentMode = .ScaleAspectFit
-        imageView.image = UIImage(named:"LoginIcon")
+        imageView.image = UIImage(named:"logo")
         
         self.view.addSubview(imageView)
 
