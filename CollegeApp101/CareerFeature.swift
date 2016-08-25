@@ -34,14 +34,14 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     var y_init = 0
     var width_init = 0
     var height_init = 0
-    var title_y_init = 45
+    var title_y_init = 40
     
     var x = 0
     var y = 0
     var width = 0
     var height = 0
     var title_x = 0
-    var title_y = 45
+    var title_y = 40
     
     //Back blur tools
     var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
@@ -90,7 +90,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     
     public func updateFrame(){
         self.view.frame = CGRect(x: x, y: y, width: width, height: height)
-        self.featureLabel.frame = CGRect(x: title_x, y: title_y, width: self.width, height: 40)
+        self.featureLabel.frame = CGRect(x: title_x, y: title_y, width: self.width, height: 20)
         self.titleLine.frame = CGRect(x: title_line_width_from_edge,y: title_y + 40,width: width - 2*title_line_width_from_edge,height: 1)
         self.titlePane.frame = CGRect(x: 0, y: 0, width: width, height: Int(titleLine.frame.maxY))
         self.scrollView.frame = CGRect(x: CGFloat(x), y: CGFloat(titleLine.frame.maxY), width: CGFloat(width), height: CGFloat(height)-titleLine.frame.maxY)
@@ -131,23 +131,13 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(titleLine)
         titlePane.removeFromSuperview()
     }
-    public func setFeatureTitle(name: String, x: Int){
-        title_x = x
-        featureLabel = UILabel(frame: CGRect(x: title_x, y: title_y_init, width: width, height: 40))
-        featureLabel.text = name
-        featureLabel.numberOfLines = 1
-        featureLabel.font = UIFont(name: "Scope One", size: 24)
-        featureLabel.adjustsFontSizeToFitWidth = true
-        featureLabel.lineBreakMode = .ByWordWrapping
-        featureLabel.textColor = MaterialColor.white
-        self.view.addSubview(featureLabel)
-    }
-    
+
     
     public func setFeatureTitle(name: String){
-        title_x = width/2 - 80
-        featureLabel = UILabel(frame: CGRect(x: title_x, y: title_y_init, width: width, height: 40))
+        title_x = 0
+        featureLabel = UILabel(frame: CGRect(x: title_x, y: title_y_init, width: width, height: 20))
         featureLabel.text = name
+        featureLabel.textAlignment = NSTextAlignment.Center
         featureLabel.numberOfLines = 1
         featureLabel.font = UIFont(name: "Scope One", size: 24)
         featureLabel.adjustsFontSizeToFitWidth = true
@@ -217,8 +207,8 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
             self.y = 0
             self.height = newHeight
             //self.titlePane.backgroundColor = self.featureColor.colorWithAlphaComponent(0.9)
-            self.view.backgroundColor = self.featureColor.colorWithAlphaComponent(0.65)
-            self.title_y = 5
+            self.view.backgroundColor = self.featureColor.colorWithAlphaComponent(0.8)
+            self.title_y = 15
             self.titleLine.alpha = 1.0
             self.updateFrame()
             self.blurEffectView.frame = self.view.frame

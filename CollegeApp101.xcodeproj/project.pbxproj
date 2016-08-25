@@ -167,6 +167,7 @@
 			children = (
 				E9598A031D4C0667004D8842 /* AppDelegate.swift */,
 				E9598A051D4C0667004D8842 /* ViewController.swift */,
+				C153C9A61D5A815600C9E393 /* CoachingFeature.swift */,
 				E9FD40601D5A99CD0013FAEF /* CoachingPreviewGeneral.swift */,
 				C1A0EDCB1D5BF6760046B9AF /* CoachingPreviewWriting.swift */,
 				C1A0EDCD1D5C35180046B9AF /* CoachingPreviewEvaluation.swift */,
@@ -182,7 +183,6 @@
 				E9B8FE411D55594A00C4DEB5 /* CareerFeature.swift */,
 				C1AF116B1D5EAACB009D718D /* CareerFeaturePlanner.swift */,
 				C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */,
-				C153C9A61D5A815600C9E393 /* CoachingFeature.swift */,
 				E9C27C281D4C0ADE00160A05 /* MySwipeVC.swift */,
 				E9DF9FEA1D4E7FE4007A5697 /* HubCard.swift */,
 				C11989481D602AE80027F24E /* ResumeCard.swift */,

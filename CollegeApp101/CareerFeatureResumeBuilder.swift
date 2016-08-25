@@ -37,7 +37,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     
     public override func setFrame(x: Int, y: Int, width: Int, height: Int) {  //open Resume Builder
         super.setFrame(x, y: y, width: width, height: height)
-        setFeatureTitle("Resume Builder", x: width/2 - 80)
+        setFeatureTitle("Resume Builder")
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
         tap.delegate = self
         scrollView.addGestureRecognizer(tap)

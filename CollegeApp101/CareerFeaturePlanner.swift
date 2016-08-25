@@ -46,7 +46,7 @@ public class CareerFeaturePlanner : CareerFeature, MaterialSwitchDelegate {
     
     public override func setFrame(x: Int, y: Int, width: Int, height: Int) {
         super.setFrame(x, y: y, width: width, height: height)
-        setFeatureTitle("Planner", x: width/2 - 40)
+        setFeatureTitle("Top Schools")
         prepareMainButtons()
         prepareMainLabels()
         prepareMainSwitches()

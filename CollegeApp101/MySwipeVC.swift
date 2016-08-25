@@ -190,11 +190,13 @@ class MySwipeVC: EZSwipeController {
         let cf1: CareerFeature = CareerFeaturePlanner()
         let cf2: CareerFeature = CareerFeatureResumeBuilder()
         let cf3: CareerFeature = CareerFeature()
-        //let cf4: CareerFeature = CareerFeature()
+        let cf4: CareerFeature = CareerFeature()
+        let cf5: CareerFeature = CareerFeature()
         careerFeatures.append(cf1)
         careerFeatures.append(cf2)
         careerFeatures.append(cf3)
-        //careerFeatures.append(cf4)
+        careerFeatures.append(cf4)
+        careerFeatures.append(cf5)
         
         let numFeatures = careerFeatures.count
         
@@ -207,10 +209,16 @@ class MySwipeVC: EZSwipeController {
                         height: Int(careerFeatureView.frame.height)/numFeatures+1)
             careerFeatureView.addSubview(cf.view)
         }
-        cf3.setFeatureTitle("Volunteer Match")
+                //cf4.setFeatureTitle("Volunteer Match")
         cf1.setColor(MaterialColor.blue.lighten1)
-        cf2.setColor(MaterialColor.lightGreen.lighten1)
-        cf3.setColor(MaterialColor.purple.lighten2)
+        cf2.setColor(MaterialColor.red.lighten1)
+        cf3.setColor(MaterialColor.lightGreen.lighten1)
+        cf4.setColor(MaterialColor.yellow.lighten1)
+        cf5.setColor(MaterialColor.purple.lighten1)
+        cf3.setFeatureTitle("Reminders")
+        cf4.setFeatureTitle("Volunteer Match")
+        cf5.setFeatureTitle("Essay Planner")
+
         careerVC.view.addSubview(careerFeatureView)
         
     }
