@@ -47,7 +47,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     private func prepareMainButtons(){
         
         let button: FlatButton = FlatButton()
-        button.frame = CGRect(x: width/2 + width/4 - 25, y: height - 60, width: 75, height: 25)
+        button.frame = CGRect(x: width/2 + width/4 - 25, y: 100, width: 75, height: 25)
         button.setTitleColor(MaterialColor.white, forState: .Normal)
         button.titleLabel?.font = UIFont(name: "Scope One", size: 10)
         button.setTitle("Add Card", forState: .Normal)
@@ -59,7 +59,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     }
     
     private func prepareTextField(){
-        textBox.frame = CGRect(x: 20, y: 50, width: width - 40, height: 80)
+        textBox.frame = CGRect(x: 20, y: 10, width: width - 40, height: 80)
         textBox.delegate = self
         textBox.backgroundColor = MaterialColor.white
         textBox.font = RobotoFont.lightWithSize(16)
