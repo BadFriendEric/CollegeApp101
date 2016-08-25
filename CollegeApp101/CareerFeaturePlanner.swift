@@ -57,18 +57,18 @@ public class CareerFeaturePlanner : CareerFeature, MaterialSwitchDelegate {
     private func prepareMainButtons(){
         let w: CGFloat = 50
         let imgNote: UIImage? = MaterialIcon.cm.pen
-        let createNote: FabButton = FabButton(frame: CGRectMake(view.bounds.width/2 - 2.5*w, 50, w, w))
+        let createNote: FabButton = FabButton(frame: CGRectMake(view.bounds.width/2 - 2.5*w, 5, w, w))
         createNote.setImage(imgNote, forState: .Normal)
         createNote.setImage(imgNote, forState: .Highlighted)
         
         let imgReminder: UIImage? = MaterialIcon.cm.bell
-        let createReminder: FabButton = FabButton(frame: CGRectMake((view.bounds.width - w)/2, 50, w, w))
+        let createReminder: FabButton = FabButton(frame: CGRectMake((view.bounds.width - w)/2, 5, w, w))
         createReminder.setImage(imgReminder, forState: .Normal)
         createReminder.setImage(imgReminder, forState: .Highlighted)
         
         
         let imgList: UIImage? = MaterialIcon.cm.moreVertical
-        let createList: FabButton = FabButton(frame: CGRectMake(view.bounds.width/2 + 1.5*w, 50, w, w))
+        let createList: FabButton = FabButton(frame: CGRectMake(view.bounds.width/2 + 1.5*w, 5, w, w))
         createList.setImage(imgList, forState: .Normal)
         createList.setImage(imgList, forState: .Highlighted)
         
@@ -79,19 +79,19 @@ public class CareerFeaturePlanner : CareerFeature, MaterialSwitchDelegate {
     
     private func prepareMainLabels(){
         let w: CGFloat = 50
-        let noteLabel = UILabel(frame: CGRect(x: view.bounds.width/2 - 2.5*w, y: 55+w, width: w+10, height: 20))
+        let noteLabel = UILabel(frame: CGRect(x: view.bounds.width/2 - 2.5*w, y: 5+w, width: w+10, height: 20))
         noteLabel.text = "Notes"
         noteLabel.numberOfLines = 1
         noteLabel.font = RobotoFont.thinWithSize(20)
         noteLabel.textColor = MaterialColor.white
         
-        let reminderLabel = UILabel(frame: CGRect(x: (view.bounds.width - w)/2-20, y: 55+w, width: w+45, height: 20))
+        let reminderLabel = UILabel(frame: CGRect(x: (view.bounds.width - w)/2-20, y: 5+w, width: w+45, height: 20))
         reminderLabel.text = "Reminders"
         reminderLabel.numberOfLines = 1
         reminderLabel.font = RobotoFont.thinWithSize(20)
         reminderLabel.textColor = MaterialColor.white
         
-        let listLabel = UILabel(frame: CGRect(x: view.bounds.width/2 + 1.5*w+5, y: 55+w, width: w+10, height: 20))
+        let listLabel = UILabel(frame: CGRect(x: view.bounds.width/2 + 1.5*w+5, y: 5+w, width: w+10, height: 20))
         listLabel.text = "Lists"
         listLabel.numberOfLines = 1
         listLabel.font = RobotoFont.thinWithSize(20)
@@ -110,19 +110,19 @@ public class CareerFeaturePlanner : CareerFeature, MaterialSwitchDelegate {
         noteSwitch.buttonOnColor = buttonOnColor
         noteSwitch.delegate = self
         noteSwitch.x = view.bounds.width/2 - 2.5*w+5
-        noteSwitch.y = 80+w
+        noteSwitch.y = 35+w
         
         reminderSwitch.trackOnColor = trackOnColor
         reminderSwitch.buttonOnColor = buttonOnColor
         reminderSwitch.delegate = self
         reminderSwitch.x = (view.bounds.width - w)/2+5
-        reminderSwitch.y = 80+w
+        reminderSwitch.y = 35+w
         
         listSwitch.trackOnColor = trackOnColor
         listSwitch.buttonOnColor = buttonOnColor
         listSwitch.delegate = self
         listSwitch.x = view.bounds.width/2 + 1.5*w+5
-        listSwitch.y = 80+w
+        listSwitch.y = 35+w
         
         features.append(noteSwitch)
         features.append(reminderSwitch)

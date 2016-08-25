@@ -357,7 +357,7 @@ class MySwipeVC: EZSwipeController {
     internal func resfreshTitle(title: String){
         navItem.title = title
         navItem.titleLabel.textAlignment = .Center
-        navItem.titleLabel.font = UIFont(name: "Vesper Libre", size: 32)
+        navItem.titleLabel.font = UIFont(name: "Poiret One", size: 32)
         navItem.titleLabel.textColor = navBarHighlightColor
         navBar.setItems([navItem], animated: false)
         
