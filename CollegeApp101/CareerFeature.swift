@@ -29,6 +29,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     
     var expandable = true
     
+    //Title location variables
     var x_init = 0
     var y_init = 0
     var width_init = 0
@@ -41,6 +42,10 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     var height = 0
     var title_x = 0
     var title_y = 45
+    
+    //Back blur tools
+    var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+    var blurEffectView = UIVisualEffectView(effect: nil)
     
     let title_line_width_from_edge = 20
     
@@ -115,7 +120,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         titlePane.addSubview(featureLabel)
         titleLine.removeFromSuperview()
         titlePane.addSubview(titleLine)
-        titlePane.backgroundColor = featureColor
+        titlePane.backgroundColor = UIColor.clearColor()
         view.addSubview(titlePane)
     }
     public func removeTitlePane(){
@@ -192,6 +197,14 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
             let cf = myVC.careerFeatures[n]
             cf.expandable = false
         }
+        superView.backgroundColor = UIColor.grayColor()
+        
+        blurEffectView = UIVisualEffectView(effect: blurEffect)
+        
+        blurEffectView.frame = self.view.frame
+        superView.addSubview(blurEffectView)
+        self.view.removeFromSuperview()
+        blurEffectView.addSubview(self.view)
         
         prepareFeatures()
         expanded = true
@@ -201,10 +214,12 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         UIView.animateWithDuration(0.5, animations: {
             self.y = 0
             self.height = newHeight
-            self.view.backgroundColor = self.featureColor
+
+            self.view.backgroundColor = self.featureColor.colorWithAlphaComponent(0.65)
             self.title_y = 5
             self.titleLine.alpha = 1.0
             self.updateFrame()
+            self.blurEffectView.frame = self.view.frame
             }, completion: { finished in
                 self.enableFeatures()
                 //self.exitButton.alpha = 0.0
@@ -280,14 +295,14 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
             for f in self.features {
                 f.alpha = 0
             }
-            
             //self.exitButton.alpha = 0
             self.titleLine.alpha = 0
             self.y = self.y_init
             self.height = newHeight
             self.title_y = self.title_y_init
+            self.view.backgroundColor = self.featureColor
             self.updateFrame()
-
+            self.blurEffectView.frame = self.view.frame
             
         }, completion: { finished in
             for f in self.features {
@@ -295,6 +310,9 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
                 
             }
             self.scrollView.removeFromSuperview()
+            self.view.removeFromSuperview()
+            self.superView.addSubview(self.view)
+            self.blurEffectView.removeFromSuperview()
             //self.exitButton.removeFromSuperview()
             //self.removeTitlePane()
             

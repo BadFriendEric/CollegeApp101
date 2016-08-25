@@ -45,6 +45,7 @@ class MySwipeVC: EZSwipeController {
     
     
     
+    
     ///View Controllers///
     let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.mainScreen().bounds.size.width, height: EZSwipeController.Constants.StatusBarHeight+1))
     var hubVC: UIViewController! = nil
@@ -148,11 +149,17 @@ class MySwipeVC: EZSwipeController {
     private func prepareNavigationBar(){
         navigationController?.navigationBar.statusBarStyle = .Default
         
-        statusBar.backgroundColor = navColor
+        let navBgImage:UIImage = UIImage(named: "NavBarBackground")!
+        let navTexture = UIColor(patternImage: navBgImage)
+        statusBar.backgroundColor = navTexture
         
         navBar.contentInset.left = 15
         navBar.contentInset.right = 10
-        navBar.backgroundColor = navColor
+        navBar.backgroundColor = navTexture        
+        
+        //navBar.setBackgroundImage(navBgImage, forBarMetrics: .Default)
+        
+        
         navBar.setItems([navItem], animated: false)
         navItem.leftControls = [menuButton]
         navItem.rightControls = [helpButton]
@@ -350,7 +357,7 @@ class MySwipeVC: EZSwipeController {
     internal func resfreshTitle(title: String){
         navItem.title = title
         navItem.titleLabel.textAlignment = .Center
-        navItem.titleLabel.font = UIFont(name: "Lora-Bold", size: 28)
+        navItem.titleLabel.font = UIFont(name: "Vesper Libre", size: 32)
         navItem.titleLabel.textColor = navBarHighlightColor
         navBar.setItems([navItem], animated: false)
         

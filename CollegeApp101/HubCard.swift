@@ -120,7 +120,7 @@ class HubCard: CardView {
             view.deleteHubCard(self)
         }else{
             //let trashImg: UIImage? = MaterialIcon.check
-            UIView.animateWithDuration(0.2, animations: {
+            UIView.animateWithDuration(0.2, delay: 0.0, options: .AllowUserInteraction, animations: {
                 self.trash.transform = CGAffineTransformMakeRotation(CGFloat(M_PI/2))
             }, completion: { finished in
                 self.trash.transform = CGAffineTransformIdentity

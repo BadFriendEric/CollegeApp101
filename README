@@ -1,2 +1,10 @@
 readme
-.. no... read ME punk
+
+i fucked up and made a bunch of general improvements 
+on the main app in the ResumeBuilder branch including:
+
+1: centered logo on login
+2: centered acc types on register
+3: set coaching tiles to .TouchDown
+4: set coachingPreviews to TouchesBegan()
+5: added ability to tap out of keyboard on login
