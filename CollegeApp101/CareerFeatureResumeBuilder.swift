@@ -10,7 +10,7 @@ import Foundation
 import Material
 import UIKit
 
-public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
+public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     
     var resumeCards: [ResumeCard] = []
     private var resumeCardSpacing = 25
@@ -20,7 +20,6 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     let placeHolder = "Keep your accomplishments here for when you apply for college"
     let textBox: UITextView = UITextView()
     var textBoxSize = 50
-    var placeholderLabel : UILabel!
 
     
     
@@ -42,7 +41,6 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         tap.delegate = self
         scrollView.addGestureRecognizer(tap)
         prepareMainButtons()
-        prepareLabel()
         prepareTextField()
         refreshScrollView(1000) //use when pushing stuff off the screen
     }
@@ -64,32 +62,21 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
 
     private func prepareTextField(){
         textBox.frame = CGRect(x: 20, y: 50, width: width - 40, height: 80)
+        textBox.delegate = self
         textBox.backgroundColor = MaterialColor.white
         textBox.font = RobotoFont.lightWithSize(16)
-        textBox.textColor = MaterialColor.grey.lighten2
-        textBox.text! = ""
+        textBox.textColor = MaterialColor.grey.lighten1
+        textBox.text! = placeHolder
         textBox.layer.cornerRadius = 10
         features.append(textBox)
         
     }
     
-    private func prepareLabel(){
-        placeholderLabel = UILabel()
-        placeholderLabel.frame = CGRect(x: 0, y: 0, width: width - 40, height: 40)
-        //placeholderLabel.backgroundColor = MaterialColor.blue.base
-        placeholderLabel.textColor = MaterialColor.grey.lighten2
-        placeholderLabel.font = RobotoFont.lightWithSize(16)
-        placeholderLabel.adjustsFontSizeToFitWidth = true
-        placeholderLabel.text = placeHolder
-        textBox.addSubview(placeholderLabel)
-        placeholderLabel.hidden = !textBox.text.isEmpty
-
-    }
-    
     internal func handleAddResumeCard(){
         let size = 110
         words = textBox.text!
-        
+        textBox.text = ""
+        textBox.resignFirstResponder()
         addResumeCard(50, vc: self.scrollView, text: words)
         resumeCardBottom += size+resumeCardSpacing
 
@@ -102,9 +89,6 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 180 + 110*(resumeCards.count), width: width - 50, height: 100, text: text)
         resumeCards.append(card)
         vc.addSubview(card)
-        
-        
-
         
     }
     
@@ -144,6 +128,24 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     func backgroundTapped(){
         textBox.resignFirstResponder()
     }
+    
+    public func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        if textBox.textColor == MaterialColor.grey.lighten1{
+            textBox.text! = ""
+            textBox.textColor = MaterialColor.black
+        }
+        return true
+    }
+    
+    public func textViewDidEndEditing(textView: UITextView) {
+        
+        if textBox.text == "" {
+            
+            textBox.text = placeHolder
+            textBox.textColor = MaterialColor.grey.lighten1
+        }
+    }
+
 
 }
 
