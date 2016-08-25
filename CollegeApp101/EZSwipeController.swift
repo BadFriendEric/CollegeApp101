@@ -81,64 +81,8 @@ public class EZSwipeController: UIViewController {
         setupView()
     }
 
-    private func setupDefaultNavigationBars(pageTitles: [String]) {
-        guard !navigationBarShouldNotExist else { return }
 
-        var navBars = [UINavigationBar]()
-        pageTitles.forEach { title in
-            let navigationBarSize = CGSize(width: Constants.ScreenWidth, height: Constants.navigationBarHeight)
-            let navigationBar = UINavigationBar(frame: CGRect(origin: CGPoint.zero, size: navigationBarSize))
-            navigationBar.barStyle = .Default
-            navigationBar.barTintColor = Constants.lightGrayColor
-
-            let navigationItem = UINavigationItem(title: title)
-            navigationItem.hidesBackButton = true
-            
-            navigationItem.rightBarButtonItem = nil
-            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: nil)
-            navigationBar.pushNavigationItem(navigationItem, animated: false)
-            navBars.append(navigationBar)
-        }
-        stackNavBars = navBars
-    }
-
-    private func setupNavigationBar() {
-        guard stackNavBars.isEmpty else { return }
-        guard !navigationBarShouldNotExist else { return }
-
-        guard let _ = datasource?.navigationBarDataForPageIndex?(0) else {
-            if let titles = datasource?.titlesForPages?() {
-                setupDefaultNavigationBars(titles)
-            }
-            return
-        }
-
-        for index in 0..<stackVC.count {
-            let navigationBar = datasource?.navigationBarDataForPageIndex?(index)
-
-            if let nav = navigationBar {
-                if navigationBarShouldBeOnBottom {
-                    nav.frame = CGRect(x: 0, y: Constants.ScreenHeightWithoutStatusBar - Constants.navigationBarHeight, width: Constants.ScreenWidth, height: Constants.navigationBarHeight)
-                } else {
-                    nav.frame = CGRect(x: 0, y: 0, width: Constants.ScreenWidth, height: Constants.navigationBarHeight)
-                }
-                
-                if let items = nav.items where !cancelStandardButtonEvents {
-                    items.forEach { item in
-                        if let leftButton = item.leftBarButtonItem {
-                            leftButton.target = self
-                            leftButton.action = #selector(leftButtonAction)
-                        }
-                        if let rightButton = item.rightBarButtonItem {
-                            rightButton.target = self
-                            rightButton.action = #selector(rightButtonAction)
-                        }
-                    }
-                }
-                stackNavBars.append(nav)
-            }
-        }
-    }
+    
 
     private func setupViewControllers() {
         stackPageVC = [UIViewController]()
@@ -197,7 +141,7 @@ public class EZSwipeController: UIViewController {
             print("Problem: EZSwipeController needs ViewController Data, please implement EZSwipeControllerDataSource")
             return
         }
-        setupNavigationBar()
+        //setupNavigationBar()
         setupViewControllers()
         setupPageViewController()
     }
