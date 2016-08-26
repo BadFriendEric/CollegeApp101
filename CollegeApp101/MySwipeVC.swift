@@ -258,13 +258,13 @@ class MySwipeVC: EZSwipeController, UIGestureRecognizerDelegate {
         coachingPreviewJunior.superview = coachingVC
         coachingPreviewSenior.superview  = coachingVC
         
-        let freshmanColor = MaterialColor.green.lighten2
-        let sophomoreColor = MaterialColor.orange.lighten2
-        let juniorColor = MaterialColor.blue.lighten2
-        let seniorColor = MaterialColor.red.lighten2
-        let writingColor = MaterialColor.cyan.lighten2
-        let generalColor = MaterialColor.purple.lighten2
-        let evaluationColor = MaterialColor.lightGreen.lighten2
+        let freshmanColor = MaterialColor.green.base
+        let sophomoreColor = MaterialColor.orange.base
+        let juniorColor = MaterialColor.blue.base
+        let seniorColor = MaterialColor.red.base
+        let writingColor = MaterialColor.cyan.base
+        let generalColor = MaterialColor.purple.base
+        let evaluationColor = MaterialColor.lightGreen.base
         
         let h = height - 70
         
@@ -577,7 +577,7 @@ extension MySwipeVC: EZSwipeControllerDataSource {
         
         let coachingColor = MaterialColor.white.CGColor
         let careerColor = MaterialColor.white.CGColor
-        let hubColor = MaterialColor.purple.lighten3.CGColor
+        let hubColor = MaterialColor.deepPurple.base.CGColor
 
         
         let coachingVC = UIViewController()
