@@ -202,7 +202,6 @@ public class EZSwipeController: UIViewController {
             direction = .Forward
         }
         
-        
         datasource?.changedToPageIndex?(index)
         currentStackVC = stackPageVC[index]
         

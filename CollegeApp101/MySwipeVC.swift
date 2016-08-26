@@ -9,7 +9,7 @@
 import UIKit
 import Material
 // import EZSwipeController // if using CocoaPods
-class MySwipeVC: EZSwipeController {
+class MySwipeVC: EZSwipeController, UIGestureRecognizerDelegate {
     
     struct Constants {
         internal static var Color1: UIColor {
@@ -83,7 +83,10 @@ class MySwipeVC: EZSwipeController {
     let navItem: UINavigationItem = UINavigationItem()
     private var menuButton: IconButton!
     private var helpButton: IconButton!
-    
+    private var menuButtonView : UIView! = UIView()
+    private var helpButtonView : UIView! = UIView()
+    private var midButtonView : UIView! = UIView()
+    private let buttonWidths = 75
     
     
     ///Size Constants///
@@ -124,7 +127,13 @@ class MySwipeVC: EZSwipeController {
         helpButton.tintColor = navBarHighlightColor
         helpButton.setImage(helpButtonImage, forState: .Normal)
         helpButton.setImage(helpButtonImage, forState: .Highlighted)
-        helpButton.addTarget(self, action: #selector(handleHelpButton), forControlEvents: .TouchUpInside)
+        //helpButton.addTarget(self, action: #selector(handleHelpButton), forControlEvents: .TouchUpInside)
+        
+        helpButtonView.frame = CGRect(x: Int(EZSwipeController.Constants.ScreenWidth)-buttonWidths, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleHelpButton))
+        tap.delegate = self
+        //helpButtonView.backgroundColor = MaterialColor.amber.base
+        helpButtonView.addGestureRecognizer(tap)
     }
     private func prepareMenuButton(){
         let menuButtonImage: UIImage? = UIImage(named: "MenuIcon")
@@ -140,7 +149,12 @@ class MySwipeVC: EZSwipeController {
         
         menuButton.setImage(menuButtonImage, forState: .Normal)
         menuButton.setImage(menuButtonImage, forState: .Highlighted)
-        menuButton.addTarget(self, action: #selector(handleMenuButton), forControlEvents: .TouchUpInside)
+        //menuButton.addTarget(self, action: #selector(handleMenuButton), forControlEvents: .TouchUpInside)
+        
+        menuButtonView.frame = CGRect(x: 0, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenuButton))
+        tap.delegate = self
+        menuButtonView.addGestureRecognizer(tap)
         
     }
     private func prepareNavigationItem(){
@@ -159,6 +173,14 @@ class MySwipeVC: EZSwipeController {
         
         //navBar.setBackgroundImage(navBgImage, forBarMetrics: .Default)
         
+        midButtonView.frame = CGRect(x: (Int(EZSwipeController.Constants.ScreenWidth)-buttonWidths)/2, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleMidButton))
+        tap.delegate = self
+        midButtonView.addGestureRecognizer(tap)
+
+        
+        
+        
         
         navBar.setItems([navItem], animated: false)
         navItem.leftControls = [menuButton]
@@ -168,6 +190,9 @@ class MySwipeVC: EZSwipeController {
 
         self.view.addSubview(navBar)
         self.view.addSubview(statusBar)
+        self.navBar.addSubview(helpButtonView)
+        self.navBar.addSubview(menuButtonView)
+        self.navBar.addSubview(midButtonView)
         
         
     }
@@ -374,6 +399,8 @@ class MySwipeVC: EZSwipeController {
             self.navBar.removeFromSuperview()
             self.view.addSubview(self.navBar)
         })
+        midButtonView.removeFromSuperview()
+        navBar.addSubview(midButtonView)
     }
     private func refreshScrollView(height: Int){
         UIView.animateWithDuration(0.3, animations: {
@@ -422,6 +449,11 @@ class MySwipeVC: EZSwipeController {
         if(hubCardBottom > Int(hubVC.view.frame.height)){
             refreshScrollView(hubCardBottom)
         }
+    }
+    internal func handleMidButton(){
+        UIView.animateWithDuration(0.5, animations: {
+            self.moveToPage(1)
+        })
     }
     
     
