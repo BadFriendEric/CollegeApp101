@@ -19,8 +19,9 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     var words: String = "Input resume item 2"
     let placeHolder = "Keep your accomplishments here for when you apply for college"
     let textBox: UITextView = UITextView()
+    let timeText: UITextView = UITextView()
     var textBoxSize = 50
-
+    
     public override init() {
         super.init()
     }
@@ -39,6 +40,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
         scrollView.addGestureRecognizer(tap)
         prepareMainButtons()
         prepareTextField()
+        prepareTimeText()
         refreshScrollView(1000) //use when pushing stuff off the screen
     }
     
@@ -55,7 +57,6 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
         button.addTarget(self, action: #selector(handleAddResumeCard), forControlEvents: .TouchUpInside)
         features.append(button)
         
-        
     }
     
     private func prepareTextField(){
@@ -68,6 +69,18 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
         textBox.layer.cornerRadius = 10
         features.append(textBox)
         
+    }
+    
+    private func prepareTimeText(){
+        timeText.frame = CGRect(x: 20, y: 100, width: width - 150, height: 30)
+        timeText.delegate = self
+        timeText.backgroundColor = MaterialColor.white
+        timeText.font = RobotoFont.lightWithSize(16)
+        timeText.textColor = MaterialColor.black
+        timeText.text! = ""
+        timeText.layer.cornerRadius = 10
+        features.append(timeText)
+
     }
     
     internal func handleAddResumeCard(){
@@ -143,7 +156,8 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
             textBox.textColor = MaterialColor.grey.lighten1
         }
     }
-
+    
+    
 
 }
 
