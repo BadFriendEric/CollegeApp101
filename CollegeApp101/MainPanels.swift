@@ -1,5 +1,5 @@
 //
-//  MySwipeVC.swift
+//  MainPanels.swift
 //  CollegeAppFirstDraft
 //
 //  Created by Eric Ota on 7/25/16.
@@ -9,7 +9,7 @@
 import UIKit
 import Material
 // import EZSwipeController // if using CocoaPods
-class MySwipeVC: EZSwipeController, UIGestureRecognizerDelegate {
+class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
     
     struct Constants {
         internal static var Color1: UIColor {
@@ -572,7 +572,7 @@ class MySwipeVC: EZSwipeController, UIGestureRecognizerDelegate {
 /////////////////////////////////////////////////
 
 
-extension MySwipeVC: EZSwipeControllerDataSource {
+extension MainPanels: EZSwipeControllerDataSource {
     func viewControllerData() -> [UIViewController] {
         
         let coachingColor = MaterialColor.white.CGColor

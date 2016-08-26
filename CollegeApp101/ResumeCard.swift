@@ -114,7 +114,7 @@ class ResumeCard: CardView{
 
     internal func setIcon(){
         self.icon = MaterialIcon.star!
-        self.icon.tintWithColor(MySwipeVC.Constants.Color3)
+        self.icon.tintWithColor(MainPanels.Constants.Color3)
         let iconView = UIImageView(image: self.icon)
         iconView.frame = CGRect(x: 5, y: 5, width: iconSize, height: iconSize)
         mysubviews.append(iconView)

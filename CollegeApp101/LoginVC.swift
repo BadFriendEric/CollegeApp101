@@ -98,7 +98,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
         username = emailField.text
         password = passwordField.text
         
-        let secondViewController:UIViewController = MySwipeVC()
+        let secondViewController:UIViewController = MainPanels()
         self.presentViewController(secondViewController, animated: true, completion: nil)
         
         print(username)

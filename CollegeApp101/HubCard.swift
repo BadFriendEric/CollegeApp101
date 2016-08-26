@@ -14,7 +14,7 @@ class HubCard: CardView {
     
     var trash: IconButton = IconButton()
     var trashClicked = false
-    var view: MySwipeVC = MySwipeVC()
+    var vc: MainPanels! = MainPanels()
     var icon: UIImage = UIImage()
     let trashImg: UIImage? = MaterialIcon.cm.close
     
@@ -24,9 +24,9 @@ class HubCard: CardView {
     
     
     
-    internal init(vc: MySwipeVC,type: String, x: Int, y: Int, width: Int, height: Int){
+    internal init(vc: MainPanels,type: String, x: Int, y: Int, width: Int, height: Int){
         super.init(frame: CGRect(x: x, y: y, width: width, height: height))
-        self.view = vc
+        self.vc = vc
         divider = false
         
         contentInset = UIEdgeInsetsZero
@@ -62,7 +62,7 @@ class HubCard: CardView {
     internal func setIcon(){
 
         self.icon = MaterialIcon.favoriteBorder!
-        self.icon.tintWithColor(MySwipeVC.Constants.Color3)
+        self.icon.tintWithColor(MainPanels.Constants.Color3)
         let iconView = UIImageView(image: self.icon)
         iconView.frame = CGRect(x: 15, y: 35, width: iconSize, height: iconSize)
         mysubviews.append(iconView)
@@ -117,7 +117,7 @@ class HubCard: CardView {
     
     internal func handleTrashButton(){
         if(trashClicked){
-            view.deleteHubCard(self)
+            vc.deleteHubCard(self)
         }else{
             //let trashImg: UIImage? = MaterialIcon.check
             UIView.animateWithDuration(0.2, delay: 0.0, options: .AllowUserInteraction, animations: {

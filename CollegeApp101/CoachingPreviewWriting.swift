@@ -43,7 +43,7 @@ class CoachingPreviewWriting : UIViewController {
     
     
     internal func setupView(){
-        y = -height + MySwipeVC.Constants.navBarHeightWithStatusBar
+        y = -height + MainPanels.Constants.navBarHeightWithStatusBar
         view.frame = CGRect(x: x, y: y, width: width, height: height)
         view.backgroundColor = MaterialColor.cyan.base  //changed
         
@@ -77,7 +77,7 @@ class CoachingPreviewWriting : UIViewController {
         UIView.animateWithDuration(dur, animations: {
             let vcY = self.height
             vc.view.frame = CGRect(x: 0.0, y: vcY, width: vc.view.frame.width, height: vc.view.frame.height)
-            self.view.frame = CGRect(x: 0.0, y: 0.0 + MySwipeVC.Constants.navBarHeightWithStatusBar, width: vc.view.frame.width, height: vc.view.frame.height)
+            self.view.frame = CGRect(x: 0.0, y: 0.0 + MainPanels.Constants.navBarHeightWithStatusBar, width: vc.view.frame.width, height: vc.view.frame.height)
         })
     }
     
@@ -85,7 +85,7 @@ class CoachingPreviewWriting : UIViewController {
         UIView.animateWithDuration(dur, animations: {
             //let vcY : CGFloat = 0.0
             vc.view.frame = CGRect(x: 0.0, y: 0.0, width: vc.view.frame.width, height: vc.view.frame.height)
-            self.view.frame = CGRect(x: 0.0, y: -self.height + MySwipeVC.Constants.navBarHeightWithStatusBar, width: vc.view.frame.width, height: vc.view.frame.height)
+            self.view.frame = CGRect(x: 0.0, y: -self.height + MainPanels.Constants.navBarHeightWithStatusBar, width: vc.view.frame.width, height: vc.view.frame.height)
         })
     }
     
