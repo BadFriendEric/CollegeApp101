@@ -149,7 +149,7 @@ class RegisterVC: UIViewController, TextFieldDelegate {
         username = emailField.text
         password = passwordField.text
         
-        let secondViewController:UIViewController = MySwipeVC()
+        let secondViewController:UIViewController = MainPanels()
         self.presentViewController(secondViewController, animated: true, completion: nil)
         
         print(username)
@@ -163,7 +163,7 @@ class RegisterVC: UIViewController, TextFieldDelegate {
         passwordField?.resignFirstResponder()
         passwordRepeatField?.resignFirstResponder()
         
-        let secondViewController:UIViewController = MySwipeVC()
+        let secondViewController:UIViewController = MainPanels()
         self.presentViewController(secondViewController, animated: true, completion: nil)
 
     }

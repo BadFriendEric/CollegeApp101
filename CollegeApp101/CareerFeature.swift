@@ -49,7 +49,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     
     let title_line_width_from_edge = 20
     
-    var myVC : MySwipeVC! = nil
+    var myVC : MainPanels! = nil
     
     var scrollView : UIScrollView = UIScrollView()
     
@@ -104,7 +104,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     public func superView(sv: UIView){
         self.superView = sv
     }
-    internal func myVC(mvc : MySwipeVC){
+    internal func myVC(mvc : MainPanels){
         self.myVC = mvc
     }
     public func prepareTitlePane(){
