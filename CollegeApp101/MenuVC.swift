@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Material
 // import EZSwipeController // if using CocoaPods
-class MenuVC : UIViewController {
+class MenuVC : UIViewController, UIGestureRecognizerDelegate {
 
     let mainWidth = EZSwipeController.Constants.ScreenWidth
     let width = EZSwipeController.Constants.ScreenWidth * 0.7
@@ -19,6 +19,9 @@ class MenuVC : UIViewController {
     var x : CGFloat = 0.0
     var y : CGFloat = 0.0
     
+    var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+    var blurEffectView = UIVisualEffectView(effect: nil)
+
     var menuBacker: UIView! = UIView()
     
     var open = false
@@ -34,21 +37,27 @@ class MenuVC : UIViewController {
     
     internal func setupView(){
         menuBacker.frame = CGRect(x: 0, y: 0, width: mainWidth, height: height)
+        blurEffectView.frame = menuBacker.frame
         menuBacker.backgroundColor = MaterialColor.black
         menuBacker.alpha = 0
         self.x = -width
         updateFrame()
-        view.backgroundColor = MySwipeVC.Constants.Color5
+        view.backgroundColor = MaterialColor.grey.darken4
         
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGestureLeft))
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(closeMenu))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
-        let swipeLeft2 = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGestureLeft))
+        let swipeLeft2 = UISwipeGestureRecognizer(target: self, action: #selector(closeMenu))
         swipeLeft2.direction = UISwipeGestureRecognizerDirection.Left
+        let tap = UITapGestureRecognizer(target: self, action: #selector(closeMenu))
+        tap.delegate = self
         self.view.addGestureRecognizer(swipeLeft)
-        menuBacker.addGestureRecognizer(swipeLeft2)
+        
+        blurEffectView.addGestureRecognizer(tap)
+
+        blurEffectView.addGestureRecognizer(swipeLeft2)
     }
     
-    @objc func respondToSwipeGestureLeft(){
+    @objc func closeMenu(){
         slideOut()
     }
     
@@ -59,13 +68,16 @@ class MenuVC : UIViewController {
     
     internal func slideIn(superview: UIView){
         open = true
+        superview.addSubview(blurEffectView)
         superview.addSubview(menuBacker)
         superview.addSubview(self.view)
         UIView.animateWithDuration(0.4, animations: {
-            self.menuBacker.alpha = 0.5
+            self.menuBacker.alpha = 0.0
             self.x = 0
             self.updateFrame()
+            self.blurEffectView.effect = self.blurEffect
         })
+        
     }
     
     internal func slideOut(){
@@ -74,9 +86,11 @@ class MenuVC : UIViewController {
             self.menuBacker.alpha = 0
             self.x = -self.width
             self.updateFrame()
+            self.blurEffectView.effect = nil
             }, completion: { finished in
                 self.view.removeFromSuperview()
                 self.menuBacker.removeFromSuperview()
+                self.blurEffectView.removeFromSuperview()
         })
     }
     

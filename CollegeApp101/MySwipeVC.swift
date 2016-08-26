@@ -213,7 +213,7 @@ class MySwipeVC: EZSwipeController {
         cf1.setColor(MaterialColor.blue.lighten1)
         cf2.setColor(MaterialColor.red.lighten1)
         cf3.setColor(MaterialColor.lightGreen.lighten1)
-        cf4.setColor(MaterialColor.yellow.lighten1)
+        cf4.setColor(MaterialColor.orange.lighten1)
         cf5.setColor(MaterialColor.purple.lighten1)
         cf3.setFeatureTitle("Reminders")
         cf4.setFeatureTitle("Volunteer Match")

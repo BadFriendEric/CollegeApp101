@@ -91,7 +91,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     public func updateFrame(){
         self.view.frame = CGRect(x: x, y: y, width: width, height: height)
         self.featureLabel.frame = CGRect(x: title_x, y: title_y, width: self.width, height: 20)
-        self.titleLine.frame = CGRect(x: title_line_width_from_edge,y: title_y + 40,width: width - 2*title_line_width_from_edge,height: 1)
+        self.titleLine.frame = CGRect(x: title_line_width_from_edge,y: title_y + 25,width: width - 2*title_line_width_from_edge,height: 1)
         self.titlePane.frame = CGRect(x: 0, y: 0, width: width, height: Int(titleLine.frame.maxY))
         self.scrollView.frame = CGRect(x: CGFloat(x), y: CGFloat(titleLine.frame.maxY), width: CGFloat(width), height: CGFloat(height)-titleLine.frame.maxY)
     }
@@ -146,7 +146,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         self.view.addSubview(featureLabel)
     }
     public func prepareTitleLine(){
-        titleLine = UIView(frame: CGRect(x: title_line_width_from_edge,y: title_y_init + 40,width: width - 2*title_line_width_from_edge,height: 1))
+        titleLine = UIView(frame: CGRect(x: title_line_width_from_edge,y: title_y_init + 25,width: width - 2*title_line_width_from_edge,height: 1))
         titleLine.layer.borderWidth = 1.0
         titleLine.layer.borderColor = UIColor.whiteColor().CGColor
         titleLine.alpha = 0
@@ -188,6 +188,10 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         for n in 0..<myVC.careerFeatures.count {
             let cf = myVC.careerFeatures[n]
             cf.expandable = false
+            if(cf.expanded){
+              cf.retract()
+            }
+            
         }
         superView.backgroundColor = UIColor.grayColor()
         
@@ -233,11 +237,8 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         expanded = false
         
         disableFeatures()
-        for n in 0..<myVC.careerFeatures.count {
-            let cf = myVC.careerFeatures[n]
-            cf.expandable = true
-        }
         removeTitlePane()
+        
     }
     
     public func getFeatures() -> [UIView]{
@@ -305,6 +306,11 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
             self.view.removeFromSuperview()
             self.superView.addSubview(self.view)
             self.blurEffectView.removeFromSuperview()
+            
+            for n in 0..<self.myVC.careerFeatures.count {
+                let cf = self.myVC.careerFeatures[n]
+                cf.expandable = true
+            }
             //self.exitButton.removeFromSuperview()
             //self.removeTitlePane()
             
