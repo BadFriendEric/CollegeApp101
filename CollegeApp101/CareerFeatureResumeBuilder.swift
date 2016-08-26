@@ -18,6 +18,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     let iconSize = 50
     var words: String = "Input resume item 2"
     let placeHolder = "Keep your accomplishments here for when you apply for college"
+    let placeHolderTime = "# _____ per _____"
     let textBox: UITextView = UITextView()
     let timeText: UITextView = UITextView()
     var textBoxSize = 50
@@ -76,8 +77,8 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
         timeText.delegate = self
         timeText.backgroundColor = MaterialColor.white
         timeText.font = RobotoFont.lightWithSize(16)
-        timeText.textColor = MaterialColor.black
-        timeText.text! = ""
+        timeText.textColor = MaterialColor.grey.lighten1
+        timeText.text! = placeHolderTime
         timeText.layer.cornerRadius = 10
         features.append(timeText)
 
@@ -138,22 +139,23 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     
     func backgroundTapped(){
         textBox.resignFirstResponder()
+        timeText.resignFirstResponder()
     }
     
     public func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-        if textBox.textColor == MaterialColor.grey.lighten1{
-            textBox.text! = ""
-            textBox.textColor = MaterialColor.black
+        if textView.textColor == MaterialColor.grey.lighten1{
+            textView.text! = ""
+            textView.textColor = MaterialColor.black
         }
         return true
     }
     
     public func textViewDidEndEditing(textView: UITextView) {
-        
-        if textBox.text == "" {
+        if textView.text == ""{
             
+            textView.textColor = MaterialColor.grey.lighten1
             textBox.text = placeHolder
-            textBox.textColor = MaterialColor.grey.lighten1
+            timeText.text = placeHolderTime
         }
     }
     
