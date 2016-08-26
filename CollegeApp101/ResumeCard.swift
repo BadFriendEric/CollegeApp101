@@ -20,17 +20,18 @@ class ResumeCard: CardView{
     
     var mysubviews = [UIView]()
     var text: String = "yes"
+    var textTime: String = "pls"
     var icon: UIImage = UIImage()
-    let iconSize = 50
+    let iconSize = 30
 
     
     
-    internal init(vc: CareerFeatureResumeBuilder, x: Int, y: Int, width: Int, height: Int, text: String){
+    internal init(vc: CareerFeatureResumeBuilder, x: Int, y: Int, width: Int, height: Int, text: String, text2: String){
         super.init(frame: CGRect(x: x, y: y, width: width, height: height))
         self.view = vc
-        
+        divider = false
         setTrashButton()
-        setTextBox(text)
+        setTextBox(text, text2: text2)
         setIcon()
         reloadView()
     }
@@ -99,21 +100,27 @@ class ResumeCard: CardView{
         
     }
     
-    internal func setTextBox(text: String){
-        let box = UITextField(frame: CGRect(x: iconSize + 20, y: 0, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)-35))
-        //box.backgroundColor = MaterialColor.grey.lighten3
+    internal func setTextBox(text: String, text2: String){
+        let box = UITextField(frame: CGRect(x: iconSize + 20, y: 0, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)/2))
+        //box.backgroundColor = MaterialColor.pink.base
         box.textColor = MaterialColor.black
         box.font = RobotoFont.lightWithSize(16)
         box.text = text
         box.adjustsFontSizeToFitWidth = true
         mysubviews.append(box)
         
-        
-        
+        let boxTime = UITextField(frame: CGRect(x: iconSize + 20, y: Int(self.frame.height)/2, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)/2))
+        //boxTime.backgroundColor = MaterialColor.green.base
+        boxTime.textColor = MaterialColor.black
+        boxTime.font = RobotoFont.lightWithSize(16)
+        boxTime.text = text2
+        boxTime.adjustsFontSizeToFitWidth = true
+        mysubviews.append(boxTime)
+
     }
 
     internal func setIcon(){
-        self.icon = MaterialIcon.star!
+        self.icon = MaterialIcon.menu!
         self.icon.tintWithColor(MainPanels.Constants.Color3)
         let iconView = UIImageView(image: self.icon)
         iconView.frame = CGRect(x: 5, y: 5, width: iconSize, height: iconSize)

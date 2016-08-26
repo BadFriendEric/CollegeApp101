@@ -45,7 +45,7 @@ class CoachingPreviewFreshman: UIViewController {
     internal func setupView(){
         y = -height + MainPanels.Constants.navBarHeightWithStatusBar
         view.frame = CGRect(x: x, y: y, width: width, height: height)
-        view.backgroundColor = MaterialColor.green.lighten2
+        view.backgroundColor = MaterialColor.green.base
         
         prepareButton()
         reloadView()
