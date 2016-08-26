@@ -45,7 +45,7 @@ class CoachingPreviewJunior : UIViewController {
     internal func setupView(){
         y = -height + MySwipeVC.Constants.navBarHeightWithStatusBar
         view.frame = CGRect(x: x, y: y, width: width, height: height)
-        view.backgroundColor = MaterialColor.blue.lighten2
+        view.backgroundColor = MaterialColor.blue.base
         
         prepareButton()
         reloadView()

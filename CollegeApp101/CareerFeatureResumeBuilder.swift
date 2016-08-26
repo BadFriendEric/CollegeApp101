@@ -16,7 +16,8 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     private var resumeCardSpacing = 25
     private var resumeCardBottom = 50
     let iconSize = 50
-    var words: String = "Input resume item 2"
+    var words: String = "vibes"
+    var timeWords: String = "chill"
     let placeHolder = "Keep your accomplishments here for when you apply for college"
     let placeHolderTime = "# _____ per _____"
     let textBox: UITextView = UITextView()
@@ -87,7 +88,9 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     internal func handleAddResumeCard(){
         let size = 110
         words = textBox.text!
+        timeWords = timeText.text!
         textBox.text = ""
+        timeText.text = ""
         textBox.resignFirstResponder()
         addResumeCard(50, vc: self.scrollView, text: words)
         resumeCardBottom += size+resumeCardSpacing
