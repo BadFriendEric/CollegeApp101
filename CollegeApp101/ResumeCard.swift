@@ -101,7 +101,7 @@ class ResumeCard: CardView{
     }
     
     internal func setTextBox(text: String, text2: String){
-        let box = UITextField(frame: CGRect(x: iconSize + 20, y: 0, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)-35))
+        let box = UITextField(frame: CGRect(x: iconSize + 20, y: 0, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)/2))
         //box.backgroundColor = MaterialColor.pink.base
         box.textColor = MaterialColor.black
         box.font = RobotoFont.lightWithSize(16)
@@ -109,7 +109,7 @@ class ResumeCard: CardView{
         box.adjustsFontSizeToFitWidth = true
         mysubviews.append(box)
         
-        let boxTime = UITextField(frame: CGRect(x: iconSize + 20, y: Int(self.frame.height)-35, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)-70))
+        let boxTime = UITextField(frame: CGRect(x: iconSize + 20, y: Int(self.frame.height)/2, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)/2))
         //boxTime.backgroundColor = MaterialColor.green.base
         boxTime.textColor = MaterialColor.black
         boxTime.font = RobotoFont.lightWithSize(16)

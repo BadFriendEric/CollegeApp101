@@ -18,12 +18,13 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     let iconSize = 50
     var words: String = "vibes"
     var timeWords: String = "chill"
-    let placeHolder = "Keep your accomplishments here for when you apply for college"
-    let placeHolderTime = "# _____ per _____"
+    let placeHolder = "Name of activity"
+    let placeHolderTime = "ex: 3 hours per week"
     let textBox: UITextView = UITextView()
     let timeText: UITextView = UITextView()
     var textBoxSize = 50
-    
+    let button: FlatButton = FlatButton()
+
     public override init() {
         super.init()
     }
@@ -49,13 +50,11 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
   
     
     private func prepareMainButtons(){
-        
-        let button: FlatButton = FlatButton()
         button.frame = CGRect(x: width/2 + width/4 - 25, y: 100, width: 75, height: 25)
         button.setTitleColor(MaterialColor.white, forState: .Normal)
         button.titleLabel?.font = UIFont(name: "Scope One", size: 10)
         button.setTitle("Add Card", forState: .Normal)
-        button.backgroundColor = MaterialColor.amber.base
+        button.backgroundColor = MaterialColor.grey.base
         button.addTarget(self, action: #selector(handleAddResumeCard), forControlEvents: .TouchUpInside)
         features.append(button)
         
@@ -87,16 +86,28 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     
     internal func handleAddResumeCard(){
         let size = 110
-        words = textBox.text!
-        timeWords = timeText.text!
-        textBox.textColor = MaterialColor.grey.lighten1
-        timeText.textColor = MaterialColor.grey.lighten1
-        textBox.text = placeHolder
-        timeText.text = placeHolderTime
-        textBox.resignFirstResponder()
-        timeText.resignFirstResponder()
-        addResumeCard(50, vc: self.scrollView, text: words)
-        resumeCardBottom += size+resumeCardSpacing
+        if button.backgroundColor == MaterialColor.amber.base{
+            words = textBox.text!
+            timeWords = timeText.text!
+            textBox.textColor = MaterialColor.grey.lighten1
+            timeText.textColor = MaterialColor.grey.lighten1
+            textBox.text = placeHolder
+            timeText.text = placeHolderTime
+            textBox.resignFirstResponder()
+            timeText.resignFirstResponder()
+            addResumeCard(50, vc: self.scrollView, text: words)
+            resumeCardBottom += size+resumeCardSpacing
+        }
+        else{
+            textBox.textColor = MaterialColor.grey.lighten1
+            timeText.textColor = MaterialColor.grey.lighten1
+            textBox.text = placeHolder
+            timeText.text = placeHolderTime
+            textBox.resignFirstResponder()
+            timeText.resignFirstResponder()
+            //ADD POPUP HERE
+
+        }
 
         if(resumeCardBottom > Int(self.view.frame.height)){
             refreshScrollView(resumeCardBottom)
@@ -105,6 +116,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     
     internal func addResumeCard(y: Int, vc: UIScrollView, text: String){
         let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 180 + 110*(resumeCards.count), width: width - 50, height: 100, text: text, text2: timeWords)
+        button.backgroundColor = MaterialColor.grey.base
         resumeCards.append(card)
         vc.addSubview(card)
         
@@ -144,6 +156,12 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     
     
     func backgroundTapped(){
+        if (textBox.text != "" && timeText.text != "" && textBox.text != placeHolder && timeText.text != placeHolderTime){
+            button.backgroundColor = MaterialColor.amber.base
+        }
+        else{
+            button.backgroundColor = MaterialColor.grey.base
+        }
         textBox.resignFirstResponder()
         timeText.resignFirstResponder()
     }
@@ -158,10 +176,13 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     
     public func textViewDidEndEditing(textView: UITextView) {
         if textView.text == ""{
-            
             textView.textColor = MaterialColor.grey.lighten1
             textBox.text = placeHolder
             timeText.text = placeHolderTime
+        }
+        
+        if (textBox.text != "" && timeText.text != "" && textBox.text != placeHolder && timeText.text != placeHolderTime){
+            button.backgroundColor = MaterialColor.amber.base
         }
     }
     
