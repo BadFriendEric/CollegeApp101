@@ -44,7 +44,8 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
     }
     
     
-    
+    let logoView : UIImageView = UIImageView(frame: CGRect(x: Int(EZSwipeController.Constants.ScreenWidth)/2-40, y: 0, width: 80, height: 50))
+    let logo = UIImage(named: "logo")
     
     ///View Controllers///
     let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.mainScreen().bounds.size.width, height: EZSwipeController.Constants.StatusBarHeight+1))
@@ -81,8 +82,8 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
     ///Navigation Bar Variables///
     let navBar: NavigationBar = NavigationBar(frame: CGRect(origin:CGPoint(x: 0,y: EZSwipeController.Constants.StatusBarHeight),size:CGSizeMake(Constants.ScreenWidth,50)))
     let navItem: UINavigationItem = UINavigationItem()
-    private var menuButton: IconButton!
-    private var helpButton: IconButton!
+    private var menuButton: UIImageView!
+    private var helpButton: UIImageView!
     private var menuButtonView : UIView! = UIView()
     private var helpButtonView : UIView! = UIView()
     private var midButtonView : UIView! = UIView()
@@ -107,12 +108,13 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
         prepareView()
         prepareHelpButton()
         prepareMenuButton()
-        prepareNavigationItem()
         prepareNavigationBar()
+        
         prepareMenu()
         prepareHubScrollView()
         prepareCareerView()
         prepareCoachView()
+        prepareNavigationItem()
     
     }
     private func prepareView(){
@@ -122,35 +124,23 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
     }
     private func prepareHelpButton(){
         let helpButtonImage: UIImage? = UIImage(named: "HelpIcon")
-        helpButton = IconButton()
-        helpButton.pulseColor = navBarHighlightColor
-        helpButton.tintColor = navBarHighlightColor
-        helpButton.setImage(helpButtonImage, forState: .Normal)
-        helpButton.setImage(helpButtonImage, forState: .Highlighted)
-        //helpButton.addTarget(self, action: #selector(handleHelpButton), forControlEvents: .TouchUpInside)
-        
+        helpButton = UIImageView(frame: CGRect(x: Int(EZSwipeController.Constants.ScreenWidth)-45, y: 10, width: 30, height: 30))
+        helpButton.image = helpButtonImage
+        helpButton.autoresizingMask = .FlexibleLeftMargin
+       
         helpButtonView.frame = CGRect(x: Int(EZSwipeController.Constants.ScreenWidth)-buttonWidths, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleHelpButton))
         tap.delegate = self
-        //helpButtonView.backgroundColor = MaterialColor.amber.base
         helpButtonView.addGestureRecognizer(tap)
     }
     private func prepareMenuButton(){
         let menuButtonImage: UIImage? = UIImage(named: "MenuIcon")
-        menuButton = IconButton()
+        menuButton = UIImageView(frame: CGRect(x: 15, y: 10, width: 30, height: 30))
         
-        menuButton.imageEdgeInsets.top = 8
-        menuButton.imageEdgeInsets.left = 8
-        menuButton.imageEdgeInsets.right = 8
-        menuButton.imageEdgeInsets.bottom = 8
         
-        menuButton.pulseColor = navBarHighlightColor
-        menuButton.tintColor = navBarHighlightColor
         
-        menuButton.setImage(menuButtonImage, forState: .Normal)
-        menuButton.setImage(menuButtonImage, forState: .Highlighted)
-        //menuButton.addTarget(self, action: #selector(handleMenuButton), forControlEvents: .TouchUpInside)
-        
+        menuButton.image = menuButtonImage
+        menuButton.autoresizingMask = .FlexibleRightMargin
         menuButtonView.frame = CGRect(x: 0, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenuButton))
         tap.delegate = self
@@ -169,30 +159,49 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
         
         navBar.contentInset.left = 15
         navBar.contentInset.right = 10
-        navBar.backgroundColor = navTexture        
+        navBar.backgroundColor = navTexture
+        
+        logoView.contentMode = .ScaleAspectFit
+        logoView.image = logo
+        logoView.alpha = 0
+        
+        navBar.addSubview(logoView)
+        
+        
+        navBar.addSubview(menuButton)
+        navBar.addSubview(helpButton)
+        
+        //navItem.titleView = logoView
+        //navItem.titleView?.alpha = 0
         
         //navBar.setBackgroundImage(navBgImage, forBarMetrics: .Default)
+        
+        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
+        self.view.addGestureRecognizer(gesture)
+
+        
+//        navItem.leftControls = [menuButton]
+//        navItem.rightControls = [helpButton]
+        navBar.setItems([navItem], animated: false)
+        
         
         midButtonView.frame = CGRect(x: (Int(EZSwipeController.Constants.ScreenWidth)-buttonWidths)/2, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleMidButton))
         tap.delegate = self
         midButtonView.addGestureRecognizer(tap)
 
-        
-        
-        
-        
-        navBar.setItems([navItem], animated: false)
-        navItem.leftControls = [menuButton]
-        navItem.rightControls = [helpButton]
-        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
-        self.view.addGestureRecognizer(gesture)
-
-        self.view.addSubview(navBar)
-        self.view.addSubview(statusBar)
         self.navBar.addSubview(helpButtonView)
         self.navBar.addSubview(menuButtonView)
         self.navBar.addSubview(midButtonView)
+        
+        
+        
+        
+        
+        self.view.addSubview(navBar)
+        self.view.addSubview(statusBar)
+        
+        resfreshTitle("The Hub")
         
         
     }
@@ -388,17 +397,35 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
     
     
     internal func resfreshTitle(title: String){
+        
         navItem.title = title
         navItem.titleLabel.textAlignment = .Center
         navItem.titleLabel.font = UIFont(name: "Poiret One", size: 32)
         navItem.titleLabel.textColor = navBarHighlightColor
-        navBar.setItems([navItem], animated: false)
-        
-        UIView.animateWithDuration(0.5, animations: {
-            self.navItem.titleLabel.alpha = 1
-            self.navBar.removeFromSuperview()
-            self.view.addSubview(self.navBar)
+        self.navItem.titleLabel.alpha = 0
+        self.logoView.alpha = 0
+        UIView.animateWithDuration(0.4, animations: {
+            
+            self.logoView.alpha = 0
+            
+            }, completion: { finished in
+                UIView.animateWithDuration(0.4, animations: {
+                    self.navItem.titleLabel.alpha = 1
+                    
+                    }, completion: { finished in
+                        UIView.animateWithDuration(0.5, delay: 0.5, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+                            self.navItem.titleLabel.alpha = 0
+                            }, completion: { finished in
+                                UIView.animateWithDuration(0.5, animations: {
+                                    self.logoView.alpha = 1
+                                })
+                        })
+                })
         })
+        menuButtonView.removeFromSuperview()
+        navBar.addSubview(menuButtonView)
+        helpButtonView.removeFromSuperview()
+        navBar.addSubview(helpButtonView)
         midButtonView.removeFromSuperview()
         navBar.addSubview(midButtonView)
     }
@@ -430,6 +457,10 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
         view.addSubview(navBar)
         statusBar.removeFromSuperview()
         view.addSubview(statusBar)
+        menuButton.removeFromSuperview()
+        navBar.addSubview(menuButton)
+        helpButton.removeFromSuperview()
+        navBar.addSubview(helpButton)
     }
     
     
@@ -451,8 +482,13 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
         }
     }
     internal func handleMidButton(){
+        
+        
         UIView.animateWithDuration(0.5, animations: {
+            self.logoView.alpha = 0
             self.moveToPage(1)
+            }, completion: { finished in
+                self.logoView.alpha = 0
         })
     }
     
