@@ -89,9 +89,12 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
         let size = 110
         words = textBox.text!
         timeWords = timeText.text!
-        textBox.text = ""
-        timeText.text = ""
+        textBox.textColor = MaterialColor.grey.lighten1
+        timeText.textColor = MaterialColor.grey.lighten1
+        textBox.text = placeHolder
+        timeText.text = placeHolderTime
         textBox.resignFirstResponder()
+        timeText.resignFirstResponder()
         addResumeCard(50, vc: self.scrollView, text: words)
         resumeCardBottom += size+resumeCardSpacing
 
@@ -101,7 +104,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     }
     
     internal func addResumeCard(y: Int, vc: UIScrollView, text: String){
-        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 180 + 110*(resumeCards.count), width: width - 50, height: 100, text: text)
+        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 180 + 110*(resumeCards.count), width: width - 50, height: 100, text: text, text2: timeWords)
         resumeCards.append(card)
         vc.addSubview(card)
         
