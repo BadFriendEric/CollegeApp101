@@ -545,7 +545,7 @@ extension MySwipeVC: EZSwipeControllerDataSource {
         
         let coachingColor = MaterialColor.white.CGColor
         let careerColor = MaterialColor.white.CGColor
-        let hubColor = MaterialColor.purple.lighten3.CGColor
+        let hubColor = MaterialColor.deepPurple.base.CGColor
 
         
         let coachingVC = UIViewController()
