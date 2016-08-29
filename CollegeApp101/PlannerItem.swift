@@ -20,7 +20,7 @@ class PlannerItem : UIView {
     
     var x = 0
     var y = 0
-    var width = EZSwipeController.Constants.ScreenWidth
+    var width = MainSwipeController.Constants.ScreenWidth
     var height = 90
     
     var type : PlannerItemType = .Note

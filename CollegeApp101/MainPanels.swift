@@ -8,8 +8,8 @@
 
 import UIKit
 import Material
-// import EZSwipeController // if using CocoaPods
-class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
+// import MainSwipeController // if using CocoaPods
+class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     
     struct Constants {
         internal static var Color1: UIColor {
@@ -44,11 +44,13 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
     }
     
     
-    let logoView : UIImageView = UIImageView(frame: CGRect(x: Int(EZSwipeController.Constants.ScreenWidth)/2-40, y: 0, width: 80, height: 50))
+    let logoView : UIImageView = UIImageView(frame: CGRect(x: Int(MainSwipeController.Constants.ScreenWidth)/2-40, y: 0, width: 80, height: 50))
     let logo = UIImage(named: "logo")
+    var logoAlpha = CGFloat(0)
+    var titleAlpha = CGFloat(1)
     
     ///View Controllers///
-    let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.mainScreen().bounds.size.width, height: EZSwipeController.Constants.StatusBarHeight+1))
+    let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.mainScreen().bounds.size.width, height: MainSwipeController.Constants.StatusBarHeight+1))
     var hubVC: UIViewController! = nil
     var coachingVC: UIViewController! = nil
     var careerVC: UIViewController! = nil
@@ -80,7 +82,7 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
     
     
     ///Navigation Bar Variables///
-    let navBar: NavigationBar = NavigationBar(frame: CGRect(origin:CGPoint(x: 0,y: EZSwipeController.Constants.StatusBarHeight),size:CGSizeMake(Constants.ScreenWidth,50)))
+    let navBar: NavigationBar = NavigationBar(frame: CGRect(origin:CGPoint(x: 0,y: MainSwipeController.Constants.StatusBarHeight),size:CGSizeMake(Constants.ScreenWidth,50)))
     let navItem: UINavigationItem = UINavigationItem()
     private var menuButton: UIImageView!
     private var helpButton: UIImageView!
@@ -91,8 +93,8 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
     
     
     ///Size Constants///
-    let width = EZSwipeController.Constants.ScreenWidth
-    let height = EZSwipeController.Constants.ScreenHeight
+    let width = MainSwipeController.Constants.ScreenWidth
+    let height = MainSwipeController.Constants.ScreenHeight
     //private var navBarHeight = 50
     private var hubCardBottom = 50
     private var hubCardSpacing = 25
@@ -124,11 +126,11 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
     }
     private func prepareHelpButton(){
         let helpButtonImage: UIImage? = UIImage(named: "HelpIcon")
-        helpButton = UIImageView(frame: CGRect(x: Int(EZSwipeController.Constants.ScreenWidth)-45, y: 10, width: 30, height: 30))
+        helpButton = UIImageView(frame: CGRect(x: Int(MainSwipeController.Constants.ScreenWidth)-45, y: 10, width: 30, height: 30))
         helpButton.image = helpButtonImage
         helpButton.autoresizingMask = .FlexibleLeftMargin
        
-        helpButtonView.frame = CGRect(x: Int(EZSwipeController.Constants.ScreenWidth)-buttonWidths, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
+        helpButtonView.frame = CGRect(x: Int(MainSwipeController.Constants.ScreenWidth)-buttonWidths, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleHelpButton))
         tap.delegate = self
         helpButtonView.addGestureRecognizer(tap)
@@ -185,7 +187,7 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
         navBar.setItems([navItem], animated: false)
         
         
-        midButtonView.frame = CGRect(x: (Int(EZSwipeController.Constants.ScreenWidth)-buttonWidths)/2, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
+        midButtonView.frame = CGRect(x: (Int(MainSwipeController.Constants.ScreenWidth)-buttonWidths)/2, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleMidButton))
         tap.delegate = self
         midButtonView.addGestureRecognizer(tap)
@@ -404,30 +406,62 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
         navItem.titleLabel.textColor = navBarHighlightColor
         self.navItem.titleLabel.alpha = 0
         self.logoView.alpha = 0
-        UIView.animateWithDuration(0.4, animations: {
-            
-            self.logoView.alpha = 0
-            
-            }, completion: { finished in
-                UIView.animateWithDuration(0.4, animations: {
-                    self.navItem.titleLabel.alpha = 1
-                    
-                    }, completion: { finished in
-                        UIView.animateWithDuration(0.5, delay: 0.5, options: UIViewAnimationOptions.CurveEaseIn, animations: {
-                            self.navItem.titleLabel.alpha = 0
-                            }, completion: { finished in
-                                UIView.animateWithDuration(0.5, animations: {
-                                    self.logoView.alpha = 1
-                                })
-                        })
-                })
-        })
+        showAndHideTitle()
+        
         menuButtonView.removeFromSuperview()
         navBar.addSubview(menuButtonView)
         helpButtonView.removeFromSuperview()
         navBar.addSubview(helpButtonView)
         midButtonView.removeFromSuperview()
         navBar.addSubview(midButtonView)
+    }
+    private func showAndHideTitle(){
+        navItem.titleLabel.layer.removeAllAnimations()
+        logoView.layer.removeAllAnimations()
+        navItem.titleLabel.alpha = 0
+        logoView.alpha = 0
+        logoAlpha = 0
+        titleAlpha = 1
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            self.navItem.titleLabel.alpha = self.titleAlpha
+            self.logoView.alpha = 0
+            }, completion: { finished in
+                self.logoAlpha = 0
+                self.titleAlpha = 0
+                UIView.animateWithDuration(0.5, delay: 0.5, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+                    self.navItem.titleLabel.alpha = self.titleAlpha
+                    self.logoView.alpha = 0
+                    }, completion: { finished in
+                        self.titleAlpha = 0
+                        self.fadeInLogo()
+                })
+        })
+    }
+    private func fadeOutLogo(){
+        logoAlpha = 0
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            self.logoView.alpha = self.logoAlpha
+            }, completion: { finished in
+                
+        })
+    }
+    private func fadeInLogo(){
+        if(self.navItem.titleLabel.alpha != 0){
+            self.logoView.alpha = 0
+            return()
+        }
+        
+        logoAlpha = 1
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            self.logoView.alpha = self.logoAlpha
+            print(self.navItem.titleLabel.alpha)
+            if(self.navItem.titleLabel.alpha != 0){
+                self.logoView.alpha = 0
+                return()
+            }
+            }, completion: { finished in
+            
+        })
     }
     private func refreshScrollView(height: Int){
         UIView.animateWithDuration(0.3, animations: {
@@ -553,6 +587,7 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
         }
     }
     override func handleStartMove() {
+        fadeOutLogo()
         UIView.animateWithDuration(0.5, animations: {
             self.navItem.titleLabel.alpha = 0
         })
@@ -608,7 +643,7 @@ class MainPanels: EZSwipeController, UIGestureRecognizerDelegate {
 /////////////////////////////////////////////////
 
 
-extension MainPanels: EZSwipeControllerDataSource {
+extension MainPanels: MainSwipeControllerDataSource {
     func viewControllerData() -> [UIViewController] {
         
         let coachingColor = MaterialColor.white.CGColor

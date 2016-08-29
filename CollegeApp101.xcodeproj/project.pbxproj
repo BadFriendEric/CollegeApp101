@@ -35,7 +35,7 @@
 		E9598A0E1D4C0667004D8842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9598A0C1D4C0667004D8842 /* LaunchScreen.storyboard */; };
 		E99B43231D56777100433708 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B43221D56777100433708 /* MenuVC.swift */; };
 		E9B8FE421D55594A00C4DEB5 /* CareerFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8FE411D55594A00C4DEB5 /* CareerFeature.swift */; };
-		E9C27C271D4C0AD800160A05 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C27C261D4C0AD800160A05 /* EZSwipeController.swift */; };
+		E9C27C271D4C0AD800160A05 /* MainSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C27C261D4C0AD800160A05 /* MainSwipeController.swift */; };
 		E9C27C291D4C0ADE00160A05 /* MainPanels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C27C281D4C0ADE00160A05 /* MainPanels.swift */; };
 		E9D6AAE91D57276400356027 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D6AAE81D57276400356027 /* Images.xcassets */; };
 		E9DF9FEB1D4E7FE4007A5697 /* HubCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DF9FEA1D4E7FE4007A5697 /* HubCard.swift */; };
@@ -96,7 +96,7 @@
 		E9598A1F1D4C0667004D8842 /* CollegeApp101UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CollegeApp101UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99B43221D56777100433708 /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		E9B8FE411D55594A00C4DEB5 /* CareerFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareerFeature.swift; sourceTree = "<group>"; };
-		E9C27C261D4C0AD800160A05 /* EZSwipeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZSwipeController.swift; sourceTree = "<group>"; };
+		E9C27C261D4C0AD800160A05 /* MainSwipeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSwipeController.swift; sourceTree = "<group>"; };
 		E9C27C281D4C0ADE00160A05 /* MainPanels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPanels.swift; sourceTree = "<group>"; };
 		E9D6AAE81D57276400356027 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E9DF9FEA1D4E7FE4007A5697 /* HubCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HubCard.swift; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 				E9C27C281D4C0ADE00160A05 /* MainPanels.swift */,
 				E9DF9FEA1D4E7FE4007A5697 /* HubCard.swift */,
 				C11989481D602AE80027F24E /* ResumeCard.swift */,
-				E9C27C261D4C0AD800160A05 /* EZSwipeController.swift */,
+				E9C27C261D4C0AD800160A05 /* MainSwipeController.swift */,
 				E936DC311D601DCE00D6878C /* Lora-Bold.ttf */,
 				E936DC331D601E3F00D6878C /* ScopeOne-Regular.ttf */,
 				E936DC351D604C3E00D6878C /* PoiretOne-Regular.ttf */,
@@ -489,7 +489,7 @@
 				C1A0EDD61D5C35EF0046B9AF /* CoachingPreviewSenior.swift in Sources */,
 				C1A0EDCC1D5BF6760046B9AF /* CoachingPreviewWriting.swift in Sources */,
 				C11989491D602AE80027F24E /* ResumeCard.swift in Sources */,
-				E9C27C271D4C0AD800160A05 /* EZSwipeController.swift in Sources */,
+				E9C27C271D4C0AD800160A05 /* MainSwipeController.swift in Sources */,
 				E9C27C291D4C0ADE00160A05 /* MainPanels.swift in Sources */,
 				C1E574FA1D55A43200EF106C /* LoginVC.swift in Sources */,
 				C1AF116A1D5EAA3E009D718D /* PlannerItem.swift in Sources */,

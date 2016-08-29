@@ -20,8 +20,8 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
     
     private var password: String!
     
-    let width = EZSwipeController.Constants.ScreenWidth
-    let height = EZSwipeController.Constants.ScreenHeight
+    let width = MainSwipeController.Constants.ScreenWidth
+    let height = MainSwipeController.Constants.ScreenHeight
     
     override func viewDidLoad() {
         super.viewDidLoad()

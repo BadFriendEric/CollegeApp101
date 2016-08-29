@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 import Material
-// import EZSwipeController // if using CocoaPods
+// import MainSwipeController // if using CocoaPods
 class MenuVC : UIViewController, UIGestureRecognizerDelegate {
 
-    let mainWidth = EZSwipeController.Constants.ScreenWidth
-    let width = EZSwipeController.Constants.ScreenWidth * 0.7
-    let height = EZSwipeController.Constants.ScreenHeight
+    let mainWidth = MainSwipeController.Constants.ScreenWidth
+    let width = MainSwipeController.Constants.ScreenWidth * 0.7
+    let height = MainSwipeController.Constants.ScreenHeight
     
     var x : CGFloat = 0.0
     var y : CGFloat = 0.0

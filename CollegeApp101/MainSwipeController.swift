@@ -1,13 +1,13 @@
 //
-//  EZSwipeController.swift
-//  EZSwipeController
+//  MainSwipeController.swift
+//  MainSwipeController
 //
 //  Created by Goktug Yilmaz on 24/10/15.
 //  Copyright © 2015 Goktug Yilmaz. All rights reserved.
 //
 import UIKit
 
-@objc public protocol EZSwipeControllerDataSource {
+@objc public protocol MainSwipeControllerDataSource {
     func viewControllerData() -> [UIViewController]
     optional func indexOfStartingPage() -> Int // Defaults is 0
     optional func titlesForPages() -> [String]
@@ -19,7 +19,7 @@ import UIKit
     optional func changedToPageIndex(index: Int)
 }
 
-public class EZSwipeController: UIViewController {
+public class MainSwipeController: UIViewController {
 
     public struct Constants {
         public static var Orientation: UIInterfaceOrientation {
@@ -65,7 +65,7 @@ public class EZSwipeController: UIViewController {
     public var currentVCIndex: Int {
         return stackPageVC.indexOf(currentStackVC)!
     }
-    public var datasource: EZSwipeControllerDataSource?
+    public var datasource: MainSwipeControllerDataSource?
 
     public var navigationBarShouldBeOnBottom = false
     public var navigationBarShouldNotExist = true
@@ -138,7 +138,7 @@ public class EZSwipeController: UIViewController {
         stackVC = datasource?.viewControllerData()
         stackStartLocation = datasource?.indexOfStartingPage?() ?? 0
         guard stackVC != nil else {
-            print("Problem: EZSwipeController needs ViewController Data, please implement EZSwipeControllerDataSource")
+            print("Problem: MainSwipeController needs ViewController Data, please implement MainSwipeControllerDataSource")
             return
         }
         //setupNavigationBar()
@@ -214,7 +214,7 @@ public class EZSwipeController: UIViewController {
     public func handleEndMoveSamePage(){}
 }
 
-extension EZSwipeController: UIPageViewControllerDataSource {
+extension MainSwipeController: UIPageViewControllerDataSource {
 
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         if viewController == stackPageVC.first {
@@ -230,7 +230,7 @@ extension EZSwipeController: UIPageViewControllerDataSource {
     }
 }
 
-extension EZSwipeController: UIPageViewControllerDelegate {
+extension MainSwipeController: UIPageViewControllerDelegate {
     
     public func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
         handleStartMove()

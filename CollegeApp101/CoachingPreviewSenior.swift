@@ -18,14 +18,14 @@ import Material
 
 class CoachingPreviewSenior : UIViewController {
     
-    let mainWidth = EZSwipeController.Constants.ScreenWidth
-    let width = EZSwipeController.Constants.ScreenWidth
-    let height = EZSwipeController.Constants.ScreenHeight
+    let mainWidth = MainSwipeController.Constants.ScreenWidth
+    let width = MainSwipeController.Constants.ScreenWidth
+    let height = MainSwipeController.Constants.ScreenHeight
     var test: FlatButton! = nil
     var superview : UIViewController! = nil
     
     var x : CGFloat = 0.0
-    var y : CGFloat = -EZSwipeController.Constants.ScreenHeight
+    var y : CGFloat = -MainSwipeController.Constants.ScreenHeight
     
     let name = "Senior"
     

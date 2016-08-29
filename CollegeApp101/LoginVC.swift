@@ -18,8 +18,8 @@ class LoginVC: UIViewController, TextFieldDelegate {
     
     private var imageSize: CGFloat = 300
     
-    let width = EZSwipeController.Constants.ScreenWidth
-    let height = EZSwipeController.Constants.ScreenHeight
+    let width = MainSwipeController.Constants.ScreenWidth
+    let height = MainSwipeController.Constants.ScreenHeight
 
     private var username: String!
     
