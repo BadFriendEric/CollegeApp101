@@ -9,20 +9,13 @@
 /* Begin PBXBuildFile section */
 		C11989491D602AE80027F24E /* ResumeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11989481D602AE80027F24E /* ResumeCard.swift */; };
 		C119894B1D602C040027F24E /* CareerFeatureResumeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */; };
-		C153C9A71D5A815600C9E393 /* CoachingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C153C9A61D5A815600C9E393 /* CoachingFeature.swift */; };
-		C1A0EDCA1D5BC26E0046B9AF /* CoachingPreviewGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD40601D5A99CD0013FAEF /* CoachingPreviewGeneral.swift */; };
-		C1A0EDCC1D5BF6760046B9AF /* CoachingPreviewWriting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A0EDCB1D5BF6760046B9AF /* CoachingPreviewWriting.swift */; };
-		C1A0EDCE1D5C35180046B9AF /* CoachingPreviewEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A0EDCD1D5C35180046B9AF /* CoachingPreviewEvaluation.swift */; };
-		C1A0EDD01D5C35630046B9AF /* CoachingPreviewFreshman.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A0EDCF1D5C35630046B9AF /* CoachingPreviewFreshman.swift */; };
-		C1A0EDD21D5C35A70046B9AF /* CoachingPreviewSophomore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A0EDD11D5C35A70046B9AF /* CoachingPreviewSophomore.swift */; };
-		C1A0EDD41D5C35D00046B9AF /* CoachingPreviewJunior.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A0EDD31D5C35D00046B9AF /* CoachingPreviewJunior.swift */; };
-		C1A0EDD61D5C35EF0046B9AF /* CoachingPreviewSenior.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A0EDD51D5C35EF0046B9AF /* CoachingPreviewSenior.swift */; };
 		C1AF116A1D5EAA3E009D718D /* PlannerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF11691D5EAA3E009D718D /* PlannerItem.swift */; };
 		C1AF116C1D5EAACB009D718D /* CareerFeaturePlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF116B1D5EAACB009D718D /* CareerFeaturePlanner.swift */; };
 		C1E574F61D55A42200EF106C /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E574F51D55A42200EF106C /* RegisterVC.swift */; };
 		C1E574F81D55A42900EF106C /* RegisterAccTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E574F71D55A42900EF106C /* RegisterAccTypeVC.swift */; };
 		C1E574FA1D55A43200EF106C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E574F91D55A43200EF106C /* LoginVC.swift */; };
 		E3BF6A32D92BE795A289CA1A /* Pods_CollegeApp101.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4D6B6CCF50807496D72317 /* Pods_CollegeApp101.framework */; };
+		E9022D8F1D73C8C800F70A31 /* CoachingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9022D8E1D73C8C800F70A31 /* CoachingPreview.swift */; };
 		E936DC321D601DCF00D6878C /* Lora-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E936DC311D601DCE00D6878C /* Lora-Bold.ttf */; };
 		E936DC341D601E3F00D6878C /* ScopeOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E936DC331D601E3F00D6878C /* ScopeOne-Regular.ttf */; };
 		E936DC361D604C3E00D6878C /* PoiretOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E936DC351D604C3E00D6878C /* PoiretOne-Regular.ttf */; };
@@ -67,19 +60,13 @@
 		8A1D89CA35369577A037C746 /* Pods-CollegeApp101UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegeApp101UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegeApp101UITests/Pods-CollegeApp101UITests.release.xcconfig"; sourceTree = "<group>"; };
 		C11989481D602AE80027F24E /* ResumeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResumeCard.swift; sourceTree = "<group>"; };
 		C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareerFeatureResumeBuilder.swift; sourceTree = "<group>"; };
-		C153C9A61D5A815600C9E393 /* CoachingFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingFeature.swift; sourceTree = "<group>"; };
-		C1A0EDCB1D5BF6760046B9AF /* CoachingPreviewWriting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingPreviewWriting.swift; sourceTree = "<group>"; };
-		C1A0EDCD1D5C35180046B9AF /* CoachingPreviewEvaluation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingPreviewEvaluation.swift; sourceTree = "<group>"; };
-		C1A0EDCF1D5C35630046B9AF /* CoachingPreviewFreshman.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingPreviewFreshman.swift; sourceTree = "<group>"; };
-		C1A0EDD11D5C35A70046B9AF /* CoachingPreviewSophomore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingPreviewSophomore.swift; sourceTree = "<group>"; };
-		C1A0EDD31D5C35D00046B9AF /* CoachingPreviewJunior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingPreviewJunior.swift; sourceTree = "<group>"; };
-		C1A0EDD51D5C35EF0046B9AF /* CoachingPreviewSenior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingPreviewSenior.swift; sourceTree = "<group>"; };
 		C1AF11691D5EAA3E009D718D /* PlannerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerItem.swift; sourceTree = "<group>"; };
 		C1AF116B1D5EAACB009D718D /* CareerFeaturePlanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareerFeaturePlanner.swift; sourceTree = "<group>"; };
 		C1E574F51D55A42200EF106C /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		C1E574F71D55A42900EF106C /* RegisterAccTypeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterAccTypeVC.swift; sourceTree = "<group>"; };
 		C1E574F91D55A43200EF106C /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DE4D6B6CCF50807496D72317 /* Pods_CollegeApp101.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollegeApp101.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9022D8E1D73C8C800F70A31 /* CoachingPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingPreview.swift; sourceTree = "<group>"; };
 		E936DC311D601DCE00D6878C /* Lora-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lora-Bold.ttf"; sourceTree = "<group>"; };
 		E936DC331D601E3F00D6878C /* ScopeOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScopeOne-Regular.ttf"; sourceTree = "<group>"; };
 		E936DC351D604C3E00D6878C /* PoiretOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoiretOne-Regular.ttf"; sourceTree = "<group>"; };
@@ -100,7 +87,6 @@
 		E9C27C281D4C0ADE00160A05 /* MainPanels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPanels.swift; sourceTree = "<group>"; };
 		E9D6AAE81D57276400356027 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E9DF9FEA1D4E7FE4007A5697 /* HubCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HubCard.swift; sourceTree = "<group>"; };
-		E9FD40601D5A99CD0013FAEF /* CoachingPreviewGeneral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingPreviewGeneral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,14 +153,7 @@
 			children = (
 				E9598A031D4C0667004D8842 /* AppDelegate.swift */,
 				E9598A051D4C0667004D8842 /* ViewController.swift */,
-				C153C9A61D5A815600C9E393 /* CoachingFeature.swift */,
-				E9FD40601D5A99CD0013FAEF /* CoachingPreviewGeneral.swift */,
-				C1A0EDCB1D5BF6760046B9AF /* CoachingPreviewWriting.swift */,
-				C1A0EDCD1D5C35180046B9AF /* CoachingPreviewEvaluation.swift */,
-				C1A0EDCF1D5C35630046B9AF /* CoachingPreviewFreshman.swift */,
-				C1A0EDD11D5C35A70046B9AF /* CoachingPreviewSophomore.swift */,
-				C1A0EDD31D5C35D00046B9AF /* CoachingPreviewJunior.swift */,
-				C1A0EDD51D5C35EF0046B9AF /* CoachingPreviewSenior.swift */,
+				E9022D8E1D73C8C800F70A31 /* CoachingPreview.swift */,
 				C1E574F91D55A43200EF106C /* LoginVC.swift */,
 				C1E574F71D55A42900EF106C /* RegisterAccTypeVC.swift */,
 				C1E574F51D55A42200EF106C /* RegisterVC.swift */,
@@ -183,10 +162,10 @@
 				E9B8FE411D55594A00C4DEB5 /* CareerFeature.swift */,
 				C1AF116B1D5EAACB009D718D /* CareerFeaturePlanner.swift */,
 				C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */,
-				E9C27C281D4C0ADE00160A05 /* MainPanels.swift */,
 				E9DF9FEA1D4E7FE4007A5697 /* HubCard.swift */,
 				C11989481D602AE80027F24E /* ResumeCard.swift */,
 				E9C27C261D4C0AD800160A05 /* MainSwipeController.swift */,
+				E9C27C281D4C0ADE00160A05 /* MainPanels.swift */,
 				E936DC311D601DCE00D6878C /* Lora-Bold.ttf */,
 				E936DC331D601E3F00D6878C /* ScopeOne-Regular.ttf */,
 				E936DC351D604C3E00D6878C /* PoiretOne-Regular.ttf */,
@@ -478,16 +457,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1A0EDCE1D5C35180046B9AF /* CoachingPreviewEvaluation.swift in Sources */,
 				E9B8FE421D55594A00C4DEB5 /* CareerFeature.swift in Sources */,
 				C1E574F81D55A42900EF106C /* RegisterAccTypeVC.swift in Sources */,
-				C1A0EDD21D5C35A70046B9AF /* CoachingPreviewSophomore.swift in Sources */,
-				C1A0EDD41D5C35D00046B9AF /* CoachingPreviewJunior.swift in Sources */,
 				E9DF9FEB1D4E7FE4007A5697 /* HubCard.swift in Sources */,
-				C1A0EDD01D5C35630046B9AF /* CoachingPreviewFreshman.swift in Sources */,
-				C153C9A71D5A815600C9E393 /* CoachingFeature.swift in Sources */,
-				C1A0EDD61D5C35EF0046B9AF /* CoachingPreviewSenior.swift in Sources */,
-				C1A0EDCC1D5BF6760046B9AF /* CoachingPreviewWriting.swift in Sources */,
 				C11989491D602AE80027F24E /* ResumeCard.swift in Sources */,
 				E9C27C271D4C0AD800160A05 /* MainSwipeController.swift in Sources */,
 				E9C27C291D4C0ADE00160A05 /* MainPanels.swift in Sources */,
@@ -498,7 +470,7 @@
 				E9598A061D4C0667004D8842 /* ViewController.swift in Sources */,
 				E9598A041D4C0667004D8842 /* AppDelegate.swift in Sources */,
 				E99B43231D56777100433708 /* MenuVC.swift in Sources */,
-				C1A0EDCA1D5BC26E0046B9AF /* CoachingPreviewGeneral.swift in Sources */,
+				E9022D8F1D73C8C800F70A31 /* CoachingPreview.swift in Sources */,
 				C1AF116C1D5EAACB009D718D /* CareerFeaturePlanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

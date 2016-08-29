@@ -1,4 +1,5 @@
-//  CoachingPreviewWriting.swift
+//
+//  CoachingPreviewFreshman.swift
 //  CollegeApp101
 //
 //  Created by Eric Ota on 8/10/16.
@@ -15,7 +16,7 @@
 import UIKit
 import Material
 
-class CoachingPreviewEvaluation : UIViewController {
+class CoachingPreview: UIViewController {
     
     let mainWidth = MainSwipeController.Constants.ScreenWidth
     let width = MainSwipeController.Constants.ScreenWidth
@@ -26,7 +27,7 @@ class CoachingPreviewEvaluation : UIViewController {
     var x : CGFloat = 0.0
     var y : CGFloat = -MainSwipeController.Constants.ScreenHeight
     
-    let name = "Evaluation"
+    var name = "Coaching"
     
     var mysubviews = [UIView]()
     
@@ -44,7 +45,7 @@ class CoachingPreviewEvaluation : UIViewController {
     internal func setupView(){
         y = -height + MainPanels.Constants.navBarHeightWithStatusBar
         view.frame = CGRect(x: x, y: y, width: width, height: height)
-        view.backgroundColor = MaterialColor.lightGreen.base  //changed
+        view.backgroundColor = MaterialColor.green.base
         
         prepareButton()
         reloadView()
@@ -67,6 +68,14 @@ class CoachingPreviewEvaluation : UIViewController {
         
     }
     
+    internal func setCoachingName(name: String){
+        self.name = name
+    }
+    
+    internal func setBackgroundColor(color : UIColor){
+        self.view.backgroundColor = color
+    }
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         pullUpVC(superview, dur: 0.4)
@@ -85,6 +94,8 @@ class CoachingPreviewEvaluation : UIViewController {
             //let vcY : CGFloat = 0.0
             vc.view.frame = CGRect(x: 0.0, y: 0.0, width: vc.view.frame.width, height: vc.view.frame.height)
             self.view.frame = CGRect(x: 0.0, y: -self.height + MainPanels.Constants.navBarHeightWithStatusBar, width: vc.view.frame.width, height: vc.view.frame.height)
+            }, completion: { finished in
+                self.view.removeFromSuperview()
         })
     }
     

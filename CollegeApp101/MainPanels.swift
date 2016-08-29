@@ -66,16 +66,16 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
 
     var careerFeatures: [CareerFeature]! = [CareerFeature]()
     var coachingFeatureView: UIView! = UIView()
-    var coachingFeatures: [CoachingPreviewGeneral]! = [CoachingPreviewGeneral]()
+    //var coachingFeatures: [CoachingPreview]! = [CoachingPreview]()
     var menu: MenuVC! = MenuVC()
     var hubCards: [HubCard] = []
-    var coachingPreviewGeneral : CoachingPreviewGeneral! = CoachingPreviewGeneral()
-    var coachingPreviewWriting : CoachingPreviewWriting! = CoachingPreviewWriting()
-    var coachingPreviewEvaluation : CoachingPreviewEvaluation! = CoachingPreviewEvaluation()
-    var coachingPreviewFreshman : CoachingPreviewFreshman! = CoachingPreviewFreshman()
-    var coachingPreviewSophomore : CoachingPreviewSophomore! = CoachingPreviewSophomore()
-    var coachingPreviewJunior : CoachingPreviewJunior! = CoachingPreviewJunior()
-    var coachingPreviewSenior : CoachingPreviewSenior! = CoachingPreviewSenior()
+    var coachingPreviewGeneral : CoachingPreview! = CoachingPreview()
+    var coachingPreviewWriting : CoachingPreview! = CoachingPreview()
+    var coachingPreviewEvaluation : CoachingPreview! = CoachingPreview()
+    var coachingPreviewFreshman : CoachingPreview! = CoachingPreview()
+    var coachingPreviewSophomore : CoachingPreview! = CoachingPreview()
+    var coachingPreviewJunior : CoachingPreview! = CoachingPreview()
+    var coachingPreviewSenior : CoachingPreview! = CoachingPreview()
 
     var navBarHighlightColor = MaterialColor.black
     var navColor = MaterialColor.white
@@ -277,6 +277,25 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         let generalColor = MaterialColor.purple.base
         let evaluationColor = MaterialColor.lightGreen.base
         
+        coachingPreviewGeneral.setCoachingName("General")
+        coachingPreviewWriting.setCoachingName("Writing")
+        coachingPreviewEvaluation.setCoachingName("Evaluation")
+        coachingPreviewFreshman.setCoachingName("Freshman")
+        coachingPreviewSophomore.setCoachingName("Sophomore")
+        coachingPreviewJunior.setCoachingName("Junior")
+        coachingPreviewSenior.setCoachingName("Senior")
+        
+        
+        coachingPreviewGeneral.setBackgroundColor(generalColor)
+        coachingPreviewWriting.setBackgroundColor(writingColor)
+        coachingPreviewEvaluation.setBackgroundColor(evaluationColor)
+        coachingPreviewFreshman.setBackgroundColor(freshmanColor)
+        coachingPreviewSophomore.setBackgroundColor(sophomoreColor)
+        coachingPreviewJunior.setBackgroundColor(juniorColor)
+        coachingPreviewSenior.setBackgroundColor(seniorColor)
+        
+        
+        
         let h = height - 70
         
         let writing: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70, width: coachingVC.view.frame.width/2, height: h/3))
@@ -454,7 +473,6 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         logoAlpha = 1
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
             self.logoView.alpha = self.logoAlpha
-            print(self.navItem.titleLabel.alpha)
             if(self.navItem.titleLabel.alpha != 0){
                 self.logoView.alpha = 0
                 return()
@@ -557,7 +575,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     }
     
     @objc private func handleCoachingSophomoreButton(){
-        view.addSubview(coachingPreviewSophomore.view)  //Change to sophomiore lol lololool
+        view.addSubview(coachingPreviewSophomore.view)  //Change to sophomiore lol lololool (lol -sam)
         refreshNavBar()
         coachingPreviewSophomore.pushDownVC(coachingVC, dur: 0.5)  //evaluation
     }

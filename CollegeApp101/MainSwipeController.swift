@@ -12,10 +12,10 @@ import UIKit
     optional func indexOfStartingPage() -> Int // Defaults is 0
     optional func titlesForPages() -> [String]
     optional func navigationBarDataForPageIndex(index: Int) -> UINavigationBar
-    optional func disableSwipingForLeftButtonAtPageIndex(index: Int) -> Bool
-    optional func disableSwipingForRightButtonAtPageIndex(index: Int) -> Bool
-    optional func clickedLeftButtonFromPageIndex(index: Int)
-    optional func clickedRightButtonFromPageIndex(index: Int)
+    //optional func disableSwipingForLeftButtonAtPageIndex(index: Int) -> Bool
+    //optional func disableSwipingForRightButtonAtPageIndex(index: Int) -> Bool
+    //optional func clickedLeftButtonFromPageIndex(index: Int)
+    //optional func clickedRightButtonFromPageIndex(index: Int)
     optional func changedToPageIndex(index: Int)
 }
 
@@ -153,46 +153,6 @@ public class MainSwipeController: UIViewController {
     override public func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         self.setFrameForCurrentOrientation()
     }
-    
-    @objc public func leftButtonAction() {
-        let currentIndex = stackPageVC.indexOf(currentStackVC)!
-        datasource?.clickedLeftButtonFromPageIndex?(currentIndex)
-
-        let shouldDisableSwipe = datasource?.disableSwipingForLeftButtonAtPageIndex?(currentIndex) ?? false
-        if shouldDisableSwipe {
-            return
-        }
-
-        if currentStackVC == stackPageVC.first {
-            return
-        }
-        
-        let newVCIndex = currentIndex - 1
-        datasource?.changedToPageIndex?(newVCIndex)
-        currentStackVC = stackPageVC[newVCIndex]
-        pageViewController.setViewControllers([currentStackVC], direction: UIPageViewControllerNavigationDirection.Reverse, animated: true, completion: nil)
-    }
-
-    @objc public func rightButtonAction() {
-        let currentIndex = stackPageVC.indexOf(currentStackVC)!
-        datasource?.clickedRightButtonFromPageIndex?(currentIndex)
-
-        let shouldDisableSwipe = datasource?.disableSwipingForRightButtonAtPageIndex?(currentIndex) ?? false
-        if shouldDisableSwipe {
-            return
-        }
-
-        if currentStackVC == stackPageVC.last {
-            return
-        }
-        
-        let newVCIndex = currentIndex + 1
-        datasource?.changedToPageIndex?(newVCIndex)
-
-        currentStackVC = stackPageVC[newVCIndex]
-        pageViewController.setViewControllers([currentStackVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
-    }
-    
     public func moveToPage(index: Int) {
         let currentIndex = stackPageVC.indexOf(currentStackVC)!
         
