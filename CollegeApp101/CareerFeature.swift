@@ -197,6 +197,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         
+        
         blurEffectView.frame = self.view.frame
         superView.addSubview(blurEffectView)
         self.view.removeFromSuperview()

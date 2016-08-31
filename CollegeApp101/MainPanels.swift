@@ -108,15 +108,16 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         
         prepareView()
+        prepareNavigationBar()
         prepareHelpButton()
         prepareMenuButton()
-        prepareNavigationBar()
-        
         prepareMenu()
+        prepareNavigationItem()
+        
         prepareHubScrollView()
         prepareCareerView()
         prepareCoachView()
-        prepareNavigationItem()
+        
     
     }
     private func prepareView(){
@@ -128,29 +129,45 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         let helpButtonImage: UIImage? = UIImage(named: "HelpIcon")
         helpButton = UIImageView(frame: CGRect(x: Int(MainSwipeController.Constants.ScreenWidth)-45, y: 10, width: 30, height: 30))
         helpButton.image = helpButtonImage
-        helpButton.autoresizingMask = .FlexibleLeftMargin
-       
         helpButtonView.frame = CGRect(x: Int(MainSwipeController.Constants.ScreenWidth)-buttonWidths, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleHelpButton))
-        tap.delegate = self
-        helpButtonView.addGestureRecognizer(tap)
+        
     }
     private func prepareMenuButton(){
         let menuButtonImage: UIImage? = UIImage(named: "MenuIcon")
         menuButton = UIImageView(frame: CGRect(x: 15, y: 10, width: 30, height: 30))
         
-        
-        
         menuButton.image = menuButtonImage
-        menuButton.autoresizingMask = .FlexibleRightMargin
         menuButtonView.frame = CGRect(x: 0, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
+        self.addChildViewController(menu)
+        
+    }
+    private func prepareNavigationItem(){
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenuButton))
         tap.delegate = self
         menuButtonView.addGestureRecognizer(tap)
         
-    }
-    private func prepareNavigationItem(){
-        resfreshTitle("The Hub")
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(handleHelpButton))
+        tap1.delegate = self
+        helpButtonView.addGestureRecognizer(tap1)
+        
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(handleMidButton))
+        tap2.delegate = self
+        midButtonView.addGestureRecognizer(tap2)
+        
+        
+        //print(menuButton.frame.minY)
+        
+        //navBar.addSubview(menuButton)
+        //navBar.addSubview(helpButton)
+        
+        navBar.addSubview(menuButtonView)
+        navBar.addSubview(helpButtonView)
+        navBar.addSubview(midButtonView)
+        
+        refreshTitle("The Hub")
+        
+        
     }
     private func prepareNavigationBar(){
         navigationController?.navigationBar.statusBarStyle = .Default
@@ -162,22 +179,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         navBar.contentInset.left = 15
         navBar.contentInset.right = 10
         navBar.backgroundColor = navTexture
-        
-        logoView.contentMode = .ScaleAspectFit
-        logoView.image = logo
-        logoView.alpha = 0
-        
-        navBar.addSubview(logoView)
-        
-        
-        navBar.addSubview(menuButton)
-        navBar.addSubview(helpButton)
-        
-        //navItem.titleView = logoView
-        //navItem.titleView?.alpha = 0
-        
-        //navBar.setBackgroundImage(navBgImage, forBarMetrics: .Default)
-        
+
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
         self.view.addGestureRecognizer(gesture)
 
@@ -188,22 +190,10 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
         
         midButtonView.frame = CGRect(x: (Int(MainSwipeController.Constants.ScreenWidth)-buttonWidths)/2, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleMidButton))
-        tap.delegate = self
-        midButtonView.addGestureRecognizer(tap)
-
-        self.navBar.addSubview(helpButtonView)
-        self.navBar.addSubview(menuButtonView)
-        self.navBar.addSubview(midButtonView)
-        
-        
-        
         
         
         self.view.addSubview(navBar)
         self.view.addSubview(statusBar)
-        
-        resfreshTitle("The Hub")
         
         
     }
@@ -218,6 +208,8 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         hubScrollView.frame = CGRect(x: 0, y: navBar.height, width: navBar.width, height: hubVC.view.frame.height-navBar.height)
         
         hubVC.view.addSubview(hubScrollView)
+        
+        self.addChildViewController(menu)
     }
    
     ///Prepare Career Panel///
@@ -417,70 +409,24 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     /////////////////////////////////////////////////
     
     
-    internal func resfreshTitle(title: String){
+    internal func refreshTitle(title: String){
         
         navItem.title = title
+        
         navItem.titleLabel.textAlignment = .Center
-        navItem.titleLabel.font = UIFont(name: "Poiret One", size: 32)
+        //navItem.titleLabel.sizeToFit()
+        navItem.titleLabel.font = UIFont(name: "Oswald", size: 30)
         navItem.titleLabel.textColor = navBarHighlightColor
-        self.navItem.titleLabel.alpha = 0
-        self.logoView.alpha = 0
-        showAndHideTitle()
+        //self.navItem.titleLabel.alpha = 0
         
-        menuButtonView.removeFromSuperview()
-        navBar.addSubview(menuButtonView)
-        helpButtonView.removeFromSuperview()
-        navBar.addSubview(helpButtonView)
-        midButtonView.removeFromSuperview()
-        navBar.addSubview(midButtonView)
-    }
-    private func showAndHideTitle(){
-        navItem.titleLabel.layer.removeAllAnimations()
-        logoView.layer.removeAllAnimations()
-        navItem.titleLabel.alpha = 0
-        logoView.alpha = 0
-        logoAlpha = 0
-        titleAlpha = 1
-        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
-            self.navItem.titleLabel.alpha = self.titleAlpha
-            self.logoView.alpha = 0
+        UIView.animateWithDuration(0.5, animations: {
+            //self.navItem.titleLabel.alpha = 1
             }, completion: { finished in
-                self.logoAlpha = 0
-                self.titleAlpha = 0
-                UIView.animateWithDuration(0.5, delay: 0.5, options: UIViewAnimationOptions.CurveEaseIn, animations: {
-                    self.navItem.titleLabel.alpha = self.titleAlpha
-                    self.logoView.alpha = 0
-                    }, completion: { finished in
-                        self.titleAlpha = 0
-                        self.fadeInLogo()
-                })
+                self.refreshNavBar()
         })
-    }
-    private func fadeOutLogo(){
-        logoAlpha = 0
-        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
-            self.logoView.alpha = self.logoAlpha
-            }, completion: { finished in
-                
-        })
-    }
-    private func fadeInLogo(){
-        if(self.navItem.titleLabel.alpha != 0){
-            self.logoView.alpha = 0
-            return()
-        }
         
-        logoAlpha = 1
-        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
-            self.logoView.alpha = self.logoAlpha
-            if(self.navItem.titleLabel.alpha != 0){
-                self.logoView.alpha = 0
-                return()
-            }
-            }, completion: { finished in
-            
-        })
     }
+   
     private func refreshScrollView(height: Int){
         UIView.animateWithDuration(0.3, animations: {
             self.hubScrollView.contentSize.height = CGFloat(height)
@@ -513,6 +459,13 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         navBar.addSubview(menuButton)
         helpButton.removeFromSuperview()
         navBar.addSubview(helpButton)
+        
+        menuButtonView.removeFromSuperview()
+        navBar.addSubview(menuButtonView)
+        helpButtonView.removeFromSuperview()
+        navBar.addSubview(helpButtonView)
+        midButtonView.removeFromSuperview()
+        navBar.addSubview(midButtonView)
     }
     
     
@@ -522,6 +475,8 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     
     
     internal func handleMenuButton(){
+        //.addChildViewController(menu)
+        
         menu.slideIn(self.view)
     }
     
@@ -605,7 +560,6 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         }
     }
     override func handleStartMove() {
-        fadeOutLogo()
         UIView.animateWithDuration(0.5, animations: {
             self.navItem.titleLabel.alpha = 0
         })
@@ -653,6 +607,32 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     //--------------Career Methods---------------//
     ///////////////////////////////////////////////
 
+    
+    static func ResizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / image.size.width
+        let heightRatio = targetSize.height / image.size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSizeMake(size.width * heightRatio, size.height * heightRatio)
+        } else {
+            newSize = CGSizeMake(size.width * widthRatio,  size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRectMake(0, 0, newSize.width, newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.drawInRect(rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
     
 }
 
@@ -720,11 +700,11 @@ extension MainPanels: MainSwipeControllerDataSource {
     }
     
     func changedToPageIndex(index: Int) {
-        resfreshTitle(titlesForPages()[index])
+        refreshTitle(titlesForPages()[index])
         self.currentVC = stackPageVC[index]
     }
     
     func titlesForPages() -> [String] {
-        return ["Coaching", "The Hub", "Career"]
+        return ["Coaching", "The Hub", "Planner"]
     }
 }
