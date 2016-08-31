@@ -1,10 +1,24 @@
 readme
 
-i fucked up and made a bunch of general improvements 
-on the main app in the ResumeBuilder branch including:
+yo i think we should for now turn the README into a place where we can keep track of current/upcoming features were doing
 
-1: centered logo on login
-2: centered acc types on register
-3: set coaching tiles to .TouchDown
-4: set coachingPreviews to TouchesBegan()
-5: added ability to tap out of keyboard on login
+so like lets start a list and try to order it how were working on it
+and put your name next to it if ur workin on it right now and then when we finish it we can just delete it
+
+--Resume Builder (Eric)
+--Planner/Reminders? (Sam)
+--Main Menu
+  -Log Out (Sam)
+  -Settings
+  -Profile
+  -Color Schemes
+--Essay Planner
+--Volunteer Match
+--Coaching preview screens (Dylan?)
+--Coaching screen after hitting continue
+--Mentor Version of main panels
+--Parent Version of main panels
+
+Add whatever you want
+
+also lets just pay for a private repo when we get farther along with the project (-delete this when you see it cuz idk)
