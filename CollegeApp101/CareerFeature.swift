@@ -158,18 +158,6 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         })
         scrollView.clipsToBounds = true
     }
-
-//    public func prepareExitButton(){
-//        exitButton = IconButton(frame: CGRect(x: width-45, y: 0, width: 50, height: 35))
-//        exitButton.pulseColor = MaterialColor.white
-//        exitButton.tintColor = MaterialColor.black
-//        exitButton.setImage(exitImage, forState: .Normal)
-//        exitButton.setImage(exitImage, forState: .Highlighted)
-//        exitButton.addTarget(self, action: #selector(handleExitButton), forControlEvents: .TouchUpInside)
-//    }
-//    internal func handleExitButton(){
-//        retract()
-//    }
     
     public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
@@ -211,7 +199,6 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         UIView.animateWithDuration(0.5, animations: {
             self.y = 0
             self.height = newHeight
-            //self.titlePane.backgroundColor = self.featureColor.colorWithAlphaComponent(0.9)
             self.view.backgroundColor = self.featureColor.colorWithAlphaComponent(0.8)
             self.title_y = 15
             self.titleLine.alpha = 1.0
@@ -219,16 +206,6 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
             self.blurEffectView.frame = self.view.frame
             }, completion: { finished in
                 self.enableFeatures()
-                //self.exitButton.alpha = 0.0
-                UIView.animateWithDuration(0.4, animations: {
-                    //self.exitButton.alpha = 1.0
-                    //self.exitButton.removeFromSuperview()
-                    //self.view.addSubview(self.exitButton)
-                    
-                })
-                
-                //self.view.removeFromSuperview()
-                //self.superView.addSubview(self.view)
         })
         self.enableFeatures()
         self.addTitlePane()
@@ -243,19 +220,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     }
     
     public func getFeatures() -> [UIView]{
-        
-        var f = [UIView]()
-        
-        let l = UILabel(frame: CGRect(x: width/2 - 70, y: title_y + 50, width: width/2, height: 40))
-        l.text = "this is feature stuff right here oh yeah yeah it is"
-        l.numberOfLines = 2
-        l.font = RobotoFont.mediumWithSize(14)
-        l.adjustsFontSizeToFitWidth = true
-        l.lineBreakMode = .ByWordWrapping
-        l.textColor = MaterialColor.white
-        f.append(l)
-        
-        return f
+        return [UIView]()
     }
     public func prepareFeatures(){
         for f in features {
@@ -281,19 +246,15 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     
     public func disableFeatures(){
         
-        //var a: CGFloat = 1.0
         let newHeight = self.height_init
         UIView.animateWithDuration(0.4, animations: {
-            //a = 0.0
             for f in self.features {
                 f.alpha = 0
             }
-            //self.exitButton.alpha = 0
             self.titleLine.alpha = 0
             self.y = self.y_init
             self.height = newHeight
             self.title_y = self.title_y_init
-            //self.titlePane.backgroundColor = self.featureColor
             self.view.backgroundColor = self.featureColor
             self.updateFrame()
             self.blurEffectView.frame = self.view.frame
@@ -312,9 +273,6 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
                 let cf = self.myVC.careerFeatures[n]
                 cf.expandable = true
             }
-            //self.exitButton.removeFromSuperview()
-            //self.removeTitlePane()
-            
 
         })
         

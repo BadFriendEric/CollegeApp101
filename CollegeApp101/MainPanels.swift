@@ -32,10 +32,10 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
             return UIColor(red:1.00, green:0.82, blue:0.25, alpha:1.0)
         }
         internal static var navBarHeight : CGFloat {
-            return 50
+            return 40
         }
-        internal static var navBarHeightWithStatusBar : CGFloat {
-            return 70
+        internal static var statusBarHeight : CGFloat {
+            return 20
         }
 
     }
@@ -77,7 +77,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     var coachingPreviewJunior : CoachingPreview! = CoachingPreview()
     var coachingPreviewSenior : CoachingPreview! = CoachingPreview()
 
-    var navBarHighlightColor = MaterialColor.black
+    var navBarHighlightColor = MaterialColor.grey.darken3
     var navColor = MaterialColor.white
     
     
@@ -127,19 +127,19 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     }
     private func prepareHelpButton(){
         let helpButtonImage: UIImage? = UIImage(named: "HelpIcon")
-        helpButton = UIImageView(frame: CGRect(x: Int(MainSwipeController.Constants.ScreenWidth)-45, y: 10, width: 30, height: 30))
-        helpButton.image = helpButtonImage
-        helpButtonView.frame = CGRect(x: Int(MainSwipeController.Constants.ScreenWidth)-buttonWidths, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
-        
+        let imageSize = CGSize(width: 30, height: 30)
+        MainPanels.ResizeImage(helpButtonImage!, targetSize: imageSize)
+        helpButton = UIImageView(image: helpButtonImage)
+        helpButton.frame = CGRect(origin: CGPoint(x: navBar.width-45, y: 7), size: imageSize)
+        helpButtonView.frame = CGRect(x: Int(navBar.width) - buttonWidths, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
     }
     private func prepareMenuButton(){
         let menuButtonImage: UIImage? = UIImage(named: "MenuIcon")
-        menuButton = UIImageView(frame: CGRect(x: 15, y: 10, width: 30, height: 30))
-        
-        menuButton.image = menuButtonImage
+        let imageSize = CGSize(width: 25, height: 25)
+        MainPanels.ResizeImage(menuButtonImage!, targetSize: imageSize)
+        menuButton = UIImageView(image: menuButtonImage)
+        menuButton.frame = CGRect(origin: CGPoint(x: 15, y: 10), size: imageSize)
         menuButtonView.frame = CGRect(x: 0, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
-        self.addChildViewController(menu)
-        
     }
     private func prepareNavigationItem(){
         
@@ -237,7 +237,6 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
                         height: Int(careerFeatureView.frame.height)/numFeatures+1)
             careerFeatureView.addSubview(cf.view)
         }
-                //cf4.setFeatureTitle("Volunteer Match")
         cf1.setColor(MaterialColor.blue.lighten1)
         cf2.setColor(MaterialColor.red.lighten1)
         cf3.setColor(MaterialColor.lightGreen.lighten1)
@@ -414,13 +413,9 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         navItem.title = title
         
         navItem.titleLabel.textAlignment = .Center
-        //navItem.titleLabel.sizeToFit()
-        navItem.titleLabel.font = UIFont(name: "Oswald", size: 30)
+        navItem.titleLabel.font = UIFont(name: "Oswald", size: 38)
         navItem.titleLabel.textColor = navBarHighlightColor
-        //self.navItem.titleLabel.alpha = 0
-        
         UIView.animateWithDuration(0.5, animations: {
-            //self.navItem.titleLabel.alpha = 1
             }, completion: { finished in
                 self.refreshNavBar()
         })
@@ -433,7 +428,6 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         })
     }
     internal func refreshHubCards(){
-        //print("refresh")
         var currentCardPos = Int(Constants.navBarHeight)
         for card in hubCards{
             if(Int(card.y) > currentCardPos){
@@ -451,15 +445,6 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         self.refreshScrollView(self.hubCardBottom)
     }
     internal func refreshNavBar(){
-//        navBar.removeFromSuperview()
-//        view.addSubview(navBar)
-//        statusBar.removeFromSuperview()
-//        view.addSubview(statusBar)
-//        menuButton.removeFromSuperview()
-//        navBar.addSubview(menuButton)
-//        helpButton.removeFromSuperview()
-//        navBar.addSubview(helpButton)
-        
         menuButtonView.removeFromSuperview()
         navBar.addSubview(menuButtonView)
         helpButtonView.removeFromSuperview()
@@ -581,7 +566,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     ////////////////////////////////////////////////
     
     internal func addCard(y: Int, size: Int, vc: UIScrollView){
-        let card: HubCard = HubCard(vc: self,type: "Reminder",x: 20, y: y, width: Int(Constants.ScreenWidth-40),height: size)
+        let card: HubCard = HubCard(vc: self,type: "Default",x: 20, y: y, width: Int(Constants.ScreenWidth-40),height: size)
         hubCards.append(card)
         vc.addSubview(card)
     }

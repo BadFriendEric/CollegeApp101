@@ -43,7 +43,7 @@ class CoachingPreview: UIViewController {
     
     
     internal func setupView(){
-        y = -height + MainPanels.Constants.navBarHeightWithStatusBar
+        y = -height + MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight
         view.frame = CGRect(x: x, y: y, width: width, height: height)
         view.backgroundColor = MaterialColor.green.base
         
@@ -85,7 +85,7 @@ class CoachingPreview: UIViewController {
         UIView.animateWithDuration(dur, animations: {
             let vcY = self.height
             vc.view.frame = CGRect(x: 0.0, y: vcY, width: vc.view.frame.width, height: vc.view.frame.height)
-            self.view.frame = CGRect(x: 0.0, y: 0.0 + MainPanels.Constants.navBarHeightWithStatusBar, width: vc.view.frame.width, height: vc.view.frame.height)
+            self.view.frame = CGRect(x: 0.0, y: 0.0 + MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight, width: vc.view.frame.width, height: vc.view.frame.height)
         })
     }
     
@@ -93,7 +93,7 @@ class CoachingPreview: UIViewController {
         UIView.animateWithDuration(dur, animations: {
             //let vcY : CGFloat = 0.0
             vc.view.frame = CGRect(x: 0.0, y: 0.0, width: vc.view.frame.width, height: vc.view.frame.height)
-            self.view.frame = CGRect(x: 0.0, y: -self.height + MainPanels.Constants.navBarHeightWithStatusBar, width: vc.view.frame.width, height: vc.view.frame.height)
+            self.view.frame = CGRect(x: 0.0, y: -self.height + MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight, width: vc.view.frame.width, height: vc.view.frame.height)
             }, completion: { finished in
                 self.view.removeFromSuperview()
         })
