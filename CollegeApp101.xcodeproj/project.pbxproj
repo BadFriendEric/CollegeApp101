@@ -16,6 +16,7 @@
 		C1E574FA1D55A43200EF106C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E574F91D55A43200EF106C /* LoginVC.swift */; };
 		E3BF6A32D92BE795A289CA1A /* Pods_CollegeApp101.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4D6B6CCF50807496D72317 /* Pods_CollegeApp101.framework */; };
 		E9022D8F1D73C8C800F70A31 /* CoachingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9022D8E1D73C8C800F70A31 /* CoachingPreview.swift */; };
+		E91193C21D791411008954FD /* TopSchoolsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91193C11D791411008954FD /* TopSchoolsListItem.swift */; };
 		E936DC321D601DCF00D6878C /* Lora-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E936DC311D601DCE00D6878C /* Lora-Bold.ttf */; };
 		E936DC341D601E3F00D6878C /* ScopeOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E936DC331D601E3F00D6878C /* ScopeOne-Regular.ttf */; };
 		E936DC361D604C3E00D6878C /* PoiretOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E936DC351D604C3E00D6878C /* PoiretOne-Regular.ttf */; };
@@ -69,6 +70,7 @@
 		C1E574F91D55A43200EF106C /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DE4D6B6CCF50807496D72317 /* Pods_CollegeApp101.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollegeApp101.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9022D8E1D73C8C800F70A31 /* CoachingPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachingPreview.swift; sourceTree = "<group>"; };
+		E91193C11D791411008954FD /* TopSchoolsListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopSchoolsListItem.swift; sourceTree = "<group>"; };
 		E936DC311D601DCE00D6878C /* Lora-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lora-Bold.ttf"; sourceTree = "<group>"; };
 		E936DC331D601E3F00D6878C /* ScopeOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScopeOne-Regular.ttf"; sourceTree = "<group>"; };
 		E936DC351D604C3E00D6878C /* PoiretOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoiretOne-Regular.ttf"; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				E99B43221D56777100433708 /* MenuVC.swift */,
 				E9D939491D74C3AD00F827A9 /* MenuItem.swift */,
 				E9B8FE411D55594A00C4DEB5 /* CareerFeature.swift */,
+				E91193C11D791411008954FD /* TopSchoolsListItem.swift */,
 				C1AF116B1D5EAACB009D718D /* CareerFeatureTopSchools.swift */,
 				C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */,
 				E9DF9FEA1D4E7FE4007A5697 /* HubCard.swift */,
@@ -470,6 +473,7 @@
 				C11989491D602AE80027F24E /* ResumeCard.swift in Sources */,
 				E9C27C271D4C0AD800160A05 /* MainSwipeController.swift in Sources */,
 				E9C27C291D4C0ADE00160A05 /* MainPanels.swift in Sources */,
+				E91193C21D791411008954FD /* TopSchoolsListItem.swift in Sources */,
 				C1E574FA1D55A43200EF106C /* LoginVC.swift in Sources */,
 				C1AF116A1D5EAA3E009D718D /* PlannerItem.swift in Sources */,
 				C1E574F61D55A42200EF106C /* RegisterVC.swift in Sources */,
