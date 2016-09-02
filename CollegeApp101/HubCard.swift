@@ -38,7 +38,7 @@ class HubCard: CardView {
         
         setTrashButton()
         setIcon()
-        setMainText("Hub Card Test with more words and i like pancakes adn syrup too and i just neded more words on here for the example")
+        setMainText("Welcome to College App 101, Press the Help icon in the top right to learn more!")
         reloadView()
     }
     required init?(coder aDecoder: NSCoder) {
@@ -67,23 +67,23 @@ class HubCard: CardView {
             self.icon = UIImage(named: "CA101LogoOutline")!
             break
             
-        default : break
+        default :
             self.icon = UIImage(named: "CA101LogoOutline")!
         }
         
         MainPanels.ResizeImage(icon, targetSize: CGSize(width: iconSize, height: iconSize))
         //self.icon.tintWithColor(MainPanels.Constants.Color3)
         let iconView = UIImageView(image: self.icon)
-        iconView.frame = CGRect(x: 15, y: 35, width: iconSize, height: iconSize)
+        iconView.frame = CGRect(x: 10, y: 20, width: iconSize, height: iconSize)
         mysubviews.append(iconView)
         
     }
     
     internal func setMainText(text: String){
-        let lab = UILabel(frame: CGRect(x: iconSize + 20, y: 0, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)-35))
+        let lab = UILabel(frame: CGRect(x: iconSize + 20, y: 0, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)-25))
         lab.text = text
-        lab.font = RobotoFont.thinWithSize(18)
-        lab.numberOfLines = 3
+        lab.font = UIFont(name: "Baskerville", size: 18)
+        lab.numberOfLines = 4
         lab.adjustsFontSizeToFitWidth = true
         lab.lineBreakMode = .ByWordWrapping
         mysubviews.append(lab)

@@ -96,8 +96,8 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     let width = MainSwipeController.Constants.ScreenWidth
     let height = MainSwipeController.Constants.ScreenHeight
     //private var navBarHeight = 50
-    private var hubCardBottom = 50
-    private var hubCardSpacing = 25
+    private var hubCardBottom = Int(Constants.navBarHeight) + 15
+    private var hubCardSpacing = 20
 
     
     /////////////////////////////////////////////////
@@ -118,6 +118,9 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         prepareCareerView()
         prepareCoachView()
         
+        let c = addCard(hubCardBottom, size: 110, vc: hubScrollView)
+        c.type = "Default"
+        refreshHubCards()
     
     }
     private func prepareView(){
@@ -205,7 +208,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     
     ///Prepare Hub Panel///
     private func prepareHubScrollView(){
-        hubScrollView.frame = CGRect(x: 0, y: navBar.height, width: navBar.width, height: hubVC.view.frame.height-navBar.height)
+        hubScrollView.frame = CGRect(x: 0, y: Constants.navBarHeight, width: navBar.width, height: hubVC.view.frame.height-Constants.navBarHeight)
         
         hubVC.view.addSubview(hubScrollView)
         
@@ -214,7 +217,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
    
     ///Prepare Career Panel///
     internal func prepareCareerView(){
-        careerFeatureView.frame = CGRect(x: 0, y: navBar.height+20, width: navBar.width, height: hubVC.view.frame.height-navBar.height-20)
+        careerFeatureView.frame = CGRect(x: 0, y: Constants.navBarHeight+Constants.statusBarHeight, width: navBar.width, height: careerVC.view.frame.height-Constants.navBarHeight-Constants.statusBarHeight)
         let cf1: CareerFeature = CareerFeatureTopSchools()
         let cf2: CareerFeature = CareerFeatureResumeBuilder()
         let cf3: CareerFeature = CareerFeature()
@@ -428,7 +431,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         })
     }
     internal func refreshHubCards(){
-        var currentCardPos = Int(Constants.navBarHeight)
+        var currentCardPos = Int(Constants.navBarHeight) + hubCardSpacing - 5
         for card in hubCards{
             if(Int(card.y) > currentCardPos){
                 UIView.animateWithDuration(0.3, animations: {
@@ -438,7 +441,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
             currentCardPos = Int(card.y) + Int(card.height) + hubCardSpacing
         }
         if(hubCards.isEmpty){
-            hubCardBottom = Int(Constants.navBarHeight)
+            hubCardBottom = Int(Constants.navBarHeight) + hubCardSpacing - 5
         }else{
             hubCardBottom = Int((hubCards.last?.y)!) + Int((hubCards.last?.height)!) + hubCardSpacing
         }
@@ -460,15 +463,13 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     
     
     internal func handleMenuButton(){
-        //.addChildViewController(menu)
-        
         menu.slideIn(self.view)
     }
     
     internal func handleHelpButton(){
         let size = 110
         addCard(hubCardBottom,size: size,vc: hubScrollView)
-        hubCardBottom += size+hubCardSpacing
+        
         if(hubCardBottom > Int(hubVC.view.frame.height)){
             refreshScrollView(hubCardBottom)
         }
@@ -565,10 +566,12 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     //--------------The Hub Methods---------------//
     ////////////////////////////////////////////////
     
-    internal func addCard(y: Int, size: Int, vc: UIScrollView){
+    internal func addCard(y: Int, size: Int, vc: UIScrollView) -> HubCard{
         let card: HubCard = HubCard(vc: self,type: "Default",x: 20, y: y, width: Int(Constants.ScreenWidth-40),height: size)
+        hubCardBottom += size+hubCardSpacing
         hubCards.append(card)
         vc.addSubview(card)
+        return card
     }
     internal func deleteHubCard(card: HubCard){
         card.removeFromSuperview()

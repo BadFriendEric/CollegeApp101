@@ -200,7 +200,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
             self.y = 0
             self.height = newHeight
             self.view.backgroundColor = self.featureColor.colorWithAlphaComponent(0.8)
-            self.title_y = 15
+            self.title_y = 20
             self.titleLine.alpha = 1.0
             self.updateFrame()
             self.blurEffectView.frame = self.view.frame
