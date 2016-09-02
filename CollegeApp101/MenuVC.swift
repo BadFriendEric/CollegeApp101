@@ -147,16 +147,14 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
             self.blurEffectView.effect = self.blurEffect
             self.refreshMenu()
             }, completion: { finished in
-                if(finished){
-                    self.refreshMenu()
-                }
+                self.refreshMenu()
         })
         
     }
     
     internal func slideOut(){
         currentSV = nil
-        open = false
+        
         
         UIView.animateWithDuration(0.4, animations: {
             for item in self.menuItems {
@@ -167,6 +165,7 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
             self.updateFrame()
             self.blurEffectView.effect = nil
             }, completion: { finished in
+                self.open = false
                 self.view.removeFromSuperview()
                 self.menuBacker.removeFromSuperview()
                 self.blurEffectView.removeFromSuperview()
