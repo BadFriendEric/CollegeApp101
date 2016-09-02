@@ -158,8 +158,8 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
         //print(menuButton.frame.minY)
         
-        //navBar.addSubview(menuButton)
-        //navBar.addSubview(helpButton)
+        navBar.addSubview(menuButton)
+        navBar.addSubview(helpButton)
         
         navBar.addSubview(menuButtonView)
         navBar.addSubview(helpButtonView)
@@ -451,14 +451,14 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         self.refreshScrollView(self.hubCardBottom)
     }
     internal func refreshNavBar(){
-        navBar.removeFromSuperview()
-        view.addSubview(navBar)
-        statusBar.removeFromSuperview()
-        view.addSubview(statusBar)
-        menuButton.removeFromSuperview()
-        navBar.addSubview(menuButton)
-        helpButton.removeFromSuperview()
-        navBar.addSubview(helpButton)
+//        navBar.removeFromSuperview()
+//        view.addSubview(navBar)
+//        statusBar.removeFromSuperview()
+//        view.addSubview(statusBar)
+//        menuButton.removeFromSuperview()
+//        navBar.addSubview(menuButton)
+//        helpButton.removeFromSuperview()
+//        navBar.addSubview(helpButton)
         
         menuButtonView.removeFromSuperview()
         navBar.addSubview(menuButtonView)

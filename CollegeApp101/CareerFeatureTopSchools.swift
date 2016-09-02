@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import Material
 
-public class CareerFeatureTopSchools : CareerFeature, MaterialSwitchDelegate {
+public class CareerFeatureTopSchools : CareerFeature {
     
     
     public override init() {
