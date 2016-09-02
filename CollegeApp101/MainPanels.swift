@@ -209,7 +209,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
         hubVC.view.addSubview(hubScrollView)
         
-        self.addChildViewController(menu)
+        //self.addChildViewController(menu)
     }
    
     ///Prepare Career Panel///
@@ -445,6 +445,17 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         self.refreshScrollView(self.hubCardBottom)
     }
     internal func refreshNavBar(){
+        navBar.removeFromSuperview()
+        statusBar.removeFromSuperview()
+        view.addSubview(statusBar)
+        view.addSubview(navBar)
+        
+        if(menu.open){
+            menu.refreshMenu(self.view)
+
+        }
+        
+        
         menuButtonView.removeFromSuperview()
         navBar.addSubview(menuButtonView)
         helpButtonView.removeFromSuperview()
