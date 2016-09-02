@@ -448,6 +448,10 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         self.refreshScrollView(self.hubCardBottom)
     }
     internal func refreshNavBar(){
+        navBar.removeFromSuperview()
+        view.addSubview(navBar)
+        statusBar.removeFromSuperview()
+        view.addSubview(statusBar)
         menuButtonView.removeFromSuperview()
         navBar.addSubview(menuButtonView)
         helpButtonView.removeFromSuperview()
@@ -463,6 +467,8 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     
     
     internal func handleMenuButton(){
+        menu.removeFromParentViewController()
+        self.addChildViewController(menu)
         menu.slideIn(self.view)
     }
     

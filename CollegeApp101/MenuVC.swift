@@ -136,6 +136,11 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
             self.x = 0
             self.updateFrame()
             self.blurEffectView.effect = self.blurEffect
+            self.refreshMenu()
+            }, completion: { finished in
+                if(finished){
+                    self.refreshMenu()
+                }
         })
         
     }
@@ -157,6 +162,15 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
                 self.menuBacker.removeFromSuperview()
                 self.blurEffectView.removeFromSuperview()
         })
+    }
+    
+    internal func refreshMenu(){
+        blurEffectView.removeFromSuperview()
+        menuBacker.removeFromSuperview()
+        currentSV?.addSubview(blurEffectView)
+        currentSV?.addSubview(menuBacker)
+        self.view.removeFromSuperview()
+        self.currentSV?.addSubview(self.view)
     }
     
     
