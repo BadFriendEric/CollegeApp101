@@ -212,7 +212,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
         hubVC.view.addSubview(hubScrollView)
         
-        self.addChildViewController(menu)
+        //self.addChildViewController(menu)
     }
    
     ///Prepare Career Panel///
@@ -449,9 +449,14 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     }
     internal func refreshNavBar(){
         navBar.removeFromSuperview()
-        view.addSubview(navBar)
         statusBar.removeFromSuperview()
         view.addSubview(statusBar)
+        view.addSubview(navBar)
+        
+        if(menu.open){
+            menu.refreshMenu(self.view)
+
+        }
         menuButtonView.removeFromSuperview()
         navBar.addSubview(menuButtonView)
         helpButtonView.removeFromSuperview()
@@ -620,8 +625,11 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         let rect = CGRectMake(0, 0, newSize.width, newSize.height)
         
         // Actually do the resizing to the rect using the ImageContext stuff
+        
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        CGContextSetInterpolationQuality(UIGraphicsGetCurrentContext(), CGInterpolationQuality.Low)
         image.drawInRect(rect)
+        
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

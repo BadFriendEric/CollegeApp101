@@ -101,6 +101,15 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
         
     }
     
+    internal func refreshMenu(vc : UIView){
+        view.removeFromSuperview()
+        menuBacker.removeFromSuperview()
+        blurEffectView.removeFromSuperview()
+        vc.addSubview(blurEffectView)
+        vc.addSubview(menuBacker)
+        vc.addSubview(view)
+    }
+    
     
     internal func logout(){
         slideOut()

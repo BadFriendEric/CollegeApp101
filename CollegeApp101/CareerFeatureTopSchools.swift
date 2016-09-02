@@ -11,11 +11,9 @@ import Foundation
 import Material
 
 public class CareerFeatureTopSchools : CareerFeature {
-    
-    
+ 
     //0 for List View, 1 for Search View
     var currentView : Int = 0
-    
     
     public override init() {
         super.init()

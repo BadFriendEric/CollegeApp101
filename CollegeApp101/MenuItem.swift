@@ -87,6 +87,7 @@ class MenuItem : UIView {
         
     }
     
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
         self.backgroundColor = MaterialColor.grey.darken1

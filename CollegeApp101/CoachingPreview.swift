@@ -20,12 +20,15 @@ class CoachingPreview: UIViewController {
     
     let mainWidth = MainSwipeController.Constants.ScreenWidth
     let width = MainSwipeController.Constants.ScreenWidth
-    let height = MainSwipeController.Constants.ScreenHeight
+    let height = MainSwipeController.Constants.ScreenHeight - MainPanels.Constants.navBarHeight - MainPanels.Constants.statusBarHeight
     var test: FlatButton! = nil
     var superview : UIViewController! = nil
     
     var x : CGFloat = 0.0
-    var y : CGFloat = -MainSwipeController.Constants.ScreenHeight
+    let y_init : CGFloat =  -MainSwipeController.Constants.ScreenHeight + 2*(MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight)
+    var y : CGFloat = -MainSwipeController.Constants.ScreenHeight + 2*(MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight)
+    
+   
     
     var name = "Coaching"
     
@@ -43,7 +46,6 @@ class CoachingPreview: UIViewController {
     
     
     internal func setupView(){
-        y = -height + MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight
         view.frame = CGRect(x: x, y: y, width: width, height: height)
         view.backgroundColor = MaterialColor.green.base
         
@@ -84,16 +86,18 @@ class CoachingPreview: UIViewController {
     internal func pushDownVC(vc : UIViewController, dur : NSTimeInterval){
         UIView.animateWithDuration(dur, animations: {
             let vcY = self.height
+            self.view.frame = CGRect(x: 0.0, y: MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight, width: self.width, height: self.height)
             vc.view.frame = CGRect(x: 0.0, y: vcY, width: vc.view.frame.width, height: vc.view.frame.height)
-            self.view.frame = CGRect(x: 0.0, y: 0.0 + MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight, width: vc.view.frame.width, height: vc.view.frame.height)
+            
         })
     }
     
     internal func pullUpVC(vc : UIViewController, dur : NSTimeInterval){
         UIView.animateWithDuration(dur, animations: {
             //let vcY : CGFloat = 0.0
+            self.view.frame = CGRect(x: 0.0, y: self.y_init, width: self.width, height: self.height)
             vc.view.frame = CGRect(x: 0.0, y: 0.0, width: vc.view.frame.width, height: vc.view.frame.height)
-            self.view.frame = CGRect(x: 0.0, y: -self.height + MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight, width: vc.view.frame.width, height: vc.view.frame.height)
+            
             }, completion: { finished in
                 self.view.removeFromSuperview()
         })

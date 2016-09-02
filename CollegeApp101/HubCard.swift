@@ -64,7 +64,7 @@ class HubCard: CardView {
         
         switch(type){
         case "Default" :
-            self.icon = UIImage(named: "CA101LogoOutline")!
+            self.icon = UIImage(named: "LightbulbIcon")!
             break
             
         default :
