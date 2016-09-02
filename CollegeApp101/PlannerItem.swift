@@ -25,18 +25,18 @@ class PlannerItem : UIView {
     
     var type : PlannerItemType = .Note
     
-    var cfp : CareerFeaturePlanner? = nil
+    var cfp : CareerFeatureTopSchools? = nil
     
     
     
-    internal init(cfp : CareerFeaturePlanner, y : Int) {
+    internal init(cfp : CareerFeatureTopSchools, y : Int) {
         self.cfp = cfp
         self.y = y
         //updateFrame()
         super.init(frame : CGRect(x: CGFloat(self.x), y: CGFloat(self.y), width: CGFloat(self.width), height: CGFloat(self.height)))
         setupView()
     }
-    internal init(cfp : CareerFeaturePlanner, type : PlannerItemType,y : Int) {
+    internal init(cfp : CareerFeatureTopSchools, type : PlannerItemType,y : Int) {
         self.cfp = cfp
         self.type = type
         self.y = y

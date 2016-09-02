@@ -57,6 +57,7 @@ class MenuItem : UIView {
             label.textColor = MaterialColor.red.base
             
             let label2 = UILabel(frame: CGRect(x: 70, y: 45, width: self.frame.width, height: 30))
+            //CHANGE TO USERNAME OF CLIENT
             label2.text = "Sam Hollenbach"
             label2.textAlignment = NSTextAlignment.Left
             label2.numberOfLines = 1
