@@ -26,7 +26,7 @@ public class CareerFeatureTopSchools : CareerFeature {
     public override func setFrame(x: Int, y: Int, width: Int, height: Int) {
         super.setFrame(x, y: y, width: width, height: height)
         setFeatureTitle("Top Schools")
-        refreshScrollView(height+400)
+        refreshScrollView(height)
     }
     
         public override func updateFrame(){
