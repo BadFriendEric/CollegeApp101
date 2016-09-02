@@ -611,8 +611,11 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         let rect = CGRectMake(0, 0, newSize.width, newSize.height)
         
         // Actually do the resizing to the rect using the ImageContext stuff
+        
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        CGContextSetInterpolationQuality(UIGraphicsGetCurrentContext(), CGInterpolationQuality.Low)
         image.drawInRect(rect)
+        
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

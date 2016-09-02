@@ -64,17 +64,17 @@ class HubCard: CardView {
         
         switch(type){
         case "Default" :
-            self.icon = UIImage(named: "CA101LogoOutline")!
+            self.icon = UIImage(named: "LightbulbIcon")!
             break
             
-        default : break
-            self.icon = UIImage(named: "CA101LogoOutline")!
+        default :
+            self.icon = UIImage(named: "LightbulbIcon")!
         }
         
         MainPanels.ResizeImage(icon, targetSize: CGSize(width: iconSize, height: iconSize))
         //self.icon.tintWithColor(MainPanels.Constants.Color3)
         let iconView = UIImageView(image: self.icon)
-        iconView.frame = CGRect(x: 15, y: 35, width: iconSize, height: iconSize)
+        iconView.frame = CGRect(x: 10, y: 25, width: iconSize, height: iconSize)
         mysubviews.append(iconView)
         
     }
