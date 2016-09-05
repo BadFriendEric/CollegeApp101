@@ -25,8 +25,7 @@ class CoachingPreview: UIViewController {
     var superview : UIViewController! = nil
     
     var x : CGFloat = 0.0
-    let y_init : CGFloat =   2*(MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight) - MainSwipeController.Constants.ScreenHeight + 25
-    var y : CGFloat = 2*(MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight) - MainSwipeController.Constants.ScreenHeight + 25
+    var y : CGFloat = 0.0
     
    
     
@@ -84,12 +83,14 @@ class CoachingPreview: UIViewController {
     }
     
     internal func pushDownVC(vc : UIViewController, dur : NSTimeInterval){
+        self.view.frame = CGRect(x: 0.0, y: -self.height + 8, width: vc.view.frame.width, height: vc.view.frame.height)
+
         UIView.animateWithDuration(dur, animations: {
             
-            self.view.frame = CGRect(x: 0.0, y: MainPanels.Constants.navBarHeight+MainPanels.Constants.statusBarHeight,width: vc.view.frame.width,height: self.height)
-            vc.view.frame = CGRect(x: 0.0, y: self.view.frame.maxY-MainPanels.Constants.navBarHeight+MainPanels.Constants.statusBarHeight, width: vc.view.frame.width, height: vc.view.frame.height)
+            self.view.frame = CGRect(x: 0.0, y: MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight + 8, width: self.view.frame.width, height: self.view.frame.height)
+            vc.view.frame = CGRect(x: 0.0, y: vc.view.frame.maxY, width: vc.view.frame.width, height: vc.view.frame.height)
             self.view.layoutIfNeeded()
-            vc.view.layoutIfNeeded()
+            //vc.view.layoutIfNeeded()
         })
         
     }
@@ -97,10 +98,11 @@ class CoachingPreview: UIViewController {
     internal func pullUpVC(vc : UIViewController, dur : NSTimeInterval){
         UIView.animateWithDuration(dur, animations: {
             //let vcY : CGFloat = 0.0
-            self.view.frame = CGRect(x: 0.0, y: self.y_init, width: self.width, height: self.height)
+            //self.view.frame = CGRect(x: 0.0, y: self.y_init, width: self.width, height: self.height)
+            self.view.frame = CGRect(x: 0.0, y: -self.height + 8, width: self.view.frame.width, height: self.view.frame.height)
             vc.view.frame = CGRect(x: 0.0, y: 0.0, width: vc.view.frame.width, height: vc.view.frame.height)
             self.view.layoutIfNeeded()
-            vc.view.layoutIfNeeded()
+            //vc.view.layoutIfNeeded()
             }, completion: { finished in
                 self.view.removeFromSuperview()
         })

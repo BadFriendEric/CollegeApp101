@@ -503,43 +503,44 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         }
     }
     @objc private func handleCoachingGeneralButton(){
-        coachingVC.view.addSubview(coachingPreviewGeneral.view)
+        view.addSubview(coachingPreviewGeneral.view)
         refreshNavBar()
         coachingPreviewGeneral.pushDownVC(coachingVC, dur: 0.5)
+        //self.addChildViewController(self)
     }
     
     @objc private func handleCoachingWritingButton(){
-        coachingVC.view.addSubview(coachingPreviewWriting.view)  //Change to writing
+        view.addSubview(coachingPreviewWriting.view)  //Change to writing
         refreshNavBar()
         coachingPreviewWriting.pushDownVC(coachingVC, dur: 0.5)  //writing
     }
     
     @objc private func handleCoachingEvaluationButton(){
-        coachingVC.view.addSubview(coachingPreviewEvaluation.view)  //Change to evaluation
+        view.addSubview(coachingPreviewEvaluation.view)  //Change to evaluation
         refreshNavBar()
         coachingPreviewEvaluation.pushDownVC(coachingVC, dur: 0.5)  //evaluation
     }
     
     @objc private func handleCoachingFreshmanButton(){
-        coachingVC.view.addSubview(coachingPreviewFreshman.view)  //Change to freshman
+        view.addSubview(coachingPreviewFreshman.view)  //Change to freshman
         refreshNavBar()
         coachingPreviewFreshman.pushDownVC(coachingVC, dur: 0.5)  //evaluation
     }
     
     @objc private func handleCoachingSophomoreButton(){
-        coachingVC.view.addSubview(coachingPreviewSophomore.view)  //Change to sophomiore lol lololool (lol -sam)
+        view.addSubview(coachingPreviewSophomore.view)  //Change to sophomiore lol lololool (lol -sam)
         refreshNavBar()
         coachingPreviewSophomore.pushDownVC(coachingVC, dur: 0.5)  //evaluation
     }
 
     @objc private func handleCoachingJuniorButton(){
-        coachingVC.view.addSubview(coachingPreviewJunior.view)  //Change to freshman
+        view.addSubview(coachingPreviewJunior.view)  //Change to freshman
         refreshNavBar()
         coachingPreviewJunior.pushDownVC(coachingVC, dur: 0.5)  //evaluation
     }
 
     @objc private func handleCoachingSeniorButton(){
-        coachingVC.view.addSubview(coachingPreviewSenior.view)  //Change to freshman
+        view.addSubview(coachingPreviewSenior.view)  //Change to freshman
         refreshNavBar()
         
         coachingPreviewSenior.pushDownVC(coachingVC, dur: 0.5)  //evaluation
