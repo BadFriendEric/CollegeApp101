@@ -10,11 +10,11 @@ import Foundation
 import Material
 import UIKit
 
-public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
+open class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     
     var resumeCards: [ResumeCard] = []
-    private var resumeCardSpacing = 25
-    private var resumeCardBottom = 50
+    fileprivate var resumeCardSpacing = 25
+    fileprivate var resumeCardBottom = 50
     let iconSize = 50
     var words: String = "vibes"
     var timeWords: String = "chill"
@@ -35,7 +35,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     }
 
     
-    public override func setFrame(x: Int, y: Int, width: Int, height: Int) {  //open Resume Builder
+    open override func setFrame(_ x: Int, y: Int, width: Int, height: Int) {  //open Resume Builder
         super.setFrame(x, y: y, width: width, height: height)
         setFeatureTitle("Resume Builder")
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
@@ -49,35 +49,35 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     
   
     
-    private func prepareMainButtons(){
+    fileprivate func prepareMainButtons(){
         button.frame = CGRect(x: width/2 + width/4 - 25, y: 100, width: 75, height: 25)
-        button.setTitleColor(MaterialColor.white, forState: .Normal)
+        button.setTitleColor(Color.white, for: UIControlState())
         button.titleLabel?.font = UIFont(name: "Scope One", size: 10)
-        button.setTitle("Add Card", forState: .Normal)
-        button.backgroundColor = MaterialColor.grey.base
-        button.addTarget(self, action: #selector(handleAddResumeCard), forControlEvents: .TouchUpInside)
+        button.setTitle("Add Card", for: UIControlState())
+        button.backgroundColor = Color.grey.base
+        button.addTarget(self, action: #selector(handleAddResumeCard), for: .touchUpInside)
         features.append(button)
         
     }
     
-    private func prepareTextField(){
+    fileprivate func prepareTextField(){
         textBox.frame = CGRect(x: 20, y: 10, width: width - 40, height: 80)
         textBox.delegate = self
-        textBox.backgroundColor = MaterialColor.white
-        textBox.font = RobotoFont.lightWithSize(16)
-        textBox.textColor = MaterialColor.grey.lighten1
+        textBox.backgroundColor = Color.white
+        textBox.font = RobotoFont.light(with: 16)
+        textBox.textColor = Color.grey.lighten1
         textBox.text! = placeHolder
         textBox.layer.cornerRadius = 10
         features.append(textBox)
         
     }
     
-    private func prepareTimeText(){
+    fileprivate func prepareTimeText(){
         timeText.frame = CGRect(x: 20, y: 100, width: width - 150, height: 30)
         timeText.delegate = self
-        timeText.backgroundColor = MaterialColor.white
-        timeText.font = RobotoFont.lightWithSize(16)
-        timeText.textColor = MaterialColor.grey.lighten1
+        timeText.backgroundColor = Color.white
+        timeText.font = RobotoFont.light(with: 16)
+        timeText.textColor = Color.grey.lighten1
         timeText.text! = placeHolderTime
         timeText.layer.cornerRadius = 10
         features.append(timeText)
@@ -86,11 +86,11 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     
     internal func handleAddResumeCard(){
         let size = 110
-        if button.backgroundColor == MaterialColor.amber.base{
+        if button.backgroundColor == Color.amber.base{
             words = textBox.text!
             timeWords = timeText.text!
-            textBox.textColor = MaterialColor.grey.lighten1
-            timeText.textColor = MaterialColor.grey.lighten1
+            textBox.textColor = Color.grey.lighten1
+            timeText.textColor = Color.grey.lighten1
             textBox.text = placeHolder
             timeText.text = placeHolderTime
             textBox.resignFirstResponder()
@@ -99,8 +99,8 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
             resumeCardBottom += size+resumeCardSpacing
         }
         else{
-            textBox.textColor = MaterialColor.grey.lighten1
-            timeText.textColor = MaterialColor.grey.lighten1
+            textBox.textColor = Color.grey.lighten1
+            timeText.textColor = Color.grey.lighten1
             textBox.text = placeHolder
             timeText.text = placeHolderTime
             textBox.resignFirstResponder()
@@ -114,9 +114,9 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
         }
     }
     
-    internal func addResumeCard(y: Int, vc: UIScrollView, text: String){
+    internal func addResumeCard(_ y: Int, vc: UIScrollView, text: String){
         let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 180 + 110*(resumeCards.count), width: width - 50, height: 100, text: text, text2: timeWords)
-        button.backgroundColor = MaterialColor.grey.base
+        button.backgroundColor = Color.grey.base
         resumeCards.append(card)
         vc.addSubview(card)
         
@@ -127,7 +127,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
         var currentCardPos = 70 //was nav bar height
         for card in resumeCards{
             if(Int(card.y) > currentCardPos){
-                UIView.animateWithDuration(0.3, animations: {
+                UIView.animate(withDuration: 0.3, animations: {
                     card.y = CGFloat(currentCardPos)
                 })
             }
@@ -142,11 +142,11 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     }
 
     
-    public override func getFeatures() -> [UIView] {
+    open override func getFeatures() -> [UIView] {
         return features
     }
     
-    internal func deleteResumeCard(card: ResumeCard){
+    internal func deleteResumeCard(_ card: ResumeCard){
         /* 
         card.removeFromSuperview()
         resumeCards.removeAtIndex(resumeCards.indexOf(card)!)
@@ -157,32 +157,32 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextViewDelegate {
     
     func backgroundTapped(){
         if (textBox.text != "" && timeText.text != "" && textBox.text != placeHolder && timeText.text != placeHolderTime){
-            button.backgroundColor = MaterialColor.amber.base
+            button.backgroundColor = Color.amber.base
         }
         else{
-            button.backgroundColor = MaterialColor.grey.base
+            button.backgroundColor = Color.grey.base
         }
         textBox.resignFirstResponder()
         timeText.resignFirstResponder()
     }
     
-    public func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-        if textView.textColor == MaterialColor.grey.lighten1{
+    open func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        if textView.textColor == Color.grey.lighten1{
             textView.text! = ""
-            textView.textColor = MaterialColor.black
+            textView.textColor = Color.black
         }
         return true
     }
     
-    public func textViewDidEndEditing(textView: UITextView) {
+    open func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == ""{
-            textView.textColor = MaterialColor.grey.lighten1
+            textView.textColor = Color.grey.lighten1
             textBox.text = placeHolder
             timeText.text = placeHolderTime
         }
         
         if (textBox.text != "" && timeText.text != "" && textBox.text != placeHolder && timeText.text != placeHolderTime){
-            button.backgroundColor = MaterialColor.amber.base
+            button.backgroundColor = Color.amber.base
         }
     }
     

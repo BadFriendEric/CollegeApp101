@@ -27,18 +27,18 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
     
     let contentStartY = 20
     
-    var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+    var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
     var blurEffectView = UIVisualEffectView(effect: nil)
 
     var menuBacker: UIView! = UIView()
     
-    let backColor = MaterialColor.grey.darken4
+    let backColor = Color.grey.darken4
 
     
     var open = false
     
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
@@ -55,16 +55,16 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
     internal func setupView(){
         menuBacker.frame = CGRect(x: 0, y: 0, width: mainWidth, height: height)
         blurEffectView.frame = menuBacker.frame
-        menuBacker.backgroundColor = MaterialColor.black
+        menuBacker.backgroundColor = Color.black
         menuBacker.alpha = 0
         self.x = -width
         updateFrame()
         view.backgroundColor = backColor
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(closeMenu))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         let swipeLeft2 = UISwipeGestureRecognizer(target: self, action: #selector(closeMenu))
-        swipeLeft2.direction = UISwipeGestureRecognizerDirection.Left
+        swipeLeft2.direction = UISwipeGestureRecognizerDirection.left
         let tap = UITapGestureRecognizer(target: self, action: #selector(closeMenu))
         tap.delegate = self
         self.view.addGestureRecognizer(swipeLeft)
@@ -74,7 +74,7 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
         blurEffectView.addGestureRecognizer(swipeLeft2)
         
         let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 20))
-        statusBar.backgroundColor = MaterialColor.grey.darken1
+        statusBar.backgroundColor = Color.grey.darken1
         self.view.addSubview(statusBar)
         
     }
@@ -101,7 +101,7 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    internal func refreshMenu(vc : UIView){
+    internal func refreshMenu(_ vc : UIView){
         view.removeFromSuperview()
         menuBacker.removeFromSuperview()
         blurEffectView.removeFromSuperview()
@@ -113,7 +113,7 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
     
     internal func logout(){
         slideOut()
-        self.presentViewController(LoginVC(), animated: true, completion: nil)
+        self.present(LoginVC(), animated: true, completion: nil)
         
     }
     internal func settings(){
@@ -132,7 +132,7 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
     }
     
     
-    internal func slideIn(superview: UIView){
+    internal func slideIn(_ superview: UIView){
         open = true
         
         
@@ -140,7 +140,7 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
         superview.addSubview(blurEffectView)
         superview.addSubview(menuBacker)
         superview.addSubview(self.view)
-        UIView.animateWithDuration(0.4, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             self.menuBacker.alpha = 0.0
             self.x = 0
             self.updateFrame()
@@ -156,7 +156,7 @@ class MenuVC : UIViewController, UIGestureRecognizerDelegate {
         currentSV = nil
         
         
-        UIView.animateWithDuration(0.4, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             for item in self.menuItems {
                 item.backgroundColor = self.backColor
             }

@@ -1,12 +1,22 @@
 PODS:
-  - Material (1.42.7)
+  - Material (2.0.0)
 
 DEPENDENCIES:
-  - Material (~> 1.0)
+  - Material (from `https://github.com/CosmicMind/Material`, branch `development`)
+
+EXTERNAL SOURCES:
+  Material:
+    :branch: development
+    :git: https://github.com/CosmicMind/Material
+
+CHECKOUT OPTIONS:
+  Material:
+    :commit: 09cdb27c84fafbff4eb7ff1ad293b95663a345c2
+    :git: https://github.com/CosmicMind/Material
 
 SPEC CHECKSUMS:
-  Material: 2d46a44719b1f19e52956518af8aea54ac714963
+  Material: 61dcd49507c32d07c1557267ec360ce35bd0b1c5
 
-PODFILE CHECKSUM: 516277092030e1ec1f18390f8a523506539200d2
+PODFILE CHECKSUM: 33d2bd2defc5abe1f2a0e3cc530a23c5fff721cc
 
 COCOAPODS: 1.0.1

@@ -12,7 +12,7 @@
  *		this list of conditions and the following disclaimer in the documentation
  *		and/or other materials provided with the distribution.
  *
- *	*	Neither the name of Material nor the names of its
+ *	*	Neither the name of CosmicMind nor the names of its
  *		contributors may be used to endorse or promote products derived from
  *		this software without specific prior written permission.
  *
@@ -30,24 +30,24 @@
 
 import UIKit
 
-public class ErrorTextField : TextField {
+public class ErrorTextField: TextField {
     /// Controls the visibility of detailLabel
     @IBInspectable public var revealError: Bool = false {
         didSet {
-            detailLabel.hidden = !revealError
+            detailLabel.isHidden = !revealError
         }
     }
     
     /**
      Prepares the view instance when intialized. When subclassing,
-     it is recommended to override the prepareView method
+     it is recommended to override the prepare method
      to initialize property values and other setup operations.
-     The super.prepareView method should always be called immediately
+     The super.prepare method should always be called immediately
      when subclassing.
      */
-    override public func prepareView() {
-        super.prepareView()
+    override public func prepare() {
+        super.prepare()
         revealError = false
-        detailColor = MaterialColor.red.base
+        detailColor = Color.red.base
     }
 }

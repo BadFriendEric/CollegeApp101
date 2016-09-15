@@ -10,13 +10,13 @@ import UIKit
 import Foundation
 import Material
 
-class HubCard: CardView {
+class HubCard: Card {
     
     var trash: IconButton = IconButton()
     var trashClicked = false
     var vc: MainPanels! = MainPanels()
     var icon: UIImage = UIImage()
-    let trashImg: UIImage? = MaterialIcon.cm.close
+    let trashImg: UIImage? = Icon.cm.close
     var type : String! = "Default"
     var mysubviews = [UIView]()
     
@@ -29,11 +29,11 @@ class HubCard: CardView {
         self.vc = vc
         divider = false
         self.type = type
-        contentInset = UIEdgeInsetsZero
-        contentViewInset = UIEdgeInsetsZero
-        leftButtonsInset = UIEdgeInsetsZero
-        rightButtonsInset = UIEdgeInsetsZero
-        titleLabelInset = UIEdgeInsetsZero
+        contentInset = UIEdgeInsets.zero
+        contentViewInset = UIEdgeInsets.zero
+        leftButtonsInset = UIEdgeInsets.zero
+        rightButtonsInset = UIEdgeInsets.zero
+        titleLabelInset = UIEdgeInsets.zero
         
         
         setTrashButton()
@@ -54,7 +54,7 @@ class HubCard: CardView {
         }
     }
     
-    internal func addView(v: UIView?){
+    internal func addView(_ v: UIView?){
         mysubviews.append(v!)
     }
     
@@ -71,7 +71,7 @@ class HubCard: CardView {
             self.icon = UIImage(named: "CA101LogoOutline")!
         }
         
-        MainPanels.ResizeImage(icon, targetSize: CGSize(width: iconSize, height: iconSize))
+        _ = MainPanels.ResizeImage(icon, targetSize: CGSize(width: iconSize, height: iconSize))
         //self.icon.tintWithColor(MainPanels.Constants.Color3)
         let iconView = UIImageView(image: self.icon)
         iconView.frame = CGRect(x: 10, y: 20, width: iconSize, height: iconSize)
@@ -79,20 +79,20 @@ class HubCard: CardView {
         
     }
     
-    internal func setMainText(text: String){
+    internal func setMainText(_ text: String){
         let lab = UILabel(frame: CGRect(x: iconSize + 20, y: 0, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)-25))
         lab.text = text
         lab.font = UIFont(name: "Baskerville", size: 18)
         lab.numberOfLines = 4
         lab.adjustsFontSizeToFitWidth = true
-        lab.lineBreakMode = .ByWordWrapping
+        lab.lineBreakMode = .byWordWrapping
         mysubviews.append(lab)
 
         
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         if(trashClicked){
             resetTrashButton()
         }
@@ -102,24 +102,24 @@ class HubCard: CardView {
     
     internal func setTrashButton(){
         trash = IconButton(frame: CGRect(x: Int(self.frame.width)-45, y: 0, width: 50, height: 35))
-        trash.pulseColor = MaterialColor.red.base
-        trash.tintColor = MaterialColor.black
-        trash.setImage(trashImg, forState: .Normal)
-        trash.setImage(trashImg, forState: .Highlighted)
-        trash.addTarget(self, action: #selector(handleTrashButton), forControlEvents: .TouchUpInside)
+        trash.pulseColor = Color.red.base
+        trash.tintColor = Color.black
+        trash.setImage(trashImg, for: UIControlState())
+        trash.setImage(trashImg, for: .highlighted)
+        trash.addTarget(self, action: #selector(handleTrashButton), for: .touchUpInside)
         
         mysubviews.append(trash)
     }
     
     internal func resetTrashButton(){
-        //let trashImg: UIImage? = MaterialIcon.cm.close
-        trash.tintColor = MaterialColor.black
+        //let trashImg: UIImage? = Icon.cm.close
+        trash.tintColor = Color.black
         //trash.setImage(trashImg, forState: .Normal)
         //trash.setImage(trashImg, forState: .Highlighted)
-        UIView.animateWithDuration(0.2, animations: {
-            self.trash.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI/2))
+        UIView.animate(withDuration: 0.2, animations: {
+            self.trash.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI/2))
         }, completion: { finished in
-            self.trash.transform = CGAffineTransformIdentity
+            self.trash.transform = CGAffineTransform.identity
         })
         trashClicked = false
     }
@@ -129,12 +129,12 @@ class HubCard: CardView {
         if(trashClicked){
             vc.deleteHubCard(self)
         }else{
-            UIView.animateWithDuration(0.2, delay: 0.0, options: .AllowUserInteraction, animations: {
-                self.trash.transform = CGAffineTransformMakeRotation(CGFloat(M_PI/2))
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: .allowUserInteraction, animations: {
+                self.trash.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI/2))
             }, completion: { finished in
-                self.trash.transform = CGAffineTransformIdentity
+                self.trash.transform = CGAffineTransform.identity
             })
-            trash.tintColor = MaterialColor.red.base
+            trash.tintColor = Color.red.base
                         trashClicked = true
         }
         

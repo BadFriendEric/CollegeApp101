@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 import Material
 
-class ResumeCard: CardView{
+class ResumeCard: Card{
     
     var view: CareerFeatureResumeBuilder = CareerFeatureResumeBuilder()
 
     var trash: IconButton = IconButton()
     var trashClicked = false
-    let trashImg: UIImage? = MaterialIcon.cm.close
+    let trashImg: UIImage? = Icon.cm.close
     
     var mysubviews = [UIView]()
     var text: String = "yes"
@@ -53,24 +53,24 @@ class ResumeCard: CardView{
     
     internal func setTrashButton(){
         trash = IconButton(frame: CGRect(x: Int(self.frame.width)-45, y: Int(self.frame.height - 10), width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)-35))
-        trash.pulseColor = MaterialColor.red.base
-        trash.tintColor = MaterialColor.black
-        trash.setImage(trashImg, forState: .Normal)
-        trash.setImage(trashImg, forState: .Highlighted)
-        trash.addTarget(self, action: #selector(handleTrashButton), forControlEvents: .TouchUpInside)  //cosider changing to touch down
+        trash.pulseColor = Color.red.base
+        trash.tintColor = Color.black
+        trash.setImage(trashImg, for: UIControlState())
+        trash.setImage(trashImg, for: .highlighted)
+        trash.addTarget(self, action: #selector(handleTrashButton), for: .touchUpInside)  //cosider changing to touch down
         
         mysubviews.append(trash)
     }
     
     internal func resetTrashButton(){
-        //let trashImg: UIImage? = MaterialIcon.cm.close
-        trash.tintColor = MaterialColor.black
+        //let trashImg: UIImage? = Icon.cm.close
+        trash.tintColor = Color.black
         //trash.setImage(trashImg, forState: .Normal)
         //trash.setImage(trashImg, forState: .Highlighted)
-        UIView.animateWithDuration(0.2, animations: {
-            self.trash.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI/2))
+        UIView.animate(withDuration: 0.2, animations: {
+            self.trash.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI/2))
             }, completion: { finished in
-                self.trash.transform = CGAffineTransformIdentity
+                self.trash.transform = CGAffineTransform.identity
         })
         trashClicked = false
     }
@@ -80,39 +80,39 @@ class ResumeCard: CardView{
         if(trashClicked){
             view.deleteResumeCard(self)
         }else{
-            //let trashImg: UIImage? = MaterialIcon.check
-            UIView.animateWithDuration(0.2, animations: {
-                self.trash.transform = CGAffineTransformMakeRotation(CGFloat(M_PI/2))
+            //let trashImg: UIImage? = Icon.check
+            UIView.animate(withDuration: 0.2, animations: {
+                self.trash.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI/2))
                 }, completion: { finished in
-                    self.trash.transform = CGAffineTransformIdentity
+                    self.trash.transform = CGAffineTransform.identity
             })
-            trash.tintColor = MaterialColor.red.base
+            trash.tintColor = Color.red.base
             trashClicked = true
         }
         
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         if(trashClicked){
             resetTrashButton()
         }
         
     }
     
-    internal func setTextBox(text: String, text2: String){
+    internal func setTextBox(_ text: String, text2: String){
         let box = UITextField(frame: CGRect(x: iconSize + 20, y: 0, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)/2))
-        //box.backgroundColor = MaterialColor.pink.base
-        box.textColor = MaterialColor.black
-        box.font = RobotoFont.lightWithSize(16)
+        //box.backgroundColor = Color.pink.base
+        box.textColor = Color.black
+        box.font = RobotoFont.light(with: 16)
         box.text = text
         box.adjustsFontSizeToFitWidth = true
         mysubviews.append(box)
         
         let boxTime = UITextField(frame: CGRect(x: iconSize + 20, y: Int(self.frame.height)/2, width: Int(self.frame.width) - iconSize - 50, height: Int(self.frame.height)/2))
-        //boxTime.backgroundColor = MaterialColor.green.base
-        boxTime.textColor = MaterialColor.black
-        boxTime.font = RobotoFont.lightWithSize(16)
+        //boxTime.backgroundColor = Color.green.base
+        boxTime.textColor = Color.black
+        boxTime.font = RobotoFont.light(with: 16)
         boxTime.text = text2
         boxTime.adjustsFontSizeToFitWidth = true
         mysubviews.append(boxTime)
@@ -120,8 +120,8 @@ class ResumeCard: CardView{
     }
 
     internal func setIcon(){
-        self.icon = MaterialIcon.menu!
-        self.icon.tintWithColor(MainPanels.Constants.Color3)
+        self.icon = Icon.menu!
+        _ = self.icon.tintWithColor(color: MainPanels.Constants.Color3)
         let iconView = UIImageView(image: self.icon)
         iconView.frame = CGRect(x: 5, y: 5, width: iconSize, height: iconSize)
         mysubviews.append(iconView)
@@ -129,32 +129,32 @@ class ResumeCard: CardView{
     }
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
     }
     
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         (textField as? ErrorTextField)?.revealError = false
     }
     
-    func textFieldShouldClear(textField: UITextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         (textField as? ErrorTextField)?.revealError = false
         return true
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         (textField as? ErrorTextField)?.revealError = false
         return true
     }

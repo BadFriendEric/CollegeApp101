@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import Material
 
-public class CareerFeatureTopSchools : CareerFeature {
+open class CareerFeatureTopSchools : CareerFeature {
  
     //0 for List View, 1 for Search View
     var currentView : Int = 0
@@ -25,17 +25,17 @@ public class CareerFeatureTopSchools : CareerFeature {
     }
     
     
-    public override func setFrame(x: Int, y: Int, width: Int, height: Int) {
+    open override func setFrame(_ x: Int, y: Int, width: Int, height: Int) {
         super.setFrame(x, y: y, width: width, height: height)
         setFeatureTitle("Top Schools")
         refreshScrollView(height)
     }
     
-        public override func updateFrame(){
+        open override func updateFrame(){
         super.updateFrame()
     }
     
-    public override func getFeatures() -> [UIView] {
+    open override func getFeatures() -> [UIView] {
         return features
     }
     

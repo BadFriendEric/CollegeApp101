@@ -46,7 +46,7 @@ class CoachingPreview: UIViewController {
     
     internal func setupView(){
         view.frame = CGRect(x: x, y: y, width: width, height: height)
-        view.backgroundColor = MaterialColor.green.base
+        view.backgroundColor = Color.green.base
         
         prepareButton()
         reloadView()
@@ -61,31 +61,31 @@ class CoachingPreview: UIViewController {
     
     internal func prepareButton(){
         test = FlatButton(frame: CGRect(x: (width-150)/2, y: height-170, width: 150, height: 60))
-        test.setTitle("Continue", forState: .Normal)
-        test.setTitleColor(MaterialColor.white, forState: .Normal)
-        test.backgroundColor = MaterialColor.red.base
-        test.addTarget(self, action: #selector(handleContinueButton), forControlEvents: .TouchUpInside)
+        test.setTitle("Continue", for: UIControlState())
+        test.setTitleColor(Color.white, for: UIControlState())
+        test.backgroundColor = Color.red.base
+        test.addTarget(self, action: #selector(handleContinueButton), for: .touchUpInside)
         mysubviews.append(test)
         
     }
     
-    internal func setCoachingName(name: String){
+    internal func setCoachingName(_ name: String){
         self.name = name
     }
     
-    internal func setBackgroundColor(color : UIColor){
+    internal func setBackgroundColor(_ color : UIColor){
         self.view.backgroundColor = color
     }
     
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         pullUpVC(superview, dur: 0.4)
     }
     
-    internal func pushDownVC(vc : UIViewController, dur : NSTimeInterval){
+    internal func pushDownVC(_ vc : UIViewController, dur : TimeInterval){
         self.view.frame = CGRect(x: 0.0, y: -self.height + 8, width: vc.view.frame.width, height: vc.view.frame.height)
 
-        UIView.animateWithDuration(dur, animations: {
+        UIView.animate(withDuration: dur, animations: {
             
             self.view.frame = CGRect(x: 0.0, y: MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight + 8, width: self.view.frame.width, height: self.view.frame.height)
             vc.view.frame = CGRect(x: 0.0, y: vc.view.frame.maxY, width: vc.view.frame.width, height: vc.view.frame.height)
@@ -95,8 +95,8 @@ class CoachingPreview: UIViewController {
         
     }
     
-    internal func pullUpVC(vc : UIViewController, dur : NSTimeInterval){
-        UIView.animateWithDuration(dur, animations: {
+    internal func pullUpVC(_ vc : UIViewController, dur : TimeInterval){
+        UIView.animate(withDuration: dur, animations: {
             //let vcY : CGFloat = 0.0
             //self.view.frame = CGRect(x: 0.0, y: self.y_init, width: self.width, height: self.height)
             self.view.frame = CGRect(x: 0.0, y: -self.height + 8, width: self.view.frame.width, height: self.view.frame.height)

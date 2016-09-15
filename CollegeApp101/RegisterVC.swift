@@ -10,18 +10,18 @@ import UIKit
 import Material
 
 class RegisterVC: UIViewController, TextFieldDelegate {
-    private var nameField: TextField!
-    private var emailField: ErrorTextField!
-    private var passwordField: TextField!
-    private var passwordRepeatField: TextField!
-    private var resetUser: IconButton!
-    private var resetPass: IconButton!
-    private var helpButton: IconButton!
-    private var backButton: IconButton!
+    fileprivate var nameField: TextField!
+    fileprivate var emailField: ErrorTextField!
+    fileprivate var passwordField: TextField!
+    fileprivate var passwordRepeatField: TextField!
+    fileprivate var resetUser: IconButton!
+    fileprivate var resetPass: IconButton!
+    fileprivate var helpButton: IconButton!
+    fileprivate var backButton: IconButton!
     
-    private var username: String!
+    fileprivate var username: String!
     
-    private var password: String!
+    fileprivate var password: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,40 +40,40 @@ class RegisterVC: UIViewController, TextFieldDelegate {
     
     
     /// Programmatic update for the textField as it rotates.
-    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         emailField.width = view.bounds.height - 80
     }
     
     /// General preparation statements.
-    private func prepareView() {
-        view.backgroundColor = MaterialColor.white
+    fileprivate func prepareView() {
+        view.backgroundColor = Color.white
         view.layer.addSublayer(getGradient1())
     }
     
     /// Prepares the resign responder button.
-    private func prepareContinueButton() {
+    fileprivate func prepareContinueButton() {
         //Continue BUTTON
         let btn2: RaisedButton = RaisedButton()
-        btn2.addTarget(self, action: #selector(handleRegisterResponderButton), forControlEvents: .TouchUpInside)
-        btn2.setTitle("Continue", forState: .Normal)
-        btn2.setTitleColor(MaterialColor.black, forState: .Normal)
-        btn2.setTitleColor(MaterialColor.black, forState: .Highlighted)
-        btn2.backgroundColor = MaterialColor.blue.lighten2
+        btn2.addTarget(self, action: #selector(handleRegisterResponderButton), for: .touchUpInside)
+        btn2.setTitle("Continue", for: UIControlState())
+        btn2.setTitleColor(Color.black, for: UIControlState())
+        btn2.setTitleColor(Color.black, for: .highlighted)
+        btn2.backgroundColor = Color.blue.lighten2
         
-        view.layout(btn2).bottom(200).centerHorizontally()
+        _ = view.layout(btn2).bottom(200).centerHorizontally()
     }
     
-    private func prepareLogo(){
+    fileprivate func prepareLogo(){
         
         var imageView : UIImageView
-        imageView  = UIImageView(frame:CGRectMake(80, 30, 160, 160));
+        imageView  = UIImageView(frame:CGRect(x: 80, y: 30, width: 160, height: 160));
         imageView.image = UIImage(named:"CA101logoPNG")
         self.view.addSubview(imageView)
         
     }
     
     
-    func ResizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+    func ResizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size
         
         let widthRatio  = targetSize.width  / image.size.width
@@ -82,45 +82,45 @@ class RegisterVC: UIViewController, TextFieldDelegate {
         // Figure out what our orientation is, and use that to form the rectangle
         var newSize: CGSize
         if(widthRatio > heightRatio) {
-            newSize = CGSizeMake(size.width * heightRatio, size.height * heightRatio)
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
         } else {
-            newSize = CGSizeMake(size.width * widthRatio,  size.height * widthRatio)
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
         }
         
         // This is the rect that we've calculated out and this is what is actually used below
-        let rect = CGRectMake(0, 0, newSize.width, newSize.height)
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
         
         // Actually do the resizing to the rect using the ImageContext stuff
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.drawInRect(rect)
+        image.draw(in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
-    private func prepareHelpButton(){
-        let helpButtonImage: UIImage? = MaterialIcon.cm.search
+    fileprivate func prepareHelpButton(){
+        let helpButtonImage: UIImage? = Icon.cm.search
         helpButton = IconButton()
-        helpButton.pulseColor = MaterialColor.white
-        helpButton.tintColor = MaterialColor.white
-        helpButton.setImage(helpButtonImage, forState: .Normal)
-        helpButton.setImage(helpButtonImage, forState: .Highlighted)
-        helpButton.addTarget(self, action: #selector(handleHelpButton), forControlEvents: .TouchUpInside)
+        helpButton.pulseColor = Color.white
+        helpButton.tintColor = Color.white
+        helpButton.setImage(helpButtonImage, for: UIControlState())
+        helpButton.setImage(helpButtonImage, for: .highlighted)
+        helpButton.addTarget(self, action: #selector(handleHelpButton), for: .touchUpInside)
         
-        view.layout(helpButton).top(8).right(3)
+        _ = view.layout(helpButton).top(8).right(3)
     }
     
-    private func prepareBackButton(){
-        let menuButtonImage: UIImage? = MaterialIcon.cm.close
+    fileprivate func prepareBackButton(){
+        let menuButtonImage: UIImage? = Icon.cm.close
         backButton = IconButton()
-        backButton.pulseColor = MaterialColor.white
-        backButton.tintColor = MaterialColor.white
-        backButton.setImage(menuButtonImage, forState: .Normal)
-        backButton.setImage(menuButtonImage, forState: .Highlighted)
-        backButton.addTarget(self, action: #selector(handleBackButton), forControlEvents: .TouchUpInside)
+        backButton.pulseColor = Color.white
+        backButton.tintColor = Color.white
+        backButton.setImage(menuButtonImage, for: UIControlState())
+        backButton.setImage(menuButtonImage, for: .highlighted)
+        backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
         
-        view.layout(backButton).top(8).left(3)
+        _ = view.layout(backButton).top(8).left(3)
     }
 
     internal func handleHelpButton() {
@@ -134,7 +134,7 @@ class RegisterVC: UIViewController, TextFieldDelegate {
     internal func handleBackButton() {
 
         let secondViewController:UIViewController = LoginVC()
-        self.presentViewController(secondViewController, animated: true, completion: nil)
+        self.present(secondViewController, animated: true, completion: nil)
     
     
     }
@@ -150,7 +150,7 @@ class RegisterVC: UIViewController, TextFieldDelegate {
         password = passwordField.text
         
         let secondViewController:UIViewController = MainPanels()
-        self.presentViewController(secondViewController, animated: true, completion: nil)
+        self.present(secondViewController, animated: true, completion: nil)
         
         print(username)
         print(password)
@@ -164,96 +164,96 @@ class RegisterVC: UIViewController, TextFieldDelegate {
         passwordRepeatField?.resignFirstResponder()
         
         let secondViewController:UIViewController = MainPanels()
-        self.presentViewController(secondViewController, animated: true, completion: nil)
+        self.present(secondViewController, animated: true, completion: nil)
 
     }
     
     
     /// Prepares the name TextField.
-    private func prepareNameField() {
-        nameField = ErrorTextField(frame: CGRectMake(40, 120, view.bounds.width - 80, 32))
+    fileprivate func prepareNameField() {
+        nameField = ErrorTextField(frame: CGRect(x: 40, y: 120, width: view.bounds.width - 80, height: 32))
         nameField.placeholder = "Name"
         nameField.detail = "Error, please enter a name"
-        nameField.enableClearIconButton = true
+        //nameField.enableClearIconButton = true
         nameField.delegate = self
         
-        nameField.placeholderColor = MaterialColor.black
-        nameField.placeholderActiveColor = MaterialColor.black
-        nameField.dividerColor = MaterialColor.black
+        nameField.placeholderColor = Color.black
+        nameField.placeholderActiveColor = Color.black
+        nameField.dividerColor = Color.black
         
         // Setting the visibilityFlatButton color.
-        nameField.visibilityIconButton?.tintColor = MaterialColor.green.base.colorWithAlphaComponent(nameField.secureTextEntry ? 0.38 : 0.54)
+        nameField.visibilityIconButton?.tintColor = Color.green.base.withAlphaComponent(nameField.isSecureTextEntry ? 0.38 : 0.54)
 
         
-        view.layout(nameField).top(55).horizontally(left: 40, right: 40)
+        _ = view.layout(nameField).top(55).horizontally(left: 40, right: 40)
     }
 
     
     /// Prepares the email TextField.
-    private func prepareEmailField() {
-        emailField = ErrorTextField(frame: CGRectMake(40, 120, view.bounds.width - 80, 32))
+    fileprivate func prepareEmailField() {
+        emailField = ErrorTextField(frame: CGRect(x: 40, y: 120, width: view.bounds.width - 80, height: 32))
         emailField.placeholder = "Email"
         emailField.detail = "Error, incorrect Email"
-        emailField.enableClearIconButton = true
+        //emailField.enableClearIconButton = true
         emailField.delegate = self
         
-        emailField.placeholderColor = MaterialColor.black
-        emailField.placeholderActiveColor = MaterialColor.black
-        emailField.dividerColor = MaterialColor.black
+        emailField.placeholderColor = Color.black
+        emailField.placeholderActiveColor = Color.black
+        emailField.dividerColor = Color.black
         
         //view.addSubview(emailField)
-        view.layout(emailField).top(125).horizontally(left: 40, right: 40)
+        _ = view.layout(emailField).top(125).horizontally(left: 40, right: 40)
     }
     
     /// Prepares the password TextField.
-    private func preparePasswordField() {
+    fileprivate func preparePasswordField() {
         passwordField = TextField()
         passwordField.placeholder = "Password"
         passwordField.detail = "At least 8 characters"
-        passwordField.enableClearIconButton = true
+        //passwordField.enableClearIconButton = true
         passwordField.delegate = self
-        passwordField.placeholderColor = MaterialColor.black
-        passwordField.placeholderActiveColor = MaterialColor.black
-        passwordField.dividerColor = MaterialColor.black
+        passwordField.placeholderColor = Color.black
+        passwordField.placeholderActiveColor = Color.black
+        passwordField.dividerColor = Color.black
         
         // Setting the visibilityFlatButton color.
-        passwordField.visibilityIconButton?.tintColor = MaterialColor.green.base.colorWithAlphaComponent(passwordField.secureTextEntry ? 0.38 : 0.54)
+        passwordField.visibilityIconButton?.tintColor = Color.green.base.withAlphaComponent(passwordField.isSecureTextEntry ? 0.38 : 0.54)
         
         // Size the TextField to the maximum width, less 40 pixels on either side
         // with a top margin of 200 pixels.
-        view.layout(passwordField).top(195).horizontally(left: 40, right: 40)
+        _ = view.layout(passwordField).top(195).horizontally(left: 40, right: 40)
     }
     
-    private func preparePasswordRepeatField() {
+    fileprivate func preparePasswordRepeatField() {
         passwordRepeatField = TextField()
         passwordRepeatField.placeholder = "Re-type password"
         //passwordRepeatField.detail = "Check for mistakes"
-        passwordRepeatField.enableClearIconButton = true
+        //passwordRepeatField.enableClearIconButton = true
         passwordRepeatField.delegate = self
-        passwordRepeatField.placeholderColor = MaterialColor.black
-        passwordRepeatField.placeholderActiveColor = MaterialColor.black
-        passwordRepeatField.dividerColor = MaterialColor.black
+        passwordRepeatField.placeholderColor = Color.black
+        passwordRepeatField.placeholderActiveColor = Color.black
+        passwordRepeatField.dividerColor = Color.black
         
         // Setting the visibilityFlatButton color.
-        passwordRepeatField.visibilityIconButton?.tintColor = MaterialColor.green.base.colorWithAlphaComponent(passwordRepeatField.secureTextEntry ? 0.38 : 0.54)
+        passwordRepeatField.visibilityIconButton?.tintColor = Color.green.base.withAlphaComponent(passwordRepeatField.isSecureTextEntry ? 0.38 : 0.54)
         
         // Size the TextField to the maximum width, less 40 pixels on either side
         // with a top margin of 200 pixels.
-        view.layout(passwordRepeatField).top(265).horizontally(left: 40, right: 40)
+        _ = view.layout(passwordRepeatField).top(265).horizontally(left: 40, right: 40)
     }
 
     
-    private func getGradient1() -> CAGradientLayer{
+    fileprivate func getGradient1() -> CAGradientLayer{
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
-        let color1 = MaterialColor.blue.lighten2.CGColor
-        let color2 = MaterialColor.deepPurple.lighten3.CGColor
+        let color1 = Color.blue.lighten2.cgColor
+        let color2 = Color.deepPurple.lighten3.cgColor
         gradientLayer.colors = [color1, color2]
         gradientLayer.locations = [0.0, 1.0]
         return gradientLayer
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         nameField?.resignFirstResponder()
         emailField?.resignFirstResponder()
         passwordField?.resignFirstResponder()
@@ -262,32 +262,32 @@ class RegisterVC: UIViewController, TextFieldDelegate {
     }
     
     /// Executed when the 'return' key is pressed when using the emailField.
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         (textField as? ErrorTextField)?.revealError = true
         return true
     }
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
     }
     
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         (textField as? ErrorTextField)?.revealError = false
     }
     
-    func textFieldShouldClear(textField: UITextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         (textField as? ErrorTextField)?.revealError = false
         return true
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         (textField as? ErrorTextField)?.revealError = false
         return true
     }

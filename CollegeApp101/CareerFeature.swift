@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import Material
 
-public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
+open class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     
     var featureLabel: UILabel! = UILabel()
     var titleLine: UIView! = UIView()
@@ -18,10 +18,10 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     
     var features: [UIView]! = [UIView]()
     
-    var featureColor: UIColor! = MaterialColor.clear
+    var featureColor: UIColor! = Color.clear
     
     var exitButton: IconButton! = IconButton()
-    var exitImage: UIImage! = MaterialIcon.close
+    var exitImage: UIImage! = Icon.close
     
     var titlePane : UIView! = UIView()
     
@@ -44,7 +44,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     var title_y = 40
     
     //Back blur tools
-    var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+    var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
     var blurEffectView = UIVisualEffectView(effect: nil)
     
     let title_line_width_from_edge = 20
@@ -64,11 +64,11 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     }
     
     //Just initialize a frame
-    public func setupView(){
-        self.view.frame = CGRectZero
+    open func setupView(){
+        self.view.frame = CGRect.zero
     }
     //Most of the variable setting will happen in this function because this code is sloppy
-    public func setFrame(x: Int, y: Int, width: Int, height: Int) {
+    open func setFrame(_ x: Int, y: Int, width: Int, height: Int) {
         self.view.frame = CGRect(x: x, y: y, width: width, height: height)
         self.x = x
         self.y = y
@@ -88,7 +88,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         prepareFeatures()
     }
     
-    public func updateFrame(){
+    open func updateFrame(){
         self.view.frame = CGRect(x: x, y: y, width: width, height: height)
         self.featureLabel.frame = CGRect(x: title_x, y: title_y, width: self.width, height: 20)
         self.titleLine.frame = CGRect(x: title_line_width_from_edge,y: title_y + 25,width: width - 2*title_line_width_from_edge,height: 1)
@@ -97,17 +97,17 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     }
     
     
-    public func setColor(c: UIColor!){
+    open func setColor(_ c: UIColor!){
         self.featureColor = c
         self.view.backgroundColor = c
     }
-    public func superView(sv: UIView){
+    open func superView(_ sv: UIView){
         self.superView = sv
     }
-    internal func myVC(mvc : MainPanels){
+    internal func myVC(_ mvc : MainPanels){
         self.myVC = mvc
     }
-    public func prepareTitlePane(){
+    open func prepareTitlePane(){
         titlePane.frame = CGRect(x: 0, y: 0, width: width, height: Int(titleLine.frame.maxY))
         //titlePane.backgroundColor = featureColor
         
@@ -116,7 +116,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         titlePane.addGestureRecognizer(tap)
         
     }
-    public func addTitlePane(){
+    open func addTitlePane(){
         featureLabel.removeFromSuperview()
         titlePane.addSubview(featureLabel)
         titleLine.removeFromSuperview()
@@ -124,7 +124,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         //titlePane.backgroundColor = featureColor
         view.addSubview(titlePane)
     }
-    public func removeTitlePane(){
+    open func removeTitlePane(){
         featureLabel.removeFromSuperview()
         titleLine.removeFromSuperview()
         view.addSubview(featureLabel)
@@ -133,34 +133,34 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     }
 
     
-    public func setFeatureTitle(name: String){
+    open func setFeatureTitle(_ name: String){
         title_x = 0
         featureLabel = UILabel(frame: CGRect(x: title_x, y: title_y_init, width: width, height: 20))
         featureLabel.text = name
-        featureLabel.textAlignment = NSTextAlignment.Center
+        featureLabel.textAlignment = NSTextAlignment.center
         featureLabel.numberOfLines = 1
         featureLabel.font = UIFont(name: "Scope One", size: 24)
         featureLabel.adjustsFontSizeToFitWidth = true
-        featureLabel.lineBreakMode = .ByWordWrapping
-        featureLabel.textColor = MaterialColor.white
+        featureLabel.lineBreakMode = .byWordWrapping
+        featureLabel.textColor = Color.white
         self.view.addSubview(featureLabel)
     }
-    public func prepareTitleLine(){
+    open func prepareTitleLine(){
         titleLine = UIView(frame: CGRect(x: title_line_width_from_edge,y: title_y_init + 25,width: width - 2*title_line_width_from_edge,height: 1))
         titleLine.layer.borderWidth = 1.0
-        titleLine.layer.borderColor = UIColor.whiteColor().CGColor
+        titleLine.layer.borderColor = UIColor.white.cgColor
         titleLine.alpha = 0
         self.view.addSubview(titleLine)
     }
-    public func refreshScrollView(height: Int){
-        UIView.animateWithDuration(0.3, animations: {
+    open func refreshScrollView(_ height: Int){
+        UIView.animate(withDuration: 0.3, animations: {
             self.scrollView.contentSize.height = CGFloat(height)
         })
         scrollView.clipsToBounds = true
     }
     
-    public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         if expanded {
             //retract()
         }else{
@@ -169,7 +169,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    public func expand(){
+    open func expand(){
         if(!expandable){
             return()
         }
@@ -181,7 +181,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
             }
             
         }
-        superView.backgroundColor = UIColor.grayColor()
+        superView.backgroundColor = UIColor.gray
         
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         
@@ -196,10 +196,10 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         self.view.removeFromSuperview()
         superView.addSubview(self.view)
         let newHeight = Int(superView.frame.height)
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.y = 0
             self.height = newHeight
-            self.view.backgroundColor = self.featureColor.colorWithAlphaComponent(0.8)
+            self.view.backgroundColor = self.featureColor.withAlphaComponent(0.8)
             self.title_y = 20
             self.titleLine.alpha = 1.0
             self.updateFrame()
@@ -211,7 +211,7 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         self.addTitlePane()
     }
     
-    public func retract(){
+    open func retract(){
         expanded = false
         
         disableFeatures()
@@ -219,22 +219,22 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    public func getFeatures() -> [UIView]{
+    open func getFeatures() -> [UIView]{
         return [UIView]()
     }
-    public func prepareFeatures(){
+    open func prepareFeatures(){
         for f in features {
             f.alpha = 0
         }
     }
     
-    public func enableFeatures(){
+    open func enableFeatures(){
         for f in features {
             scrollView.addSubview(f)
         }
         view.addSubview(scrollView)
         var a: CGFloat = 0.0
-        UIView.animateWithDuration(0.7, animations: {
+        UIView.animate(withDuration: 0.7, animations: {
             a = 1.0
             for f in self.features {
                 f.alpha = a
@@ -244,10 +244,10 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         })
     }
     
-    public func disableFeatures(){
+    open func disableFeatures(){
         
         let newHeight = self.height_init
-        UIView.animateWithDuration(0.4, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             for f in self.features {
                 f.alpha = 0
             }
@@ -285,12 +285,12 @@ public class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
     }
 
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }

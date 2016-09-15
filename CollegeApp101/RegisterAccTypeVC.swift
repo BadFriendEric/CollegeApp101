@@ -10,15 +10,15 @@ import UIKit
 import Material
 
 class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
-    private var helpButton: IconButton!
-    private var backButton: IconButton!
-    private var studentBtn: RaisedButton!
-    private var coachBtn: RaisedButton!
-    private var parentBtn: RaisedButton!
+    fileprivate var helpButton: IconButton!
+    fileprivate var backButton: IconButton!
+    fileprivate var studentBtn: RaisedButton!
+    fileprivate var coachBtn: RaisedButton!
+    fileprivate var parentBtn: RaisedButton!
 
-    private var username: String!
+    fileprivate var username: String!
     
-    private var password: String!
+    fileprivate var password: String!
     
     let width = MainSwipeController.Constants.ScreenWidth
     let height = MainSwipeController.Constants.ScreenHeight
@@ -37,121 +37,122 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
     
     
     /// General preparation statements.
-    private func prepareView() {
-        view.backgroundColor = MaterialColor.white
+    fileprivate func prepareView() {
+        view.backgroundColor = Color.white
         view.layer.addSublayer(getGradient1())
     }
     
-    private func prepareContinueButton() {
+    fileprivate func prepareContinueButton() {
         //Continue BUTTON
         let btn2: RaisedButton = RaisedButton()
-        btn2.addTarget(self, action: #selector(handleContinueButton), forControlEvents: .TouchUpInside)
-        btn2.setTitle("Continue", forState: .Normal)
-        btn2.setTitleColor(MaterialColor.black, forState: .Normal)
-        btn2.setTitleColor(MaterialColor.black, forState: .Highlighted)
-        btn2.backgroundColor = MaterialColor.blue.lighten2
+        btn2.addTarget(self, action: #selector(handleContinueButton), for: .touchUpInside)
+        btn2.setTitle("Continue", for: UIControlState())
+        btn2.setTitleColor(Color.black, for: UIControlState())
+        btn2.setTitleColor(Color.black, for: .highlighted)
+        btn2.backgroundColor = Color.blue.lighten2
         
-        view.layout(btn2).bottom(40).centerHorizontally()
+        _ = view.layout(btn2).bottom(40).center(offsetX: 0, offsetY: 120).centerHorizontally()
     }
     
     internal func handleContinueButton(){
         let secondViewController:UIViewController = RegisterVC()
-        self.presentViewController(secondViewController, animated: true, completion: nil)
+        self.present(secondViewController, animated: true, completion: nil)
         
     }
     
     /// Prepares the resign responder button.
-    private func prepareStudentButton() {
+    fileprivate func prepareStudentButton() {
         //Continue BUTTON
         studentBtn = RaisedButton()
-        studentBtn.addTarget(self, action: #selector(handleStudentButton), forControlEvents: .TouchUpInside)
-        studentBtn.setTitle("Student", forState: .Normal)
-        studentBtn.setTitleColor(MaterialColor.black, forState: .Normal)
-        studentBtn.setTitleColor(MaterialColor.black, forState: .Highlighted)
-        studentBtn.backgroundColor = MaterialColor.blue.lighten4
+        studentBtn.addTarget(self, action: #selector(handleStudentButton), for: .touchUpInside)
+        studentBtn.setTitle("Student", for: UIControlState())
+        studentBtn.setTitleColor(Color.black, for: UIControlState())
+        studentBtn.setTitleColor(Color.black, for: .highlighted)
+        studentBtn.backgroundColor = Color.blue.lighten4
         
-        view.layout(studentBtn).centerHorizontally().centerVertically(-120).width(width-80).height(80)
+        
+        _ = view.layout(studentBtn).centerHorizontally().center(offsetX: 0, offsetY: -120).width(width-80).height(80)
     }
     
     internal func handleStudentButton(){
 
-        studentBtn.backgroundColor = MaterialColor.white
-        parentBtn.backgroundColor = MaterialColor.blue.lighten4
-        coachBtn.backgroundColor = MaterialColor.blue.lighten4
+        studentBtn.backgroundColor = Color.white
+        parentBtn.backgroundColor = Color.blue.lighten4
+        coachBtn.backgroundColor = Color.blue.lighten4
 
     }
     
     /// Prepares the resign responder button.
-    private func prepareCoachButton() {
+    fileprivate func prepareCoachButton() {
         //Continue BUTTON
         coachBtn = RaisedButton()
-        coachBtn.addTarget(self, action: #selector(handleCoachButton), forControlEvents: .TouchUpInside)
-        coachBtn.setTitle("Coach", forState: .Normal)
-        coachBtn.setTitleColor(MaterialColor.black, forState: .Normal)
-        coachBtn.setTitleColor(MaterialColor.black, forState: .Highlighted)
-        coachBtn.backgroundColor = MaterialColor.blue.lighten4
+        coachBtn.addTarget(self, action: #selector(handleCoachButton), for: .touchUpInside)
+        coachBtn.setTitle("Coach", for: UIControlState())
+        coachBtn.setTitleColor(Color.black, for: UIControlState())
+        coachBtn.setTitleColor(Color.black, for: .highlighted)
+        coachBtn.backgroundColor = Color.blue.lighten4
         
-        view.layout(coachBtn).centerHorizontally().centerVertically().width(width-80).height(80)
+        _ = view.layout(coachBtn).centerHorizontally().centerVertically().width(width-80).height(80)
     }
     
     internal func handleCoachButton(){
-        coachBtn.backgroundColor = MaterialColor.white
-        parentBtn.backgroundColor = MaterialColor.blue.lighten4
-        studentBtn.backgroundColor = MaterialColor.blue.lighten4
+        coachBtn.backgroundColor = Color.white
+        parentBtn.backgroundColor = Color.blue.lighten4
+        studentBtn.backgroundColor = Color.blue.lighten4
     }
 
 
     /// Prepares the resign responder button.
-    private func prepareParentButton() {
+    fileprivate func prepareParentButton() {
         //Continue BUTTON
         parentBtn = RaisedButton()
-        parentBtn.addTarget(self, action: #selector(handleParentButton), forControlEvents: .TouchUpInside)
-        parentBtn.setTitle("Parent", forState: .Normal)
-        parentBtn.setTitleColor(MaterialColor.black, forState: .Normal)
-        parentBtn.setTitleColor(MaterialColor.black, forState: .Highlighted)
-        parentBtn.backgroundColor = MaterialColor.blue.lighten4
+        parentBtn.addTarget(self, action: #selector(handleParentButton), for: .touchUpInside)
+        parentBtn.setTitle("Parent", for: UIControlState())
+        parentBtn.setTitleColor(Color.black, for: UIControlState())
+        parentBtn.setTitleColor(Color.black, for: .highlighted)
+        parentBtn.backgroundColor = Color.blue.lighten4
         
-        view.layout(parentBtn).centerHorizontally().centerVertically(120).width(width-80).height(80)
+        _ = view.layout(parentBtn).center(offsetX: 0, offsetY: 120).width(width-80).height(80)
     }
     
     internal func handleParentButton(){
-        parentBtn.backgroundColor = MaterialColor.white
-        studentBtn.backgroundColor = MaterialColor.blue.lighten4
-        coachBtn.backgroundColor = MaterialColor.blue.lighten4
+        parentBtn.backgroundColor = Color.white
+        studentBtn.backgroundColor = Color.blue.lighten4
+        coachBtn.backgroundColor = Color.blue.lighten4
     }
     
 
     
     
-    private func prepareLogo(){
+    fileprivate func prepareLogo(){
         var imageView : UIImageView
-        imageView  = UIImageView(frame:CGRectMake(145, 25, 30, 30));
+        imageView  = UIImageView(frame:CGRect(x: 145, y: 25, width: 30, height: 30));
         imageView.image = UIImage(named:"CA101logoPNG")
         self.view.addSubview(imageView)
     
         
     }
     
-    private func prepareHelpButton(){
-        let helpButtonImage: UIImage? = MaterialIcon.cm.search
+    fileprivate func prepareHelpButton(){
+        let helpButtonImage: UIImage? = Icon.cm.search
         helpButton = IconButton()
-        helpButton.pulseColor = MaterialColor.white
-        helpButton.tintColor = MaterialColor.white
-        helpButton.setImage(helpButtonImage, forState: .Normal)
-        helpButton.setImage(helpButtonImage, forState: .Highlighted)
-        helpButton.addTarget(self, action: #selector(handleHelpButton), forControlEvents: .TouchUpInside)
+        helpButton.pulseColor = Color.white
+        helpButton.tintColor = Color.white
+        helpButton.setImage(helpButtonImage, for: UIControlState())
+        helpButton.setImage(helpButtonImage, for: .highlighted)
+        helpButton.addTarget(self, action: #selector(handleHelpButton), for: .touchUpInside)
         
         view.layout(helpButton).top(20).right(3)
     }
     
-    private func prepareBackButton(){
-        let menuButtonImage: UIImage? = MaterialIcon.cm.close
+    fileprivate func prepareBackButton(){
+        let menuButtonImage: UIImage? = Icon.cm.close
         backButton = IconButton()
-        backButton.pulseColor = MaterialColor.white
-        backButton.tintColor = MaterialColor.white
-        backButton.setImage(menuButtonImage, forState: .Normal)
-        backButton.setImage(menuButtonImage, forState: .Highlighted)
-        backButton.addTarget(self, action: #selector(handleBackButton), forControlEvents: .TouchUpInside)
+        backButton.pulseColor = Color.white
+        backButton.tintColor = Color.white
+        backButton.setImage(menuButtonImage, for: UIControlState())
+        backButton.setImage(menuButtonImage, for: .highlighted)
+        backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
         
         view.layout(backButton).top(20).left(3)
     }
@@ -163,48 +164,48 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
     internal func handleBackButton() {
         
         let secondViewController:UIViewController = LoginVC()
-        self.presentViewController(secondViewController, animated: true, completion: nil)
+        self.present(secondViewController, animated: true, completion: nil)
         
         
     }
     
-    private func getGradient1() -> CAGradientLayer{
+    fileprivate func getGradient1() -> CAGradientLayer{
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
-        let color1 = MaterialColor.blue.lighten2.CGColor
-        let color2 = MaterialColor.deepPurple.lighten3.CGColor
+        let color1 = Color.blue.lighten2.cgColor
+        let color2 = Color.deepPurple.lighten3.cgColor
         gradientLayer.colors = [color1, color2]
         gradientLayer.locations = [0.0, 1.0]
         return gradientLayer
     }
     
     /// Executed when the 'return' key is pressed when using the emailField.
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         (textField as? ErrorTextField)?.revealError = true
         return true
     }
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
     }
     
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         (textField as? ErrorTextField)?.revealError = false
     }
     
-    func textFieldShouldClear(textField: UITextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         (textField as? ErrorTextField)?.revealError = false
         return true
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         (textField as? ErrorTextField)?.revealError = false
         return true
     }

@@ -25,22 +25,22 @@ class MenuItem : UIView {
         prepare()
     }
     
-    internal func setYValue(y : Int){
+    internal func setYValue(_ y : Int){
         self.frame = CGRect(x: 0, y: y, width: Int(self.frame.width), height: size)
     }
     
     internal func prepare(){
         let topLine = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 1))
         let botLine = UIView(frame: CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 1))
-        topLine.backgroundColor = MaterialColor.grey.darken1
-        botLine.backgroundColor = MaterialColor.grey.darken1
+        topLine.backgroundColor = Color.grey.darken1
+        botLine.backgroundColor = Color.grey.darken1
         self.addSubview(topLine)
         self.addSubview(botLine)
         
         if(title == "Profile"){
             
             let profilePic = UIImage(named: "ProfileDefault1")
-            MainPanels.ResizeImage(profilePic!, targetSize: CGSize(width: 50, height: 50))
+            _ = MainPanels.ResizeImage(profilePic!, targetSize: CGSize(width: 50, height: 50))
             let profilePicView = UIImageView(image: profilePic)
             
             profilePicView.frame = CGRect(x: 5, y: 15, width: 57, height: 50)
@@ -49,22 +49,22 @@ class MenuItem : UIView {
             topLine.removeFromSuperview()
             let label = UILabel(frame: CGRect(x: 70, y: 15, width: self.frame.width, height: 30))
             label.text = title
-            label.textAlignment = NSTextAlignment.Left
+            label.textAlignment = NSTextAlignment.left
             label.numberOfLines = 1
             label.font = UIFont(name: "Roboto", size: 24)
             label.adjustsFontSizeToFitWidth = true
-            label.lineBreakMode = .ByWordWrapping
-            label.textColor = MaterialColor.red.base
+            label.lineBreakMode = .byWordWrapping
+            label.textColor = Color.red.base
             
             let label2 = UILabel(frame: CGRect(x: 70, y: 45, width: self.frame.width, height: 30))
             //CHANGE TO USERNAME OF CLIENT
             label2.text = "Sam Hollenbach"
-            label2.textAlignment = NSTextAlignment.Left
+            label2.textAlignment = NSTextAlignment.left
             label2.numberOfLines = 1
             label2.font = UIFont(name: "Scope One", size: 16)
             label2.adjustsFontSizeToFitWidth = true
-            label2.lineBreakMode = .ByWordWrapping
-            label2.textColor = MaterialColor.white
+            label2.lineBreakMode = .byWordWrapping
+            label2.textColor = Color.white
             
             self.addSubview(label)
             self.addSubview(label2)
@@ -75,12 +75,12 @@ class MenuItem : UIView {
         
         let label = UILabel(frame: CGRect(x: 35, y: self.frame.height/2-15, width: self.frame.width, height: 30))
         label.text = title
-        label.textAlignment = NSTextAlignment.Left
+        label.textAlignment = NSTextAlignment.left
         label.numberOfLines = 1
         label.font = UIFont(name: "Roboto", size: 24)
         label.adjustsFontSizeToFitWidth = true
-        label.lineBreakMode = .ByWordWrapping
-        label.textColor = MaterialColor.red.base
+        label.lineBreakMode = .byWordWrapping
+        label.textColor = Color.red.base
         
         self.addSubview(label)
         
@@ -88,15 +88,15 @@ class MenuItem : UIView {
     }
     
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
-        self.backgroundColor = MaterialColor.grey.darken1
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.backgroundColor = Color.grey.darken1
     }
     
     
     //Adjust this to highlight the menu item whenever you press
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         menu?.slideOut()
         
         

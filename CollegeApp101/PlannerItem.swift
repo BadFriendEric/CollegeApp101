@@ -18,10 +18,11 @@ class PlannerItem : UIView {
         case List
     }
     
-    var x = 0
-    var y = 0
-    var width = MainSwipeController.Constants.ScreenWidth
-    var height = 90
+    var x1 = 0
+    var y1 = 0
+    var width1 = MainSwipeController.Constants.ScreenWidth
+    var height1 = 90
+    
     
     var type : PlannerItemType = .Note
     
@@ -30,18 +31,22 @@ class PlannerItem : UIView {
     
     
     internal init(cfp : CareerFeatureTopSchools, y : Int) {
+        super.init(frame : CGRect(x: CGFloat(self.x1), y: CGFloat(y), width: CGFloat(self.width1), height: CGFloat(self.height1)))
         self.cfp = cfp
-        self.y = y
+        self.y1 = y
+        
         //updateFrame()
-        super.init(frame : CGRect(x: CGFloat(self.x), y: CGFloat(self.y), width: CGFloat(self.width), height: CGFloat(self.height)))
+        
         setupView()
     }
     internal init(cfp : CareerFeatureTopSchools, type : PlannerItemType,y : Int) {
+        super.init(frame : CGRect(x: CGFloat(self.x1), y: CGFloat(y), width: CGFloat(self.width1), height: CGFloat(self.height1)))
         self.cfp = cfp
         self.type = type
-        self.y = y
+        self.y1 = y
+        
         //updateFrame()
-        super.init(frame : CGRect(x: CGFloat(self.x), y: CGFloat(self.y), width: CGFloat(self.width), height: CGFloat(self.height)))
+        
         setupView()
     }
     
@@ -55,13 +60,13 @@ class PlannerItem : UIView {
     }
     
     internal func prepareTopBottomLines(){
-        let topLine = UIView(frame: CGRect(x: 0.0,y: 0.0,width: self.width,height: 1))
+        let topLine = UIView(frame: CGRect(x: 0.0,y: 0.0,width: self.width1,height: 1))
         topLine.layer.borderWidth = 1.0
-        topLine.layer.borderColor = UIColor.whiteColor().CGColor
+        topLine.layer.borderColor = UIColor.white.cgColor
         
-        let bottomLine = UIView(frame: CGRect(x: CGFloat(0.0),y: CGFloat(self.height-1),width: CGFloat(self.width),height: CGFloat(1)))
+        let bottomLine = UIView(frame: CGRect(x: CGFloat(0.0),y: CGFloat(self.height1-1),width: CGFloat(self.width),height: CGFloat(1)))
         bottomLine.layer.borderWidth = 1.0
-        bottomLine.layer.borderColor = UIColor.whiteColor().CGColor
+        bottomLine.layer.borderColor = UIColor.white.cgColor
         
         self.addSubview(topLine)
         self.addSubview(bottomLine)
@@ -74,14 +79,14 @@ class PlannerItem : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     internal func updateFrame(){
-        self.frame = CGRect(x: CGFloat(self.x), y: CGFloat(self.y), width: CGFloat(self.width), height: CGFloat(self.height))
+        self.frame = CGRect(x: CGFloat(self.x1), y: CGFloat(self.y1), width: CGFloat(self.width1), height: CGFloat(self.height1))
     }
     internal func setYPosition(y : Int){
-        self.y = y
+        self.y1 = y
         updateFrame()
     }
     internal func setItemHeight(height : Int){
-        self.height = height
+        self.height1 = height
         updateFrame()
     }
     
