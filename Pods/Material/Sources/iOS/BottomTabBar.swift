@@ -126,9 +126,9 @@ open class BottomTabBar: UITabBar {
         divider.alignment = .top
 		contentScaleFactor = Device.scale
 		backgroundColor = Color.white
-        let image = UIImage.imageWithColor(color: Color.clear, size: CGSize(width: 1, height: 1))
-		shadowImage = image
-		backgroundImage = image
+        //let image = UIImage.imageWithColor(color: Color.clear, size: CGSize(width: 1, height: 1))
+		//shadowImage = image
+		//backgroundImage = image
 	}
 }
 

@@ -142,7 +142,7 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
         helpButton.setImage(helpButtonImage, for: .highlighted)
         helpButton.addTarget(self, action: #selector(handleHelpButton), for: .touchUpInside)
         
-        view.layout(helpButton).top(20).right(3)
+        _ = view.layout(helpButton).top(20).right(3)
     }
     
     fileprivate func prepareBackButton(){
@@ -154,7 +154,7 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
         backButton.setImage(menuButtonImage, for: .highlighted)
         backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
         
-        view.layout(backButton).top(20).left(3)
+        _ = view.layout(backButton).top(20).left(3)
     }
     
     internal func handleHelpButton() {

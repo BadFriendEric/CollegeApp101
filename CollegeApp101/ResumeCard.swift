@@ -121,7 +121,7 @@ class ResumeCard: Card{
 
     internal func setIcon(){
         self.icon = Icon.menu!
-        _ = self.icon.tintWithColor(color: MainPanels.Constants.Color3)
+        //_ = self.icon.tintWithColor(color: MainPanels.Constants.Color3)
         let iconView = UIImageView(image: self.icon)
         iconView.frame = CGRect(x: 5, y: 5, width: iconSize, height: iconSize)
         mysubviews.append(iconView)

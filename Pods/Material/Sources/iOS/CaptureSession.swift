@@ -576,7 +576,7 @@ open class CaptureSession: NSObject, AVCaptureFileOutputRecordingDelegate {
 							if nil == captureError {
 								let data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)!
 								if let image1 = UIImage(data: data) {
-                                    if let image2 = image1.adjustOrientation() {
+                                    if let image2 : UIImage = image1 {
 										s.delegate?.captureSessionStillImageAsynchronously?(captureSession: s, image: image2)
 									} else {
                                         var userInfo = [String: Any]()
