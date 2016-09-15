@@ -38,12 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0AB9D412FF560BFB2EFF833F /* Pods-CollegeApp101Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegeApp101Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CollegeApp101Tests/Pods-CollegeApp101Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		2D50269CE320392D8EED6613 /* Pods-CollegeApp101.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegeApp101.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CollegeApp101/Pods-CollegeApp101.debug.xcconfig"; sourceTree = "<group>"; };
-		4B817A8D7A007F994953D739 /* Pods-CollegeApp101UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegeApp101UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CollegeApp101UITests/Pods-CollegeApp101UITests.debug.xcconfig"; sourceTree = "<group>"; };
-		764B2CB3283CA46A78EEBDDD /* Pods-CollegeApp101Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegeApp101Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegeApp101Tests/Pods-CollegeApp101Tests.release.xcconfig"; sourceTree = "<group>"; };
 		87272FED3538CEDA6F8D0037 /* Pods-CollegeApp101.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegeApp101.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegeApp101/Pods-CollegeApp101.release.xcconfig"; sourceTree = "<group>"; };
-		8A1D89CA35369577A037C746 /* Pods-CollegeApp101UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegeApp101UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegeApp101UITests/Pods-CollegeApp101UITests.release.xcconfig"; sourceTree = "<group>"; };
 		B661A4E70562B7F02EF14EA9 /* Pods_CollegeApp101UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollegeApp101UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11989481D602AE80027F24E /* ResumeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResumeCard.swift; sourceTree = "<group>"; };
 		C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareerFeatureResumeBuilder.swift; sourceTree = "<group>"; };
@@ -95,10 +91,6 @@
 			children = (
 				2D50269CE320392D8EED6613 /* Pods-CollegeApp101.debug.xcconfig */,
 				87272FED3538CEDA6F8D0037 /* Pods-CollegeApp101.release.xcconfig */,
-				0AB9D412FF560BFB2EFF833F /* Pods-CollegeApp101Tests.debug.xcconfig */,
-				764B2CB3283CA46A78EEBDDD /* Pods-CollegeApp101Tests.release.xcconfig */,
-				4B817A8D7A007F994953D739 /* Pods-CollegeApp101UITests.debug.xcconfig */,
-				8A1D89CA35369577A037C746 /* Pods-CollegeApp101UITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
