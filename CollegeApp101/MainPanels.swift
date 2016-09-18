@@ -173,11 +173,11 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
     }
     fileprivate func prepareNavigationBar(){
-        
-        let navBgImage:UIImage = UIImage(named: "NavBarBackground")!
-        let navTexture = UIColor(patternImage: navBgImage)
-        statusBar.backgroundColor = navTexture
-        navBar.backgroundColor = navTexture
+        let navColor : UIColor = Color.white
+        //let navBgImage:UIImage = UIImage(named: "NavBarBackground")!
+        //let navTexture = UIColor(patternImage: navBgImage)
+        statusBar.backgroundColor = navColor
+        navBar.backgroundColor = navColor
 
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
         self.view.addGestureRecognizer(gesture)
@@ -237,10 +237,10 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
             careerFeatureView.addSubview(cf.view)
         }
         cf1.setColor(Color.blue.lighten1)
-        cf2.setColor(Color.red.lighten1)
-        cf3.setColor(Color.lightGreen.lighten1)
-        cf4.setColor(Color.orange.lighten1)
-        cf5.setColor(Color.purple.lighten1)
+        cf2.setColor(Color.blue.darken1)
+        cf3.setColor(Color.blue.lighten1)
+        cf4.setColor(Color.blue.darken1)
+        cf5.setColor(Color.blue.lighten1)
         cf3.setFeatureTitle("Reminders")
         cf4.setFeatureTitle("Volunteer Match")
         cf5.setFeatureTitle("Essay Planner")

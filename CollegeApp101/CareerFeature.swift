@@ -79,7 +79,7 @@ open class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         self.width_init = width
         self.height_init = height
         
-        self.view.backgroundColor = featureColor
+        self.view.backgroundColor = Color.blue.lighten1
         //prepareExitButton()
         prepareTitleLine()
         prepareTitlePane()
@@ -142,7 +142,19 @@ open class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         featureLabel.font = UIFont(name: "Scope One", size: 24)
         featureLabel.adjustsFontSizeToFitWidth = true
         featureLabel.lineBreakMode = .byWordWrapping
-        featureLabel.textColor = Color.white
+        var titleColor = Color.white
+        
+        switch(name){
+        case "Resume Builder":
+            titleColor = Color.lightBlue.lighten1
+        case "Volunteer Match":
+            titleColor = Color.lightBlue.lighten1
+        default:
+            titleColor = Color.white
+        }
+        
+        featureLabel.textColor = Color.grey.darken3
+        
         self.view.addSubview(featureLabel)
     }
     open func prepareTitleLine(){
@@ -199,7 +211,7 @@ open class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         UIView.animate(withDuration: 0.5, animations: {
             self.y = 0
             self.height = newHeight
-            self.view.backgroundColor = self.featureColor.withAlphaComponent(0.8)
+            self.view.backgroundColor = self.featureColor.withAlphaComponent(0.6)
             self.title_y = 20
             self.titleLine.alpha = 1.0
             self.updateFrame()
