@@ -259,13 +259,13 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         coachingPreviewJunior.superview = coachingVC
         coachingPreviewSenior.superview  = coachingVC
         
-        let freshmanColor = Color.green.base
-        let sophomoreColor = Color.orange.base
-        let juniorColor = Color.blue.base
-        let seniorColor = Color.red.base
-        let writingColor = Color.cyan.base
-        let generalColor = Color.purple.base
-        let evaluationColor = Color.lightGreen.base
+        let freshmanColor = UIColor(red:0.79, green:0.95, blue:0.98, alpha:1.0)
+        let sophomoreColor = UIColor(red:0.43, green:0.85, blue:0.96, alpha:1.0)
+        let juniorColor = UIColor(red:0.01, green:0.76, blue:0.92, alpha:1.0)
+        let seniorColor = UIColor(red:0.00, green:0.59, blue:0.73, alpha:1.0)
+        let writingColor = UIColor(red:0.87, green:0.91, blue:0.78, alpha:1.0)
+        let generalColor = UIColor(red:0.73, green:0.81, blue:0.50, alpha:1.0)
+        let evaluationColor = UIColor(red:0.59, green:0.76, blue:0.18, alpha:1.0)
         
         coachingPreviewGeneral.setCoachingName("General")
         coachingPreviewWriting.setCoachingName("Writing")
@@ -285,11 +285,13 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         coachingPreviewSenior.setBackgroundColor(seniorColor)
         
         
+        let titleColor: UIColor! = Color.black
+        
         
         let h = height - 70
         
         let writing: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70, width: coachingVC.view.frame.width/2, height: h/3))
-        writing.setTitleColor(Color.white, for: UIControlState())
+        writing.setTitleColor(titleColor, for: UIControlState())
         writing.setTitle("Writing", for: UIControlState())
         writing.cornerRadius = 0
         writing.titleLabel?.font = UIFont(name: "Scope One", size: 24)
@@ -299,7 +301,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         coachingVC.view.addSubview(writing)
         
         let general: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70 + h/3, width: coachingVC.view.frame.width/2, height: h/3))
-        general.setTitleColor(Color.white, for: UIControlState())
+        general.setTitleColor(titleColor, for: UIControlState())
         general.setTitle("General", for: UIControlState())
         general.backgroundColor = generalColor
         general.cornerRadius = 0
@@ -308,7 +310,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         coachingVC.view.addSubview(general)
         
         let evaluation: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70 + 2*(h/3), width: coachingVC.view.frame.width/2, height: h/3))
-        evaluation.setTitleColor(Color.white, for: UIControlState())
+        evaluation.setTitleColor(titleColor, for: UIControlState())
         evaluation.setTitle("Evaluation", for: UIControlState())
         evaluation.cornerRadius = 0
         evaluation.titleLabel?.font = UIFont(name: "Scope One", size: 24)
@@ -317,7 +319,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         coachingVC.view.addSubview(evaluation)
         
         let freshman: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70, width: coachingVC.view.frame.width/2, height: h/4))
-        freshman.setTitleColor(Color.white, for: UIControlState())
+        freshman.setTitleColor(titleColor, for: UIControlState())
         freshman.setTitle("Freshman", for: UIControlState())
         freshman.titleLabel?.font = UIFont(name: "Scope One", size: 24)
         freshman.cornerRadius = 0
@@ -327,7 +329,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         coachingVC.view.addSubview(freshman)
         
         let sophomore: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + (h/4), width: coachingVC.view.frame.width/2, height: h/4))
-        sophomore.setTitleColor(Color.white, for: UIControlState())
+        sophomore.setTitleColor(titleColor, for: UIControlState())
         sophomore.setTitle("Sophomore", for: UIControlState())
         sophomore.titleLabel?.font = UIFont(name: "Scope One", size: 24)
         sophomore.cornerRadius = 0
@@ -337,7 +339,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         coachingVC.view.addSubview(sophomore)
 
         let junior: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + 2*(h/4), width: coachingVC.view.frame.width/2, height: h/4))
-        junior.setTitleColor(Color.white, for: UIControlState())
+        junior.setTitleColor(titleColor, for: UIControlState())
         junior.setTitle("Junior", for: UIControlState())
         junior.cornerRadius = 0
         junior.titleLabel?.font = UIFont(name: "Scope One", size: 24)
@@ -347,7 +349,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         coachingVC.view.addSubview(junior)
 
         let senior: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + 3*(h/4), width: coachingVC.view.frame.width/2, height: h/4))
-        senior.setTitleColor(Color.white, for: UIControlState())
+        senior.setTitleColor(titleColor, for: UIControlState())
         senior.setTitle("Senior", for: UIControlState())
         senior.cornerRadius = 0
         senior.titleLabel?.font = UIFont(name: "Scope One", size: 24)
@@ -357,43 +359,45 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         coachingVC.view.addSubview(senior)
 
         
+        let lineColor : UIColor = Color.black
+        
         coachingLineMid = UIView(frame: CGRect(x: width/2,y: 70 ,width: 2,height: h))
         coachingLineMid.layer.borderWidth = 0
-        coachingLineMid.backgroundColor = Color.white
+        coachingLineMid.backgroundColor = lineColor
         coachingLineMid.alpha = 1
         coachingVC.view.addSubview(coachingLineMid)
         
         coachingLineL1 = UIView(frame: CGRect(x: 0,y: 70 + (h/3) ,width: (width/2) ,height: 2))
         coachingLineL1.layer.borderWidth = 0
-        coachingLineL1.backgroundColor = Color.white
+        coachingLineL1.backgroundColor = lineColor
         coachingLineL1.alpha = 1
         coachingVC.view.addSubview(coachingLineL1)
         
         coachingLineL2 = UIView(frame: CGRect(x: 0,y: 70 + 2*(h/3) ,width: (width/2),height: 2))
         coachingLineL2.layer.borderWidth = 0
         coachingLineL2.layer.borderColor = UIColor.white.cgColor
-        coachingLineL2.backgroundColor = Color.white
+        coachingLineL2.backgroundColor = lineColor
         coachingLineL2.alpha = 1
         coachingVC.view.addSubview(coachingLineL2)
         
         coachingLineR1 = UIView(frame: CGRect(x: width/2,y: 70 + (h/4),width: (width/2),height: 2))
         coachingLineR1.layer.borderWidth = 0
         coachingLineR1.layer.borderColor = UIColor.white.cgColor
-        coachingLineR1.backgroundColor = Color.white
+        coachingLineR1.backgroundColor = lineColor
         coachingLineR1.alpha = 1
         coachingVC.view.addSubview(coachingLineR1)
         
         coachingLineR2 = UIView(frame: CGRect(x: width/2,y: 70 + 2*(h/4),width: (width/2),height: 2))
         coachingLineR2.layer.borderWidth = 0
         coachingLineR2.layer.borderColor = UIColor.white.cgColor
-        coachingLineR2.backgroundColor = Color.white
+        coachingLineR2.backgroundColor = lineColor
         coachingLineR2.alpha = 1
         coachingVC.view.addSubview(coachingLineR2)
         
         coachingLineR3 = UIView(frame: CGRect(x: width/2,y: 70 + 3*(h/4),width: (width/2),height: 2))
         coachingLineR3.layer.borderWidth = 0
         coachingLineR3.layer.borderColor = UIColor.white.cgColor
-        coachingLineR3.backgroundColor = Color.white
+        coachingLineR3.backgroundColor = lineColor
         coachingLineR3.alpha = 1
         coachingVC.view.addSubview(coachingLineR3)
         
@@ -409,10 +413,10 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     
     internal func refreshTitle(_ title: String){
         
+        //navItem.titleLabel.frame = CGRect(x: Int(navBar.frame.width/2)-buttonWidths, y: 15, width: buttonWidths, height: 70)
         navItem.title = title
-        
         navItem.titleLabel.textAlignment = .center
-        navItem.titleLabel.font = UIFont(name: "Oswald", size: 38)
+        navItem.titleLabel.font = UIFont(name: "Oswald", size: 30)
         navItem.titleLabel.textColor = navBarHighlightColor
         UIView.animate(withDuration: 0.5, animations: {
             }, completion: { finished in
@@ -645,7 +649,7 @@ extension MainPanels: MainSwipeControllerDataSource {
         
         let coachingColor = Color.white.cgColor
         let careerColor = Color.white.cgColor
-        let hubColor = Color.deepPurple.base.cgColor
+        let hubColor = UIColor(red:1.00, green:0.90, blue:0.60, alpha:1.0).cgColor
 
         
         let coachingVC = UIViewController()
