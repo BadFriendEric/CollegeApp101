@@ -22,6 +22,7 @@
 		E936DC361D604C3E00D6878C /* PoiretOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E936DC351D604C3E00D6878C /* PoiretOne-Regular.ttf */; };
 		E936DC381D604E9C00D6878C /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E936DC371D604E9B00D6878C /* Merriweather-Regular.ttf */; };
 		E936DC3A1D604F8700D6878C /* VesperLibre-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E936DC391D604F8700D6878C /* VesperLibre-Regular.ttf */; };
+		E945CFCD1D930D580032BA18 /* VesperLibre-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E945CFCC1D930D580032BA18 /* VesperLibre-Heavy.ttf */; };
 		E9598A041D4C0667004D8842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9598A031D4C0667004D8842 /* AppDelegate.swift */; };
 		E9598A061D4C0667004D8842 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9598A051D4C0667004D8842 /* ViewController.swift */; };
 		E9598A091D4C0667004D8842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9598A071D4C0667004D8842 /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 		E936DC351D604C3E00D6878C /* PoiretOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoiretOne-Regular.ttf"; sourceTree = "<group>"; };
 		E936DC371D604E9B00D6878C /* Merriweather-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Regular.ttf"; sourceTree = "<group>"; };
 		E936DC391D604F8700D6878C /* VesperLibre-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VesperLibre-Regular.ttf"; sourceTree = "<group>"; };
+		E945CFCC1D930D580032BA18 /* VesperLibre-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VesperLibre-Heavy.ttf"; sourceTree = "<group>"; };
 		E9598A001D4C0667004D8842 /* CollegeApp101.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeApp101.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9598A031D4C0667004D8842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9598A051D4C0667004D8842 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				E936DC351D604C3E00D6878C /* PoiretOne-Regular.ttf */,
 				E936DC371D604E9B00D6878C /* Merriweather-Regular.ttf */,
 				E936DC391D604F8700D6878C /* VesperLibre-Regular.ttf */,
+				E945CFCC1D930D580032BA18 /* VesperLibre-Heavy.ttf */,
 				E9D6AAE81D57276400356027 /* Images.xcassets */,
 				E9598A0A1D4C0667004D8842 /* Assets.xcassets */,
 				E9598A0C1D4C0667004D8842 /* LaunchScreen.storyboard */,
@@ -228,6 +231,7 @@
 				E9598A0B1D4C0667004D8842 /* Assets.xcassets in Resources */,
 				E9D939481D73F18800F827A9 /* Oswald-Regular.ttf in Resources */,
 				E936DC341D601E3F00D6878C /* ScopeOne-Regular.ttf in Resources */,
+				E945CFCD1D930D580032BA18 /* VesperLibre-Heavy.ttf in Resources */,
 				E936DC321D601DCF00D6878C /* Lora-Bold.ttf in Resources */,
 				E9598A091D4C0667004D8842 /* Main.storyboard in Resources */,
 				E936DC3A1D604F8700D6878C /* VesperLibre-Regular.ttf in Resources */,

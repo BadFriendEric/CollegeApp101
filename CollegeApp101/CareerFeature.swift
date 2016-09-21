@@ -142,18 +142,18 @@ open class CareerFeature : UIViewController, UIGestureRecognizerDelegate {
         featureLabel.font = UIFont(name: "Scope One", size: 24)
         featureLabel.adjustsFontSizeToFitWidth = true
         featureLabel.lineBreakMode = .byWordWrapping
-        var titleColor = Color.white
+        var titleColor = Color.grey.darken3
         
         switch(name){
         case "Resume Builder":
-            titleColor = Color.lightBlue.lighten1
+            titleColor = Color.grey.darken3
         case "Volunteer Match":
-            titleColor = Color.lightBlue.lighten1
+            titleColor = Color.grey.darken3
         default:
-            titleColor = Color.white
+            titleColor = Color.grey.darken3
         }
         
-        featureLabel.textColor = Color.grey.darken3
+        featureLabel.textColor = titleColor
         
         self.view.addSubview(featureLabel)
     }
