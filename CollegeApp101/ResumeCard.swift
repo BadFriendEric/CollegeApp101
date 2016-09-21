@@ -19,7 +19,7 @@ class ResumeCard: Card{
     var trashClicked = false
     let trashImg: UIImage? = Icon.cm.close
     let editImg: UIImage? = Icon.cm.pen
-    let editColor: UIColor = Color.red.darken4
+    let editColor: UIColor = Color.black
     var mysubviews = [UIView]()
     var text: String = "yes"
     var textTime: String = "pls"
