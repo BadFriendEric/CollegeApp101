@@ -120,6 +120,8 @@ class ResumeCard: Card{
         box.isUserInteractionEnabled = false
         box.textAlignment = .left
         box.borderStyle = .roundedRect
+        box.clearButtonMode = .whileEditing
+        box.returnKeyType = .done
         mysubviews.append(box)
         
         boxTime = UITextField(frame: CGRect(x: iconSize + 15, y: Int(self.frame.height)/2+2, width: Int(self.frame.width) - iconSize - buttonArea, height: Int(self.frame.height)/2-5))
@@ -132,6 +134,8 @@ class ResumeCard: Card{
         boxTime.adjustsFontSizeToFitWidth = true
         boxTime.minimumFontSize = 10
         boxTime.isUserInteractionEnabled = false
+        boxTime.clearButtonMode = .whileEditing
+        boxTime.returnKeyType = .done
         mysubviews.append(boxTime)
         
     }
@@ -174,6 +178,7 @@ class ResumeCard: Card{
             boxTime.isUserInteractionEnabled = true
             box.backgroundColor = Color.grey.lighten2
             boxTime.backgroundColor = Color.grey.lighten2
+            editBtn.tintColor = Color.red.darken3
         }
         else{
             editOn = false
@@ -181,6 +186,7 @@ class ResumeCard: Card{
             boxTime.isUserInteractionEnabled = false
             box.backgroundColor = Color.white
             boxTime.backgroundColor = Color.white
+            editBtn.tintColor = editColor
         }
         
         

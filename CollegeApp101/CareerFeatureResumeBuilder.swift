@@ -63,7 +63,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         button.titleLabel?.font = UIFont(name: "Scope One", size: 10)
         button.setTitle("Add Card", for: .normal)
         button.backgroundColor = Color.grey.base
-        button.pulseColor = Color.red.darken4
+        button.pulseColor = Color.grey.lighten4
         button.addTarget(self, action: #selector(handleAddResumeCard), for: .touchUpInside)
         features.append(button)
         
@@ -74,8 +74,8 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         buildBtn.setTitleColor(Color.white, for: .normal)
         buildBtn.titleLabel?.font = UIFont(name: "Scope One", size: 10)
         buildBtn.setTitle("Build Resume", for: .normal)
-        buildBtn.backgroundColor = Color.lightGreen.darken1
-        buildBtn.pulseColor = Color.red.darken4
+        buildBtn.backgroundColor = Color.blue.base
+        buildBtn.pulseColor = Color.grey.lighten4
         buildBtn.addTarget(self, action: #selector(handleBuildBtn), for: .touchUpInside)
         features.append(buildBtn)
     }
@@ -89,8 +89,8 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         adviceBtn.setTitleColor(Color.white, for: .normal)
         adviceBtn.titleLabel?.font = UIFont(name: "Scope One", size: 10)
         adviceBtn.setTitle("How to improve your resume", for: .normal)
-        adviceBtn.backgroundColor = Color.lightGreen.darken1
-        adviceBtn.pulseColor = Color.red.darken4
+        adviceBtn.backgroundColor = Color.blue.base
+        adviceBtn.pulseColor = Color.grey.lighten4
         adviceBtn.addTarget(self, action: #selector(handleHowToBtn), for: .touchUpInside)
         features.append(adviceBtn)
     }
@@ -132,12 +132,12 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     internal func handleAddResumeCard(){
         let size = 110
         
-        if textBox.hasText && timeText.hasText && button.backgroundColor == Color.grey.base{
-            button.backgroundColor = Color.amber.base
+        if textBox.hasText && timeText.hasText && button.backgroundColor == Color.grey.base && textBox.text != placeHolder && timeText.text != placeHolderTime{
+            button.backgroundColor = Color.lightGreen.base
             textBox.resignFirstResponder()
             timeText.resignFirstResponder()
         }
-        else if button.backgroundColor == Color.amber.base{
+        else if button.backgroundColor == Color.lightGreen.base{
             words = textBox.text!
             timeWords = timeText.text!
             textBox.textColor = Color.grey.lighten1
@@ -175,6 +175,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     
     internal func addResumeCard(y: Int, vc: UIScrollView, text: String){
         let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 160 + 110*(resumeCards.count), width: width - 50, height: 100, text: text, text2: timeWords)
+        card.cornerRadius = 10
         button.backgroundColor = Color.grey.base
         resumeCards.append(card)
         vc.addSubview(card)
@@ -215,7 +216,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     
     func backgroundTapped(){
         if (textBox.hasText && textBox.text != placeHolder && timeText.hasText && timeText.text != placeHolderTime){
-            button.backgroundColor = Color.amber.base
+            button.backgroundColor = Color.lightGreen.base
         }
         else{
             button.backgroundColor = Color.grey.base
@@ -227,7 +228,9 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         self.view.endEditing(true)
-        button.backgroundColor = Color.amber.base
+        if textBox.text != "" && timeText.text != "" && textBox.text != placeHolder && timeText.text != placeHolderTime{
+        button.backgroundColor = Color.lightGreen.base
+        }
         return true
         
     }
