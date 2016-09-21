@@ -52,10 +52,9 @@ open class CareerFeatureTopSchools : CareerFeature {
     }
     
     open func refreshList(){
-        
-        bottomY = 10
-        let tl = UIView(frame: CGRect(x: 0, y: bottomY-2, width: Int(MainSwipeController.Constants.ScreenWidth), height: 2))
-        tl.backgroundColor = Color.white
+        bottomY = 2
+        let tl = UIView(frame: CGRect(x: 0, y: bottomY-1, width: Int(MainSwipeController.Constants.ScreenWidth), height: 1))
+        tl.backgroundColor = Color.black
         features.append(tl)
         var i = 1
         for s in schools {
@@ -69,6 +68,23 @@ open class CareerFeatureTopSchools : CareerFeature {
             
         }
         
+        let new : UIView = UIView(frame: CGRect(x: 0, y: bottomY, width: Int(MainSwipeController.Constants.ScreenWidth), height: 60))
+        let lab : UILabel = UILabel(frame: CGRect(x: 70, y: 15, width: MainSwipeController.Constants.ScreenWidth-150, height: 30))
+        lab.text = "+ Add new item"
+        lab.textColor = Color.black
+        lab.font = UIFont(name: "Vesper Libre", size: 30)
+        new.addSubview(lab)
+        let t = UIView(frame: CGRect(x: 0, y: 0, width: MainSwipeController.Constants.ScreenWidth, height: 1))
+        let b = UIView(frame: CGRect(x: 0, y: 58, width: MainSwipeController.Constants.ScreenWidth, height: 2))
+        t.backgroundColor = Color.black
+        b.backgroundColor = Color.black
+        new.addSubview(t)
+        new.addSubview(b)
+        
+        features.append(new)
+        
+        bottomY = Int(new.frame.maxY)
+        
         refreshScrollView(bottomY)
         //updateFrame()
     }
@@ -80,11 +96,14 @@ open class CareerFeatureTopSchools : CareerFeature {
         //refreshScrollView(height)
     }
     
-        open override func updateFrame(){
+    open override func updateFrame(){
         super.updateFrame()
     }
     
     open override func getFeatures() -> [UIView] {
+        //titleLine.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        titleLine.layer.color = Color.clear
+        titleLine.layer.borderColor = Color.clear.cgColor
         return features
     }
     

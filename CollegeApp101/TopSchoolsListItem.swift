@@ -21,8 +21,8 @@ class TopSchoolsListItem : UIView {
     let n = UILabel(frame: CGRect(x: 30, y: 12, width: 45, height: 35))
     let l = UILabel(frame: CGRect(x: 67, y: 15, width: MainSwipeController.Constants.ScreenWidth-150, height: 30))
     let d = UIView(frame: CGRect(x: MainSwipeController.Constants.ScreenWidth-50, y: 0.0, width: 50, height: 30))
-    let tl = UIView(frame: CGRect(x: 0, y: 0, width: MainSwipeController.Constants.ScreenWidth, height: 2))
-    let bl = UIView(frame: CGRect(x: 0, y: 58, width: MainSwipeController.Constants.ScreenWidth, height: 2))
+    let tl = UIView(frame: CGRect(x: 0, y: 0, width: MainSwipeController.Constants.ScreenWidth, height: 1))
+    let bl = UIView(frame: CGRect(x: 0, y: 59, width: MainSwipeController.Constants.ScreenWidth, height: 1))
     let ll = UIView(frame: CGRect(x: 0, y: 0, width: 2, height: 60))
     let rl = UIView(frame: CGRect(x: MainSwipeController.Constants.ScreenWidth-2, y: 0, width: 2, height: 60))
     var pageControllerData : UIPageViewControllerDataSource? = nil
@@ -47,8 +47,8 @@ class TopSchoolsListItem : UIView {
     
     internal func prepareLines(){
         
-        tl.backgroundColor = Color.white
-        bl.backgroundColor = Color.white
+        tl.backgroundColor = Color.black
+        bl.backgroundColor = Color.black
         self.addSubview(tl)
         self.addSubview(bl)
     }
@@ -67,7 +67,7 @@ class TopSchoolsListItem : UIView {
     
     internal func prepareNumberLabel(){
         n.text = String(itemNumber) + "."
-        n.textColor = Color.white
+        n.textColor = Color.black
         n.font = UIFont(name: "Oswald", size: 22)
         self.addSubview(n)
     }
@@ -75,7 +75,7 @@ class TopSchoolsListItem : UIView {
     internal func prepareTitleLabel(){
         
         l.text = schoolName
-        l.textColor = Color.white
+        l.textColor = Color.black
         l.font = UIFont(name: "Vesper Libre", size: 30)
         l.adjustsFontSizeToFitWidth = true
         self.addSubview(l)
