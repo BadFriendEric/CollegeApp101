@@ -107,11 +107,8 @@ class TopSchoolsListItem : UIView {
             if(self.feature?.myVC.pageViewController.dataSource != nil){
                 pageControllerData = self.feature?.myVC.pageViewController.dataSource
                 self.feature?.myVC.pageViewController.dataSource = nil
-                
             }
-            
         }
-        //print(String(describing: point.x) + ", " + String(describing: point.y) + ", " + String(itemNumber))
     }
     
     
