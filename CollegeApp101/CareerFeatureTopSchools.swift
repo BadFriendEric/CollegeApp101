@@ -15,6 +15,7 @@ open class CareerFeatureTopSchools : CareerFeature {
     //0 for List View, 1 for Search View
     var currentView : Int = 0
     var schools : [TopSchoolsListItem]! = [TopSchoolsListItem]()
+    let new : UIView = UIView(frame: CGRect(x: 0, y: 0, width: Int(MainSwipeController.Constants.ScreenWidth), height: 60))
     var bottomY = 10
     
     public override init() {
@@ -65,10 +66,10 @@ open class CareerFeatureTopSchools : CareerFeature {
             //print(bottomY)
             features.append(s)
             s.refreshTitle()
-            
+            print(s.schoolName)
         }
         
-        let new : UIView = UIView(frame: CGRect(x: 0, y: bottomY, width: Int(MainSwipeController.Constants.ScreenWidth), height: 60))
+        new.frame = CGRect(x: 0, y: bottomY, width: Int(MainSwipeController.Constants.ScreenWidth), height: 60)
         let lab : UILabel = UILabel(frame: CGRect(x: 70, y: 15, width: MainSwipeController.Constants.ScreenWidth-150, height: 30))
         lab.text = "+ Add new item"
         lab.textColor = Color.black
@@ -97,7 +98,16 @@ open class CareerFeatureTopSchools : CareerFeature {
     
     
     internal func handleAddNew(){
-        print("test")
+        new.backgroundColor = Color.white.withAlphaComponent(0.6)
+        UIView.animate(withDuration: 0.8, animations: {
+            self.new.backgroundColor = Color.clear
+        })
+        let t = TopSchoolsListItem(schoolName: "New School", feature: self)
+        t.setListPosition(i: schools.count + 1)
+        schools.append(t)
+        //features.append(t)
+        refreshList()
+        scrollView.addSubview(t)
     }
     
     

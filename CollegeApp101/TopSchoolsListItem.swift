@@ -19,7 +19,7 @@ class TopSchoolsListItem : UIView {
     let h = CGFloat(60)
     let dot = CAShapeLayer()
     let n = UILabel(frame: CGRect(x: 30, y: 12, width: 45, height: 35))
-    let l = UILabel(frame: CGRect(x: 67, y: 15, width: MainSwipeController.Constants.ScreenWidth-150, height: 30))
+    let l = UILabel(frame: CGRect(x: 67, y: 5, width: MainSwipeController.Constants.ScreenWidth-150, height: 50))
     let d = UIView(frame: CGRect(x: MainSwipeController.Constants.ScreenWidth-50, y: 0.0, width: 50, height: 30))
     let tl = UIView(frame: CGRect(x: 0, y: 0, width: MainSwipeController.Constants.ScreenWidth, height: 1))
     let bl = UIView(frame: CGRect(x: 0, y: 59, width: MainSwipeController.Constants.ScreenWidth, height: 1))
@@ -62,6 +62,7 @@ class TopSchoolsListItem : UIView {
         
         //dot.fillColor = Color.red.base.cgColor
         dot.lineWidth = 20
+        dot.fillColor = Color.blue.darken1.cgColor
         self.layer.addSublayer(dot)
     }
     
@@ -76,7 +77,7 @@ class TopSchoolsListItem : UIView {
         
         l.text = schoolName
         l.textColor = Color.black
-        l.font = UIFont(name: "Vesper Libre", size: 30)
+        l.font = UIFont(name: "Vesper Libre", size: 24)
         l.adjustsFontSizeToFitWidth = true
         self.addSubview(l)
         
@@ -148,7 +149,7 @@ class TopSchoolsListItem : UIView {
                 
             }
             if(point.y > self.frame.height+20){
-                if(self.itemNumber < (feature?.schools.count)!-1){
+                if(self.itemNumber < (feature?.schools.count)!){
                     feature?.swapItems(a: self.itemNumber, b: self.itemNumber+1)
                 }
             }
@@ -185,13 +186,14 @@ class TopSchoolsListItem : UIView {
             UIView.animate(withDuration: 0.8, animations: {
                 self.backgroundColor = Color.clear
             })
-
         }
+        self.feature?.myVC.pageViewController.dataSource = pageControllerData
         
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         dropItem()
+        self.feature?.myVC.pageViewController.dataSource = pageControllerData
     }
     
     internal func dropItem(){
