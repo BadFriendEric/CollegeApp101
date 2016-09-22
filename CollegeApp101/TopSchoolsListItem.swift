@@ -104,6 +104,11 @@ class TopSchoolsListItem : UIView {
             canMove = false
         }else{
             canMove = true
+            if(self.feature?.myVC.pageViewController.dataSource != nil){
+                pageControllerData = self.feature?.myVC.pageViewController.dataSource
+                self.feature?.myVC.pageViewController.dataSource = nil
+                
+            }
             
         }
         //print(String(describing: point.x) + ", " + String(describing: point.y) + ", " + String(itemNumber))
@@ -134,8 +139,7 @@ class TopSchoolsListItem : UIView {
             
 
             //Used to disable MainPanel paging swipe
-            //pageControllerData = self.feature?.myVC.pageViewController.dataSource
-            //self.feature?.myVC.pageViewController.dataSource = nil
+            
         }
         
         
@@ -144,6 +148,7 @@ class TopSchoolsListItem : UIView {
                 if(self.itemNumber > 1){
                     feature?.swapItems(a: self.itemNumber, b: self.itemNumber-1)
                 }
+                
             }
             if(point.y > self.frame.height+20){
                 if(self.itemNumber < (feature?.schools.count)!-1){
@@ -151,6 +156,11 @@ class TopSchoolsListItem : UIView {
                 }
             }
         }
+        
+        
+        
+        
+        
         
     }
     
@@ -199,7 +209,7 @@ class TopSchoolsListItem : UIView {
         self.backgroundColor = Color.clear
         //UIView.animate(withDuration: 0.5, animations: {})
 
-        //self.feature?.myVC.pageViewController.dataSource = pageControllerData
+        self.feature?.myVC.pageViewController.dataSource = pageControllerData
     }
     
     internal func refreshTitle(){
