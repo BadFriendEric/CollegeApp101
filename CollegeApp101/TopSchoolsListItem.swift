@@ -191,8 +191,8 @@ class TopSchoolsListItem : UIView {
         canMove = false
         moving = false
         self.feature?.scrollView.isScrollEnabled = true
-        tl.backgroundColor = Color.white
-        bl.backgroundColor = Color.white
+        tl.backgroundColor = Color.black
+        bl.backgroundColor = Color.black
         ll.removeFromSuperview()
         rl.removeFromSuperview()
         l.font = UIFont(name: "Vesper Libre", size: 30)

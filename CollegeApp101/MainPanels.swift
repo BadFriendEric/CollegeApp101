@@ -173,7 +173,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
     }
     fileprivate func prepareNavigationBar(){
-        let navColor : UIColor = Color.white
+        let navColor : UIColor = Color.grey.lighten2
         //let navBgImage:UIImage = UIImage(named: "NavBarBackground")!
         //let navTexture = UIColor(patternImage: navBgImage)
         statusBar.backgroundColor = navColor
@@ -189,6 +189,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
         
         midButtonView.frame = CGRect(x: (Int(MainSwipeController.Constants.ScreenWidth)-buttonWidths)/2, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
+        
         
         
         self.view.addSubview(navBar)
@@ -415,6 +416,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
         //navItem.titleLabel.frame = CGRect(x: Int(navBar.frame.width/2)-buttonWidths, y: 15, width: buttonWidths, height: 70)
         navItem.title = title
+        navItem.titleLabel.clipsToBounds = false
         navItem.titleLabel.textAlignment = .center
         navItem.titleLabel.font = UIFont(name: "Oswald", size: 30)
         navItem.titleLabel.textColor = navBarHighlightColor
