@@ -78,6 +78,12 @@ open class CareerFeatureTopSchools : CareerFeature {
         let b = UIView(frame: CGRect(x: 0, y: 58, width: MainSwipeController.Constants.ScreenWidth, height: 2))
         t.backgroundColor = Color.black
         b.backgroundColor = Color.black
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleAddNew))
+        tap.delegate = self
+        new.addGestureRecognizer(tap)
+
+        
         new.addSubview(t)
         new.addSubview(b)
         
@@ -87,6 +93,11 @@ open class CareerFeatureTopSchools : CareerFeature {
         
         refreshScrollView(bottomY)
         //updateFrame()
+    }
+    
+    
+    internal func handleAddNew(){
+        print("test")
     }
     
     
