@@ -18,8 +18,9 @@ class TopSchoolsListItem : UIView {
     var itemNumber = 1
     let h = CGFloat(60)
     let dot = CAShapeLayer()
-    let n = UILabel(frame: CGRect(x: 30, y: 12, width: 45, height: 35))
-    let l = UILabel(frame: CGRect(x: 67, y: 5, width: MainSwipeController.Constants.ScreenWidth-150, height: 50))
+    let dragIcon = CAShapeLayer()
+    let n = UILabel(frame: CGRect(x: 35, y: 12, width: 45, height: 35))
+    let l = UILabel(frame: CGRect(x: 67, y: 5, width: MainSwipeController.Constants.ScreenWidth-130, height: 50))
     let d = UIView(frame: CGRect(x: MainSwipeController.Constants.ScreenWidth-50, y: 0.0, width: 50, height: 30))
     let tl = UIView(frame: CGRect(x: 0, y: 0, width: MainSwipeController.Constants.ScreenWidth, height: 1))
     let bl = UIView(frame: CGRect(x: 0, y: 59, width: MainSwipeController.Constants.ScreenWidth, height: 1))
@@ -28,6 +29,7 @@ class TopSchoolsListItem : UIView {
     var pageControllerData : UIPageViewControllerDataSource? = nil
     var canMove = true
     var moving = false
+    let listColor = Color.grey.darken3
     
     internal init(schoolName : String, feature : CareerFeatureTopSchools){
         super.init(frame: CGRect(x: 0, y: 0, width: Int(MainSwipeController.Constants.ScreenWidth), height: Int(h)))
@@ -37,7 +39,7 @@ class TopSchoolsListItem : UIView {
         prepareNumberLabel()
         prepareTitleLabel()
         prepareColorLabel()
-        //prepareDragIcon()
+        prepareTriagleIcon()
         
     }
     
@@ -47,11 +49,47 @@ class TopSchoolsListItem : UIView {
     
     internal func prepareLines(){
         
-        tl.backgroundColor = Color.black
-        bl.backgroundColor = Color.black
+        tl.backgroundColor = listColor
+        bl.backgroundColor = listColor
         self.addSubview(tl)
         self.addSubview(bl)
     }
+    
+    internal func prepareTriagleIcon(){
+        //let size = self.frame.height
+        //let triPath = UIBezierPath(cgPath: <#T##CGPath#>)
+        
+        let myBezier = UIBezierPath()
+//        myBezier.move(to: CGPoint(x: 0, y: self.frame.height/2))
+//        myBezier.addLine(to: CGPoint(x: 20, y: self.frame.height/2))
+//        myBezier.addLine(to: CGPoint(x: 10, y: self.frame.height/2))
+//        myBezier.close()
+        
+        dragIcon.path = myBezier.cgPath
+        
+        
+        //dot.fillColor = Color.red.base.cgColor
+        dragIcon.lineWidth = 20
+        dragIcon.fillColor = listColor.cgColor
+        //self.layer.addSublayer(dragIcon)
+    }
+    
+    internal func refreshTriangle(y : Int){
+        let myBezier = UIBezierPath()
+        myBezier.move(to: CGPoint(x: 5, y: self.frame.height/2))
+        myBezier.addLine(to: CGPoint(x: 30, y: self.frame.height/2))
+        myBezier.addLine(to: CGPoint(x: 17.5, y: Double(y)))
+        
+//        myBezier.move(to: CGPoint(x: 10, y: self.frame.height/2))
+//        myBezier.addLine(to: CGPoint(x: 0, y: y))
+//        myBezier.addLine(to: CGPoint(x: 20, y: y))
+        myBezier.close()
+        
+        dragIcon.path = myBezier.cgPath
+        
+        self.layer.addSublayer(dragIcon)
+    }
+
     
     internal func prepareColorLabel(){
         //let size = self.frame.height
@@ -68,7 +106,7 @@ class TopSchoolsListItem : UIView {
     
     internal func prepareNumberLabel(){
         n.text = String(itemNumber) + "."
-        n.textColor = Color.black
+        n.textColor = listColor
         n.font = UIFont(name: "Oswald", size: 22)
         self.addSubview(n)
     }
@@ -76,7 +114,7 @@ class TopSchoolsListItem : UIView {
     internal func prepareTitleLabel(){
         
         l.text = schoolName
-        l.textColor = Color.black
+        l.textColor = listColor
         l.font = UIFont(name: "Vesper Libre", size: 24)
         l.adjustsFontSizeToFitWidth = true
         self.addSubview(l)
@@ -133,27 +171,62 @@ class TopSchoolsListItem : UIView {
             self.addSubview(ll)
             self.addSubview(rl)
             l.font = UIFont(name: "VesperLibre-Heavy", size: 30)
-            self.backgroundColor = Color.black.withAlphaComponent(0.2)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.backgroundColor = Color.black.withAlphaComponent(0.2)
+            })
+            
             
 
             //Used to disable MainPanel paging swipe
             
         }
         
+        let h = self.frame.height/2
+        let y = point.y
+        let ya = abs(y-h)
         
-        if(true){
-            if(point.y < -20){
-                if(self.itemNumber > 1){
-                    feature?.swapItems(a: self.itemNumber, b: self.itemNumber-1)
-                }
-                
+        var yt = (y-h)*(ya/(ya+35)) + h
+        
+        if(yt < 0){
+            yt = 0
+        }else if(yt > self.frame.height){
+            yt = self.frame.height
+        }
+        
+        let f = Float(ya / (h+20))
+        
+        
+        
+        
+        if(y > h){
+            dragIcon.fillColor = UIColor(colorLiteralRed: f, green: 0, blue: 0, alpha: 0.9).cgColor
+        }else{
+            dragIcon.fillColor = UIColor(colorLiteralRed: 0, green: f, blue: 0, alpha: 0.9).cgColor
+        }
+        
+
+        
+        if(itemNumber == 1 && y < h){
+            dragIcon.removeFromSuperlayer()
+        }else if(itemNumber == feature?.schools.count && y > h){
+            dragIcon.removeFromSuperlayer()
+        }else{
+            refreshTriangle(y: Int(yt))
+        }
+        
+        
+        if(point.y < -20){
+            if(self.itemNumber > 1){
+                feature?.swapItems(a: self.itemNumber, b: self.itemNumber-1)
             }
-            if(point.y > self.frame.height+20){
-                if(self.itemNumber < (feature?.schools.count)!){
-                    feature?.swapItems(a: self.itemNumber, b: self.itemNumber+1)
-                }
+                
+        }
+        if(point.y > self.frame.height+20){
+            if(self.itemNumber < (feature?.schools.count)!){
+                feature?.swapItems(a: self.itemNumber, b: self.itemNumber+1)
             }
         }
+        
         
         
         
@@ -197,17 +270,20 @@ class TopSchoolsListItem : UIView {
     }
     
     internal func dropItem(){
+        dragIcon.removeFromSuperlayer()
         canMove = false
         moving = false
         self.feature?.scrollView.isScrollEnabled = true
-        tl.backgroundColor = Color.black
-        bl.backgroundColor = Color.black
+        tl.backgroundColor = listColor
+        bl.backgroundColor = listColor
         ll.removeFromSuperview()
         rl.removeFromSuperview()
         l.font = UIFont(name: "Vesper Libre", size: 30)
-        self.backgroundColor = Color.clear
-        //UIView.animate(withDuration: 0.5, animations: {})
-
+        
+        //MAY HAVE TO MAKE THIS CANCELLABLE BUT IDK
+        UIView.animate(withDuration: 0.2, animations: {
+            self.backgroundColor = Color.clear
+        })
         self.feature?.myVC.pageViewController.dataSource = pageControllerData
     }
     
