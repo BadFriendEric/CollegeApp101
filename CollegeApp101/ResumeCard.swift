@@ -33,12 +33,12 @@ class ResumeCard: Card{
     
     //BUG TO FIX: WHEN U PRESS
     
-    internal init(vc: CareerFeatureResumeBuilder, x: Int, y: Int, width: Int, height: Int, text: String, text2: String){
+    internal init(vc: CareerFeatureResumeBuilder, x: Int, y: Int, width: Int, height: Int, text: String, text2: String, text3: String){
         super.init(frame: CGRect(x: x, y: y, width: width, height: height))
         self.view = vc
         divider = false
         setTrashButton()
-        setTextBox(text: text, text2: text2)
+        setTextBox(text: text, text2: text2, text3: text3)
         setEdit()
         setIcon()
         setTimeIcon()
@@ -109,7 +109,7 @@ class ResumeCard: Card{
         
     }
     
-    internal func setTextBox(text: String, text2: String){
+    internal func setTextBox(text: String, text2: String, text3: String){
         let paddingView = UIView(frame:CGRect(x: 0, y: 0, width: 15, height: box.height))
         box.leftView = paddingView
         box.leftViewMode = UITextFieldViewMode.always
@@ -144,6 +144,8 @@ class ResumeCard: Card{
         boxTime.returnKeyType = .done
         mysubviews.append(boxTime)
         
+        
+        //text3 = other text gotta put that in the card
     }
     
     internal func setIcon(){

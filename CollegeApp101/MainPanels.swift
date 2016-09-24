@@ -290,8 +290,14 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
         
         let h = height - 70
-        
+        //CGRect(x: 0, y: 70, width: coachingVC.view.frame.width/2, height: h/3)
         let writing: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70, width: coachingVC.view.frame.width/2, height: h/3))
+        let path = UIBezierPath(ovalIn: writing.frame)
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        shapeLayer.fillColor = Color.red.base.cgColor
+        writing.layer.addSublayer(shapeLayer)
+        
         writing.setTitleColor(titleColor, for: UIControlState())
         writing.setTitle("Writing", for: UIControlState())
         writing.cornerRadius = 0

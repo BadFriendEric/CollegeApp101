@@ -60,6 +60,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
         btn.setTitleColor(Color.black, for: UIControlState())
         btn.setTitleColor(Color.black, for: .highlighted)
         btn.backgroundColor = Color.white
+        btn.cornerRadius = 10
         
         _ = view.layout(btn).width(80).height(40).left(width/2-105).top(345)
         
@@ -71,6 +72,8 @@ class LoginVC: UIViewController, TextFieldDelegate {
         btn2.setTitleColor(Color.black, for: UIControlState())
         btn2.setTitleColor(Color.black, for: .highlighted)
         btn2.backgroundColor = Color.white
+        btn2.cornerRadius = 10
+        
         
         _ = view.layout(btn2).width(100).height(40).left(width/2+5).top(345)
         
