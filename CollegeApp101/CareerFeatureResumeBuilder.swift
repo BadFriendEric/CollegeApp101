@@ -69,19 +69,21 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         button.setTitle("Add Card", for: .normal)
         button.backgroundColor = Color.grey.base
         button.pulseColor = Color.grey.lighten4
+        button.cornerRadius = 10
         button.addTarget(self, action: #selector(handleAddResumeCard), for: .touchUpInside)
         features.append(button)
         
     }
     
     private func prepareBuildButton(){
-        buildBtn.frame = CGRect(x: 40, y: 150, width: buildBtnWidth, height: 30)
+        buildBtn.frame = CGRect(x: 40, y: 120, width: buildBtnWidth, height: 30)
         buildBtn.setTitleColor(Color.white, for: .normal)
         buildBtn.titleLabel?.font = UIFont(name: "Scope One", size: 20)
         buildBtn.titleLabel?.adjustsFontSizeToFitWidth = true
         buildBtn.setTitle("Build Resume", for: .normal)
         buildBtn.backgroundColor = Color.purple.darken2
         buildBtn.pulseColor = Color.grey.lighten4
+        buildBtn.cornerRadius = 10
         buildBtn.addTarget(self, action: #selector(handleBuildBtn), for: .touchUpInside)
         features.append(buildBtn)
     }
@@ -91,13 +93,14 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     }
     
     private func prepareAdviceButton(){
-        adviceBtn.frame = CGRect(x: width - 210, y: 150, width: 170, height: 30)
+        adviceBtn.frame = CGRect(x: width - 210, y: 120, width: 170, height: 30)
         adviceBtn.setTitleColor(Color.white, for: .normal)
         adviceBtn.titleLabel?.font = UIFont(name: "Scope One", size: 20)
         adviceBtn.titleLabel?.adjustsFontSizeToFitWidth = true
         adviceBtn.setTitle("How to improve your resume", for: .normal)
         adviceBtn.backgroundColor = Color.purple.darken2
         adviceBtn.pulseColor = Color.grey.lighten4
+        adviceBtn.cornerRadius = 10
         adviceBtn.addTarget(self, action: #selector(handleHowToBtn), for: .touchUpInside)
         features.append(adviceBtn)
     }
@@ -145,7 +148,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         textBox.leftView = paddingView
         textBox.leftViewMode = UITextFieldViewMode.always
 
-        textBox.frame = CGRect(x: 20, y: 80, width: width - 40, height: 60)
+        textBox.frame = CGRect(x: 20, y: 80, width: width - 40, height: 30)
         textBox.delegate = self
         textBox.backgroundColor = Color.white
         textBox.font = RobotoFont.light(with: 16)
@@ -165,7 +168,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
 
     
     internal func handleAddResumeCard(){
-        let size = 110
+        let size = 210
         
         if textBox.hasText && timeText.hasText && titleText.hasText && button.backgroundColor == Color.grey.base && textBox.text != placeHolder && timeText.text != placeHolderTime && titleText.text != placeHolderTitle{
             button.backgroundColor = Color.lightGreen.base
@@ -213,7 +216,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     
     
     internal func addResumeCard(y: Int, vc: UIScrollView, text: String, text2: String, text3: String){
-        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 190 + 210*(resumeCards.count), width: width - 50, height: 200, text: text, text2: text2, text3: text3)
+        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 160 + 210*(resumeCards.count), width: width - 50, height: 200, text: text, text2: text2, text3: text3)
         card.cornerRadius = 10
         button.backgroundColor = Color.grey.base
         resumeCards.append(card)
