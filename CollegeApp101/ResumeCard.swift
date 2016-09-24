@@ -110,6 +110,12 @@ class ResumeCard: Card{
     }
     
     internal func setTextBox(text: String, text2: String){
+        let paddingView = UIView(frame:CGRect(x: 0, y: 0, width: 15, height: box.height))
+        box.leftView = paddingView
+        box.leftViewMode = UITextFieldViewMode.always
+        boxTime.leftView = paddingView
+        boxTime.leftViewMode = UITextFieldViewMode.always
+
         box = UITextField(frame: CGRect(x: iconSize + 15, y: 2, width: Int(self.frame.width) - iconSize - buttonArea, height: Int(self.frame.height)/2-5))
         box.backgroundColor = Color.white
         box.textColor = Color.black

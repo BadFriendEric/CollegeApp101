@@ -18,10 +18,12 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     let iconSize = 50
     var words: String = "vibes"
     var timeWords: String = "chill"
-    let placeHolder = "Name of activity"
-    let placeHolderTime = "ex: 3 hours per week"
+    let placeHolder = "Short description of your involvement"
+    let placeHolderTime = "How often (ex: 3 hours per week)"
+    let placeHolderTitle = "Name of activity"
     let textBox: UITextField = UITextField()
     let timeText: UITextField = UITextField()
+    let titleText: UITextField = UITextField()
     var textBoxSize = 50
     let button: FlatButton = FlatButton()
     let buttonWidth: Int = 75
@@ -52,6 +54,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         prepareTextField()
         prepareRandomUI()
         prepareTimeText()
+        prepareTitleText()
         refreshScrollView(600) //use when pushing stuff off the screen
     }
     
@@ -95,10 +98,50 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         features.append(adviceBtn)
     }
     
-    
-    
+    private func prepareTitleText(){
+        let paddingView = UIView(frame:CGRect(x: 0, y: 0, width: 10, height: titleText.height))
+        titleText.leftView = paddingView
+        titleText.leftViewMode = UITextFieldViewMode.always
+        
+        titleText.frame = CGRect(x: 20, y: 10, width: width - 150, height: 30)
+        titleText.delegate = self
+        titleText.backgroundColor = Color.white
+        titleText.font = RobotoFont.light(with: 16)
+        titleText.textColor = Color.grey.lighten1
+        titleText.text! = placeHolderTitle
+        titleText.layer.cornerRadius = 10
+        //titleText.clearsOnInsertion = true
+        titleText.clearButtonMode = .whileEditing
+        timeText.returnKeyType = .done
+        features.append(titleText)
+        
+    }
+
+    private func prepareTimeText(){
+        let paddingView = UIView(frame:CGRect(x: 0, y: 0, width: 10, height: timeText.height))
+        timeText.leftView = paddingView
+        timeText.leftViewMode = UITextFieldViewMode.always
+        
+        timeText.frame = CGRect(x: 20, y: 45, width: width - 150, height: 30)
+        timeText.delegate = self
+        timeText.backgroundColor = Color.white
+        timeText.font = RobotoFont.light(with: 16)
+        timeText.textColor = Color.grey.lighten1
+        timeText.text! = placeHolderTime
+        timeText.layer.cornerRadius = 10
+        //timeText.clearsOnInsertion = true
+        timeText.clearButtonMode = .whileEditing
+        timeText.returnKeyType = .done
+        features.append(timeText)
+        
+    }
+
     private func prepareTextField(){
-        textBox.frame = CGRect(x: 20, y: 10, width: width - 40, height: 60)
+        let paddingView = UIView(frame:CGRect(x: 0, y: 0, width: 10, height: textBox.height))
+        textBox.leftView = paddingView
+        textBox.leftViewMode = UITextFieldViewMode.always
+
+        textBox.frame = CGRect(x: 20, y: 80, width: width - 40, height: 60)
         textBox.delegate = self
         textBox.backgroundColor = Color.white
         textBox.font = RobotoFont.light(with: 16)
@@ -114,20 +157,8 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         
     }
     
-    private func prepareTimeText(){
-        timeText.frame = CGRect(x: 20, y: 80, width: width - 150, height: 30)
-        timeText.delegate = self
-        timeText.backgroundColor = Color.white
-        timeText.font = RobotoFont.light(with: 16)
-        timeText.textColor = Color.grey.lighten1
-        timeText.text! = placeHolderTime
-        timeText.layer.cornerRadius = 10
-        //timeText.clearsOnInsertion = true
-        timeText.clearButtonMode = .whileEditing
-        timeText.returnKeyType = .done
-        features.append(timeText)
-        
-    }
+    
+
     
     internal func handleAddResumeCard(){
         let size = 110
