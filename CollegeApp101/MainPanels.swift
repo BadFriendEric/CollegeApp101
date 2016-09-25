@@ -37,7 +37,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         internal static var statusBarHeight : CGFloat {
             return 20
         }
-
+        
     }
     override func setupView() {
         datasource = self
@@ -63,7 +63,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     var coachingLineR1: UIView! = UIView()
     var coachingLineR2: UIView! = UIView()
     var coachingLineR3: UIView! = UIView()
-
+    
     var careerFeatures: [CareerFeature]! = [CareerFeature]()
     var coachingFeatureView: UIView! = UIView()
     //var coachingFeatures: [CoachingPreview]! = [CoachingPreview]()
@@ -76,9 +76,9 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     var coachingPreviewSophomore : CoachingPreview! = CoachingPreview()
     var coachingPreviewJunior : CoachingPreview! = CoachingPreview()
     var coachingPreviewSenior : CoachingPreview! = CoachingPreview()
-
-    var navBarHighlightColor = Color.grey.darken3
-    var navColor = Color.white
+    
+    var navBarHighlightColor = Color.black
+    let navColor = Color.grey.lighten2
     
     
     ///Navigation Bar Variables///
@@ -98,7 +98,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     //private var navBarHeight = 50
     fileprivate var hubCardBottom = Int(Constants.navBarHeight) + 15
     fileprivate var hubCardSpacing = 20
-
+    
     
     /////////////////////////////////////////////////
     //---------------Prepare Methods---------------//
@@ -121,7 +121,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         let c = addCard(hubCardBottom, size: 110, vc: hubScrollView)
         c.type = "Default"
         refreshHubCards()
-    
+        
     }
     fileprivate func prepareView(){
         view.backgroundColor = Color.grey.lighten2
@@ -173,18 +173,17 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
     }
     fileprivate func prepareNavigationBar(){
-        let navColor : UIColor = Color.grey.lighten2
         //let navBgImage:UIImage = UIImage(named: "NavBarBackground")!
         //let navTexture = UIColor(patternImage: navBgImage)
         statusBar.backgroundColor = navColor
         navBar.backgroundColor = navColor
-
+        
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
         self.view.addGestureRecognizer(gesture)
-
         
-//        navItem.leftControls = [menuButton]
-//        navItem.rightControls = [helpButton]
+        
+        //        navItem.leftControls = [menuButton]
+        //        navItem.rightControls = [helpButton]
         navBar.setItems([navItem], animated: false)
         
         
@@ -211,14 +210,14 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
         //self.addChildViewController(menu)
     }
-   
-    ///Prepare Planner Panel///
+    
+    ///Prepare Career Panel///
     internal func prepareCareerView(){
         careerFeatureView.frame = CGRect(x: 0, y: Constants.navBarHeight+Constants.statusBarHeight, width: navBar.width, height: careerVC.view.frame.height-Constants.navBarHeight-Constants.statusBarHeight)
         let cf1: CareerFeature = CareerFeatureTopSchools()
         let cf2: CareerFeature = CareerFeatureResumeBuilder()
         let cf3: CareerFeature = CareerFeature()
-        let cf4: CareerFeature = CareerFeatureVolunteerMatch()
+        let cf4: CareerFeature = CareerFeature()
         let cf5: CareerFeature = CareerFeature()
         careerFeatures.append(cf1)
         careerFeatures.append(cf2)
@@ -237,14 +236,15 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
                         height: Int(careerFeatureView.frame.height)/numFeatures+1)
             careerFeatureView.addSubview(cf.view)
         }
-        cf1.setColor(Color.blue.lighten2)
-        cf2.setColor(Color.indigo.lighten2)
-        cf3.setColor(Color.deepPurple.lighten2)
-        cf4.setColor(Color.purple.lighten2)
-        cf5.setColor(Color.pink.lighten2)
+        cf1.setColor(Color.blue.lighten1)
+        cf2.setColor(Color.blue.darken1)
+        cf3.setColor(Color.blue.lighten1)
+        cf4.setColor(Color.blue.darken1)
+        cf5.setColor(Color.blue.lighten1)
         cf3.setFeatureTitle("Reminders")
+        cf4.setFeatureTitle("Volunteer Match")
         cf5.setFeatureTitle("Essay Planner")
-
+        
         careerVC.view.addSubview(careerFeatureView)
         
     }
@@ -349,7 +349,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         sophomore.backgroundColor = backgroundColor
         sophomore.addTarget(self, action: #selector(handleCoachingSophomoreButton), for: .touchDown)
         coachingVC.view.addSubview(sophomore)
-
+        
         let junior: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + 2*(h/4), width: coachingVC.view.frame.width/2, height: h/4))
         addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: junior, c: juniorColor.cgColor)
         junior.setTitleColor(titleColor, for: UIControlState())
@@ -361,7 +361,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         junior.backgroundColor = backgroundColor
         junior.addTarget(self, action: #selector(handleCoachingJuniorButton), for: .touchDown)
         coachingVC.view.addSubview(junior)
-
+        
         let senior: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + 3*(h/4), width: coachingVC.view.frame.width/2, height: h/4))
         addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: senior, c: seniorColor.cgColor)
         senior.titleLabel?.font = UIFont(name: "Scope One", size: 26)
@@ -373,52 +373,52 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         senior.backgroundColor = backgroundColor
         senior.addTarget(self, action: #selector(handleCoachingSeniorButton), for: .touchDown)
         coachingVC.view.addSubview(senior)
-
+        
         /*
-        let lineColor : UIColor = Color.black
+         let lineColor : UIColor = Color.black
+         
+         coachingLineMid = UIView(frame: CGRect(x: width/2,y: 70 ,width: 2,height: h))
+         coachingLineMid.layer.borderWidth = 0
+         coachingLineMid.backgroundColor = lineColor
+         coachingLineMid.alpha = 1
+         coachingVC.view.addSubview(coachingLineMid)
+         
+         coachingLineL1 = UIView(frame: CGRect(x: 0,y: 70 + (h/3) ,width: (width/2) ,height: 2))
+         coachingLineL1.layer.borderWidth = 0
+         coachingLineL1.backgroundColor = lineColor
+         coachingLineL1.alpha = 1
+         coachingVC.view.addSubview(coachingLineL1)
+         
+         coachingLineL2 = UIView(frame: CGRect(x: 0,y: 70 + 2*(h/3) ,width: (width/2),height: 2))
+         coachingLineL2.layer.borderWidth = 0
+         coachingLineL2.layer.borderColor = UIColor.white.cgColor
+         coachingLineL2.backgroundColor = lineColor
+         coachingLineL2.alpha = 1
+         coachingVC.view.addSubview(coachingLineL2)
+         
+         coachingLineR1 = UIView(frame: CGRect(x: width/2,y: 70 + (h/4),width: (width/2),height: 2))
+         coachingLineR1.layer.borderWidth = 0
+         coachingLineR1.layer.borderColor = UIColor.white.cgColor
+         coachingLineR1.backgroundColor = lineColor
+         coachingLineR1.alpha = 1
+         coachingVC.view.addSubview(coachingLineR1)
+         
+         coachingLineR2 = UIView(frame: CGRect(x: width/2,y: 70 + 2*(h/4),width: (width/2),height: 2))
+         coachingLineR2.layer.borderWidth = 0
+         coachingLineR2.layer.borderColor = UIColor.white.cgColor
+         coachingLineR2.backgroundColor = lineColor
+         coachingLineR2.alpha = 1
+         coachingVC.view.addSubview(coachingLineR2)
+         
+         coachingLineR3 = UIView(frame: CGRect(x: width/2,y: 70 + 3*(h/4),width: (width/2),height: 2))
+         coachingLineR3.layer.borderWidth = 0
+         coachingLineR3.layer.borderColor = UIColor.white.cgColor
+         coachingLineR3.backgroundColor = lineColor
+         coachingLineR3.alpha = 1
+         coachingVC.view.addSubview(coachingLineR3)
+         
+         */
         
-        coachingLineMid = UIView(frame: CGRect(x: width/2,y: 70 ,width: 2,height: h))
-        coachingLineMid.layer.borderWidth = 0
-        coachingLineMid.backgroundColor = lineColor
-        coachingLineMid.alpha = 1
-        coachingVC.view.addSubview(coachingLineMid)
-        
-        coachingLineL1 = UIView(frame: CGRect(x: 0,y: 70 + (h/3) ,width: (width/2) ,height: 2))
-        coachingLineL1.layer.borderWidth = 0
-        coachingLineL1.backgroundColor = lineColor
-        coachingLineL1.alpha = 1
-        coachingVC.view.addSubview(coachingLineL1)
-        
-        coachingLineL2 = UIView(frame: CGRect(x: 0,y: 70 + 2*(h/3) ,width: (width/2),height: 2))
-        coachingLineL2.layer.borderWidth = 0
-        coachingLineL2.layer.borderColor = UIColor.white.cgColor
-        coachingLineL2.backgroundColor = lineColor
-        coachingLineL2.alpha = 1
-        coachingVC.view.addSubview(coachingLineL2)
-        
-        coachingLineR1 = UIView(frame: CGRect(x: width/2,y: 70 + (h/4),width: (width/2),height: 2))
-        coachingLineR1.layer.borderWidth = 0
-        coachingLineR1.layer.borderColor = UIColor.white.cgColor
-        coachingLineR1.backgroundColor = lineColor
-        coachingLineR1.alpha = 1
-        coachingVC.view.addSubview(coachingLineR1)
-        
-        coachingLineR2 = UIView(frame: CGRect(x: width/2,y: 70 + 2*(h/4),width: (width/2),height: 2))
-        coachingLineR2.layer.borderWidth = 0
-        coachingLineR2.layer.borderColor = UIColor.white.cgColor
-        coachingLineR2.backgroundColor = lineColor
-        coachingLineR2.alpha = 1
-        coachingVC.view.addSubview(coachingLineR2)
-        
-        coachingLineR3 = UIView(frame: CGRect(x: width/2,y: 70 + 3*(h/4),width: (width/2),height: 2))
-        coachingLineR3.layer.borderWidth = 0
-        coachingLineR3.layer.borderColor = UIColor.white.cgColor
-        coachingLineR3.backgroundColor = lineColor
-        coachingLineR3.alpha = 1
-        coachingVC.view.addSubview(coachingLineR3)
-        
-        */
-
     }
     
     internal func addCircle(frame: CGRect, btn: FlatButton, c: CGColor){
@@ -427,7 +427,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         shapeLayer.path = path.cgPath
         shapeLayer.fillColor = c
         btn.layer.addSublayer(shapeLayer)
-
+        
     }
     
     
@@ -439,10 +439,11 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     internal func refreshTitle(_ title: String){
         
         //navItem.titleLabel.frame = CGRect(x: Int(navBar.frame.width/2)-buttonWidths, y: 15, width: buttonWidths, height: 70)
+        navBar.contentEdgeInsets = UIEdgeInsets.zero
         navItem.title = title
-        navItem.titleLabel.clipsToBounds = false
+        //navItem.titleLabel.clipsToBounds = false
         navItem.titleLabel.textAlignment = .center
-        navItem.titleLabel.font = UIFont(name: "Oswald", size: 30)
+        navItem.titleLabel.font = UIFont(name: "Oswald", size: 32)
         navItem.titleLabel.textColor = navBarHighlightColor
         UIView.animate(withDuration: 0.5, animations: {
             }, completion: { finished in
@@ -450,7 +451,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         })
         
     }
-   
+    
     fileprivate func refreshScrollView(_ height: Int){
         UIView.animate(withDuration: 0.3, animations: {
             self.hubScrollView.contentSize.height = CGFloat(height)
@@ -462,7 +463,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
             if(Int(card.y) > currentCardPos){
                 UIView.animate(withDuration: 0.3, animations: {
                     card.y = CGFloat(currentCardPos)
-                    })
+                })
             }
             currentCardPos = Int(card.y) + Int(card.height) + hubCardSpacing
         }
@@ -481,7 +482,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
         if(menu.open){
             menu.refreshMenu(self.view)
-
+            
         }
         menuButtonView.removeFromSuperview()
         navBar.addSubview(menuButtonView)
@@ -558,20 +559,20 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         refreshNavBar()
         coachingPreviewSophomore.pushDownVC(coachingVC, dur: 0.5)  //evaluation
     }
-
+    
     @objc fileprivate func handleCoachingJuniorButton(){
         view.addSubview(coachingPreviewJunior.view)  //Change to freshman
         refreshNavBar()
         coachingPreviewJunior.pushDownVC(coachingVC, dur: 0.5)  //evaluation
     }
-
+    
     @objc fileprivate func handleCoachingSeniorButton(){
         view.addSubview(coachingPreviewSenior.view)  //Change to freshman
         refreshNavBar()
         
         coachingPreviewSenior.pushDownVC(coachingVC, dur: 0.5)  //evaluation
     }
-
+    
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -617,7 +618,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         refreshHubCards()
     }
     
-
+    
     
     /////////////////////////////////////////////////
     //--------------Coaching Methods---------------//
@@ -632,7 +633,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     ///////////////////////////////////////////////
     //--------------Career Methods---------------//
     ///////////////////////////////////////////////
-
+    
     
     static func ResizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size
@@ -676,7 +677,7 @@ extension MainPanels: MainSwipeControllerDataSource {
         let coachingColor = Color.white.cgColor
         let careerColor = Color.white.cgColor
         let hubColor = UIColor(red:1.00, green:0.90, blue:0.60, alpha:1.0).cgColor
-
+        
         
         let coachingVC = UIViewController()
         coachingVC.view.layer.backgroundColor = coachingColor
