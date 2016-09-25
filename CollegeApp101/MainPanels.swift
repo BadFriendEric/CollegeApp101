@@ -218,7 +218,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         let cf1: CareerFeature = CareerFeatureTopSchools()
         let cf2: CareerFeature = CareerFeatureResumeBuilder()
         let cf3: CareerFeature = CareerFeature()
-        let cf4: CareerFeature = CareerFeature()
+        let cf4: CareerFeature = CareerFeatureVolunteerMatch()
         let cf5: CareerFeature = CareerFeature()
         careerFeatures.append(cf1)
         careerFeatures.append(cf2)
@@ -243,7 +243,6 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         cf4.setColor(Color.blue.darken1)
         cf5.setColor(Color.blue.lighten1)
         cf3.setFeatureTitle("Reminders")
-        cf4.setFeatureTitle("Volunteer Match")
         cf5.setFeatureTitle("Essay Planner")
 
         careerVC.view.addSubview(careerFeatureView)
