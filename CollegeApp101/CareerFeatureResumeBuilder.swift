@@ -18,13 +18,16 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     let iconSize = 50
     var words: String = "vibes"
     var timeWords: String = "chill"
-    let placeHolder = "Name of activity"
-    let placeHolderTime = "ex: 3 hours per week"
+    var titleWords: String = "jesus"
+    let placeHolder = "Short description of your involvement"
+    let placeHolderTime = "How often (ex: 3 hours per week)"
+    let placeHolderTitle = "Name of activity"
     let textBox: UITextField = UITextField()
     let timeText: UITextField = UITextField()
+    let titleText: UITextField = UITextField()
     var textBoxSize = 50
     let button: FlatButton = FlatButton()
-    let buttonWidth: Int = 75
+    let buttonWidth: Int = 95
     let buildBtn: FlatButton = FlatButton()
     let buildBtnWidth: Int = 100
     let adviceBtn: FlatButton = FlatButton()
@@ -46,24 +49,27 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
         tap.delegate = self
         scrollView.addGestureRecognizer(tap)
+        prepareRandomUI()
         prepareMainButtons()
         prepareBuildButton()
         prepareAdviceButton()
         prepareTextField()
-        prepareRandomUI()
         prepareTimeText()
+        prepareTitleText()
         refreshScrollView(600) //use when pushing stuff off the screen
     }
     
     
     
     private func prepareMainButtons(){
-        button.frame = CGRect(x: width/2 + width/4 - 25, y: 80, width: buttonWidth, height: 25)
+        button.frame = CGRect(x: width/2 + width/4 - 20, y: 10, width: buttonWidth, height: buttonWidth - 35)
         button.setTitleColor(Color.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Scope One", size: 10)
+        button.titleLabel?.font = UIFont(name: "Scope One", size: 20)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.setTitle("Add Card", for: .normal)
         button.backgroundColor = Color.grey.base
         button.pulseColor = Color.grey.lighten4
+        button.cornerRadius = 10
         button.addTarget(self, action: #selector(handleAddResumeCard), for: .touchUpInside)
         features.append(button)
         
@@ -72,33 +78,80 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     private func prepareBuildButton(){
         buildBtn.frame = CGRect(x: 40, y: 120, width: buildBtnWidth, height: 30)
         buildBtn.setTitleColor(Color.white, for: .normal)
-        buildBtn.titleLabel?.font = UIFont(name: "Scope One", size: 10)
+        buildBtn.titleLabel?.font = UIFont(name: "Scope One", size: 20)
+        buildBtn.titleLabel?.adjustsFontSizeToFitWidth = true
         buildBtn.setTitle("Build Resume", for: .normal)
-        buildBtn.backgroundColor = Color.blue.base
+        buildBtn.backgroundColor = Color.lightGreen.base
         buildBtn.pulseColor = Color.grey.lighten4
+        buildBtn.cornerRadius = 10
         buildBtn.addTarget(self, action: #selector(handleBuildBtn), for: .touchUpInside)
         features.append(buildBtn)
     }
     
     private func prepareRandomUI(){
-        //nothuing here rn lol
+        let bg = UIView(frame: CGRect(x: 10, y: 5, width: width - 20, height: 150))
+        bg.backgroundColor = UIColor(red:0.88, green:1.00, blue:0.98, alpha:0.5)
+        bg.cornerRadius = 10
+        features.append(bg)
     }
     
     private func prepareAdviceButton(){
         adviceBtn.frame = CGRect(x: width - 210, y: 120, width: 170, height: 30)
         adviceBtn.setTitleColor(Color.white, for: .normal)
-        adviceBtn.titleLabel?.font = UIFont(name: "Scope One", size: 10)
+        adviceBtn.titleLabel?.font = UIFont(name: "Scope One", size: 20)
+        adviceBtn.titleLabel?.adjustsFontSizeToFitWidth = true
         adviceBtn.setTitle("How to improve your resume", for: .normal)
-        adviceBtn.backgroundColor = Color.blue.base
+        adviceBtn.backgroundColor = Color.lightGreen.base
         adviceBtn.pulseColor = Color.grey.lighten4
+        adviceBtn.cornerRadius = 10
         adviceBtn.addTarget(self, action: #selector(handleHowToBtn), for: .touchUpInside)
         features.append(adviceBtn)
     }
     
-    
-    
+    private func prepareTitleText(){
+        let paddingView = UIView(frame:CGRect(x: 0, y: 0, width: 10, height: titleText.height))
+        titleText.leftView = paddingView
+        titleText.leftViewMode = UITextFieldViewMode.always
+        
+        titleText.frame = CGRect(x: 20, y: 10, width: width - 140, height: 30)
+        titleText.delegate = self
+        titleText.backgroundColor = Color.white
+        titleText.font = RobotoFont.light(with: 16)
+        titleText.textColor = Color.grey.lighten1
+        titleText.text! = placeHolderTitle
+        titleText.layer.cornerRadius = 10
+        //titleText.clearsOnInsertion = true
+        titleText.clearButtonMode = .whileEditing
+        titleText.returnKeyType = .done
+        features.append(titleText)
+        
+    }
+
+    private func prepareTimeText(){
+        let paddingView = UIView(frame:CGRect(x: 0, y: 0, width: 10, height: timeText.height))
+        timeText.leftView = paddingView
+        timeText.leftViewMode = UITextFieldViewMode.always
+        
+        timeText.frame = CGRect(x: 20, y: 45, width: width - 140, height: 30)
+        timeText.delegate = self
+        timeText.backgroundColor = Color.white
+        timeText.font = RobotoFont.light(with: 16)
+        timeText.textColor = Color.grey.lighten1
+        timeText.text! = placeHolderTime
+        timeText.layer.cornerRadius = 10
+        //timeText.clearsOnInsertion = true
+        timeText.clearButtonMode = .whileEditing
+        timeText.returnKeyType = .done
+        features.append(timeText)
+        
+    }
+
     private func prepareTextField(){
-        textBox.frame = CGRect(x: 20, y: 10, width: width - 40, height: 60)
+        let paddingView = UIView(frame:CGRect(x: 0, y: 0, width: 10, height: textBox.height))
+        textBox.leftView = paddingView
+        textBox.leftViewMode = UITextFieldViewMode.always
+
+        textBox.frame = CGRect(x: 20, y: 80, width: width - 40, height: 30)
         textBox.delegate = self
         textBox.backgroundColor = Color.white
         textBox.font = RobotoFont.light(with: 16)
@@ -114,25 +167,13 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         
     }
     
-    private func prepareTimeText(){
-        timeText.frame = CGRect(x: 20, y: 80, width: width - 150, height: 30)
-        timeText.delegate = self
-        timeText.backgroundColor = Color.white
-        timeText.font = RobotoFont.light(with: 16)
-        timeText.textColor = Color.grey.lighten1
-        timeText.text! = placeHolderTime
-        timeText.layer.cornerRadius = 10
-        //timeText.clearsOnInsertion = true
-        timeText.clearButtonMode = .whileEditing
-        timeText.returnKeyType = .done
-        features.append(timeText)
-        
-    }
+    
+
     
     internal func handleAddResumeCard(){
-        let size = 110
+        let size = 210
         
-        if textBox.hasText && timeText.hasText && button.backgroundColor == Color.grey.base && textBox.text != placeHolder && timeText.text != placeHolderTime{
+        if textBox.hasText && timeText.hasText && titleText.hasText && button.backgroundColor == Color.grey.base && textBox.text != placeHolder && timeText.text != placeHolderTime && titleText.text != placeHolderTitle{
             button.backgroundColor = Color.lightGreen.base
             textBox.resignFirstResponder()
             timeText.resignFirstResponder()
@@ -140,13 +181,17 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         else if button.backgroundColor == Color.lightGreen.base{
             words = textBox.text!
             timeWords = timeText.text!
+            titleWords = titleText.text!
             textBox.textColor = Color.grey.lighten1
             timeText.textColor = Color.grey.lighten1
+            titleText.textColor = Color.grey.lighten1
             textBox.text = placeHolder
             timeText.text = placeHolderTime
+            titleText.text = placeHolderTitle
             textBox.resignFirstResponder()
             timeText.resignFirstResponder()
-            addResumeCard(y: 50, vc: self.scrollView, text: words)
+            titleText.resignFirstResponder()
+            addResumeCard(y: 50, vc: self.scrollView, text: words, text2: timeWords, text3: titleWords)
             resumeCardBottom += size+resumeCardSpacing
         }
         else{
@@ -173,8 +218,8 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     }
     
     
-    internal func addResumeCard(y: Int, vc: UIScrollView, text: String){
-        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 160 + 110*(resumeCards.count), width: width - 50, height: 100, text: text, text2: timeWords)
+    internal func addResumeCard(y: Int, vc: UIScrollView, text: String, text2: String, text3: String){
+        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 160 + 150*(resumeCards.count), width: width - 50, height: 140, text: text, text2: text2, text3: text3)
         card.cornerRadius = 10
         button.backgroundColor = Color.grey.base
         resumeCards.append(card)
@@ -215,7 +260,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     
     
     func backgroundTapped(){
-        if (textBox.hasText && textBox.text != placeHolder && timeText.hasText && timeText.text != placeHolderTime){
+        if (textBox.hasText && textBox.text != placeHolder && timeText.hasText && timeText.text != placeHolderTime && titleText.hasText && titleText.text != placeHolderTitle){
             button.backgroundColor = Color.lightGreen.base
         }
         else{
@@ -228,7 +273,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         self.view.endEditing(true)
-        if textBox.text != "" && timeText.text != "" && textBox.text != placeHolder && timeText.text != placeHolderTime{
+        if textBox.text != "" && timeText.text != "" && titleText.text != "" && textBox.text != placeHolder && timeText.text != placeHolderTime && titleText.text != placeHolderTitle{
         button.backgroundColor = Color.lightGreen.base
         }
         return true
@@ -236,7 +281,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     }
     
     public func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.text == placeHolder || textField.text == placeHolderTime{
+        if textField.text == placeHolder || textField.text == placeHolderTime || titleText.text == placeHolderTitle{
             textField.text = ""
             textField.textColor = Color.black
         }
@@ -255,9 +300,14 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
                 textField.textColor = Color.grey.lighten1
                 textField.text = placeHolder
             }
-            else{
+            else if textField == timeText{
                 textField.textColor = Color.grey.lighten1
                 textField.text = placeHolderTime
+            }
+            else if textField == titleText{
+                textField.textColor = Color.grey.lighten1
+                textField.text = placeHolderTitle
+
             }
             button.backgroundColor = Color.grey.base
         }
