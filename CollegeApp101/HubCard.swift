@@ -34,6 +34,8 @@ class HubCard: Card {
         leftButtonsInset = UIEdgeInsets.zero
         rightButtonsInset = UIEdgeInsets.zero
         titleLabelInset = UIEdgeInsets.zero
+        backgroundColor = Color.white
+        cornerRadiusPreset = .cornerRadius3
         
         
         setTrashButton()
