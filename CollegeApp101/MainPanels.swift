@@ -267,7 +267,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         let generalColor = UIColor(red:0.73, green:0.81, blue:0.50, alpha:1.0)
         let evaluationColor = UIColor(red:0.59, green:0.76, blue:0.18, alpha:1.0)
         
-        let backgroundColor = UIColor(red:0.82, green:0.92, blue:0.91, alpha:1.0)
+        //let backgroundColor = UIColor(red:0.82, green:0.92, blue:0.91, alpha:1.0)
         
         coachingPreviewGeneral.setCoachingName("General")
         coachingPreviewWriting.setCoachingName("Writing")
