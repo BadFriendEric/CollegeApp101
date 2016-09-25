@@ -212,7 +212,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         //self.addChildViewController(menu)
     }
    
-    ///Prepare Career Panel///
+    ///Prepare Planner Panel///
     internal func prepareCareerView(){
         careerFeatureView.frame = CGRect(x: 0, y: Constants.navBarHeight+Constants.statusBarHeight, width: navBar.width, height: careerVC.view.frame.height-Constants.navBarHeight-Constants.statusBarHeight)
         let cf1: CareerFeature = CareerFeatureTopSchools()
