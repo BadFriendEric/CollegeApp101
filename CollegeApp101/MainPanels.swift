@@ -217,7 +217,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         let cf1: CareerFeature = CareerFeatureTopSchools()
         let cf2: CareerFeature = CareerFeatureResumeBuilder()
         let cf3: CareerFeature = CareerFeature()
-        let cf4: CareerFeature = CareerFeature()
+        let cf4: CareerFeature = CareerFeatureVolunteerMatch()
         let cf5: CareerFeature = CareerFeature()
         careerFeatures.append(cf1)
         careerFeatures.append(cf2)
@@ -236,13 +236,13 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
                         height: Int(careerFeatureView.frame.height)/numFeatures+1)
             careerFeatureView.addSubview(cf.view)
         }
-        cf1.setColor(Color.blue.lighten1)
-        cf2.setColor(Color.blue.darken1)
-        cf3.setColor(Color.blue.lighten1)
-        cf4.setColor(Color.blue.darken1)
-        cf5.setColor(Color.blue.lighten1)
+        cf1.setColor(Color.blue.lighten2)
+        cf2.setColor(Color.indigo.lighten2)
+        cf3.setColor(Color.deepPurple.lighten2)
+        cf4.setColor(Color.purple.lighten2)
+        cf5.setColor(Color.pink.lighten2)
         cf3.setFeatureTitle("Reminders")
-        cf4.setFeatureTitle("Volunteer Match")
+        //cf4.setFeatureTitle("Volunteer Match")
         cf5.setFeatureTitle("Essay Planner")
         
         careerVC.view.addSubview(careerFeatureView)
@@ -286,6 +286,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         coachingPreviewJunior.setBackgroundColor(juniorColor)
         coachingPreviewSenior.setBackgroundColor(seniorColor)
         
+        coachingPreviewFreshman.setPreviewImgs()
         
         let titleColor: UIColor! = Color.black
         

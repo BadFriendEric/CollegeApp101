@@ -11,7 +11,7 @@ import Foundation
 import Material
 
 open class CareerFeatureTopSchools : CareerFeature {
- 
+    
     //0 for List View, 1 for Search View
     var currentView : Int = 0
     var schools : [TopSchoolsListItem]! = [TopSchoolsListItem]()
@@ -66,7 +66,6 @@ open class CareerFeatureTopSchools : CareerFeature {
             //print(bottomY)
             features.append(s)
             s.refreshTitle()
-            print(s.schoolName)
         }
         
         new.frame = CGRect(x: 0, y: bottomY, width: Int(MainSwipeController.Constants.ScreenWidth), height: 60)
@@ -83,7 +82,7 @@ open class CareerFeatureTopSchools : CareerFeature {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleAddNew))
         tap.delegate = self
         new.addGestureRecognizer(tap)
-
+        
         
         new.addSubview(t)
         new.addSubview(b)
