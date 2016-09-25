@@ -237,11 +237,11 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
                         height: Int(careerFeatureView.frame.height)/numFeatures+1)
             careerFeatureView.addSubview(cf.view)
         }
-        cf1.setColor(Color.blue.lighten1)
-        cf2.setColor(Color.blue.darken1)
-        cf3.setColor(Color.blue.lighten1)
-        cf4.setColor(Color.blue.darken1)
-        cf5.setColor(Color.blue.lighten1)
+        cf1.setColor(Color.blue.lighten2)
+        cf2.setColor(Color.indigo.lighten2)
+        cf3.setColor(Color.deepPurple.lighten2)
+        cf4.setColor(Color.purple.lighten2)
+        cf5.setColor(Color.pink.lighten2)
         cf3.setFeatureTitle("Reminders")
         cf5.setFeatureTitle("Essay Planner")
 
@@ -293,88 +293,88 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         let h = height - 70
         //CGRect(x: 0, y: 70, width: coachingVC.view.frame.width/2, height: h/3)
         let writing: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70, width: coachingVC.view.frame.width/2, height: h/3))
-        //addCircle(frame: CGRect(x: 5, y: 10, width: coachingVC.view.frame.width/2 - 10, height: coachingVC.view.frame.width/2 - 10), btn: writing, c: writingColor.cgColor)
+        addCircle(frame: CGRect(x: 5, y: 10, width: coachingVC.view.frame.width/2 - 10, height: coachingVC.view.frame.width/2 - 10), btn: writing, c: writingColor.cgColor)
         writing.setTitleColor(titleColor, for: UIControlState())
         writing.setTitle("Writing", for: UIControlState())
         writing.cornerRadius = 0
-        writing.titleLabel?.font = UIFont(name: "Scope One", size: 34)
+        writing.titleLabel?.font = UIFont(name: "Scope One", size: 30)
         writing.titleLabel?.adjustsFontSizeToFitWidth = true
         //writing.backgroundColor = Color.red.lighten1
-        writing.backgroundColor = writingColor
+        writing.backgroundColor = backgroundColor
         writing.addTarget(self, action: #selector(handleCoachingWritingButton), for: .touchDown)
         coachingVC.view.addSubview(writing)
         
         let general: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70 + h/3, width: coachingVC.view.frame.width/2, height: h/3))
-        //addCircle(frame: CGRect(x: 5, y: 10, width: coachingVC.view.frame.width/2 - 10, height: coachingVC.view.frame.width/2 - 10), btn: general, c: generalColor.cgColor)
+        addCircle(frame: CGRect(x: 5, y: 10, width: coachingVC.view.frame.width/2 - 10, height: coachingVC.view.frame.width/2 - 10), btn: general, c: generalColor.cgColor)
         general.setTitleColor(titleColor, for: UIControlState())
         general.setTitle("General", for: UIControlState())
-        general.backgroundColor = generalColor
+        general.backgroundColor = backgroundColor
         general.cornerRadius = 0
-        general.titleLabel?.font = UIFont(name: "Scope One", size: 34)
+        general.titleLabel?.font = UIFont(name: "Scope One", size: 30)
         general.titleLabel?.adjustsFontSizeToFitWidth = true
         general.addTarget(self, action: #selector(handleCoachingGeneralButton), for: .touchDown)
         coachingVC.view.addSubview(general)
         
         let evaluation: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70 + 2*(h/3), width: coachingVC.view.frame.width/2, height: h/3))
-        //addCircle(frame: CGRect(x: 5, y: 10, width: coachingVC.view.frame.width/2 - 10, height: coachingVC.view.frame.width/2 - 10), btn: evaluation, c: evaluationColor.cgColor)
+        addCircle(frame: CGRect(x: 5, y: 10, width: coachingVC.view.frame.width/2 - 10, height: coachingVC.view.frame.width/2 - 10), btn: evaluation, c: evaluationColor.cgColor)
         evaluation.setTitleColor(titleColor, for: UIControlState())
         evaluation.setTitle("Evaluation", for: UIControlState())
         evaluation.cornerRadius = 0
-        evaluation.titleLabel?.font = UIFont(name: "Scope One", size: 34)
+        evaluation.titleLabel?.font = UIFont(name: "Scope One", size: 30)
         evaluation.titleLabel?.adjustsFontSizeToFitWidth = true
-        evaluation.backgroundColor = evaluationColor
+        evaluation.backgroundColor = backgroundColor
         evaluation.addTarget(self, action: #selector(handleCoachingEvaluationButton), for: .touchDown)
         coachingVC.view.addSubview(evaluation)
         
         let freshman: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70, width: coachingVC.view.frame.width/2, height: h/4))
-        //addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: freshman, c: freshmanColor.cgColor)
+        addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: freshman, c: freshmanColor.cgColor)
         freshman.setTitleColor(titleColor, for: UIControlState())
         freshman.setTitle("Freshman", for: UIControlState())
-        freshman.titleLabel?.font = UIFont(name: "Scope One", size: 34)
-        freshman.titleLabel?.adjustsFontSizeToFitWidth = true
+        freshman.titleLabel?.font = UIFont(name: "Scope One", size: 26)
+        freshman.titleLabel?.adjustsFontSizeToFitWidth = false
         freshman.cornerRadius = 0
         //freshman.backgroundColor = Color.purple.lighten2
-        freshman.backgroundColor = freshmanColor
+        freshman.backgroundColor = backgroundColor
         freshman.addTarget(self, action: #selector(handleCoachingFreshmanButton), for: .touchDown)
         coachingVC.view.addSubview(freshman)
         
         let sophomore: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + (h/4), width: coachingVC.view.frame.width/2, height: h/4))
-        //addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: sophomore, c: sophomoreColor.cgColor)
+        addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: sophomore, c: sophomoreColor.cgColor)
         sophomore.setTitleColor(titleColor, for: UIControlState())
         sophomore.setTitle("Sophomore", for: UIControlState())
-        sophomore.titleLabel?.font = UIFont(name: "Scope One", size: 34)
-        sophomore.titleLabel?.adjustsFontSizeToFitWidth = true
+        sophomore.titleLabel?.font = UIFont(name: "Scope One", size: 26)
+        sophomore.titleLabel?.adjustsFontSizeToFitWidth = false
         sophomore.cornerRadius = 0
         //sophomore.backgroundColor = Color.teal.lighten2
-        sophomore.backgroundColor = sophomoreColor
+        sophomore.backgroundColor = backgroundColor
         sophomore.addTarget(self, action: #selector(handleCoachingSophomoreButton), for: .touchDown)
         coachingVC.view.addSubview(sophomore)
 
         let junior: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + 2*(h/4), width: coachingVC.view.frame.width/2, height: h/4))
-        //addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: junior, c: juniorColor.cgColor)
+        addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: junior, c: juniorColor.cgColor)
         junior.setTitleColor(titleColor, for: UIControlState())
         junior.setTitle("Junior", for: UIControlState())
         junior.cornerRadius = 0
-        junior.titleLabel?.font = UIFont(name: "Scope One", size: 34)
-        junior.titleLabel?.adjustsFontSizeToFitWidth = true
+        junior.titleLabel?.font = UIFont(name: "Scope One", size: 26)
+        junior.titleLabel?.adjustsFontSizeToFitWidth = false
         //junior.backgroundColor = Color.pink.lighten2
-        junior.backgroundColor = juniorColor
+        junior.backgroundColor = backgroundColor
         junior.addTarget(self, action: #selector(handleCoachingJuniorButton), for: .touchDown)
         coachingVC.view.addSubview(junior)
 
         let senior: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + 3*(h/4), width: coachingVC.view.frame.width/2, height: h/4))
-        //addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: senior, c: seniorColor.cgColor)
+        addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: senior, c: seniorColor.cgColor)
+        senior.titleLabel?.font = UIFont(name: "Scope One", size: 26)
+        senior.titleLabel?.adjustsFontSizeToFitWidth = false
         senior.setTitleColor(titleColor, for: UIControlState())
         senior.setTitle("Senior", for: UIControlState())
         senior.cornerRadius = 0
-        senior.titleLabel?.font = UIFont(name: "Scope One", size: 34)
-        senior.titleLabel?.adjustsFontSizeToFitWidth = true
         //senior.backgroundColor = Color.cyan.lighten2
-        senior.backgroundColor = seniorColor
+        senior.backgroundColor = backgroundColor
         senior.addTarget(self, action: #selector(handleCoachingSeniorButton), for: .touchDown)
         coachingVC.view.addSubview(senior)
 
-        
+        /*
         let lineColor : UIColor = Color.black
         
         coachingLineMid = UIView(frame: CGRect(x: width/2,y: 70 ,width: 2,height: h))
@@ -417,7 +417,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         coachingLineR3.alpha = 1
         coachingVC.view.addSubview(coachingLineR3)
         
-        
+        */
 
     }
     
