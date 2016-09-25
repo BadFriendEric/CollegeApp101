@@ -66,7 +66,6 @@ open class CareerFeatureTopSchools : CareerFeature {
             //print(bottomY)
             features.append(s)
             s.refreshTitle()
-            print(s.schoolName)
         }
         
         new.frame = CGRect(x: 0, y: bottomY, width: Int(MainSwipeController.Constants.ScreenWidth), height: 60)

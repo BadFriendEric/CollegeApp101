@@ -77,8 +77,8 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     var coachingPreviewJunior : CoachingPreview! = CoachingPreview()
     var coachingPreviewSenior : CoachingPreview! = CoachingPreview()
 
-    var navBarHighlightColor = Color.grey.darken3
-    var navColor = Color.white
+    var navBarHighlightColor = Color.black
+    let navColor = Color.grey.lighten2
     
     
     ///Navigation Bar Variables///
@@ -173,7 +173,6 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
     }
     fileprivate func prepareNavigationBar(){
-        let navColor : UIColor = Color.grey.lighten2
         //let navBgImage:UIImage = UIImage(named: "NavBarBackground")!
         //let navTexture = UIColor(patternImage: navBgImage)
         statusBar.backgroundColor = navColor
@@ -415,10 +414,11 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     internal func refreshTitle(_ title: String){
         
         //navItem.titleLabel.frame = CGRect(x: Int(navBar.frame.width/2)-buttonWidths, y: 15, width: buttonWidths, height: 70)
+        navBar.contentEdgeInsets = UIEdgeInsets.zero
         navItem.title = title
-        navItem.titleLabel.clipsToBounds = false
+        //navItem.titleLabel.clipsToBounds = false
         navItem.titleLabel.textAlignment = .center
-        navItem.titleLabel.font = UIFont(name: "Oswald", size: 30)
+        navItem.titleLabel.font = UIFont(name: "Oswald", size: 32)
         navItem.titleLabel.textColor = navBarHighlightColor
         UIView.animate(withDuration: 0.5, animations: {
             }, completion: { finished in
