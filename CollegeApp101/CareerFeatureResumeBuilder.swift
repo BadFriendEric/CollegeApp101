@@ -49,11 +49,11 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
         tap.delegate = self
         scrollView.addGestureRecognizer(tap)
+        prepareRandomUI()
         prepareMainButtons()
         prepareBuildButton()
         prepareAdviceButton()
         prepareTextField()
-        prepareRandomUI()
         prepareTimeText()
         prepareTitleText()
         refreshScrollView(600) //use when pushing stuff off the screen
@@ -81,7 +81,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         buildBtn.titleLabel?.font = UIFont(name: "Scope One", size: 20)
         buildBtn.titleLabel?.adjustsFontSizeToFitWidth = true
         buildBtn.setTitle("Build Resume", for: .normal)
-        buildBtn.backgroundColor = Color.purple.darken2
+        buildBtn.backgroundColor = Color.lightGreen.base
         buildBtn.pulseColor = Color.grey.lighten4
         buildBtn.cornerRadius = 10
         buildBtn.addTarget(self, action: #selector(handleBuildBtn), for: .touchUpInside)
@@ -89,7 +89,10 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     }
     
     private func prepareRandomUI(){
-        //nothuing here rn lol
+        let bg = UIView(frame: CGRect(x: 10, y: 5, width: width - 20, height: 150))
+        bg.backgroundColor = UIColor(red:0.88, green:1.00, blue:0.98, alpha:0.5)
+        bg.cornerRadius = 10
+        features.append(bg)
     }
     
     private func prepareAdviceButton(){
@@ -98,7 +101,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
         adviceBtn.titleLabel?.font = UIFont(name: "Scope One", size: 20)
         adviceBtn.titleLabel?.adjustsFontSizeToFitWidth = true
         adviceBtn.setTitle("How to improve your resume", for: .normal)
-        adviceBtn.backgroundColor = Color.purple.darken2
+        adviceBtn.backgroundColor = Color.lightGreen.base
         adviceBtn.pulseColor = Color.grey.lighten4
         adviceBtn.cornerRadius = 10
         adviceBtn.addTarget(self, action: #selector(handleHowToBtn), for: .touchUpInside)
@@ -216,7 +219,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     
     
     internal func addResumeCard(y: Int, vc: UIScrollView, text: String, text2: String, text3: String){
-        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 160 + 210*(resumeCards.count), width: width - 50, height: 200, text: text, text2: text2, text3: text3)
+        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 160 + 150*(resumeCards.count), width: width - 50, height: 140, text: text, text2: text2, text3: text3)
         card.cornerRadius = 10
         button.backgroundColor = Color.grey.base
         resumeCards.append(card)

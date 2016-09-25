@@ -32,7 +32,7 @@ class ResumeCard: Card, UITextFieldDelegate{
     
     var boxTime: UITextField = UITextField()
     var box: UITextField = UITextField()
-    var boxTitle: UITextView = UITextView()
+    var boxTitle: UITextField = UITextField()
 
     
     //BUG TO FIX: WHEN U PRESS
@@ -152,18 +152,18 @@ class ResumeCard: Card, UITextFieldDelegate{
         mysubviews.append(boxTime)
         
         
-        boxTitle = UITextView(frame: CGRect(x: iconSize + 15, y: 2*iconSize + 30, width: Int(self.frame.width) - iconSize - buttonArea, height: 60))
+        boxTitle = UITextField(frame: CGRect(x: iconSize + 15, y: 2*iconSize + 30, width: Int(self.frame.width) - iconSize - buttonArea, height: 30))
         boxTitle.backgroundColor = Color.white
         boxTitle.textColor = Color.black
         boxTitle.font = RobotoFont.light(with: 16)
         boxTitle.text = text
         boxTitle.textAlignment = .left
-        boxTitle.allowsEditingTextAttributes = true
-        //boxTitle.borderStyle = .none
-        //boxTitle.adjustsFontSizeToFitWidth = true
-        //boxTitle.minimumFontSize = 10
+        //boxTitle.allowsEditingTextAttributes = true
+        boxTitle.borderStyle = .none
+        boxTitle.adjustsFontSizeToFitWidth = true
+        boxTitle.minimumFontSize = 10
         boxTitle.isUserInteractionEnabled = false
-        //boxTitle.clearButtonMode = .whileEditing
+        boxTitle.clearButtonMode = .whileEditing
         boxTitle.returnKeyType = .done
         mysubviews.append(boxTitle)
     }
@@ -214,16 +214,20 @@ class ResumeCard: Card, UITextFieldDelegate{
             editOn = true
             box.isUserInteractionEnabled = true
             boxTime.isUserInteractionEnabled = true
+            boxTitle.isUserInteractionEnabled = true
             box.backgroundColor = Color.grey.lighten2
             boxTime.backgroundColor = Color.grey.lighten2
+            boxTitle.backgroundColor = Color.grey.lighten2
             editBtn.tintColor = Color.red.darken3
         }
         else{
             editOn = false
             box.isUserInteractionEnabled = false
             boxTime.isUserInteractionEnabled = false
+            boxTitle.isUserInteractionEnabled = false
             box.backgroundColor = Color.white
             boxTime.backgroundColor = Color.white
+            boxTitle.backgroundColor = Color.white
             editBtn.tintColor = editColor
         }
         
