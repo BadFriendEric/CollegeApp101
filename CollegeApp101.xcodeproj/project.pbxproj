@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		C11989491D602AE80027F24E /* ResumeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11989481D602AE80027F24E /* ResumeCard.swift */; };
 		C119894B1D602C040027F24E /* CareerFeatureResumeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */; };
+		C16F19511D97536D00242368 /* CareerFeatureVolunteerMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16F19501D97536D00242368 /* CareerFeatureVolunteerMatch.swift */; };
 		C1AF116A1D5EAA3E009D718D /* PlannerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF11691D5EAA3E009D718D /* PlannerItem.swift */; };
 		C1AF116C1D5EAACB009D718D /* CareerFeatureTopSchools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF116B1D5EAACB009D718D /* CareerFeatureTopSchools.swift */; };
+		C1C03BB41D9789EB00B1948E /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1C03BB31D9789EB00B1948E /* SourceSansPro-Regular.otf */; };
 		C1E574F61D55A42200EF106C /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E574F51D55A42200EF106C /* RegisterVC.swift */; };
 		C1E574F81D55A42900EF106C /* RegisterAccTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E574F71D55A42900EF106C /* RegisterAccTypeVC.swift */; };
 		C1E574FA1D55A43200EF106C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E574F91D55A43200EF106C /* LoginVC.swift */; };
@@ -44,8 +46,10 @@
 		B661A4E70562B7F02EF14EA9 /* Pods_CollegeApp101UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollegeApp101UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11989481D602AE80027F24E /* ResumeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResumeCard.swift; sourceTree = "<group>"; };
 		C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareerFeatureResumeBuilder.swift; sourceTree = "<group>"; };
+		C16F19501D97536D00242368 /* CareerFeatureVolunteerMatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareerFeatureVolunteerMatch.swift; sourceTree = "<group>"; };
 		C1AF11691D5EAA3E009D718D /* PlannerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerItem.swift; sourceTree = "<group>"; };
 		C1AF116B1D5EAACB009D718D /* CareerFeatureTopSchools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareerFeatureTopSchools.swift; sourceTree = "<group>"; };
+		C1C03BB31D9789EB00B1948E /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
 		C1E574F51D55A42200EF106C /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		C1E574F71D55A42900EF106C /* RegisterAccTypeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterAccTypeVC.swift; sourceTree = "<group>"; };
 		C1E574F91D55A43200EF106C /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 				E91193C11D791411008954FD /* TopSchoolsListItem.swift */,
 				C1AF116B1D5EAACB009D718D /* CareerFeatureTopSchools.swift */,
 				C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */,
+				C16F19501D97536D00242368 /* CareerFeatureVolunteerMatch.swift */,
 				E9DF9FEA1D4E7FE4007A5697 /* HubCard.swift */,
 				C11989481D602AE80027F24E /* ResumeCard.swift */,
 				E9C27C261D4C0AD800160A05 /* MainSwipeController.swift */,
@@ -138,6 +143,7 @@
 				E9D939461D73EE5900F827A9 /* Oswald-Regular.ttf */,
 				E936DC311D601DCE00D6878C /* Lora-Bold.ttf */,
 				E936DC331D601E3F00D6878C /* ScopeOne-Regular.ttf */,
+				C1C03BB31D9789EB00B1948E /* SourceSansPro-Regular.otf */,
 				E936DC351D604C3E00D6878C /* PoiretOne-Regular.ttf */,
 				E936DC371D604E9B00D6878C /* Merriweather-Regular.ttf */,
 				E936DC391D604F8700D6878C /* VesperLibre-Regular.ttf */,
@@ -227,6 +233,7 @@
 			files = (
 				E9598A0E1D4C0667004D8842 /* LaunchScreen.storyboard in Resources */,
 				E936DC361D604C3E00D6878C /* PoiretOne-Regular.ttf in Resources */,
+				C1C03BB41D9789EB00B1948E /* SourceSansPro-Regular.otf in Resources */,
 				E936DC381D604E9C00D6878C /* Merriweather-Regular.ttf in Resources */,
 				E9D6AAE91D57276400356027 /* Images.xcassets in Resources */,
 				E9598A0B1D4C0667004D8842 /* Assets.xcassets in Resources */,
@@ -301,6 +308,7 @@
 				E9C27C271D4C0AD800160A05 /* MainSwipeController.swift in Sources */,
 				E9C27C291D4C0ADE00160A05 /* MainPanels.swift in Sources */,
 				E91193C21D791411008954FD /* TopSchoolsListItem.swift in Sources */,
+				C16F19511D97536D00242368 /* CareerFeatureVolunteerMatch.swift in Sources */,
 				C1E574FA1D55A43200EF106C /* LoginVC.swift in Sources */,
 				C1AF116A1D5EAA3E009D718D /* PlannerItem.swift in Sources */,
 				C1E574F61D55A42200EF106C /* RegisterVC.swift in Sources */,

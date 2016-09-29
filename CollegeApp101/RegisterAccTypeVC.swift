@@ -23,6 +23,9 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
     let width = MainSwipeController.Constants.ScreenWidth
     let height = MainSwipeController.Constants.ScreenHeight
     
+    let btnW = 300
+    let btnH = 100
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareView()
@@ -44,14 +47,15 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
     
     fileprivate func prepareContinueButton() {
         //Continue BUTTON
-        let btn2: RaisedButton = RaisedButton()
+        let btn2: RaisedButton = RaisedButton(frame: CGRect(x: 140, y: 550, width: 100, height: 50))
         btn2.addTarget(self, action: #selector(handleContinueButton), for: .touchUpInside)
         btn2.setTitle("Continue", for: UIControlState())
         btn2.setTitleColor(Color.black, for: UIControlState())
         btn2.setTitleColor(Color.black, for: .highlighted)
         btn2.backgroundColor = Color.blue.lighten2
         
-        _ = view.layout(btn2).bottom(40).center(offsetX: 0, offsetY: 120).centerHorizontally()
+        self.view.addSubview(btn2)
+        
     }
     
     internal func handleContinueButton(){
@@ -63,15 +67,14 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
     /// Prepares the resign responder button.
     fileprivate func prepareStudentButton() {
         //Continue BUTTON
-        studentBtn = RaisedButton()
+        studentBtn = RaisedButton(frame: CGRect(x: 35, y: 200-btnH, width: btnW, height: btnH))
         studentBtn.addTarget(self, action: #selector(handleStudentButton), for: .touchUpInside)
         studentBtn.setTitle("Student", for: UIControlState())
         studentBtn.setTitleColor(Color.black, for: UIControlState())
         studentBtn.setTitleColor(Color.black, for: .highlighted)
         studentBtn.backgroundColor = Color.blue.lighten4
         
-        
-        _ = view.layout(studentBtn).centerHorizontally().center(offsetX: 0, offsetY: -120).width(width-80).height(80)
+        self.view.addSubview(studentBtn)
     }
     
     internal func handleStudentButton(){
@@ -85,14 +88,15 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
     /// Prepares the resign responder button.
     fileprivate func prepareCoachButton() {
         //Continue BUTTON
-        coachBtn = RaisedButton()
+        coachBtn = RaisedButton(frame: CGRect(x: 35, y: 350-btnH, width: btnW, height: btnH))
         coachBtn.addTarget(self, action: #selector(handleCoachButton), for: .touchUpInside)
         coachBtn.setTitle("Coach", for: UIControlState())
         coachBtn.setTitleColor(Color.black, for: UIControlState())
         coachBtn.setTitleColor(Color.black, for: .highlighted)
         coachBtn.backgroundColor = Color.blue.lighten4
         
-        _ = view.layout(coachBtn).centerHorizontally().centerVertically().width(width-80).height(80)
+        self.view.addSubview(coachBtn)
+        
     }
     
     internal func handleCoachButton(){
@@ -105,14 +109,14 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
     /// Prepares the resign responder button.
     fileprivate func prepareParentButton() {
         //Continue BUTTON
-        parentBtn = RaisedButton()
+        parentBtn = RaisedButton(frame: CGRect(x: 35, y: 500-btnH, width: btnW, height: btnH))
         parentBtn.addTarget(self, action: #selector(handleParentButton), for: .touchUpInside)
         parentBtn.setTitle("Parent", for: UIControlState())
         parentBtn.setTitleColor(Color.black, for: UIControlState())
         parentBtn.setTitleColor(Color.black, for: .highlighted)
         parentBtn.backgroundColor = Color.blue.lighten4
         
-        _ = view.layout(parentBtn).center(offsetX: 0, offsetY: 120).width(width-80).height(80)
+        self.view.addSubview(parentBtn)
     }
     
     internal func handleParentButton(){
@@ -142,7 +146,7 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
         helpButton.setImage(helpButtonImage, for: .highlighted)
         helpButton.addTarget(self, action: #selector(handleHelpButton), for: .touchUpInside)
         
-        _ = view.layout(helpButton).top(20).right(3)
+        view.layout(helpButton).top(20).right(3)
     }
     
     fileprivate func prepareBackButton(){
@@ -154,7 +158,7 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
         backButton.setImage(menuButtonImage, for: .highlighted)
         backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
         
-        _ = view.layout(backButton).top(20).left(3)
+        view.layout(backButton).top(20).left(3)
     }
     
     internal func handleHelpButton() {

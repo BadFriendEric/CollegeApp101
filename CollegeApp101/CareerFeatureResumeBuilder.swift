@@ -219,7 +219,7 @@ public class CareerFeatureResumeBuilder: CareerFeature, UITextFieldDelegate {
     
     
     internal func addResumeCard(y: Int, vc: UIScrollView, text: String, text2: String, text3: String){
-        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 160 + 150*(resumeCards.count), width: width - 50, height: 140, text: text, text2: text2, text3: text3)
+        let card: ResumeCard = ResumeCard(vc: self, x: 25, y: 165 + 150*(resumeCards.count), width: width - 50, height: 140, text: text, text2: text2, text3: text3)
         card.cornerRadius = 10
         button.backgroundColor = Color.grey.base
         resumeCards.append(card)
