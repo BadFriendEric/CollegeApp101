@@ -52,7 +52,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     ///View Controllers///
     let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: MainSwipeController.Constants.StatusBarHeight+1))
     var hubVC: UIViewController! = nil
-    var coachingVC: UIViewController! = nil
+    var coachingVC: CoachingVC! = nil
     var careerVC: UIViewController! = nil
     var currentVC: UIViewController!
     var hubScrollView: UIScrollView! = UIScrollView()
@@ -69,14 +69,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     //var coachingFeatures: [CoachingPreview]! = [CoachingPreview]()
     var menu: MenuVC! = MenuVC()
     var hubCards: [HubCard] = []
-    var coachingPreviewGeneral : CoachingPreview! = CoachingPreview()
-    var coachingPreviewWriting : CoachingPreview! = CoachingPreview()
-    var coachingPreviewEvaluation : CoachingPreview! = CoachingPreview()
-    var coachingPreviewFreshman : CoachingPreview! = CoachingPreview()
-    var coachingPreviewSophomore : CoachingPreview! = CoachingPreview()
-    var coachingPreviewJunior : CoachingPreview! = CoachingPreview()
-    var coachingPreviewSenior : CoachingPreview! = CoachingPreview()
-
+    
     var navBarHighlightColor = Color.black
     let navColor = Color.grey.lighten2
     
@@ -99,6 +92,8 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     fileprivate var hubCardBottom = Int(Constants.navBarHeight) + 15
     fileprivate var hubCardSpacing = 20
     
+    let profile : Profile = Profile(user: "samhollenbach", pass: "password")
+    
     
     /////////////////////////////////////////////////
     //---------------Prepare Methods---------------//
@@ -116,13 +111,15 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
         prepareHubScrollView()
         prepareCareerView()
-        prepareCoachView()
+        coachingVC.prepareView(main: self)
         
         let c = addCard(hubCardBottom, size: 110, vc: hubScrollView)
         c.type = "Default"
         refreshHubCards()
         
     }
+    
+    
     fileprivate func prepareView(){
         view.backgroundColor = Color.grey.lighten2
         
@@ -249,187 +246,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         
     }
     
-    ///Prepare Coach Panel///
-    internal func prepareCoachView(){
-        coachingPreviewGeneral.superview = coachingVC
-        coachingPreviewWriting.superview = coachingVC
-        coachingPreviewEvaluation.superview = coachingVC
-        coachingPreviewFreshman.superview = coachingVC
-        coachingPreviewSophomore.superview = coachingVC
-        coachingPreviewJunior.superview = coachingVC
-        coachingPreviewSenior.superview  = coachingVC
-        
-        let freshmanColor = UIColor(red:0.79, green:0.95, blue:0.98, alpha:1.0)
-        let sophomoreColor = UIColor(red:0.43, green:0.85, blue:0.96, alpha:1.0)
-        let juniorColor = UIColor(red:0.01, green:0.76, blue:0.92, alpha:1.0)
-        let seniorColor = UIColor(red:0.00, green:0.59, blue:0.73, alpha:1.0)
-        let writingColor = UIColor(red:0.87, green:0.91, blue:0.78, alpha:1.0)
-        let generalColor = UIColor(red:0.73, green:0.81, blue:0.50, alpha:1.0)
-        let evaluationColor = UIColor(red:0.59, green:0.76, blue:0.18, alpha:1.0)
-        
-        //let backgroundColor = UIColor(red:0.82, green:0.92, blue:0.91, alpha:1.0)
-        
-        coachingPreviewGeneral.setCoachingName("General")
-        coachingPreviewWriting.setCoachingName("Writing")
-        coachingPreviewEvaluation.setCoachingName("Evaluation")
-        coachingPreviewFreshman.setCoachingName("Freshman")
-        coachingPreviewSophomore.setCoachingName("Sophomore")
-        coachingPreviewJunior.setCoachingName("Junior")
-        coachingPreviewSenior.setCoachingName("Senior")
-        
-        
-        coachingPreviewGeneral.setBackgroundColor(generalColor)
-        coachingPreviewWriting.setBackgroundColor(writingColor)
-        coachingPreviewEvaluation.setBackgroundColor(evaluationColor)
-        coachingPreviewFreshman.setBackgroundColor(freshmanColor)
-        coachingPreviewSophomore.setBackgroundColor(sophomoreColor)
-        coachingPreviewJunior.setBackgroundColor(juniorColor)
-        coachingPreviewSenior.setBackgroundColor(seniorColor)
-        
-        coachingPreviewFreshman.setPreviewImgs()
-        
-        let titleColor: UIColor! = Color.black
-        
-        
-        let h = height - 70
-        //CGRect(x: 0, y: 70, width: coachingVC.view.frame.width/2, height: h/3)
-        let writing: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70, width: coachingVC.view.frame.width/2, height: h/3))
-        addCircle(frame: CGRect(x: 5, y: 10, width: coachingVC.view.frame.width/2 - 10, height: coachingVC.view.frame.width/2 - 10), btn: writing, c: writingColor.cgColor)
-        writing.setTitleColor(titleColor, for: UIControlState())
-        writing.setTitle("Writing", for: UIControlState())
-        writing.cornerRadius = 0
-        writing.titleLabel?.font = UIFont(name: "Scope One", size: 30)
-        writing.titleLabel?.adjustsFontSizeToFitWidth = true
-        //writing.backgroundColor = Color.red.lighten1
-        //writing.backgroundColor Color.amber.base
-        writing.addTarget(self, action: #selector(handleCoachingWritingButton), for: .touchDown)
-        coachingVC.view.addSubview(writing)
-        
-        let general: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70 + h/3, width: coachingVC.view.frame.width/2, height: h/3))
-        addCircle(frame: CGRect(x: 5, y: 10, width: coachingVC.view.frame.width/2 - 10, height: coachingVC.view.frame.width/2 - 10), btn: general, c: generalColor.cgColor)
-        general.setTitleColor(titleColor, for: UIControlState())
-        general.setTitle("General", for: UIControlState())
-        //general.backgroundColor Color.amber.base
-        general.cornerRadius = 0
-        general.titleLabel?.font = UIFont(name: "Scope One", size: 30)
-        general.titleLabel?.adjustsFontSizeToFitWidth = true
-        general.addTarget(self, action: #selector(handleCoachingGeneralButton), for: .touchDown)
-        coachingVC.view.addSubview(general)
-        
-        let evaluation: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70 + 2*(h/3), width: coachingVC.view.frame.width/2, height: h/3))
-        addCircle(frame: CGRect(x: 5, y: 10, width: coachingVC.view.frame.width/2 - 10, height: coachingVC.view.frame.width/2 - 10), btn: evaluation, c: evaluationColor.cgColor)
-        evaluation.setTitleColor(titleColor, for: UIControlState())
-        evaluation.setTitle("Evaluation", for: UIControlState())
-        evaluation.cornerRadius = 0
-        evaluation.titleLabel?.font = UIFont(name: "Scope One", size: 30)
-        evaluation.titleLabel?.adjustsFontSizeToFitWidth = true
-        //evaluation.backgroundColor Color.amber.base
-        evaluation.addTarget(self, action: #selector(handleCoachingEvaluationButton), for: .touchDown)
-        coachingVC.view.addSubview(evaluation)
-        
-        let freshman: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70, width: coachingVC.view.frame.width/2, height: h/4))
-        addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: freshman, c: freshmanColor.cgColor)
-        freshman.setTitleColor(titleColor, for: UIControlState())
-        freshman.setTitle("Freshman", for: UIControlState())
-        freshman.titleLabel?.font = UIFont(name: "Scope One", size: 26)
-        freshman.titleLabel?.adjustsFontSizeToFitWidth = false
-        freshman.cornerRadius = 0
-        //freshman.backgroundColor = Color.purple.lighten2
-        //freshman.backgroundColor Color.amber.base
-        freshman.addTarget(self, action: #selector(handleCoachingFreshmanButton), for: .touchDown)
-        coachingVC.view.addSubview(freshman)
-        
-        let sophomore: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + (h/4), width: coachingVC.view.frame.width/2, height: h/4))
-        addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: sophomore, c: sophomoreColor.cgColor)
-        sophomore.setTitleColor(titleColor, for: UIControlState())
-        sophomore.setTitle("Sophomore", for: UIControlState())
-        sophomore.titleLabel?.font = UIFont(name: "Scope One", size: 26)
-        sophomore.titleLabel?.adjustsFontSizeToFitWidth = false
-        sophomore.cornerRadius = 0
-        //sophomore.backgroundColor = Color.teal.lighten2
-        //sophomore.backgroundColor Color.amber.base
-        sophomore.addTarget(self, action: #selector(handleCoachingSophomoreButton), for: .touchDown)
-        coachingVC.view.addSubview(sophomore)
-        
-        let junior: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + 2*(h/4), width: coachingVC.view.frame.width/2, height: h/4))
-        addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: junior, c: juniorColor.cgColor)
-        junior.setTitleColor(titleColor, for: UIControlState())
-        junior.setTitle("Junior", for: UIControlState())
-        junior.cornerRadius = 0
-        junior.titleLabel?.font = UIFont(name: "Scope One", size: 26)
-        junior.titleLabel?.adjustsFontSizeToFitWidth = false
-        //junior.backgroundColor = Color.pink.lighten2
-        //junior.backgroundColor Color.amber.base
-        junior.addTarget(self, action: #selector(handleCoachingJuniorButton), for: .touchDown)
-        coachingVC.view.addSubview(junior)
-        
-        let senior: FlatButton = FlatButton(frame: CGRect(x: width/2, y: 70 + 3*(h/4), width: coachingVC.view.frame.width/2, height: h/4))
-        addCircle(frame: CGRect(x: 20, y: 5, width: coachingVC.view.frame.width/2 - 40, height: coachingVC.view.frame.width/2 - 50), btn: senior, c: seniorColor.cgColor)
-        senior.titleLabel?.font = UIFont(name: "Scope One", size: 26)
-        senior.titleLabel?.adjustsFontSizeToFitWidth = false
-        senior.setTitleColor(titleColor, for: UIControlState())
-        senior.setTitle("Senior", for: UIControlState())
-        senior.cornerRadius = 0
-        //senior.backgroundColor = Color.cyan.lighten2
-        //senior.backgroundColor Color.amber.base
-        senior.addTarget(self, action: #selector(handleCoachingSeniorButton), for: .touchDown)
-        coachingVC.view.addSubview(senior)
-        
-        /*
-         let lineColor : UIColor = Color.black
-         
-         coachingLineMid = UIView(frame: CGRect(x: width/2,y: 70 ,width: 2,height: h))
-         coachingLineMid.layer.borderWidth = 0
-         coachingLineMid.backgroundColor = lineColor
-         coachingLineMid.alpha = 1
-         coachingVC.view.addSubview(coachingLineMid)
-         
-         coachingLineL1 = UIView(frame: CGRect(x: 0,y: 70 + (h/3) ,width: (width/2) ,height: 2))
-         coachingLineL1.layer.borderWidth = 0
-         coachingLineL1.backgroundColor = lineColor
-         coachingLineL1.alpha = 1
-         coachingVC.view.addSubview(coachingLineL1)
-         
-         coachingLineL2 = UIView(frame: CGRect(x: 0,y: 70 + 2*(h/3) ,width: (width/2),height: 2))
-         coachingLineL2.layer.borderWidth = 0
-         coachingLineL2.layer.borderColor = UIColor.white.cgColor
-         coachingLineL2.backgroundColor = lineColor
-         coachingLineL2.alpha = 1
-         coachingVC.view.addSubview(coachingLineL2)
-         
-         coachingLineR1 = UIView(frame: CGRect(x: width/2,y: 70 + (h/4),width: (width/2),height: 2))
-         coachingLineR1.layer.borderWidth = 0
-         coachingLineR1.layer.borderColor = UIColor.white.cgColor
-         coachingLineR1.backgroundColor = lineColor
-         coachingLineR1.alpha = 1
-         coachingVC.view.addSubview(coachingLineR1)
-         
-         coachingLineR2 = UIView(frame: CGRect(x: width/2,y: 70 + 2*(h/4),width: (width/2),height: 2))
-         coachingLineR2.layer.borderWidth = 0
-         coachingLineR2.layer.borderColor = UIColor.white.cgColor
-         coachingLineR2.backgroundColor = lineColor
-         coachingLineR2.alpha = 1
-         coachingVC.view.addSubview(coachingLineR2)
-         
-         coachingLineR3 = UIView(frame: CGRect(x: width/2,y: 70 + 3*(h/4),width: (width/2),height: 2))
-         coachingLineR3.layer.borderWidth = 0
-         coachingLineR3.layer.borderColor = UIColor.white.cgColor
-         coachingLineR3.backgroundColor = lineColor
-         coachingLineR3.alpha = 1
-         coachingVC.view.addSubview(coachingLineR3)
-         
-         */
-        
-    }
     
-    internal func addCircle(frame: CGRect, btn: FlatButton, c: CGColor){
-        let path = UIBezierPath(ovalIn: frame)
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path.cgPath
-        shapeLayer.fillColor = c
-        btn.layer.addSublayer(shapeLayer)
-        
-    }
     
     
     /////////////////////////////////////////////////
@@ -530,50 +347,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
             menu.slideOut()
         }
     }
-    @objc fileprivate func handleCoachingGeneralButton(){
-        view.addSubview(coachingPreviewGeneral.view)
-        refreshNavBar()
-        coachingPreviewGeneral.pushDownVC(coachingVC, dur: 0.5)
-        //self.addChildViewController(self)
-    }
-    
-    @objc fileprivate func handleCoachingWritingButton(){
-        view.addSubview(coachingPreviewWriting.view)  //Change to writing
-        refreshNavBar()
-        coachingPreviewWriting.pushDownVC(coachingVC, dur: 0.5)  //writing
-    }
-    
-    @objc fileprivate func handleCoachingEvaluationButton(){
-        view.addSubview(coachingPreviewEvaluation.view)  //Change to evaluation
-        refreshNavBar()
-        coachingPreviewEvaluation.pushDownVC(coachingVC, dur: 0.5)  //evaluation
-    }
-    
-    @objc fileprivate func handleCoachingFreshmanButton(){
-        view.addSubview(coachingPreviewFreshman.view)  //Change to freshman
-        refreshNavBar()
-        coachingPreviewFreshman.pushDownVC(coachingVC, dur: 0.5)  //evaluation
-    }
-    
-    @objc fileprivate func handleCoachingSophomoreButton(){
-        view.addSubview(coachingPreviewSophomore.view)  //Change to sophomiore lol lololool (lol -sam)
-        refreshNavBar()
-        coachingPreviewSophomore.pushDownVC(coachingVC, dur: 0.5)  //evaluation
-    }
-    
-    @objc fileprivate func handleCoachingJuniorButton(){
-        view.addSubview(coachingPreviewJunior.view)  //Change to freshman
-        refreshNavBar()
-        coachingPreviewJunior.pushDownVC(coachingVC, dur: 0.5)  //evaluation
-    }
-    
-    @objc fileprivate func handleCoachingSeniorButton(){
-        view.addSubview(coachingPreviewSenior.view)  //Change to freshman
-        refreshNavBar()
         
-        coachingPreviewSenior.pushDownVC(coachingVC, dur: 0.5)  //evaluation
-    }
-    
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -681,7 +455,7 @@ extension MainPanels: MainSwipeControllerDataSource {
         let hubColor = UIColor(red:0.12, green:0.51, blue:0.30, alpha:1.0).cgColor
         
         
-        let coachingVC = UIViewController()
+        let coachingVC = CoachingVC()
         coachingVC.view.layer.backgroundColor = coachingColor
         //coachingVC.view.layer.addSublayer(getGradient1())
         
@@ -740,3 +514,32 @@ extension MainPanels: MainSwipeControllerDataSource {
         return ["Coaching", "The Hub", "Planner"]
     }
 }
+
+extension UIImage {
+    var rounded: UIImage? {
+        let imageView = UIImageView(image: self)
+        imageView.layer.cornerRadius = min(size.height/4, size.width/4)
+        imageView.layer.masksToBounds = true
+        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        imageView.layer.render(in: context)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result
+    }
+    var circle: UIImage? {
+        let square = CGSize(width: min(size.width, size.height), height: min(size.width, size.height))
+        let imageView = UIImageView(frame: CGRect(origin: .zero, size: square))
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = self
+        imageView.layer.cornerRadius = square.width/2
+        imageView.layer.masksToBounds = true
+        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        imageView.layer.render(in: context)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result
+    }
+}
+
