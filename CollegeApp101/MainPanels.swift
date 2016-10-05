@@ -301,7 +301,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         writing.titleLabel?.font = UIFont(name: "Scope One", size: 30)
         writing.titleLabel?.adjustsFontSizeToFitWidth = true
         //writing.backgroundColor = Color.red.lighten1
-        writing.backgroundColor = backgroundColor
+        //writing.backgroundColor Color.amber.base
         writing.addTarget(self, action: #selector(handleCoachingWritingButton), for: .touchDown)
         coachingVC.view.addSubview(writing)
         
@@ -309,7 +309,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         addCircle(frame: CGRect(x: 5, y: 10, width: coachingVC.view.frame.width/2 - 10, height: coachingVC.view.frame.width/2 - 10), btn: general, c: generalColor.cgColor)
         general.setTitleColor(titleColor, for: UIControlState())
         general.setTitle("General", for: UIControlState())
-        general.backgroundColor = backgroundColor
+        //general.backgroundColor Color.amber.base
         general.cornerRadius = 0
         general.titleLabel?.font = UIFont(name: "Scope One", size: 30)
         general.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -323,7 +323,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         evaluation.cornerRadius = 0
         evaluation.titleLabel?.font = UIFont(name: "Scope One", size: 30)
         evaluation.titleLabel?.adjustsFontSizeToFitWidth = true
-        evaluation.backgroundColor = backgroundColor
+        //evaluation.backgroundColor Color.amber.base
         evaluation.addTarget(self, action: #selector(handleCoachingEvaluationButton), for: .touchDown)
         coachingVC.view.addSubview(evaluation)
         
@@ -335,7 +335,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         freshman.titleLabel?.adjustsFontSizeToFitWidth = false
         freshman.cornerRadius = 0
         //freshman.backgroundColor = Color.purple.lighten2
-        freshman.backgroundColor = backgroundColor
+        //freshman.backgroundColor Color.amber.base
         freshman.addTarget(self, action: #selector(handleCoachingFreshmanButton), for: .touchDown)
         coachingVC.view.addSubview(freshman)
         
@@ -347,7 +347,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         sophomore.titleLabel?.adjustsFontSizeToFitWidth = false
         sophomore.cornerRadius = 0
         //sophomore.backgroundColor = Color.teal.lighten2
-        sophomore.backgroundColor = backgroundColor
+        //sophomore.backgroundColor Color.amber.base
         sophomore.addTarget(self, action: #selector(handleCoachingSophomoreButton), for: .touchDown)
         coachingVC.view.addSubview(sophomore)
         
@@ -359,7 +359,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         junior.titleLabel?.font = UIFont(name: "Scope One", size: 26)
         junior.titleLabel?.adjustsFontSizeToFitWidth = false
         //junior.backgroundColor = Color.pink.lighten2
-        junior.backgroundColor = backgroundColor
+        //junior.backgroundColor Color.amber.base
         junior.addTarget(self, action: #selector(handleCoachingJuniorButton), for: .touchDown)
         coachingVC.view.addSubview(junior)
         
@@ -371,7 +371,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         senior.setTitle("Senior", for: UIControlState())
         senior.cornerRadius = 0
         //senior.backgroundColor = Color.cyan.lighten2
-        senior.backgroundColor = backgroundColor
+        //senior.backgroundColor Color.amber.base
         senior.addTarget(self, action: #selector(handleCoachingSeniorButton), for: .touchDown)
         coachingVC.view.addSubview(senior)
         
@@ -677,7 +677,8 @@ extension MainPanels: MainSwipeControllerDataSource {
         
         let coachingColor = Color.white.cgColor
         let careerColor = Color.white.cgColor
-        let hubColor = UIColor(red:1.00, green:0.90, blue:0.60, alpha:1.0).cgColor
+        //let hubColor = UIColor(red:1.00, green:0.90, blue:0.60, alpha:1.0).cgColor
+        let hubColor = UIColor(red:0.12, green:0.51, blue:0.30, alpha:1.0).cgColor
         
         
         let coachingVC = UIViewController()
