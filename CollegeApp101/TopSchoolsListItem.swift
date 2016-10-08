@@ -128,7 +128,8 @@ class TopSchoolsListItem : UIView {
         n.font = UIFont(name: "Oswald", size: 22)
         n.zPosition = 11
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: 35,y: self.frame.height/2), radius: CGFloat(15), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
-        
+        print(self.frame.height/2)
+
         peg.path = circlePath.cgPath
         
         peg.lineWidth = 20
