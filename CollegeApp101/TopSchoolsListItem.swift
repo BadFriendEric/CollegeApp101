@@ -14,7 +14,12 @@
 //      Right now, when you swipe a school up or down you only see the change once it
 //      "snaps into place".  I want to make the numbers stay in place alwasys but have the rest of the information (difficulty, text, etc)
 //      to follow the users finger.
-
+//
+//  EDITING TEXT
+//      
+//      Currently struggling to make the keyboard pop up and allow the text to be edited.
+//      I successfully got the background color of the title to change on tap, so I've located
+//      the right place to put the code.
 
 import Foundation
 import UIKit
@@ -30,7 +35,8 @@ class TopSchoolsListItem : UIView {
     let dot = CAShapeLayer()
     let dragIcon = CAShapeLayer()
     let n = UILabel(frame: CGRect(x: 30, y: 12, width: 45, height: 35))
-    let l = UILabel(frame: CGRect(x: 67, y: 5, width: MainSwipeController.Constants.ScreenWidth-130, height: 50))
+    //let l = UILabel(frame: CGRect(x: 67, y: 5, width: MainSwipeController.Constants.ScreenWidth-130, height: 50))
+    let l = UITextField(frame: CGRect(x: 67, y: 5, width: MainSwipeController.Constants.ScreenWidth-130, height: 50))
     let d = UIView(frame: CGRect(x: MainSwipeController.Constants.ScreenWidth-50, y: 0.0, width: 50, height: 30))
     let tl = UIView(frame: CGRect(x: 0, y: 0, width: MainSwipeController.Constants.ScreenWidth, height: 1))
     let bl = UIView(frame: CGRect(x: 0, y: 59, width: MainSwipeController.Constants.ScreenWidth, height: 1))
@@ -41,6 +47,7 @@ class TopSchoolsListItem : UIView {
     var pageControllerData : UIPageViewControllerDataSource? = nil
     var canMove = true
     var moving = false
+    var editOn = false
     let listColor = Color.grey.darken3
     
     internal init(schoolName : String, feature : CareerFeatureTopSchools){
@@ -152,21 +159,21 @@ class TopSchoolsListItem : UIView {
         
     }
   
-    /*
-    internal func prepareMovingBox(t: UITouch){
-        
-        let point = t.preciseLocation(in: self)
-        let boxW = MainSwipeController.Constants.ScreenWidth - 10
-        let boxH: CGFloat = 50
-        
-        let movingBox: UIView = UIView(frame: CGRect(x: 5, y: point.y - boxH, width: boxW, height: boxH))
-        movingBox.backgroundColor = Color.red.lighten2
-        self.addSubview(movingBox)
-        
-        
+    internal func editMode(){
+        if !editOn {
+            editOn = true
+            l.allowsEditingTextAttributes = true
+            l.backgroundColor = Color.white
+            l.becomeFirstResponder()
+        }
+        else{
+            editOn = false
+            l.allowsEditingTextAttributes = false
+            l.backgroundColor = Color.black
+            l.resignFirstResponder()
+        }
     }
-    */
-    
+
     
     internal func prepareDragIcon(){
         let dragImage: UIImage? = UIImage(named: "MenuIcon")
@@ -306,6 +313,9 @@ class TopSchoolsListItem : UIView {
             UIView.animate(withDuration: 0.8, animations: {
                 self.backgroundColor = Color.clear
             })
+            
+            editMode()
+            
         }
         self.feature?.myVC.pageViewController.dataSource = pageControllerData
         
