@@ -109,8 +109,10 @@ class TopSchoolsListItem : UIView {
         dot.path = circlePath.cgPath
         
         //dot.fillColor = Color.red.base.cgColor
-        dot.lineWidth = 20
+        dot.lineWidth = 2
+        dot.strokeColor = Color.white.cgColor
         dot.fillColor = Color.blue.darken1.cgColor
+        dot.zPosition = 11
         self.layer.addSublayer(dot)
         
         
@@ -143,6 +145,7 @@ class TopSchoolsListItem : UIView {
         l.textColor = listColor
         l.font = UIFont(name: "Vesper Libre", size: 24)
         l.adjustsFontSizeToFitWidth = true
+        l.zPosition = 11
         self.addSubview(l)
         
         
@@ -283,13 +286,13 @@ class TopSchoolsListItem : UIView {
         if(point.x > self.frame.width-50){
             if(dot.fillColor == Color.red.base.cgColor){
                 dot.fillColor = Color.green.lighten1.cgColor
-                bgTint.backgroundColor = Color.green.lighten1.withAlphaComponent(0.4)
+                bgTint.backgroundColor = Color.green.lighten1.withAlphaComponent(0.7)
             }else if(dot.fillColor == Color.blue.darken1.cgColor){
                 dot.fillColor = Color.red.base.cgColor
-                bgTint.backgroundColor = Color.red.base.withAlphaComponent(0.4)
+                bgTint.backgroundColor = Color.red.base.withAlphaComponent(0.7)
             }else if(dot.fillColor == Color.green.lighten1.cgColor){
                 dot.fillColor = Color.blue.darken1.cgColor
-                bgTint.backgroundColor = Color.blue.darken1.withAlphaComponent(0.4)
+                bgTint.backgroundColor = Color.blue.darken1.withAlphaComponent(0.7)
             }
             return
         }
@@ -339,13 +342,13 @@ class TopSchoolsListItem : UIView {
         self.itemNumber = i
         if(itemNumber <= 2){
             dot.fillColor = Color.red.base.cgColor
-            bgTint.backgroundColor = Color.red.base.withAlphaComponent(0.4)
+            bgTint.backgroundColor = Color.red.base.withAlphaComponent(0.7)
         }else if(itemNumber <= 7){
             dot.fillColor = Color.blue.darken1.cgColor
-            bgTint.backgroundColor = Color.blue.darken1.withAlphaComponent(0.4)
+            bgTint.backgroundColor = Color.blue.darken1.withAlphaComponent(0.7)
         }else if(itemNumber <= 10){
             dot.fillColor = Color.green.lighten1.cgColor
-            bgTint.backgroundColor = Color.green.lighten1.withAlphaComponent(0.4)
+            bgTint.backgroundColor = Color.green.lighten1.withAlphaComponent(0.7)
         }
         refreshTitle()
     }
