@@ -416,7 +416,7 @@
 				);
 				INFOPLIST_FILE = CollegeApp101/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.CollegeApp101.sam;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CollegeApp101;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;

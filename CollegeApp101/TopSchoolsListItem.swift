@@ -5,6 +5,16 @@
 //  Created by Sam Hollenbach on 9/1/16.
 //  Copyright © 2016 CollegeApp101. All rights reserved.
 //
+//
+//
+// IDEAS FOR IMPROVEMENT: 
+//
+//  ANIMATION:
+//
+//      Right now, when you swipe a school up or down you only see the change once it
+//      "snaps into place".  I want to make the numbers stay in place alwasys but have the rest of the information (difficulty, text, etc)
+//      to follow the users finger.
+
 
 import Foundation
 import UIKit
@@ -26,6 +36,7 @@ class TopSchoolsListItem : UIView {
     let bl = UIView(frame: CGRect(x: 0, y: 59, width: MainSwipeController.Constants.ScreenWidth, height: 1))
     let ll = UIView(frame: CGRect(x: 0, y: 0, width: 2, height: 60))
     let rl = UIView(frame: CGRect(x: MainSwipeController.Constants.ScreenWidth-2, y: 0, width: 2, height: 60))
+    let peg = CAShapeLayer()
     var pageControllerData : UIPageViewControllerDataSource? = nil
     var canMove = true
     var moving = false
@@ -108,6 +119,16 @@ class TopSchoolsListItem : UIView {
         n.text = String(itemNumber) + "."
         n.textColor = listColor
         n.font = UIFont(name: "Oswald", size: 22)
+        
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 35,y: self.frame.height/2), radius: CGFloat(15), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+        
+        peg.path = circlePath.cgPath
+        
+        peg.lineWidth = 20
+        peg.fillColor = Color.grey.lighten3.cgColor
+        self.layer.addSublayer(peg)
+        
+        
         self.addSubview(n)
     }
     
