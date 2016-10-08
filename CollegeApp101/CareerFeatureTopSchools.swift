@@ -70,15 +70,37 @@ open class CareerFeatureTopSchools : CareerFeature {
         
         new.frame = CGRect(x: 0, y: bottomY, width: Int(MainSwipeController.Constants.ScreenWidth), height: 60)
         let lab : UILabel = UILabel(frame: CGRect(x: 70, y: 15, width: MainSwipeController.Constants.ScreenWidth-150, height: 30))
-        lab.text = "+ Add new item"
+        lab.text = "Add new school"
         lab.textColor = Color.black
-        lab.font = UIFont(name: "Vesper Libre", size: 30)
+        lab.font = UIFont(name: "Vesper Libre", size: 24)
         new.addSubview(lab)
         let t = UIView(frame: CGRect(x: 0, y: 0, width: MainSwipeController.Constants.ScreenWidth, height: 1))
         let b = UIView(frame: CGRect(x: 0, y: 58, width: MainSwipeController.Constants.ScreenWidth, height: 2))
         t.backgroundColor = Color.black
         b.backgroundColor = Color.black
         
+        
+        //adding the + peg
+        let peg = CAShapeLayer()
+        let n = UILabel(frame: CGRect(x: 25, y: 5, width: 45, height: 35))
+        n.text = String("+")
+        n.textColor = Color.black  // set to color of other numbers
+        n.font = UIFont(name: "Oswald", size: 60)
+        n.zPosition = 11
+
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 35,y: 30), radius: CGFloat(15), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+        
+        peg.path = circlePath.cgPath
+        
+        peg.lineWidth = 20
+        peg.fillColor = Color.grey.lighten3.cgColor
+        peg.zPosition = 10 //one less than n
+        new.layer.addSublayer(peg)
+
+        
+        new.addSubview(n)
+        //end of adding + peg
+ 
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleAddNew))
         tap.delegate = self
         new.addGestureRecognizer(tap)

@@ -5,6 +5,21 @@
 //  Created by Sam Hollenbach on 9/1/16.
 //  Copyright © 2016 CollegeApp101. All rights reserved.
 //
+//
+//
+// IDEAS FOR IMPROVEMENT: 
+//
+//  ANIMATION:
+//
+//      Right now, when you swipe a school up or down you only see the change once it
+//      "snaps into place".  I want to make the numbers stay in place alwasys but have the rest of the information (difficulty, text, etc)
+//      to follow the users finger.
+//
+//  EDITING TEXT
+//      
+//      Currently struggling to make the keyboard pop up and allow the text to be edited.
+//      I successfully got the background color of the title to change on tap, so I've located
+//      the right place to put the code.
 
 import Foundation
 import UIKit
@@ -19,16 +34,20 @@ class TopSchoolsListItem : UIView {
     let h = CGFloat(60)
     let dot = CAShapeLayer()
     let dragIcon = CAShapeLayer()
-    let n = UILabel(frame: CGRect(x: 35, y: 12, width: 45, height: 35))
-    let l = UILabel(frame: CGRect(x: 67, y: 5, width: MainSwipeController.Constants.ScreenWidth-130, height: 50))
+    let n = UILabel(frame: CGRect(x: 30, y: 12, width: 45, height: 35))
+    //let l = UILabel(frame: CGRect(x: 67, y: 5, width: MainSwipeController.Constants.ScreenWidth-130, height: 50))
+    let l = UITextField(frame: CGRect(x: 67, y: 5, width: MainSwipeController.Constants.ScreenWidth-130, height: 50))
     let d = UIView(frame: CGRect(x: MainSwipeController.Constants.ScreenWidth-50, y: 0.0, width: 50, height: 30))
     let tl = UIView(frame: CGRect(x: 0, y: 0, width: MainSwipeController.Constants.ScreenWidth, height: 1))
     let bl = UIView(frame: CGRect(x: 0, y: 59, width: MainSwipeController.Constants.ScreenWidth, height: 1))
     let ll = UIView(frame: CGRect(x: 0, y: 0, width: 2, height: 60))
     let rl = UIView(frame: CGRect(x: MainSwipeController.Constants.ScreenWidth-2, y: 0, width: 2, height: 60))
+    let bgTint:UIView = UIView(frame: CGRect(x: 0, y: 0, width: MainSwipeController.Constants.ScreenWidth, height: 60))
+    let peg = CAShapeLayer()
     var pageControllerData : UIPageViewControllerDataSource? = nil
     var canMove = true
     var moving = false
+    var editOn = false
     let listColor = Color.grey.darken3
     
     internal init(schoolName : String, feature : CareerFeatureTopSchools){
@@ -40,7 +59,6 @@ class TopSchoolsListItem : UIView {
         prepareTitleLabel()
         prepareColorLabel()
         prepareTriagleIcon()
-        
     }
     
     internal func setYPosition(_ y : Int){
@@ -95,19 +113,37 @@ class TopSchoolsListItem : UIView {
         //let size = self.frame.height
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: self.frame.width-35,y: self.frame.height/2), radius: CGFloat(15), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
         
-        
         dot.path = circlePath.cgPath
         
         //dot.fillColor = Color.red.base.cgColor
-        dot.lineWidth = 20
+        dot.lineWidth = 2
+        dot.strokeColor = Color.white.cgColor
         dot.fillColor = Color.blue.darken1.cgColor
+        dot.zPosition = 11
         self.layer.addSublayer(dot)
+        
+        
+        bgTint.backgroundColor = Color.blue.darken1.withAlphaComponent(0.4)
+        bgTint.zPosition = 0
+        self.addSubview(bgTint)
+        
     }
     
     internal func prepareNumberLabel(){
-        n.text = String(itemNumber) + "."
+        n.text = String(itemNumber)
         n.textColor = listColor
         n.font = UIFont(name: "Oswald", size: 22)
+        n.zPosition = 11
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 35,y: self.frame.height/2), radius: CGFloat(15), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+        print(self.frame.height/2)
+
+        peg.path = circlePath.cgPath
+        
+        peg.lineWidth = 20
+        peg.fillColor = Color.grey.lighten3.cgColor
+        self.layer.addSublayer(peg)
+        peg.zPosition = 10 //one less than n
+        
         self.addSubview(n)
     }
     
@@ -117,10 +153,27 @@ class TopSchoolsListItem : UIView {
         l.textColor = listColor
         l.font = UIFont(name: "Vesper Libre", size: 24)
         l.adjustsFontSizeToFitWidth = true
+        l.zPosition = 11
         self.addSubview(l)
         
         
     }
+  
+    internal func editMode(){
+        if !editOn {
+            editOn = true
+            l.allowsEditingTextAttributes = true
+            l.backgroundColor = Color.white
+            l.becomeFirstResponder()
+        }
+        else{
+            editOn = false
+            l.allowsEditingTextAttributes = false
+            l.backgroundColor = Color.black
+            l.resignFirstResponder()
+        }
+    }
+
     
     internal func prepareDragIcon(){
         let dragImage: UIImage? = UIImage(named: "MenuIcon")
@@ -157,7 +210,6 @@ class TopSchoolsListItem : UIView {
         let point = touch.preciseLocation(in: self)
         let moveColor = Color.blue.darken3
         
-        
         if(!canMove){
             return
         }
@@ -172,14 +224,14 @@ class TopSchoolsListItem : UIView {
             self.addSubview(rl)
             l.font = UIFont(name: "VesperLibre-Heavy", size: 30)
             UIView.animate(withDuration: 0.3, animations: {
-                self.backgroundColor = Color.black.withAlphaComponent(0.2)
+                self.backgroundColor = Color.grey.lighten3.withAlphaComponent(0.7)  //changed from black.withAlphaComponent(0.2)
             })
             
             
-
             //Used to disable MainPanel paging swipe
             
         }
+        
         
         let h = self.frame.height/2
         let y = point.y
@@ -194,7 +246,6 @@ class TopSchoolsListItem : UIView {
         }
         
         let f = Float(ya / (h+20))
-        
         
         
         
@@ -243,10 +294,13 @@ class TopSchoolsListItem : UIView {
         if(point.x > self.frame.width-50){
             if(dot.fillColor == Color.red.base.cgColor){
                 dot.fillColor = Color.green.lighten1.cgColor
+                bgTint.backgroundColor = Color.green.lighten1.withAlphaComponent(0.7)
             }else if(dot.fillColor == Color.blue.darken1.cgColor){
                 dot.fillColor = Color.red.base.cgColor
+                bgTint.backgroundColor = Color.red.base.withAlphaComponent(0.7)
             }else if(dot.fillColor == Color.green.lighten1.cgColor){
                 dot.fillColor = Color.blue.darken1.cgColor
+                bgTint.backgroundColor = Color.blue.darken1.withAlphaComponent(0.7)
             }
             return
         }
@@ -259,6 +313,9 @@ class TopSchoolsListItem : UIView {
             UIView.animate(withDuration: 0.8, animations: {
                 self.backgroundColor = Color.clear
             })
+            
+            editMode()
+            
         }
         self.feature?.myVC.pageViewController.dataSource = pageControllerData
         
@@ -288,7 +345,7 @@ class TopSchoolsListItem : UIView {
     }
     
     internal func refreshTitle(){
-        n.text = String(itemNumber) + "."
+        n.text = String(itemNumber)
         l.text = schoolName
     }
     
@@ -296,10 +353,13 @@ class TopSchoolsListItem : UIView {
         self.itemNumber = i
         if(itemNumber <= 2){
             dot.fillColor = Color.red.base.cgColor
+            bgTint.backgroundColor = Color.red.base.withAlphaComponent(0.7)
         }else if(itemNumber <= 7){
             dot.fillColor = Color.blue.darken1.cgColor
+            bgTint.backgroundColor = Color.blue.darken1.withAlphaComponent(0.7)
         }else if(itemNumber <= 10){
             dot.fillColor = Color.green.lighten1.cgColor
+            bgTint.backgroundColor = Color.green.lighten1.withAlphaComponent(0.7)
         }
         refreshTitle()
     }
