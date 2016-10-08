@@ -27,6 +27,8 @@ class CoachingPreview: UIViewController {
     var x : CGFloat = 0.0
     var y : CGFloat = 0.0
     
+    let imageW = 640
+    let imageH = 215
    
     
     var name = "Coaching"
@@ -63,7 +65,8 @@ class CoachingPreview: UIViewController {
         test = FlatButton(frame: CGRect(x: (width-150)/2, y: height-170, width: 150, height: 60))
         test.setTitle("Continue", for: UIControlState())
         test.setTitleColor(Color.white, for: UIControlState())
-        test.backgroundColor = Color.red.base
+        test.backgroundColor = Color.pink.lighten3
+        test.cornerRadius = 20
         test.addTarget(self, action: #selector(handleContinueButton), for: .touchUpInside)
         mysubviews.append(test)
         
@@ -106,6 +109,24 @@ class CoachingPreview: UIViewController {
             }, completion: { finished in
                 self.view.removeFromSuperview()
         })
+    }
+    
+    internal func setPreviewImgs(){
+        var desc : UIImageView
+        desc = UIImageView(frame:CGRect(x: 20, y: 80, width: imageW/2, height: imageH/2))
+        desc.image = UIImage(named:"freshmanDesc")
+        self.view.addSubview(desc)
+        
+        var before : UIImageView
+        before = UIImageView(frame:CGRect(x: 20, y: 200, width: imageW/2, height: imageH/2))
+        before.image = UIImage(named:"freshmanBefore")
+        self.view.addSubview(before)
+
+        var after : UIImageView
+        after = UIImageView(frame:CGRect(x: 20, y: 320, width: imageW/2, height: imageH/2))
+        after.image = UIImage(named:"freshmanAfter")
+        self.view.addSubview(after)
+
     }
     
     @objc internal func handleContinueButton(){
