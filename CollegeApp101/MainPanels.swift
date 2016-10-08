@@ -32,7 +32,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
             return UIColor(red:1.00, green:0.82, blue:0.25, alpha:1.0)
         }
         internal static var navBarHeight : CGFloat {
-            return 40
+            return 35
         }
         internal static var statusBarHeight : CGFloat {
             return 20
@@ -75,8 +75,9 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     
     
     ///Navigation Bar Variables///
-    let navBar: NavigationBar = NavigationBar(frame: CGRect(origin:CGPoint(x: 0,y: MainSwipeController.Constants.StatusBarHeight),size:CGSize(width: Constants.ScreenWidth,height: 50)))
+    let navBar: NavigationBar = NavigationBar(frame: CGRect(origin:CGPoint(x: 0,y: MainSwipeController.Constants.StatusBarHeight),size:CGSize(width: Constants.ScreenWidth,height: Constants.navBarHeight)))
     let navItem: UINavigationItem = UINavigationItem()
+    let titleLabel = UILabel()
     fileprivate var menuButton: UIImageView!
     fileprivate var helpButton: UIImageView!
     fileprivate var menuButtonView : UIView! = UIView()
@@ -127,18 +128,20 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     }
     fileprivate func prepareHelpButton(){
         let helpButtonImage: UIImage? = UIImage(named: "HelpIcon")
-        let imageSize = CGSize(width: 30, height: 30)
+        let s = Constants.navBarHeight - 10
+        let imageSize = CGSize(width: s, height: s)
         _ = MainPanels.ResizeImage(helpButtonImage!, targetSize: imageSize)
         helpButton = UIImageView(image: helpButtonImage)
-        helpButton.frame = CGRect(origin: CGPoint(x: navBar.width-45, y: 7), size: imageSize)
+        helpButton.frame = CGRect(origin: CGPoint(x: navBar.width-45, y: 5), size: imageSize)
         helpButtonView.frame = CGRect(x: Int(navBar.width) - buttonWidths, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
     }
     fileprivate func prepareMenuButton(){
         let menuButtonImage: UIImage? = UIImage(named: "MenuIcon")
-        let imageSize = CGSize(width: 25, height: 25)
+        let s = Constants.navBarHeight - 15
+        let imageSize = CGSize(width: s, height: s)
         _ = MainPanels.ResizeImage(menuButtonImage!, targetSize: imageSize)
         menuButton = UIImageView(image: menuButtonImage)
-        menuButton.frame = CGRect(origin: CGPoint(x: 15, y: 10), size: imageSize)
+        menuButton.frame = CGRect(origin: CGPoint(x: 15, y: 5), size: imageSize)
         menuButtonView.frame = CGRect(x: 0, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
     }
     fileprivate func prepareNavigationItem(){
@@ -178,10 +181,15 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
         self.view.addGestureRecognizer(gesture)
         
-        
-        //        navItem.leftControls = [menuButton]
-        //        navItem.rightControls = [helpButton]
         navBar.setItems([navItem], animated: false)
+        
+        titleLabel.frame = CGRect(x: 0, y: 0, width: Int(navBar.frame.width), height: Int(Constants.navBarHeight))
+        navBar.contentEdgeInsets = UIEdgeInsets.zero
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont(name: "Oswald", size: 24)
+        titleLabel.textColor = navBarHighlightColor
+        
+        navBar.addSubview(titleLabel)
         
         
         midButtonView.frame = CGRect(x: (Int(MainSwipeController.Constants.ScreenWidth)-buttonWidths)/2, y: 0, width: buttonWidths, height: Int(Constants.navBarHeight))
@@ -248,21 +256,13 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     
     
     
-    
     /////////////////////////////////////////////////
     //---------------Refresh Methods---------------//
     /////////////////////////////////////////////////
     
     
     internal func refreshTitle(_ title: String){
-        
-        //navItem.titleLabel.frame = CGRect(x: Int(navBar.frame.width/2)-buttonWidths, y: 15, width: buttonWidths, height: 70)
-        navBar.contentEdgeInsets = UIEdgeInsets.zero
-        navItem.title = title
-        //navItem.titleLabel.clipsToBounds = false
-        navItem.titleLabel.textAlignment = .center
-        navItem.titleLabel.font = UIFont(name: "Oswald", size: 32)
-        navItem.titleLabel.textColor = navBarHighlightColor
+        titleLabel.text = title
         UIView.animate(withDuration: 0.5, animations: {
             }, completion: { finished in
                 self.refreshNavBar()
@@ -302,6 +302,8 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
             menu.refreshMenu(self.view)
             
         }
+        titleLabel.removeFromSuperview()
+        navBar.addSubview(titleLabel)
         menuButtonView.removeFromSuperview()
         navBar.addSubview(menuButtonView)
         helpButtonView.removeFromSuperview()
@@ -451,8 +453,8 @@ extension MainPanels: MainSwipeControllerDataSource {
         
         let coachingColor = Color.white.cgColor
         let careerColor = Color.white.cgColor
-        //let hubColor = UIColor(red:1.00, green:0.90, blue:0.60, alpha:1.0).cgColor
-        let hubColor = UIColor(red:0.12, green:0.51, blue:0.30, alpha:1.0).cgColor
+        let hubColor = UIColor(red:0.09, green:0.63, blue:0.52, alpha:1.0).cgColor
+        //let hubColor = UIColor(red:0.18, green:0.80, blue:0.44, alpha:1.0).cgColor
         
         
         let coachingVC = CoachingVC()

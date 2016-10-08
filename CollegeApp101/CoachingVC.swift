@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Material
 
-class CoachingVC : UIViewController {
+class CoachingVC : UIViewController, UIGestureRecognizerDelegate {
     
     var coachingPreviewGeneral : CoachingPreview! = CoachingPreview()
     var coachingPreviewWriting : CoachingPreview! = CoachingPreview()
@@ -28,36 +28,50 @@ class CoachingVC : UIViewController {
     let viewHeight = MainSwipeController.Constants.ScreenHeightWithoutStatusBar - MainPanels.Constants.navBarHeight
     let h0 = MainPanels.Constants.navBarHeight
     
+    var profilePic : UIImage! = UIImage()
+    let profilePicView : UIImageView! = UIImageView()
+    var profilePicFrame : CGRect! = CGRect()
+    let profilePicMainSize = (MainSwipeController.Constants.ScreenHeightWithoutStatusBar - MainPanels.Constants.navBarHeight)/3 - 40
+    
     var profileTopBacker : UIView! = UIView()
+    
+    let mainColor = UIColor(red:0.16, green:0.50, blue:0.73, alpha:1.0)
+    
     
     internal func prepareView(main: MainPanels){
         self.main = main
         self.profile = main.profile
         self.view.backgroundColor = Color.grey.lighten2
         prepareProfileView()
-        //prepareButtonsView()
+        prepareButtonsView()
     }
     
     internal func prepareProfileView(){
-        profileTopBacker.frame = CGRect(x: 0, y: h0, width: width, height: viewHeight/3-20)
-        profileTopBacker.backgroundColor = Color.blue.darken4
+        profileTopBacker.frame = CGRect(x: 0, y: h0, width: width, height: viewHeight/3-15)
+        profileTopBacker.backgroundColor = mainColor
         self.view.addSubview(profileTopBacker)
         
-        let profilePic = profile.getProfilePicture()
-        let picSize = viewHeight/3-25
-        _ = MainPanels.ResizeImage(profilePic, targetSize: CGSize(width: picSize, height: picSize))
-        let profilePicView : UIImageView = UIImageView(image: profilePic.circle)
-        profilePicView.frame = CGRect(x: (width-picSize)/2, y: h0 + picSize/4 + 10, width: picSize, height: picSize)
+        profilePic = profile.getProfilePicture()
+        _ = MainPanels.ResizeImage(profilePic, targetSize: CGSize(width: profilePicMainSize, height: profilePicMainSize))
+        profilePicView.image = profilePic.circle
+        profilePicView.frame = CGRect(x: (width-profilePicMainSize)/2, y: h0 + profilePicMainSize/4 + 25, width: profilePicMainSize, height: profilePicMainSize)
+        profilePicFrame = profilePicView.frame
         self.view.addSubview(profilePicView)
         
-        let nameLabel = UILabel(frame: CGRect(x: 0, y: profilePicView.frame.maxY-5, width: width, height: 20))
+        profilePicView.isUserInteractionEnabled = true
+        let picTap = UITapGestureRecognizer(target: self, action: #selector(handlePictureTap))
+        picTap.delegate = self
+        profilePicView.addGestureRecognizer(picTap)
+        
+        
+        let nameLabel = UILabel(frame: CGRect(x: 0, y: profilePicView.frame.minY-15, width: width, height: 20))
         nameLabel.text = profile.getFullName()
         nameLabel.font = RobotoFont.medium(with: 24)
         nameLabel.textAlignment = .center
         nameLabel.textColor = Color.grey.darken3
         self.view.addSubview(nameLabel)
         
-        let editProfileLabel = UILabel(frame: CGRect(x: 0, y: profilePicView.frame.maxY+20, width: width, height: 20))
+        let editProfileLabel = UILabel(frame: CGRect(x: 0, y: profilePicView.frame.maxY, width: width, height: 20))
         editProfileLabel.text = "Edit Profile"
         editProfileLabel.font = RobotoFont.light(with: 18)
         editProfileLabel.textAlignment = .center
@@ -70,177 +84,74 @@ class CoachingVC : UIViewController {
     ///Prepare Coach Panel///
     internal func prepareButtonsView(){
         
+        let coursesBacker = UIView(frame: CGRect(x: 0, y: viewHeight/2+5, width: width, height: 30))
+        coursesBacker.backgroundColor = UIColor(red:0.74, green:0.76, blue:0.78, alpha:1.0)
+        self.view.addSubview(coursesBacker)
         
-        coachingPreviewGeneral.superview = self
-        coachingPreviewWriting.superview = self
-        coachingPreviewEvaluation.superview = self
-        coachingPreviewFreshman.superview = self
-        coachingPreviewSophomore.superview = self
-        coachingPreviewJunior.superview = self
-        coachingPreviewSenior.superview  = self
+        let coursesLabel = UILabel(frame: CGRect(x: 0, y: viewHeight/2+5, width: width, height: 30))
+        coursesLabel.text = "Courses"
+        coursesLabel.font = UIFont(name: "Lora-Bold", size: 26)
+        coursesLabel.textAlignment = .center
+        coursesLabel.textColor = Color.grey.darken3
+        self.view.addSubview(coursesLabel)
         
-        let freshmanColor = UIColor(red:0.79, green:0.95, blue:0.98, alpha:1.0)
-        let sophomoreColor = UIColor(red:0.43, green:0.85, blue:0.96, alpha:1.0)
-        let juniorColor = UIColor(red:0.01, green:0.76, blue:0.92, alpha:1.0)
-        let seniorColor = UIColor(red:0.00, green:0.59, blue:0.73, alpha:1.0)
-        let writingColor = UIColor(red:0.87, green:0.91, blue:0.78, alpha:1.0)
-        let generalColor = UIColor(red:0.73, green:0.81, blue:0.50, alpha:1.0)
-        let evaluationColor = UIColor(red:0.59, green:0.76, blue:0.18, alpha:1.0)
+        let buttonsBacker = UIView(frame: CGRect(x: 0, y: coursesBacker.frame.maxY, width: width, height: height-coursesBacker.frame.maxY))
+        buttonsBacker.backgroundColor = mainColor
+        self.view.addSubview(buttonsBacker)
         
-        //let backgroundColor = UIColor(red:0.82, green:0.92, blue:0.91, alpha:1.0)
-        
-        coachingPreviewGeneral.setCoachingName("General")
-        coachingPreviewWriting.setCoachingName("Writing")
-        coachingPreviewEvaluation.setCoachingName("Evaluation")
-        coachingPreviewFreshman.setCoachingName("Freshman")
-        coachingPreviewSophomore.setCoachingName("Sophomore")
-        coachingPreviewJunior.setCoachingName("Junior")
-        coachingPreviewSenior.setCoachingName("Senior")
+        let crp = CornerRadiusPreset.cornerRadius4
         
         
-        coachingPreviewGeneral.setBackgroundColor(generalColor)
-        coachingPreviewWriting.setBackgroundColor(writingColor)
-        coachingPreviewEvaluation.setBackgroundColor(evaluationColor)
-        coachingPreviewFreshman.setBackgroundColor(freshmanColor)
-        coachingPreviewSophomore.setBackgroundColor(sophomoreColor)
-        coachingPreviewJunior.setBackgroundColor(juniorColor)
-        coachingPreviewSenior.setBackgroundColor(seniorColor)
+        let series101: FlatButton = FlatButton(frame: CGRect(x: 10, y: height-viewHeight/4-10 , width: width-20, height: viewHeight/4))
         
-        coachingPreviewFreshman.setPreviewImgs()
+        series101.setTitle("101 Series", for: .normal)
+        series101.setTitleColor(Color.white, for: .normal)
+        series101.titleLabel?.font = UIFont(name: "Oswald-Regular", size: 32)
+        series101.backgroundColor = UIColor(red:0.61, green:0.35, blue:0.71, alpha:1.0)
+        series101.cornerRadiusPreset = crp
+        self.view.addSubview(series101)
         
-        let titleColor: UIColor! = Color.black
-        
-        
-        let h = self.view.frame.height - 70
-        //CGRect(x: 0, y: 70, width: self.view.frame.width/2, height: h/3)
-        let writing: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70, width: self.view.frame.width/2, height: h/3))
-        addCircle(frame: CGRect(x: 5, y: 10, width: self.view.frame.width/2 - 10, height: self.view.frame.width/2 - 10), btn: writing, c: writingColor.cgColor)
-        writing.setTitleColor(titleColor, for: UIControlState())
-        writing.setTitle("Writing", for: UIControlState())
-        writing.cornerRadius = 0
-        writing.titleLabel?.font = UIFont(name: "Scope One", size: 30)
-        writing.titleLabel?.adjustsFontSizeToFitWidth = true
-        //writing.backgroundColor = Color.red.lighten1
-        //writing.backgroundColor Color.amber.base
-        writing.addTarget(self, action: #selector(handleCoachingWritingButton), for: .touchDown)
+        let writing: FlatButton = FlatButton(frame: CGRect(x: 10, y: coursesBacker.frame.maxY+20 , width: (width-40)/3, height: viewHeight/5))
+        writing.setTitle("Write", for: .normal)
+        writing.setTitleColor(Color.white, for: .normal)
+        writing.titleLabel?.font = UIFont(name: "Oswald-Regular", size: 28)
+        writing.backgroundColor = UIColor(red:0.61, green:0.35, blue:0.71, alpha:1.0)
+        writing.cornerRadiusPreset = crp
         self.view.addSubview(writing)
         
-        let general: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70 + h/3, width: self.view.frame.width/2, height: h/3))
-        addCircle(frame: CGRect(x: 5, y: 10, width: self.view.frame.width/2 - 10, height: self.view.frame.width/2 - 10), btn: general, c: generalColor.cgColor)
-        general.setTitleColor(titleColor, for: UIControlState())
-        general.setTitle("General", for: UIControlState())
-        //general.backgroundColor Color.amber.base
-        general.cornerRadius = 0
-        general.titleLabel?.font = UIFont(name: "Scope One", size: 30)
-        general.titleLabel?.adjustsFontSizeToFitWidth = true
-        general.addTarget(self, action: #selector(handleCoachingGeneralButton), for: .touchDown)
-        self.view.addSubview(general)
-        
-        let evaluation: FlatButton = FlatButton(frame: CGRect(x: 0, y: 70 + 2*(h/3), width: self.view.frame.width/2, height: h/3))
-        addCircle(frame: CGRect(x: 5, y: 10, width: self.view.frame.width/2 - 10, height: self.view.frame.width/2 - 10), btn: evaluation, c: evaluationColor.cgColor)
-        evaluation.setTitleColor(titleColor, for: UIControlState())
-        evaluation.setTitle("Evaluation", for: UIControlState())
-        evaluation.cornerRadius = 0
-        evaluation.titleLabel?.font = UIFont(name: "Scope One", size: 30)
-        evaluation.titleLabel?.adjustsFontSizeToFitWidth = true
-        //evaluation.backgroundColor Color.amber.base
-        evaluation.addTarget(self, action: #selector(handleCoachingEvaluationButton), for: .touchDown)
-        self.view.addSubview(evaluation)
-        
-        let freshman: FlatButton = FlatButton(frame: CGRect(x: self.view.frame.width/2, y: 70, width: self.view.frame.width/2, height: h/4))
-        addCircle(frame: CGRect(x: 20, y: 5, width: self.view.frame.width/2 - 40, height: self.view.frame.width/2 - 50), btn: freshman, c: freshmanColor.cgColor)
-        freshman.setTitleColor(titleColor, for: UIControlState())
-        freshman.setTitle("Freshman", for: UIControlState())
-        freshman.titleLabel?.font = UIFont(name: "Scope One", size: 26)
-        freshman.titleLabel?.adjustsFontSizeToFitWidth = false
-        freshman.cornerRadius = 0
-        //freshman.backgroundColor = Color.purple.lighten2
-        //freshman.backgroundColor Color.amber.base
-        freshman.addTarget(self, action: #selector(handleCoachingFreshmanButton), for: .touchDown)
-        self.view.addSubview(freshman)
-        
-        let sophomore: FlatButton = FlatButton(frame: CGRect(x: self.view.frame.width/2, y: 70 + (h/4), width: self.view.frame.width/2, height: h/4))
-        addCircle(frame: CGRect(x: 20, y: 5, width: self.view.frame.width/2 - 40, height: self.view.frame.width/2 - 50), btn: sophomore, c: sophomoreColor.cgColor)
-        sophomore.setTitleColor(titleColor, for: UIControlState())
-        sophomore.setTitle("Sophomore", for: UIControlState())
-        sophomore.titleLabel?.font = UIFont(name: "Scope One", size: 26)
-        sophomore.titleLabel?.adjustsFontSizeToFitWidth = false
-        sophomore.cornerRadius = 0
-        //sophomore.backgroundColor = Color.teal.lighten2
-        //sophomore.backgroundColor Color.amber.base
-        sophomore.addTarget(self, action: #selector(handleCoachingSophomoreButton), for: .touchDown)
-        self.view.addSubview(sophomore)
-        
-        let junior: FlatButton = FlatButton(frame: CGRect(x: self.view.frame.width/2, y: 70 + 2*(h/4), width: self.view.frame.width/2, height: h/4))
-        addCircle(frame: CGRect(x: 20, y: 5, width: self.view.frame.width/2 - 40, height: self.view.frame.width/2 - 50), btn: junior, c: juniorColor.cgColor)
-        junior.setTitleColor(titleColor, for: UIControlState())
-        junior.setTitle("Junior", for: UIControlState())
-        junior.cornerRadius = 0
-        junior.titleLabel?.font = UIFont(name: "Scope One", size: 26)
-        junior.titleLabel?.adjustsFontSizeToFitWidth = false
-        //junior.backgroundColor = Color.pink.lighten2
-        //junior.backgroundColor Color.amber.base
-        junior.addTarget(self, action: #selector(handleCoachingJuniorButton), for: .touchDown)
-        self.view.addSubview(junior)
-        
-        let senior: FlatButton = FlatButton(frame: CGRect(x: self.view.frame.width/2, y: 70 + 3*(h/4), width: self.view.frame.width/2, height: h/4))
-        addCircle(frame: CGRect(x: 20, y: 5, width: self.view.frame.width/2 - 40, height: self.view.frame.width/2 - 50), btn: senior, c: seniorColor.cgColor)
-        senior.titleLabel?.font = UIFont(name: "Scope One", size: 26)
-        senior.titleLabel?.adjustsFontSizeToFitWidth = false
-        senior.setTitleColor(titleColor, for: UIControlState())
-        senior.setTitle("Senior", for: UIControlState())
-        senior.cornerRadius = 0
-        //senior.backgroundColor = Color.cyan.lighten2
-        //senior.backgroundColor Color.amber.base
-        senior.addTarget(self, action: #selector(handleCoachingSeniorButton), for: .touchDown)
-        self.view.addSubview(senior)
-        
+        let learn: FlatButton = FlatButton(frame: CGRect(x: 20 + (width-40)/3, y: coursesBacker.frame.maxY+20 , width: (width-40)/3, height: viewHeight/5))
+        learn.setTitle("Learn", for: .normal)
+        learn.setTitleColor(Color.white, for: .normal)
+        learn.titleLabel?.font = UIFont(name: "Oswald-Regular", size: 28)
+        learn.backgroundColor = UIColor(red:0.61, green:0.35, blue:0.71, alpha:1.0)
+        learn.cornerRadiusPreset = crp
+        self.view.addSubview(learn)
+
+        let eval: FlatButton = FlatButton(frame: CGRect(x: 30 + 2*(width-40)/3, y: coursesBacker.frame.maxY+20 , width: (width-40)/3, height: viewHeight/5))
+        eval.setTitle("Evaluate", for: .normal)
+        eval.setTitleColor(Color.white, for: .normal)
+        eval.titleLabel?.font = UIFont(name: "Oswald-Regular", size: 24)
+        eval.backgroundColor = UIColor(red:0.61, green:0.35, blue:0.71, alpha:1.0)
+        eval.cornerRadiusPreset = crp
+        self.view.addSubview(eval)
         
         
     }
     
-    @objc fileprivate func handleCoachingGeneralButton(){
-        view.addSubview(coachingPreviewGeneral.view)
-        main.refreshNavBar()
-        coachingPreviewGeneral.pushDownVC(self, dur: 0.5)
-        //self.addChildViewController(self)
-    }
-    
-    @objc fileprivate func handleCoachingWritingButton(){
-        view.addSubview(coachingPreviewWriting.view)  //Change to writing
-        main.refreshNavBar()
-        coachingPreviewWriting.pushDownVC(self, dur: 0.5)  //writing
-    }
-    
-    @objc fileprivate func handleCoachingEvaluationButton(){
-        view.addSubview(coachingPreviewEvaluation.view)  //Change to evaluation
-        main.refreshNavBar()
-        coachingPreviewEvaluation.pushDownVC(self, dur: 0.5)  //evaluation
-    }
-    
-    @objc fileprivate func handleCoachingFreshmanButton(){
-        view.addSubview(coachingPreviewFreshman.view)  //Change to freshman
-        main.refreshNavBar()
-        coachingPreviewFreshman.pushDownVC(self, dur: 0.5)  //evaluation
-    }
-    
-    @objc fileprivate func handleCoachingSophomoreButton(){
-        view.addSubview(coachingPreviewSophomore.view)  //Change to sophomiore lol lololool (lol -sam)
-        main.refreshNavBar()
-        coachingPreviewSophomore.pushDownVC(self, dur: 0.5)  //evaluation
-    }
-    
-    @objc fileprivate func handleCoachingJuniorButton(){
-        view.addSubview(coachingPreviewJunior.view)  //Change to freshman
-        main.refreshNavBar()
-        coachingPreviewJunior.pushDownVC(self, dur: 0.5)  //evaluation
-    }
-    
-    @objc fileprivate func handleCoachingSeniorButton(){
-        view.addSubview(coachingPreviewSenior.view)  //Change to freshman
-        main.refreshNavBar()
-        
-        coachingPreviewSenior.pushDownVC(self, dur: 0.5)  //evaluation
+    internal func handlePictureTap(){
+        let picSize = profilePicMainSize + 20
+
+        UIView.animate(withDuration: 0.15, animations: {
+            
+            self.profilePicView.frame = CGRect(x: (self.width-picSize)/2, y: self.h0 + picSize/4 - 10, width: picSize, height: picSize)
+            }, completion: { finished in
+                UIView.animate(withDuration: 0.15, animations: {
+                    //picSize = self.viewHeight/3-45
+                    //_ = MainPanels.ResizeImage(self.profilePic, targetSize: CGSize(width: profilePicMainSize, height: profilePicMainSize))
+                    self.profilePicView.frame = self.profilePicFrame
+                })
+                
+        })
     }
 
     
