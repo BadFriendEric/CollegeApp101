@@ -18,6 +18,8 @@ class LoginVC: UIViewController, TextFieldDelegate {
     
     fileprivate var imageSize: CGFloat = 300
     
+    let testProfile: Profile = Profile(user: "Eric", pass: "big butt")
+    
     let width = MainSwipeController.Constants.ScreenWidth
     let height = MainSwipeController.Constants.ScreenHeight
 
@@ -105,6 +107,11 @@ class LoginVC: UIViewController, TextFieldDelegate {
         
         print(username)
         print(password)
+        
+        testProfile.setTrueName(first: "sweg", last: "boi")  //CORE DATA DEMONSTRATION
+        print(testProfile.getFirstName())                    
+        print(testProfile.getLastName())
+        
     }
 
     

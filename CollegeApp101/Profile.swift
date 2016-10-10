@@ -22,6 +22,7 @@ class Profile {
         
     }
     
+    let userDefaults = UserDefaults.standard
     
     private var username = ""
     private var password = ""
@@ -38,8 +39,12 @@ class Profile {
     
     
     public func setTrueName(first: String, last: String){
+        /*
         self.firstName = first
         self.lastName = last
+        */
+        userDefaults.set(first, forKey: firstName)
+        userDefaults.set(last, forKey: lastName)
     }
     
     public func setFirstName(firstName: String){
@@ -69,11 +74,11 @@ class Profile {
     }
     
     public func getFirstName() -> String{
-        return firstName
+        return userDefaults.string(forKey: firstName)!
     }
     
     public func getLastName() -> String{
-        return lastName
+        return userDefaults.string(forKey: lastName)!
     }
     
     public func getFullName() -> String{
