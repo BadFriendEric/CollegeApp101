@@ -66,7 +66,7 @@ open class MainSwipeController: UIViewController {
         return stackPageVC.index(of: currentStackVC)!
     }
     open var datasource: MainSwipeControllerDataSource?
-
+    
     open var navigationBarShouldBeOnBottom = false
     open var navigationBarShouldNotExist = true
     open var cancelStandardButtonEvents = false

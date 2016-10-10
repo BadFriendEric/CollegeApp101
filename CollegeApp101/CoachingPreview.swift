@@ -19,24 +19,26 @@ import Material
 class CoachingPreview: UIViewController {
     
     let mainWidth = MainSwipeController.Constants.ScreenWidth
-    let width = MainSwipeController.Constants.ScreenWidth
-    let height = MainSwipeController.Constants.ScreenHeight - (MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight)
+    let width = MainSwipeController.Constants.ScreenWidth - 30
+    let height = MainSwipeController.Constants.ScreenHeight - 50
     var test: FlatButton! = nil
-    var superview : UIViewController! = nil
+    var superview : CoachingVC! = nil
     
-    var x : CGFloat = 0.0
-    var y : CGFloat = 0.0
+    var x : CGFloat = 15
+    var y : CGFloat = 25
     
     let imageW = 640
     let imageH = 215
-   
+    
+    let exit : IconButton = IconButton()
     
     var name = "Coaching"
     
     var mysubviews = [UIView]()
     
-    internal init() {
+    internal init(superview : CoachingVC) {
         super.init(nibName: nil, bundle: nil)
+        self.superview = superview
         setupView()
     }
     
@@ -48,8 +50,10 @@ class CoachingPreview: UIViewController {
     
     internal func setupView(){
         view.frame = CGRect(x: x, y: y, width: width, height: height)
-        view.backgroundColor = Color.green.base
-        
+        view.backgroundColor = Color.white
+        self.view.cornerRadiusPreset = CornerRadiusPreset.cornerRadius5
+                
+        prepareExitButton()
         prepareButton()
         reloadView()
         
@@ -61,14 +65,24 @@ class CoachingPreview: UIViewController {
         }
     }
     
+    internal func prepareExitButton(){
+        exit.frame = CGRect(x: self.view.frame.maxX-60, y: 5, width: 45, height: 45)
+        exit.setImage(Icon.cm.close, for: UIControlState())
+        exit.addTarget(self, action: #selector(handleExit), for: .touchUpInside)
+        exit.tintColor = Color.black
+        self.view.addSubview(exit)
+    }
+    
     internal func prepareButton(){
-        test = FlatButton(frame: CGRect(x: (width-150)/2, y: height-170, width: 150, height: 60))
+        let h : CGFloat = 100
+        test = FlatButton(frame: CGRect(x: 0, y: height-h, width: width, height: h))
         test.setTitle("Continue", for: UIControlState())
         test.setTitleColor(Color.white, for: UIControlState())
-        test.backgroundColor = Color.pink.lighten3
-        test.cornerRadius = 20
+        test.backgroundColor = Color.red.lighten1
+        test.cornerRadiusPreset = CornerRadiusPreset.cornerRadius5
         test.addTarget(self, action: #selector(handleContinueButton), for: .touchUpInside)
         mysubviews.append(test)
+        
         
     }
     
@@ -80,34 +94,31 @@ class CoachingPreview: UIViewController {
         self.view.backgroundColor = color
     }
     
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    internal func handleExit(){
         pullUpVC(superview, dur: 0.4)
+
+    }
+    
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
     
     internal func pushDownVC(_ vc : UIViewController, dur : TimeInterval){
-        self.view.frame = CGRect(x: 0.0, y: -self.height + 8, width: vc.view.frame.width, height: vc.view.frame.height)
-
+        self.view.frame = CGRect(x: x, y: -self.height + 8, width: self.width, height: self.height)
         UIView.animate(withDuration: dur, animations: {
-            
-            self.view.frame = CGRect(x: 0.0, y: MainPanels.Constants.navBarHeight + MainPanels.Constants.statusBarHeight + 8, width: self.view.frame.width, height: self.view.frame.height)
-            vc.view.frame = CGRect(x: 0.0, y: vc.view.frame.maxY, width: vc.view.frame.width, height: vc.view.frame.height)
-            self.view.layoutIfNeeded()
-            //vc.view.layoutIfNeeded()
+            self.superview.previewBacker.backgroundColor = Color.black.withAlphaComponent(0.75)
+            self.view.frame = CGRect(x: self.x, y: 20, width: self.width, height: self.height)
         })
         
     }
     
     internal func pullUpVC(_ vc : UIViewController, dur : TimeInterval){
         UIView.animate(withDuration: dur, animations: {
-            //let vcY : CGFloat = 0.0
-            //self.view.frame = CGRect(x: 0.0, y: self.y_init, width: self.width, height: self.height)
-            self.view.frame = CGRect(x: 0.0, y: -self.height + 8, width: self.view.frame.width, height: self.view.frame.height)
-            vc.view.frame = CGRect(x: 0.0, y: 0.0, width: vc.view.frame.width, height: vc.view.frame.height)
-            self.view.layoutIfNeeded()
-            //vc.view.layoutIfNeeded()
+            self.view.frame = CGRect(x: self.x, y: -self.height, width: self.width, height: self.height)
+            self.superview.previewBacker.backgroundColor = Color.black.withAlphaComponent(0.0)
             }, completion: { finished in
                 self.view.removeFromSuperview()
+                self.superview.previewBacker.removeFromSuperview()
         })
     }
     

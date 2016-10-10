@@ -12,13 +12,7 @@ import Material
 
 class CoachingVC : UIViewController, UIGestureRecognizerDelegate {
     
-    var coachingPreviewGeneral : CoachingPreview! = CoachingPreview()
-    var coachingPreviewWriting : CoachingPreview! = CoachingPreview()
-    var coachingPreviewEvaluation : CoachingPreview! = CoachingPreview()
-    var coachingPreviewFreshman : CoachingPreview! = CoachingPreview()
-    var coachingPreviewSophomore : CoachingPreview! = CoachingPreview()
-    var coachingPreviewJunior : CoachingPreview! = CoachingPreview()
-    var coachingPreviewSenior : CoachingPreview! = CoachingPreview()
+
 
     var main : MainPanels! = nil
     var profile : Profile! = nil
@@ -35,15 +29,28 @@ class CoachingVC : UIViewController, UIGestureRecognizerDelegate {
     
     var profileTopBacker : UIView! = UIView()
     
+    let previewBacker : UIView! = UIView()
+    
     let mainColor = UIColor(red:0.16, green:0.50, blue:0.73, alpha:1.0)
+    
+    var cpe : CoachingPreview! = nil
     
     
     internal func prepareView(main: MainPanels){
         self.main = main
         self.profile = main.profile
         self.view.backgroundColor = Color.grey.lighten2
+        preparePreviews()
         prepareProfileView()
         prepareButtonsView()
+    }
+    
+    internal func preparePreviews(){
+        previewBacker.frame = main.view.frame
+        previewBacker.backgroundColor = Color.black.withAlphaComponent(0.0)
+
+        
+        cpe = CoachingPreview(superview:self)
     }
     
     internal func prepareProfileView(){
@@ -133,21 +140,29 @@ class CoachingVC : UIViewController, UIGestureRecognizerDelegate {
         eval.titleLabel?.font = UIFont(name: "Oswald-Regular", size: 24)
         eval.backgroundColor = UIColor(red:0.61, green:0.35, blue:0.71, alpha:1.0)
         eval.cornerRadiusPreset = crp
+        eval.addTarget(self, action: #selector(CoachingVC.handleEval), for: .touchUpInside)
         self.view.addSubview(eval)
         
         
+    }
+    
+    internal func handleEval(){
+        showPreview(preview: cpe)
+    }
+    
+    internal func showPreview(preview: CoachingPreview){
+        main.view.addSubview(previewBacker)
+        main.view.addSubview(preview.view)
+        preview.pushDownVC(main, dur: 0.4)
     }
     
     internal func handlePictureTap(){
         let picSize = profilePicMainSize + 20
 
         UIView.animate(withDuration: 0.15, animations: {
-            
             self.profilePicView.frame = CGRect(x: (self.width-picSize)/2, y: self.h0 + picSize/4 - 10, width: picSize, height: picSize)
             }, completion: { finished in
                 UIView.animate(withDuration: 0.15, animations: {
-                    //picSize = self.viewHeight/3-45
-                    //_ = MainPanels.ResizeImage(self.profilePic, targetSize: CGSize(width: profilePicMainSize, height: profilePicMainSize))
                     self.profilePicView.frame = self.profilePicFrame
                 })
                 
