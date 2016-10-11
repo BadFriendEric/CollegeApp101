@@ -49,6 +49,9 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     var logoAlpha = CGFloat(0)
     var titleAlpha = CGFloat(1)
     
+    //STORAGE
+    let storage: UserDefaults = UserDefaults.standard
+    
     ///View Controllers///
     let statusBar = UIView(frame:CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: MainSwipeController.Constants.StatusBarHeight+1))
     var hubVC: UIViewController! = nil
@@ -93,7 +96,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     fileprivate var hubCardBottom = Int(Constants.navBarHeight) + 15
     fileprivate var hubCardSpacing = 20
     
-    let profile : Profile = Profile(user: "samhollenbach", pass: "password")
+    var profile : Profile = Profile(user: "samhollenbach", pass: "password")
     
     
     /////////////////////////////////////////////////
@@ -256,6 +259,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     
     
     
+    
     /////////////////////////////////////////////////
     //---------------Refresh Methods---------------//
     /////////////////////////////////////////////////
@@ -377,6 +381,22 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         })
     }
     
+    /////////////////////////////////////////////////
+    //---------------General Methods---------------//
+    /////////////////////////////////////////////////
+
+    func setProfile(user: String, pass: String) -> Bool{
+        profile = storage.object(forKey: user) as! Profile
+        
+        if profile.getPassword() == pass {
+            return true
+        }
+        
+        return false
+        
+    }
+    
+    
     
     ////////////////////////////////////////////////
     //--------------The Hub Methods---------------//
@@ -394,6 +414,8 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         hubCards.remove(at: hubCards.index(of: card)!)
         refreshHubCards()
     }
+    
+    
     
     
     

@@ -109,6 +109,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
         print(password)
         
         testProfile.setTrueName(first: "sweg", last: "boi")  //CORE DATA DEMONSTRATION
+        
         print(testProfile.getFirstName())                    
         print(testProfile.getLastName())
         
@@ -174,7 +175,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
         // with a top margin of 200 pixels.
         _ = view.layout(passwordField).top(290).horizontally(left: 40, right: 40)
     }
-    
+        
     fileprivate func getGradient1() -> CAGradientLayer{
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
