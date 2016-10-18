@@ -15,6 +15,9 @@ class LoginVC: UIViewController, TextFieldDelegate {
     fileprivate var passwordField: TextField!
     fileprivate var resetUser: IconButton!
     fileprivate var resetPass: IconButton!
+    let btn: RaisedButton = RaisedButton()
+    let btn2: RaisedButton = RaisedButton()
+
     
     fileprivate var imageSize: CGFloat = 300
     
@@ -30,7 +33,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareView()
-        //prepareNameField()
+        prepareProfile()
         prepareEmailField()
         preparePasswordField()
         prepareResignResponderButton()
@@ -56,7 +59,6 @@ class LoginVC: UIViewController, TextFieldDelegate {
     fileprivate func prepareResignResponderButton() {
         
         //LOGIN BUTTON
-        let btn: RaisedButton = RaisedButton()
         btn.addTarget(self, action: #selector(handleLoginResponderButton), for: .touchUpInside)
         btn.setTitle("Login", for: UIControlState())
         btn.setTitleColor(Color.black, for: UIControlState())
@@ -68,7 +70,6 @@ class LoginVC: UIViewController, TextFieldDelegate {
         
         
         //REGISTER BUTTON
-        let btn2: RaisedButton = RaisedButton()
         btn2.addTarget(self, action: #selector(handleRegisterResponderButton), for: .touchUpInside)
         btn2.setTitle("Register", for: UIControlState())
         btn2.setTitleColor(Color.black, for: UIControlState())
@@ -105,13 +106,10 @@ class LoginVC: UIViewController, TextFieldDelegate {
         let secondViewController:UIViewController = MainPanels()
         self.present(secondViewController, animated: true, completion: nil)
         
-        print(username)
-        print(password)
-        
-        testProfile.setTrueName(first: "sweg", last: "boi")  //CORE DATA DEMONSTRATION
-        
-        print(testProfile.getFirstName())                    
-        print(testProfile.getLastName())
+        testProfile.setUsername(user: username)  //CORE DATA DEMONSTRATION
+        testProfile.setPassword(pass: password)
+        print(testProfile.getUsername())
+        print(testProfile.getPassword())
         
     }
 
@@ -126,20 +124,6 @@ class LoginVC: UIViewController, TextFieldDelegate {
 
         }
 
-    
-    /// Prepares the name TextField.
-    fileprivate func prepareNameField() {
-        nameField = TextField()
-        nameField.text = "Salty Sam"
-        nameField.placeholder = "College App 101"
-        nameField.detail = "Name"
-        nameField.textAlignment = .left
-        nameField.clearButtonMode = .whileEditing
-        
-        // Size the TextField to the maximum width, less 40 pixels on either side
-        // with a top margin of 40 pixels.
-        _ = view.layout(nameField).top(40).horizontally(left: 40, right: 40)
-    }
     
     /// Prepares the email TextField.
     fileprivate func prepareEmailField() {
@@ -174,6 +158,18 @@ class LoginVC: UIViewController, TextFieldDelegate {
         // Size the TextField to the maximum width, less 40 pixels on either side
         // with a top margin of 200 pixels.
         _ = view.layout(passwordField).top(290).horizontally(left: 40, right: 40)
+    }
+    
+    fileprivate func prepareProfile(){
+        
+        let u = testProfile.getUsername()
+        let p = testProfile.getPassword()
+        
+        print(u)
+        print(p)
+        
+        emailField.text = u
+        passwordField.text = p
     }
         
     fileprivate func getGradient1() -> CAGradientLayer{

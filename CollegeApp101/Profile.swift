@@ -24,8 +24,8 @@ class Profile {
     
     let userDefaults = UserDefaults.standard
     
-    private var username = ""
-    private var password = ""
+    private var username: String = "test"
+    private var password: String = "123"
     private var firstName = "Sam"
     private var lastName = "Hollenbach"
     private var profilePicture : UIImage = UIImage(named: "ProfileDefault1")!
@@ -33,10 +33,17 @@ class Profile {
     
     
     internal init(user : String, pass: String){
-        self.username = user
-        self.password = pass
+        userDefaults.set(user, forKey: username)
+        userDefaults.set(pass, forKey: password)
     }
     
+    public func setUsername(user: String){
+        userDefaults.set(user, forKey: username)
+    }
+    
+    public func setPassword(pass: String){
+        userDefaults.set(pass, forKey: password)
+    }
     
     public func setTrueName(first: String, last: String){
         /*
@@ -48,11 +55,11 @@ class Profile {
     }
     
     public func setFirstName(firstName: String){
-        self.firstName = firstName
+        userDefaults.set(firstName, forKey: firstName)
     }
     
     public func setLastName(lastName: String){
-        self.lastName = lastName
+        userDefaults.set(lastName, forKey: lastName)
     }
     
     public func setProfilePic(pic: UIImage){
@@ -65,12 +72,12 @@ class Profile {
     
     
     public func getUsername() -> String{
-        return username
+        return userDefaults.object(forKey: username) as! String
     }
     
     
     public func getPassword() -> String{
-        return password
+        return userDefaults.object(forKey: password) as! String
     }
     
     public func getFirstName() -> String{
