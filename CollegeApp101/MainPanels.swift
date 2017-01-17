@@ -55,7 +55,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     var coachingVC: CoachingVC! = nil
     var careerVC: UIViewController! = nil
     var currentVC: UIViewController!
-    var hubScrollView: UIScrollView! = UIScrollView()
+    var hubScrollView = HubVC()
     var careerFeatureView: UIView! = UIView()
     var coachingLineMid: UIView! = UIView()
     var coachingLineL1: UIView! = UIView()
@@ -113,6 +113,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         prepareHubScrollView()
         prepareCareerView()
         coachingVC.prepareView(main: self)
+        hubScrollView.prepareView(main: self)
         
         let c = addCard(hubCardBottom, size: 110, vc: hubScrollView)
         c.type = "Default"
@@ -210,6 +211,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     ///Prepare Hub Panel///
     fileprivate func prepareHubScrollView(){
         hubScrollView.frame = CGRect(x: 0, y: Constants.navBarHeight, width: navBar.width, height: hubVC.view.frame.height-Constants.navBarHeight)
+        
         
         hubVC.view.addSubview(hubScrollView)
         
