@@ -27,10 +27,17 @@ class HubVC : UIScrollView, UIGestureRecognizerDelegate {
     var profilePic : UIImage! = UIImage()
     let profilePicView : UIImageView! = UIImageView()
     var profilePicFrame : CGRect! = CGRect()
-    let profilePicMainSize = (MainSwipeController.Constants.ScreenHeight - MainPanels.Constants.navBarHeight)/3 - 40
+    let profilePicMainSize = (MainSwipeController.Constants.ScreenHeight - MainPanels.Constants.navBarHeight)/3 - 100
     var profileTopBacker : UIView! = UIView()
     let nameLabel = UILabel()
     let editProfileLabel = UILabel()
+    
+    //Timeline variables ////////////////////////////////////////////////////////////////////
+    
+    
+    
+    /////////////////////////////////////////////////////////////////////////////////////////
+    
     
     internal func prepareView(main: MainPanels){
         self.main = main
@@ -74,6 +81,12 @@ class HubVC : UIScrollView, UIGestureRecognizerDelegate {
         editProfileLabel.textAlignment = .center
         editProfileLabel.textColor = Color.grey.base
         self.addSubview(editProfileLabel)
+        
+    }
+    
+    internal func prepareTimeline(){
+        
+        
         
     }
     

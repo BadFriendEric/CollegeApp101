@@ -90,7 +90,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     let width = MainSwipeController.Constants.ScreenWidth
     let height = MainSwipeController.Constants.ScreenHeight
     //private var navBarHeight = 50
-    fileprivate var hubCardBottom = Int(Constants.navBarHeight) + 15
+    fileprivate var hubCardBottom = Int(Constants.navBarHeight)+340
     fileprivate var hubCardSpacing = 20
     
     let profile : Profile = Profile(user: "samhollenbach", pass: "password")
@@ -114,8 +114,8 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         prepareCareerView()
         coachingVC.prepareView(main: self)
         hubScrollView.prepareView(main: self)
-        
-        let c = addCard(hubCardBottom, size: 110, vc: hubScrollView)
+        print(hubCardBottom)
+        let c = addCard(hubCardBottom, size: 160, vc: hubScrollView)
         c.type = "Default"
         refreshHubCards()
         
@@ -210,7 +210,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     
     ///Prepare Hub Panel///
     fileprivate func prepareHubScrollView(){
-        hubScrollView.frame = CGRect(x: 0, y: Constants.navBarHeight, width: navBar.width, height: hubVC.view.frame.height-Constants.navBarHeight)
+        hubScrollView.frame = CGRect(x: 0, y: Constants.navBarHeight - 15, width: navBar.width, height: hubVC.view.frame.height-Constants.navBarHeight)
         
         
         hubVC.view.addSubview(hubScrollView)
@@ -278,7 +278,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
         })
     }
     internal func refreshHubCards(){
-        var currentCardPos = Int(Constants.navBarHeight) + hubCardSpacing - 5
+        var currentCardPos = hubCardBottom + hubCardSpacing
         for card in hubCards{
             if(Int(card.y) > currentCardPos){
                 UIView.animate(withDuration: 0.3, animations: {
@@ -288,7 +288,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
             currentCardPos = Int(card.y) + Int(card.height) + hubCardSpacing
         }
         if(hubCards.isEmpty){
-            hubCardBottom = Int(Constants.navBarHeight) + hubCardSpacing - 5
+            hubCardBottom = hubCardBottom + hubCardSpacing
         }else{
             hubCardBottom = Int((hubCards.last?.y)!) + Int((hubCards.last?.height)!) + hubCardSpacing
         }
@@ -327,7 +327,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     }
     
     internal func handleHelpButton(){
-        let size = 110
+        let size = 160
         _ = addCard(hubCardBottom,size: size,vc: hubScrollView)
         
         if(hubCardBottom > Int(hubVC.view.frame.height)){
