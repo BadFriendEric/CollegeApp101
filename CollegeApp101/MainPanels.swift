@@ -90,7 +90,7 @@ class MainPanels: MainSwipeController, UIGestureRecognizerDelegate {
     let width = MainSwipeController.Constants.ScreenWidth
     let height = MainSwipeController.Constants.ScreenHeight
     //private var navBarHeight = 50
-    fileprivate var hubCardBottom = Int(Constants.navBarHeight)+340
+    fileprivate var hubCardBottom = Int(Constants.navBarHeight)+300
     fileprivate var hubCardSpacing = 20
     
     let profile : Profile = Profile(user: "samhollenbach", pass: "password")

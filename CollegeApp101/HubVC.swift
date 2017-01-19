@@ -34,7 +34,10 @@ class HubVC : UIScrollView, UIGestureRecognizerDelegate {
     
     //Timeline variables ////////////////////////////////////////////////////////////////////
     
-    
+    var arrowBtn: UIButton!
+    let arrowH: CGFloat = 40.0
+    let arrowW: CGFloat = 80.0
+    let timelineH: CGFloat = 280.0
     
     /////////////////////////////////////////////////////////////////////////////////////////
     
@@ -45,6 +48,7 @@ class HubVC : UIScrollView, UIGestureRecognizerDelegate {
         self.superview?.backgroundColor = Color.grey.lighten2
         //preparePreviews()
         prepareProfileView()
+        prepareTimeline()
     }
     
     internal func prepareProfileView(){
@@ -84,11 +88,6 @@ class HubVC : UIScrollView, UIGestureRecognizerDelegate {
         
     }
     
-    internal func prepareTimeline(){
-        
-        
-        
-    }
     
     internal func handlePictureTap(){
         let picSize = profilePicMainSize + 20
@@ -103,7 +102,22 @@ class HubVC : UIScrollView, UIGestureRecognizerDelegate {
         })
     }
     
-     
-    
+    func prepareTimeline(){
+        let firstX: CGFloat = 20.0
+        arrowBtn = UIButton(frame: CGRect(x: firstX, y: timelineH, width: arrowW, height: arrowH))
+        
+        arrowBtn.backgroundColor = Color.amber.base
+        arrowBtn.setTitle("Test", for: .normal)
+        arrowBtn.addTarget(self, action: #selector(handleArrowPressed), for: .touchUpInside)
+        
+        self.addSubview(arrowBtn)
+        
+        
+    }
+
+    func handleArrowPressed(){
+        print("yee")
+        
+    }
     
 }

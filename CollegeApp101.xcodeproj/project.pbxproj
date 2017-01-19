@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		C11989491D602AE80027F24E /* ResumeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11989481D602AE80027F24E /* ResumeCard.swift */; };
 		C119894B1D602C040027F24E /* CareerFeatureResumeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */; };
-		C1628F421E2DAA1500233C19 /* HubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1628F411E2DAA1500233C19 /* HubVC.swift */; };
+		C1628F451E2F55E800233C19 /* HubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1628F411E2DAA1500233C19 /* HubVC.swift */; };
 		C16F19511D97536D00242368 /* CareerFeatureVolunteerMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16F19501D97536D00242368 /* CareerFeatureVolunteerMatch.swift */; };
 		C1AF116A1D5EAA3E009D718D /* PlannerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF11691D5EAA3E009D718D /* PlannerItem.swift */; };
 		C1AF116C1D5EAACB009D718D /* CareerFeatureTopSchools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF116B1D5EAACB009D718D /* CareerFeatureTopSchools.swift */; };
@@ -323,7 +323,7 @@
 				C1E574F61D55A42200EF106C /* RegisterVC.swift in Sources */,
 				C119894B1D602C040027F24E /* CareerFeatureResumeBuilder.swift in Sources */,
 				E9598A061D4C0667004D8842 /* ViewController.swift in Sources */,
-				C1628F421E2DAA1500233C19 /* HubVC.swift in Sources */,
+				C1628F451E2F55E800233C19 /* HubVC.swift in Sources */,
 				E9598A041D4C0667004D8842 /* AppDelegate.swift in Sources */,
 				E99B43231D56777100433708 /* MenuVC.swift in Sources */,
 				E9D9394A1D74C3AD00F827A9 /* MenuItem.swift in Sources */,
@@ -424,6 +424,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
