@@ -11,6 +11,7 @@
 		C119894B1D602C040027F24E /* CareerFeatureResumeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */; };
 		C1628F451E2F55E800233C19 /* HubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1628F411E2DAA1500233C19 /* HubVC.swift */; };
 		C16F19511D97536D00242368 /* CareerFeatureVolunteerMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16F19501D97536D00242368 /* CareerFeatureVolunteerMatch.swift */; };
+		C18886471E31874A000A31AB /* WindowCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18886461E31874A000A31AB /* WindowCard.swift */; };
 		C1AF116A1D5EAA3E009D718D /* PlannerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF11691D5EAA3E009D718D /* PlannerItem.swift */; };
 		C1AF116C1D5EAACB009D718D /* CareerFeatureTopSchools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF116B1D5EAACB009D718D /* CareerFeatureTopSchools.swift */; };
 		C1C03BB41D9789EB00B1948E /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1C03BB31D9789EB00B1948E /* SourceSansPro-Regular.otf */; };
@@ -51,6 +52,7 @@
 		C119894A1D602C040027F24E /* CareerFeatureResumeBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareerFeatureResumeBuilder.swift; sourceTree = "<group>"; };
 		C1628F411E2DAA1500233C19 /* HubVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HubVC.swift; sourceTree = "<group>"; };
 		C16F19501D97536D00242368 /* CareerFeatureVolunteerMatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareerFeatureVolunteerMatch.swift; sourceTree = "<group>"; };
+		C18886461E31874A000A31AB /* WindowCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowCard.swift; sourceTree = "<group>"; };
 		C1AF11691D5EAA3E009D718D /* PlannerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerItem.swift; sourceTree = "<group>"; };
 		C1AF116B1D5EAACB009D718D /* CareerFeatureTopSchools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareerFeatureTopSchools.swift; sourceTree = "<group>"; };
 		C1C03BB31D9789EB00B1948E /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				E90F0F861DA4B50000C11A65 /* Profile.swift */,
 				E9C27C261D4C0AD800160A05 /* MainSwipeController.swift */,
 				E9C27C281D4C0ADE00160A05 /* MainPanels.swift */,
+				C18886461E31874A000A31AB /* WindowCard.swift */,
 				C1628F411E2DAA1500233C19 /* HubVC.swift */,
 				E90F0F881DA57C2C00C11A65 /* CoachingVC.swift */,
 				E9D939461D73EE5900F827A9 /* Oswald-Regular.ttf */,
@@ -315,6 +318,7 @@
 				E9DF9FEB1D4E7FE4007A5697 /* HubCard.swift in Sources */,
 				C11989491D602AE80027F24E /* ResumeCard.swift in Sources */,
 				E9C27C271D4C0AD800160A05 /* MainSwipeController.swift in Sources */,
+				C18886471E31874A000A31AB /* WindowCard.swift in Sources */,
 				E9C27C291D4C0ADE00160A05 /* MainPanels.swift in Sources */,
 				E91193C21D791411008954FD /* TopSchoolsListItem.swift in Sources */,
 				C16F19511D97536D00242368 /* CareerFeatureVolunteerMatch.swift in Sources */,

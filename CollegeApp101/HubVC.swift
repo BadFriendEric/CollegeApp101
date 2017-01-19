@@ -37,8 +37,12 @@ class HubVC : UIScrollView, UIGestureRecognizerDelegate {
     var arrowBtn: UIButton!
     let arrowH: CGFloat = 40.0
     let arrowW: CGFloat = 80.0
-    let timelineH: CGFloat = 280.0
+    let timelineH: CGFloat = 285
     
+    var addTimeline: UIButton!
+    
+    var timelineText: UILabel!
+    var timelineLabel: String!
     /////////////////////////////////////////////////////////////////////////////////////////
     
     
@@ -105,13 +109,27 @@ class HubVC : UIScrollView, UIGestureRecognizerDelegate {
     func prepareTimeline(){
         let firstX: CGFloat = 20.0
         arrowBtn = UIButton(frame: CGRect(x: firstX, y: timelineH, width: arrowW, height: arrowH))
-        
-        arrowBtn.backgroundColor = Color.amber.base
+        arrowBtn.backgroundColor = Color.cyan.lighten1
         arrowBtn.setTitle("Test", for: .normal)
         arrowBtn.addTarget(self, action: #selector(handleArrowPressed), for: .touchUpInside)
-        
+        arrowBtn.cornerRadius = 10
         self.addSubview(arrowBtn)
+
+        addTimeline = UIButton(frame: CGRect(x: firstX + 90, y: timelineH + arrowH/2 - 20, width: 40, height: 40))
+        addTimeline.imageEdgeInsets = .zero
+        addTimeline.backgroundColor = Color.teal.lighten1
+        addTimeline.cornerRadius = 15
+        addTimeline.setImage(Icon.add, for: .normal)
+        self.addSubview(addTimeline)
         
+        timelineLabel = "Your next deadline is in 56 days"
+        timelineText = UILabel(frame: CGRect(x: 30, y: 235, width: self.width - 60, height: 40.0))
+        timelineText.backgroundColor = Color.blue.accent2
+        timelineText.text = timelineLabel
+        timelineText.textAlignment = .center
+        timelineText.adjustsFontSizeToFitWidth = true
+        timelineText.alpha = 0.7
+        self.addSubview(timelineText)
         
     }
 
