@@ -43,14 +43,20 @@ class HubVC : UIScrollView, UIGestureRecognizerDelegate {
     
     var timelineText: UILabel!
     var timelineLabel: String!
+    
     /////////////////////////////////////////////////////////////////////////////////////////
+
+    //Preview variables
+    var previewBacker : UIView! = UIView()
+    var addWindow : WindowCard! = nil
+
     
     
     internal func prepareView(main: MainPanels){
         self.main = main
         self.profile = main.profile
         self.superview?.backgroundColor = Color.grey.lighten2
-        //preparePreviews()
+        preparePreviews()
         prepareProfileView()
         prepareTimeline()
     }
@@ -111,7 +117,6 @@ class HubVC : UIScrollView, UIGestureRecognizerDelegate {
         arrowBtn = UIButton(frame: CGRect(x: firstX, y: timelineH, width: arrowW, height: arrowH))
         arrowBtn.backgroundColor = Color.cyan.lighten1
         arrowBtn.setTitle("Test", for: .normal)
-        arrowBtn.addTarget(self, action: #selector(handleArrowPressed), for: .touchUpInside)
         arrowBtn.cornerRadius = 10
         self.addSubview(arrowBtn)
 
@@ -120,6 +125,7 @@ class HubVC : UIScrollView, UIGestureRecognizerDelegate {
         addTimeline.backgroundColor = Color.teal.lighten1
         addTimeline.cornerRadius = 15
         addTimeline.setImage(Icon.add, for: .normal)
+        addTimeline.addTarget(self, action: #selector(handleArrowPressed), for: .touchUpInside)
         self.addSubview(addTimeline)
         
         timelineLabel = "Your next deadline is in 56 days"
@@ -131,11 +137,29 @@ class HubVC : UIScrollView, UIGestureRecognizerDelegate {
         timelineText.alpha = 0.7
         self.addSubview(timelineText)
         
+        
+        
+    }
+    
+    internal func preparePreviews(){
+        previewBacker.frame = main.view.frame
+        previewBacker.backgroundColor = Color.black.withAlphaComponent(0.0)
+        
+        
+        addWindow = WindowCard(superview: self)
     }
 
+    
+    internal func showPreview(preview: WindowCard){
+        main.view.addSubview(previewBacker)
+        main.view.addSubview(preview.view)
+        preview.pushDownVC(self, dur: 0.3)
+    }
+
+
     func handleArrowPressed(){
-        print("yee")
-        
+        showPreview(preview: addWindow)
+        print("Yee")
     }
     
 }
