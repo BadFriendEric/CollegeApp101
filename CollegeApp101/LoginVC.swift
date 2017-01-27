@@ -8,6 +8,8 @@
 
 import UIKit
 import Material
+import AWSCore
+import AWSCognito
 
 class LoginVC: UIViewController, TextFieldDelegate {
     fileprivate var nameField: TextField!
@@ -20,6 +22,13 @@ class LoginVC: UIViewController, TextFieldDelegate {
     
     let width = MainSwipeController.Constants.ScreenWidth
     let height = MainSwipeController.Constants.ScreenHeight
+    
+    
+    
+    let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USWest2, identityPoolId: "us-west-2:73ace396-1072-46b3-ad9a-5e04db7da2a")
+    
+    //let syncClient = AWSCognito.default()
+    
 
     fileprivate var username: String!
     
@@ -27,6 +36,8 @@ class LoginVC: UIViewController, TextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareAWS()
+        //prepareAWSCognito()
         prepareView()
         //prepareNameField()
         prepareEmailField()
@@ -36,7 +47,42 @@ class LoginVC: UIViewController, TextFieldDelegate {
     }
     
 
-
+    fileprivate func prepareAWS(){
+        
+        
+        let configuration = AWSServiceConfiguration(region: .USWest2, credentialsProvider: credentialsProvider)
+        
+        print(configuration)
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
+        
+    }
+    
+    fileprivate func prepareAWSCognito(){
+        
+        let syncClient = AWSCognito.default()
+        
+        // Create a record in a dataset and synchronize with the server
+        var dataset = syncClient.openOrCreateDataset("myDataset")
+        dataset.setString("myValue", forKey:"myKey")
+        dataset.synchronize().continueWith {(task: AWSTask!) -> AnyObject! in
+            // Your handler code here
+            return nil
+            
+        }
+        
+//        credentialsProvider.getIdentityId().continueWith { (task: AWSTask!) -> AnyObject! in
+//            
+//            if (task.error != nil) {
+//                print("Error: " + (task.error?.localizedDescription)!)
+//                
+//            } else {
+//                // the task result will contain the identity id
+//                let cognitoId = task.result
+//                print(cognitoId)
+//            }
+//            return nil
+//        }
+    }
     
     
     /// Programmatic update for the textField as it rotates.
@@ -177,6 +223,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
         gradientLayer.locations = [0.0, 1.0]
         return gradientLayer
     }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
