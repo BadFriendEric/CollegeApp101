@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>.
+ * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,10 +34,10 @@ extension UINavigationController {
     /// Device status bar style.
     open var statusBarStyle: UIStatusBarStyle {
         get {
-            return Device.statusBarStyle
+            return Application.statusBarStyle
         }
         set(value) {
-            Device.statusBarStyle = value
+            Application.statusBarStyle = value
         }
     }
 }
@@ -95,13 +95,21 @@ open class NavigationController: UINavigationController {
 	
 	open override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		// Load the initial topItem.
-		if let v = navigationBar as? NavigationBar {
-			if let item = v.topItem {
-				v.layoutNavigationItem(item: item)
-			}
-		}
+		guard let v = navigationBar as? NavigationBar else {
+            return
+        }
+        
+        guard let item = v.topItem else {
+            return
+        }
+        
+        v.layoutNavigationItem(item: item)
 	}
+    
+    open override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        navigationBar.width = view.width
+    }
     
 	/**
      Prepares the view instance when intialized. When subclassing,
@@ -111,9 +119,12 @@ open class NavigationController: UINavigationController {
      when subclassing.
      */
 	open func prepare() {
+        navigationBar.heightPreset = .normal
+        navigationBar.width = view.width
+        
         view.clipsToBounds = true
-		view.backgroundColor = Color.white
-        view.contentScaleFactor = Device.scale
+		view.backgroundColor = .white
+        view.contentScaleFactor = Screen.scale
         
         // This ensures the panning gesture is available when going back between views.
 		if let v = interactivePopGestureRecognizer {
@@ -134,11 +145,9 @@ extension NavigationController: UINavigationBarDelegate {
      */
     public func navigationBar(_ navigationBar: UINavigationBar, shouldPush item: UINavigationItem) -> Bool {
         if let v = navigationBar as? NavigationBar {
-            let backButton = IconButton(image: v.backButtonImage, tintColor: Color.blueGrey.base)
-            backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
-            
-            item.backButton = backButton
-            item.leftControls.append(backButton)
+            item.backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
+            item.backButton.image = v.backButtonImage
+            item.leftViews.insert(item.backButton, at: 0)
             v.layoutNavigationItem(item: item)
         }
         return true

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>.
+ * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,47 +30,24 @@
 
 import UIKit
 
-/// NavigationBar styles.
-@objc(NavigationBarStyle)
-public enum NavigationBarStyle: Int {
-	case small
-	case medium
-	case large
-}
-
 open class NavigationBar: UINavigationBar {
-    /// A reference to the divider.
-    open internal(set) var divider: Divider!
-    
-    open override var intrinsicContentSize: CGSize {
-        switch navigationBarStyle {
-        case .small:
-            return CGSize(width: Device.width, height: 32)
-        case .medium:
-            return CGSize(width: Device.width, height: 44)
-        case .large:
-            return CGSize(width: Device.width, height: 56)
-        }
+    /// Will layout the view.
+    open var willLayout: Bool {
+        return 0 < width && 0 < height && nil != superview
     }
     
-	/// NavigationBarStyle value.
-	open var navigationBarStyle = NavigationBarStyle.medium
+    open override var intrinsicContentSize: CGSize {
+        return CGSize(width: width, height: height)
+    }
 	
-	internal var animating = false
-	
-	/// Will render the view.
-	open var willLayout: Bool {
-		return 0 < width && 0 < height && nil != superview
-	}
-	
-	/// A preset wrapper around contentInset.
+	/// A preset wrapper around contentEdgeInsets.
 	open var contentEdgeInsetsPreset = EdgeInsetsPreset.none {
 		didSet {
             contentEdgeInsets = EdgeInsetsPresetToValue(preset: contentEdgeInsetsPreset)
 		}
 	}
 	
-	/// A wrapper around grid.contentInset.
+	/// A reference to EdgeInsets.
 	@IBInspectable
     open var contentEdgeInsets = EdgeInsets.zero {
 		didSet {
@@ -95,7 +72,7 @@ open class NavigationBar: UINavigationBar {
 	
 	/// Grid cell factor.
 	@IBInspectable
-    open var gridFactor: CGFloat = 24 {
+    open var gridFactor: CGFloat = 12 {
 		didSet {
 			assert(0 < gridFactor, "[Material Error: gridFactor must be greater than 0.]")
 			layoutSubviews()
@@ -118,7 +95,7 @@ open class NavigationBar: UINavigationBar {
 		}
 	}
 	
-	/// A property that accesses the backing layer's backgroundColor.
+	/// A property that accesses the backing layer's background
 	@IBInspectable
     open override var backgroundColor: UIColor? {
 		didSet {
@@ -155,18 +132,12 @@ open class NavigationBar: UINavigationBar {
 		return intrinsicContentSize
 	}
     
-    open override func layoutSublayers(of layer: CALayer) {
-        super.layoutSublayers(of: layer)
-        if self.layer == layer {
-            layoutShape()
-        }
-    }
-	
 	open override func layoutSubviews() {
 		super.layoutSubviews()
+        layoutShape()
         layoutShadowPath()
 		
-		if let v = topItem {
+        if let v = topItem {
 			layoutNavigationItem(item: v)
 		}
 		
@@ -174,9 +145,7 @@ open class NavigationBar: UINavigationBar {
 			layoutNavigationItem(item: v)
 		}
         
-        if let v = divider {
-            v.reload()
-        }
+        divider.reload()
 	}
 	
 	open override func pushItem(_ item: UINavigationItem, animated: Bool) {
@@ -201,19 +170,19 @@ open class NavigationBar: UINavigationBar {
 
         var lc = 0
         var rc = 0
-        let l = (CGFloat(item.leftControls.count) * interimSpace)
-        let r = (CGFloat(item.rightControls.count) * interimSpace)
-        let p = width - l - r - contentEdgeInsets.left - contentEdgeInsets.right
-        let columns = Int(ceil(p / gridFactor))
         
         item.titleView!.grid.begin()
         item.titleView!.grid.views.removeAll()
-        item.titleView!.grid.axis.columns = columns
         
-        for v in item.leftControls {
-            (v as? UIButton)?.contentEdgeInsets = .zero
+        for v in item.leftViews {
+            if let b = v as? UIButton {
+                b.contentEdgeInsets = .zero
+                b.titleEdgeInsets = .zero
+            }
+            
+            v.width = v.intrinsicContentSize.width
             v.sizeToFit()
-            v.grid.columns = Int(ceil(v.width / gridFactor)) + 1
+            v.grid.columns = Int(ceil(v.width / gridFactor)) + 2
             
             lc += v.grid.columns
             
@@ -222,10 +191,15 @@ open class NavigationBar: UINavigationBar {
         
         item.titleView!.grid.views.append(item.contentView)
         
-        for v in item.rightControls {
-            (v as? UIButton)?.contentEdgeInsets = .zero
+        for v in item.rightViews {
+            if let b = v as? UIButton {
+                b.contentEdgeInsets = .zero
+                b.titleEdgeInsets = .zero
+            }
+            
+            v.width = v.intrinsicContentSize.width
             v.sizeToFit()
-            v.grid.columns = Int(ceil(v.width / gridFactor)) + 1
+            v.grid.columns = Int(ceil(v.width / gridFactor)) + 2
             
             rc += v.grid.columns
             
@@ -233,18 +207,37 @@ open class NavigationBar: UINavigationBar {
         }
         
         item.contentView.grid.begin()
+        item.contentView.grid.offset.columns = 0
+        
+        var l: CGFloat = 0
+        var r: CGFloat = 0
+        
+        if .center == item.contentViewAlignment {
+            if item.leftViews.count < item.rightViews.count {
+                r = CGFloat(item.rightViews.count) * interimSpace
+                l = r
+            } else {
+                l = CGFloat(item.leftViews.count) * interimSpace
+                r = l
+            }
+        }
+        
+        let p = width - l - r - contentEdgeInsets.left - contentEdgeInsets.right
+        let columns = Int(ceil(p / gridFactor))
+        
         if .center == item.contentViewAlignment {
             if lc < rc {
                 item.contentView.grid.columns = columns - 2 * rc
                 item.contentView.grid.offset.columns = rc - lc
             } else {
                 item.contentView.grid.columns = columns - 2 * lc
-                item.rightControls.first?.grid.offset.columns = lc - rc
+                item.rightViews.first?.grid.offset.columns = lc - rc
             }
         } else {
             item.contentView.grid.columns = columns - lc - rc
         }
         
+        item.titleView!.grid.axis.columns = columns
         item.titleView!.grid.interimSpace = interimSpace
         item.titleView!.grid.contentEdgeInsets = contentEdgeInsets
         item.titleView!.grid.commit()
@@ -292,19 +285,18 @@ open class NavigationBar: UINavigationBar {
      The super.prepare method should always be called immediately
      when subclassing.
      */
-	public func prepare() {
+	open func prepare() {
         barStyle = .black
-		isTranslucent = false
-		depthPreset = .depth1
-		interimSpacePreset = .interimSpace1
-		contentEdgeInsetsPreset = .square1
-		contentScaleFactor = Device.scale
+        isTranslucent = false
+        depthPreset = .depth1
+        interimSpacePreset = .interimSpace3
+        contentEdgeInsetsPreset = .square1
+        contentScaleFactor = Screen.scale
 		backButtonImage = Icon.cm.arrowBack
-        let image = UIImage(data: Data.init(), scale: 1)
+        let image = UIImage.image(with: .clear, size: CGSize(width: 1, height: 1))
 		shadowImage = image
 		setBackgroundImage(image, for: .default)
-		backgroundColor = Color.white
-        prepareDivider()
+		backgroundColor = .white
 	}
 	
 	/**
@@ -326,9 +318,4 @@ open class NavigationBar: UINavigationBar {
         }
         item.titleView = UIView(frame: .zero)
 	}
-	
-    /// Prepares the divider.
-    private func prepareDivider() {
-        divider = Divider(view: self)
-    }
 }

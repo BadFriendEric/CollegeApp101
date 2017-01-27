@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>.
+ * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,27 +48,38 @@ extension UIViewController {
 	}
 }
 
-open class SearchBarController: RootController {
-	/// Reference to the SearchBar.
-    open private(set) lazy var searchBar: SearchBar = SearchBar()
-	
-	/**
-     To execute in the order of the layout chain, override this
-     method. LayoutSubviews should be called immediately, unless you
-     have a certain need.
+open class SearchBarController: StatusBarController {
+    /**
+     A Display value to indicate whether or not to
+     display the rootViewController to the full view
+     bounds, or up to the searchBar height.
      */
+    open var display = Display.partial {
+        didSet {
+            layoutSubviews()
+        }
+    }
+    
+    /// Reference to the SearchBar.
+    @IBInspectable
+    open let searchBar = SearchBar()
+	
 	open override func layoutSubviews() {
 		super.layoutSubviews()
         
-        searchBar.grid.layoutEdgeInsets.top = .phone == Device.userInterfaceIdiom && Device.isLandscape ? 0 : 20
+        let y = Application.shouldStatusBarBeHidden || statusBar.isHidden ? 0 : statusBar.height
+        let p = y + searchBar.height
         
-        let p = searchBar.intrinsicContentSize.height + searchBar.grid.layoutEdgeInsets.top + searchBar.grid.layoutEdgeInsets.bottom
+        searchBar.y = y
+        searchBar.width = view.width
         
-        searchBar.width = view.width + searchBar.grid.layoutEdgeInsets.left + searchBar.grid.layoutEdgeInsets.right
-        searchBar.height = p
-        
-        rootViewController.view.y = p
-        rootViewController.view.height = view.height - p
+        switch display {
+        case .partial:
+            rootViewController.view.y = p
+            rootViewController.view.height = view.height - p
+        case .full:
+            rootViewController.view.frame = view.bounds
+        }
 	}
 	
 	/**
@@ -80,13 +91,21 @@ open class SearchBarController: RootController {
      */
 	open override func prepare() {
 		super.prepare()
+        prepareStatusBar()
 		prepareSearchBar()
 	}
-	
-	/// Prepares the searchBar.
-	private func prepareSearchBar() {
+}
+
+extension SearchBarController {
+    /// Prepares the statusBar.
+    fileprivate func prepareStatusBar() {
+        shouldHideStatusBarOnRotation = false
+    }
+    
+    /// Prepares the searchBar.
+    fileprivate func prepareSearchBar() {
         searchBar.depthPreset = .depth1
         searchBar.zPosition = 1000
         view.addSubview(searchBar)
-	}
+    }
 }

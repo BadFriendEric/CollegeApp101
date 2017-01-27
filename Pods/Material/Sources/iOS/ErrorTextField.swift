@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>.
+ * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,11 +30,13 @@
 
 import UIKit
 
-public class ErrorTextField: TextField {
+open class ErrorTextField: TextField {
     /// Controls the visibility of detailLabel
-    @IBInspectable public var revealError: Bool = false {
+    @IBInspectable
+    open var isErrorRevealed = false {
         didSet {
-            detailLabel.isHidden = !revealError
+            detailLabel.isHidden = !isErrorRevealed
+            layoutSubviews()
         }
     }
     
@@ -45,9 +47,9 @@ public class ErrorTextField: TextField {
      The super.prepare method should always be called immediately
      when subclassing.
      */
-    override public func prepare() {
+    open override func prepare() {
         super.prepare()
-        revealError = false
+        isErrorRevealed = false
         detailColor = Color.red.base
     }
 }

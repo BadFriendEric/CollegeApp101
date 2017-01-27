@@ -215,7 +215,7 @@
 					E95989FF1D4C0667004D8842 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 9H295K4Z78;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};

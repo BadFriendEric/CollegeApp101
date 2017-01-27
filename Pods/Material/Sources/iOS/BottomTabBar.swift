@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>.
+ * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,10 +38,15 @@ extension UITabBarItem {
 }
 
 open class BottomTabBar: UITabBar {
+    open override var intrinsicContentSize: CGSize {
+        return CGSize(width: width, height: height)
+    }
+    
     /// Automatically aligns the BottomNavigationBar to the superview.
-	open var isAlignedToParentAutomatically = true
+	@IBInspectable
+    open var isAlignedToParentAutomatically = true
 	
-	/// A property that accesses the backing layer's backgroundColor.
+	/// A property that accesses the backing layer's background
 	@IBInspectable
     open override var backgroundColor: UIColor? {
 		didSet {
@@ -70,15 +75,9 @@ open class BottomTabBar: UITabBar {
         prepare()
     }
 	
-    open override func layoutSublayers(of layer: CALayer) {
-        super.layoutSublayers(of: layer)
-        if self.layer == layer {
-            layoutShape()
-        }
-    }
-    
-	open override func layoutSubviews() {
+    open override func layoutSubviews() {
 		super.layoutSubviews()
+        layoutShape()
         layoutShadowPath()
         
 		if let v = items {
@@ -109,7 +108,7 @@ open class BottomTabBar: UITabBar {
 		super.didMoveToSuperview()
 		if isAlignedToParentAutomatically {
 			if let v = superview {
-				_ = v.layout(self).bottom().horizontally()
+				v.layout(self).bottom().horizontally()
 			}
 		}
 	}
@@ -122,30 +121,13 @@ open class BottomTabBar: UITabBar {
      when subclassing.
      */
 	public func prepare() {
-		depthPreset = .depth1
-        divider.alignment = .top
-		contentScaleFactor = Device.scale
-		backgroundColor = Color.white
-        //let image = UIImage.imageWithColor(color: Color.clear, size: CGSize(width: 1, height: 1))
-		//shadowImage = image
-		//backgroundImage = image
+		heightPreset = .normal
+        depthPreset = .depth1
+        dividerAlignment = .top
+		contentScaleFactor = Screen.scale
+		backgroundColor = .white
+        let image = UIImage.image(with: .clear, size: CGSize(width: 1, height: 1))
+		shadowImage = image
+		backgroundImage = image
 	}
 }
-
-/// A memory reference to the TabBarItem instance.
-private var TabBarKey: UInt8 = 0
-
-extension UITabBar {
-    /// TabBarItem reference.
-    public internal(set) var divider: Divider! {
-        get {
-            return AssociatedObject(base: self, key: &TabBarKey) {
-                return Divider(view: self)
-            }
-        }
-        set(value) {
-            AssociateObject(base: self, key: &TabBarKey, value: value)
-        }
-    }
-}
-

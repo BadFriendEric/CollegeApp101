@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>.
+ * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,13 +30,47 @@
 
 import UIKit
 
-open class SearchBar: BarView {
+@objc(SearchBarDelegate)
+public protocol SearchBarDelegate {
+    /**
+     A delegation method that is executed when the textField changed.
+     - Parameter searchBar: A SearchBar.
+     - Parameter didChange textField: A UITextField.
+     - Parameter with text: An optional String.
+     */
+    @objc
+    optional func searchBar(searchBar: SearchBar, didChange textField: UITextField, with text: String?)
+    
+    /**
+     A delegation method that is executed when the textField will clear.
+     - Parameter searchBar: A SearchBar.
+     - Parameter willClear textField: A UITextField.
+     - Parameter with text: An optional String.
+     */
+    @objc
+    optional func searchBar(searchBar: SearchBar, willClear textField: UITextField, with text: String?)
+    
+    /**
+     A delegation method that is executed when the textField is cleared.
+     - Parameter searchBar: A SearchBar.
+     - Parameter didClear textField: A UITextField.
+     - Parameter with text: An optional String.
+     */
+    @objc
+    optional func searchBar(searchBar: SearchBar, didClear textField: UITextField, with text: String?)
+}
+
+open class SearchBar: Bar {
 	/// The UITextField for the searchBar.
-	open private(set) lazy var textField = UITextField()
+	@IBInspectable
+    open let textField = UITextField()
 	
 	/// Reference to the clearButton.
-	open private(set) var clearButton: IconButton!
+	open fileprivate(set) var clearButton: IconButton!
 	
+    /// A reference to the delegate.
+    open weak var delegate: SearchBarDelegate?
+    
 	/// Handle the clearButton manually.
 	@IBInspectable
     open var isClearButtonAutoHandleEnabled = true {
@@ -74,105 +108,130 @@ open class SearchBar: BarView {
 	@IBInspectable
     open var placeholder: String? {
 		didSet {
-			if let v: String = placeholder {
+			if let v = placeholder {
 				textField.attributedPlaceholder = NSAttributedString(string: v, attributes: [NSForegroundColorAttributeName: placeholderColor])
 			}
 		}
 	}
 	
-	/// Placeholder textColor.
+	/// Placeholder text
 	@IBInspectable
     open var placeholderColor = Color.darkText.others {
 		didSet {
-			if let v: String = placeholder {
+			if let v = placeholder {
 				textField.attributedPlaceholder = NSAttributedString(string: v, attributes: [NSForegroundColorAttributeName: placeholderColor])
 			}
 		}
 	}
-	
-	open override func layoutSubviews() {
-		super.layoutSubviews()
-        guard willLayout else {
-            return
-        }
-        
-        textField.frame = contentView.bounds
-        layoutClearButton()
-	}
-	
+    
 	/**
-	An initializer that initializes the object with a NSCoder object.
-	- Parameter aDecoder: A NSCoder instance.
-	*/
+     An initializer that initializes the object with a NSCoder object.
+     - Parameter aDecoder: A NSCoder instance.
+     */
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
 	/**
-	An initializer that initializes the object with a CGRect object.
-	If AutoLayout is used, it is better to initilize the instance
-	using the init() initializer.
-	- Parameter frame: A CGRect instance.
-	*/
+     An initializer that initializes the object with a CGRect object.
+     If AutoLayout is used, it is better to initilize the instance
+     using the init() initializer.
+     - Parameter frame: A CGRect instance.
+     */
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
 	}
 	
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        guard willLayout else {
+            return
+        }
+        
+        textField.frame = contentView.bounds
+        layoutLeftView()
+        layoutClearButton()
+    }
+    
 	/**
-	A convenience initializer with parameter settings.
-	- Parameter leftControls: An Array of UIControls that go on the left side.
-	- Parameter rightControls: An Array of UIControls that go on the right side.
-	*/
-	public override init(leftControls: [UIView]? = nil, rightControls: [UIView]? = nil) {
-		super.init(leftControls: leftControls, rightControls: rightControls)
-	}
-	
-	/**
-	Prepares the view instance when intialized. When subclassing,
-	it is recommended to override the prepare method
-	to initialize property values and other setup operations.
-	The super.prepare method should always be called immediately
-	when subclassing.
-	*/
+     Prepares the view instance when intialized. When subclassing,
+     it is recommended to override the prepare method
+     to initialize property values and other setup operations.
+     The super.prepare method should always be called immediately
+     when subclassing.
+     */
 	open override func prepare() {
 		super.prepare()
-        interimSpacePreset = .interimSpace3
-        contentEdgeInsetsPreset = .square1
         prepareTextField()
 		prepareClearButton()
 	}
-	
-	/// Layout the clearButton.
-	open func layoutClearButton() {
-		let h = textField.frame.height
-        clearButton.frame = CGRect(x: textField.frame.width - h, y: 0, width: h, height: h)
-	}
-	
-	/// Clears the textField text.
-	@objc
-    internal func handleClearButton() {
-		textField.text = nil
-	}
-	
-	/// Prepares the textField.
-	private func prepareTextField() {
-		textField.contentScaleFactor = Device.scale
-		textField.font = RobotoFont.regular(with: 17)
-		textField.backgroundColor = Color.clear
-		textField.clearButtonMode = .whileEditing
-		tintColor = placeholderColor
-		textColor = Color.darkText.primary
-		placeholder = "Search"
-		contentView.addSubview(textField)
-	}
-	
-	/// Prepares the clearButton.
-	private func prepareClearButton() {
+}
+
+extension SearchBar {
+    /// Layout the clearButton.
+    open func layoutClearButton() {
+        let h = textField.frame.height
+        clearButton.frame = CGRect(x: textField.frame.width - h - 4, y: 4, width: h, height: h - 8)
+    }
+    
+    /// Layout the leftView.
+    open func layoutLeftView() {
+        guard let v = textField.leftView else {
+            return
+        }
+        
+        let h = textField.frame.height
+        v.frame = CGRect(x: 4, y: 4, width: h, height: h - 8)
+        
+        (v as? UIImageView)?.contentMode = .scaleAspectFit
+    }
+}
+
+extension SearchBar {
+    /// Clears the textField text.
+    @objc
+    fileprivate func handleClearButton() {
+        guard nil == textField.delegate?.textFieldShouldClear || true == textField.delegate?.textFieldShouldClear?(textField) else {
+            return
+        }
+        
+        let t = textField.text
+        
+        delegate?.searchBar?(searchBar: self, willClear: textField, with: t)
+        
+        textField.text = nil
+        
+        delegate?.searchBar?(searchBar: self, didClear: textField, with: t)
+    }
+    
+    // Live updates the search results.
+    @objc
+    fileprivate func handleEditingChanged(textField: UITextField) {
+        delegate?.searchBar?(searchBar: self, didChange: textField, with: textField.text)
+    }
+}
+
+extension SearchBar {
+    /// Prepares the textField.
+    fileprivate func prepareTextField() {
+        textField.contentScaleFactor = Screen.scale
+        textField.font = RobotoFont.regular(with: 17)
+        textField.backgroundColor = Color.clear
+        textField.clearButtonMode = .whileEditing
+        tintColor = placeholderColor
+        textColor = Color.darkText.primary
+        placeholder = "Search"
+        contentView.addSubview(textField)
+        textField.addTarget(self, action: #selector(handleEditingChanged(textField:)), for: .editingChanged)
+    }
+    
+    /// Prepares the clearButton.
+    fileprivate func prepareClearButton() {
         clearButton = IconButton(image: Icon.cm.close, tintColor: placeholderColor)
-		clearButton.contentEdgeInsets = .zero
-		isClearButtonAutoHandleEnabled = true
-		textField.clearButtonMode = .never
-		textField.rightViewMode = .whileEditing
-		textField.rightView = clearButton
-	}
+        clearButton.contentEdgeInsets = .zero
+        isClearButtonAutoHandleEnabled = true
+        textField.clearButtonMode = .never
+        textField.rightViewMode = .whileEditing
+        textField.rightView = clearButton
+    }
 }
