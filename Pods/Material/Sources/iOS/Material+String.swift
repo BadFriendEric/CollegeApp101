@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>.
+ * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,7 +31,14 @@
 import UIKit
 
 extension String {
-	/**
+    /**
+     :name:	trim
+     */
+    public var trimmed: String {
+        return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    }
+    
+    /**
 	:name:	lines
 	*/
 	public var lines: [String] {
@@ -42,34 +49,27 @@ extension String {
 	:name:	firstLine
 	*/
 	public var firstLine: String? {
-		return lines.first?.trim()
+		return lines.first?.trimmed
 	}
 	
 	/**
 	:name:	lastLine
 	*/
 	public var lastLine: String? {
-		return lines.last?.trim()
+		return lines.last?.trimmed
 	}
 	
 	/**
 	:name:	replaceNewLineCharater
 	*/
 	public func replaceNewLineCharater(separator: String = " ") -> String {
-		return components(separatedBy: CharacterSet.whitespaces).joined(separator: separator).trim()
+		return components(separatedBy: CharacterSet.whitespaces).joined(separator: separator).trimmed
 	}
 	
 	/**
 	:name:	replacePunctuationCharacters
 	*/
 	public func replacePunctuationCharacters(separator: String = "") -> String {
-		return components(separatedBy: CharacterSet.punctuationCharacters).joined(separator: separator).trim()
-	}
-	
-	/**
-	:name:	trim
-	*/
-	public func trim() -> String {
-		return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+		return components(separatedBy: CharacterSet.punctuationCharacters).joined(separator: separator).trimmed
 	}
 }

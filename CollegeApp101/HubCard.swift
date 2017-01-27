@@ -27,13 +27,8 @@ class HubCard: Card {
     internal init(vc: MainPanels,type: String, x: Int, y: Int, width: Int, height: Int){
         super.init(frame: CGRect(x: x, y: y, width: width, height: height))
         self.vc = vc
-        divider = false
         self.type = type
-        contentInset = UIEdgeInsets.zero
-        contentViewInset = UIEdgeInsets.zero
-        leftButtonsInset = UIEdgeInsets.zero
-        rightButtonsInset = UIEdgeInsets.zero
-        titleLabelInset = UIEdgeInsets.zero
+        
         backgroundColor = Color.white
         cornerRadiusPreset = .cornerRadius3
         
@@ -41,13 +36,13 @@ class HubCard: Card {
         setTrashButton()
         setIcon()
         setMainText("Welcome to College App 101, Press the Help icon in the top right to learn more!")
-        reloadView()
+        reload()
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func reloadView() {
+    override func reload() {
         for v in subviews {
             v.removeFromSuperview()
         }

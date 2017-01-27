@@ -177,7 +177,7 @@ class RegisterVC: UIViewController, TextFieldDelegate {
         //nameField.enableClearIconButton = true
         nameField.delegate = self
         
-        nameField.placeholderColor = Color.black
+        nameField.placeholderNormalColor = Color.black
         nameField.placeholderActiveColor = Color.black
         nameField.dividerColor = Color.black
         
@@ -197,7 +197,7 @@ class RegisterVC: UIViewController, TextFieldDelegate {
         //emailField.enableClearIconButton = true
         emailField.delegate = self
         
-        emailField.placeholderColor = Color.black
+        emailField.placeholderNormalColor = Color.black
         emailField.placeholderActiveColor = Color.black
         emailField.dividerColor = Color.black
         
@@ -212,7 +212,7 @@ class RegisterVC: UIViewController, TextFieldDelegate {
         passwordField.detail = "At least 8 characters"
         //passwordField.enableClearIconButton = true
         passwordField.delegate = self
-        passwordField.placeholderColor = Color.black
+        passwordField.placeholderNormalColor = Color.black
         passwordField.placeholderActiveColor = Color.black
         passwordField.dividerColor = Color.black
         
@@ -230,7 +230,7 @@ class RegisterVC: UIViewController, TextFieldDelegate {
         //passwordRepeatField.detail = "Check for mistakes"
         //passwordRepeatField.enableClearIconButton = true
         passwordRepeatField.delegate = self
-        passwordRepeatField.placeholderColor = Color.black
+        passwordRepeatField.placeholderNormalColor = Color.black
         passwordRepeatField.placeholderActiveColor = Color.black
         passwordRepeatField.dividerColor = Color.black
         
@@ -263,7 +263,7 @@ class RegisterVC: UIViewController, TextFieldDelegate {
     
     /// Executed when the 'return' key is pressed when using the emailField.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        (textField as? ErrorTextField)?.revealError = true
+        (textField as? ErrorTextField)?.isErrorRevealed = true
         return true
     }
     
@@ -279,16 +279,16 @@ class RegisterVC: UIViewController, TextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        (textField as? ErrorTextField)?.revealError = false
+        (textField as? ErrorTextField)?.isErrorRevealed = false
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        (textField as? ErrorTextField)?.revealError = false
+        (textField as? ErrorTextField)?.isErrorRevealed = false
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        (textField as? ErrorTextField)?.revealError = false
+        (textField as? ErrorTextField)?.isErrorRevealed = false
         return true
     }
 }

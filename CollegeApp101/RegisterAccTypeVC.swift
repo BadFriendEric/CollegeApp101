@@ -185,7 +185,7 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
     
     /// Executed when the 'return' key is pressed when using the emailField.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        (textField as? ErrorTextField)?.revealError = true
+        (textField as? ErrorTextField)?.isErrorRevealed = true
         return true
     }
     
@@ -201,16 +201,16 @@ class RegisterAccTypeVC: UIViewController, TextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        (textField as? ErrorTextField)?.revealError = false
+        (textField as? ErrorTextField)?.isErrorRevealed = false
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        (textField as? ErrorTextField)?.revealError = false
+        (textField as? ErrorTextField)?.isErrorRevealed = false
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        (textField as? ErrorTextField)?.revealError = false
+        (textField as? ErrorTextField)?.isErrorRevealed = false
         return true
     }
 }

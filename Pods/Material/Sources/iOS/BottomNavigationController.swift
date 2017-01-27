@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>.
+ * Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -80,9 +80,19 @@ open class BottomNavigationController: UITabBarController, UITabBarControllerDel
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
 	
+    /// An initializer that accepts no parameters.
 	public init() {
 		super.init(nibName: nil, bundle: nil)
 	}
+    
+    /**
+     An initializer that initializes the object an Array of UIViewControllers.
+     - Parameter viewControllers: An Array of UIViewControllers.
+     */
+    public init(viewControllers: [UIViewController]) {
+        super.init(nibName: nil, bundle: nil)
+        self.viewControllers = viewControllers
+    }
 	
 	open override func viewDidLoad() {
 		super.viewDidLoad()
@@ -130,8 +140,9 @@ open class BottomNavigationController: UITabBarController, UITabBarControllerDel
      */
 	open func prepare() {
 		view.clipsToBounds = true
-		view.contentScaleFactor = Device.scale
-		delegate = self
+		view.contentScaleFactor = Screen.scale
+		view.backgroundColor = .white
+        delegate = self
         prepareTabBar()
 	}
 	
@@ -147,11 +158,12 @@ open class BottomNavigationController: UITabBarController, UITabBarControllerDel
 	
 	/// Prepares the tabBar.
 	private func prepareTabBar() {
-		tabBar.depthPreset = .depth1
-        tabBar.divider.alignment = .top
-        //let image = UIImage(data: Data., scale: CGSize(width: 1, height: 1))
-		//tabBar.shadowImage = image
-		//tabBar.backgroundImage = image
-		tabBar.backgroundColor = Color.white
+		tabBar.heightPreset = .normal
+        tabBar.depthPreset = .depth1
+        tabBar.dividerAlignment = .top
+        let image = UIImage.image(with: Color.clear, size: CGSize(width: 1, height: 1))
+		tabBar.shadowImage = image
+		tabBar.backgroundImage = image
+		tabBar.backgroundColor = .white
 	}
 }

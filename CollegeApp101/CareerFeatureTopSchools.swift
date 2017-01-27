@@ -144,7 +144,7 @@ open class CareerFeatureTopSchools : CareerFeature {
     
     open override func getFeatures() -> [UIView] {
         //titleLine.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-        titleLine.layer.color = Color.clear
+        
         titleLine.layer.borderColor = Color.clear.cgColor
         return features
     }
