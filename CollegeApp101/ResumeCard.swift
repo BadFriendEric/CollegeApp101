@@ -40,21 +40,20 @@ class ResumeCard: Card, UITextFieldDelegate{
     internal init(vc: CareerFeatureResumeBuilder, x: Int, y: Int, width: Int, height: Int, text: String, text2: String, text3: String){
         super.init(frame: CGRect(x: x, y: y, width: width, height: height))
         self.view = vc
-        divider = false
         setTrashButton()
         setTextBox(text: text, text2: text2, text3: text3)
         setEdit()
         setIcon()
         setTitleIcon()
         setTimeIcon()
-        reloadView()
+        reload()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func reloadView() {
+    override func reload() {
         for v in subviews {
             v.removeFromSuperview()
         }
@@ -254,16 +253,16 @@ class ResumeCard: Card, UITextFieldDelegate{
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        (textField as? ErrorTextField)?.revealError = false
+        (textField as? ErrorTextField)?.isErrorRevealed = false
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        (textField as? ErrorTextField)?.revealError = false
+        (textField as? ErrorTextField)?.isErrorRevealed = false
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        (textField as? ErrorTextField)?.revealError = false
+        (textField as? ErrorTextField)?.isErrorRevealed = false
         return true
     }
     

@@ -141,7 +141,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
         //emailField.enableClearIconButton = true
         emailField.delegate = self
         
-        emailField.placeholderColor = Color.black
+        emailField.placeholderNormalColor = Color.black
         emailField.placeholderActiveColor = Color.black
         emailField.dividerColor = Color.black
         
@@ -156,7 +156,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
         //passwordField.detail = "At least 8 characters"
         //passwordField.enableClearIconButton = true
         passwordField.delegate = self
-        passwordField.placeholderColor = Color.black
+        passwordField.placeholderNormalColor = Color.black
         passwordField.placeholderActiveColor = Color.black
         passwordField.dividerColor = Color.black
         
@@ -200,16 +200,16 @@ class LoginVC: UIViewController, TextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        (textField as? ErrorTextField)?.revealError = false
+        (textField as? ErrorTextField)?.isErrorRevealed = false
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        (textField as? ErrorTextField)?.revealError = false
+        (textField as? ErrorTextField)?.isErrorRevealed = false
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        (textField as? ErrorTextField)?.revealError = false
+        (textField as? ErrorTextField)?.isErrorRevealed = false
         return true
     }
 }
