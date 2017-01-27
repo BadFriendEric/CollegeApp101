@@ -37,7 +37,7 @@ class LoginVC: UIViewController, TextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareAWS()
-        //prepareAWSCognito()
+        prepareAWSCognito()
         prepareView()
         //prepareNameField()
         prepareEmailField()
