@@ -25,7 +25,9 @@ class LoginVC: UIViewController, TextFieldDelegate {
     
     
     
-    let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USWest2, identityPoolId: "us-west-2:73ace396-1072-46b3-ad9a-5e04db7da2a")
+    let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USWest2, identityPoolId: "us-west-2:73ace396-1072-46b3-ad9a-5e04db7da2a6")
+    
+    var syncClient : AWSCognito? = nil
     
     //let syncClient = AWSCognito.default()
     
@@ -39,6 +41,8 @@ class LoginVC: UIViewController, TextFieldDelegate {
         prepareAWS()
         prepareAWSCognito()
         prepareView()
+        prepareAWS()
+        prepareAWSCognito()
         //prepareNameField()
         prepareEmailField()
         preparePasswordField()
@@ -52,23 +56,15 @@ class LoginVC: UIViewController, TextFieldDelegate {
         
         let configuration = AWSServiceConfiguration(region: .USWest2, credentialsProvider: credentialsProvider)
         
-        print(configuration)
         AWSServiceManager.default().defaultServiceConfiguration = configuration
         
     }
     
     fileprivate func prepareAWSCognito(){
         
-        let syncClient = AWSCognito.default()
+        syncClient = AWSCognito.default()
         
         // Create a record in a dataset and synchronize with the server
-        var dataset = syncClient.openOrCreateDataset("myDataset")
-        dataset.setString("myValue", forKey:"myKey")
-        dataset.synchronize().continueWith {(task: AWSTask!) -> AnyObject! in
-            // Your handler code here
-            return nil
-            
-        }
         
 //        credentialsProvider.getIdentityId().continueWith { (task: AWSTask!) -> AnyObject! in
 //            
@@ -145,6 +141,16 @@ class LoginVC: UIViewController, TextFieldDelegate {
         
         username = emailField.text
         password = passwordField.text
+        
+        var dataset = syncClient?.openOrCreateDataset("Client1")
+        dataset?.setString(username, forKey:"username")
+        dataset?.setString(password, forKey:"password")
+        dataset?.synchronize().continueWith {(task: AWSTask!) -> AnyObject! in
+            // Your handler code here
+            return nil
+            
+        }
+
         
         let secondViewController:UIViewController = MainPanels()
         self.present(secondViewController, animated: true, completion: nil)
@@ -259,4 +265,5 @@ class LoginVC: UIViewController, TextFieldDelegate {
         (textField as? ErrorTextField)?.isErrorRevealed = false
         return true
     }
+    
 }
